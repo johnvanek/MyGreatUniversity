@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyGreatUniversity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MyGreatUniversity.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/WguBlue</item>
         <item name="colorPrimaryVariant">@color/WguBolderBlue</item>

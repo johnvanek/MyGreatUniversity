@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="WguBlue">#003057</color>
+    <color name="WguBolderBlue">#004C8A</color>
+    <color name="WguLightBlue">#327DA9</color>
+    <color name="WguGold">#C69214</color>
+    <color name="AccentGreen">#42892E</color>
+    <color name="AccentYellow">#F68E00</color>
+    <color name="AccentOrange">#E66E24</color>
+    <color name="AccentRed">#840028</color>
+    <color name="AccentPurple">#7C235E</color>
+    <color name="NeutralGray">#404048</color>
+    <color name="NeutralLightGray">#62666A</color>
+    <color name="NeutralWhite">#D0D0CD</color>
+    <color name="Black">#000</color>
 </resources>

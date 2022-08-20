@@ -70,7 +70,7 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/acdemic_half"
+                        app:srcCompat="@drawable/tinyacademic"
                         tools:visibility="visible" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -80,7 +80,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="265dp"
-                android:layout_margin="8dp"
+                android:layout_margin="5dp"
                 app:cardBackgroundColor="@color/WguBlue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="10dp">

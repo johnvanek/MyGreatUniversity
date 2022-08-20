@@ -13,4 +13,5 @@
     <color name="NeutralLightGray">#62666A</color>
     <color name="NeutralWhite">#D0D0CD</color>
     <color name="Black">#000</color>
+    <color name="White">#FFF</color>
 </resources>

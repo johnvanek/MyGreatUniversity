@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/WguBlue</item>
         <item name="colorPrimaryVariant">@color/WguBolderBlue</item>
-        <item name="colorOnPrimary">@color/NeutralWhite</item>
+        <item name="colorOnPrimary">@color/White</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/NeutralGray</item>
         <item name="colorSecondaryVariant">@color/NeutralLightGray</item>
@@ -12,5 +12,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!--Icons for overflow menu-->
+        <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+    </style>
+
+    <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">#FFF</item>
     </style>
 </resources>

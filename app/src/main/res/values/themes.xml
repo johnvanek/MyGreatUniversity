@@ -14,9 +14,15 @@
         <!-- Customize your theme here. -->
         <!--Icons for overflow menu-->
         <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+        <!-- Rounded corners      -->
+
     </style>
 
     <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">#FFF</item>
+    </style>
+    <style name = "roundedImage" parent ="">
+        <item name = "cornerFamily">rounded</item>
+        <item name = "cornerSize">20dp</item>
     </style>
 </resources>

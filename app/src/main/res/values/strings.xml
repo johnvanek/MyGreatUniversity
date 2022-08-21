@@ -4,8 +4,7 @@
     <string name="overflow_term">Term View</string>
     <string name="overflow_course">Term Course</string>
     <string name="overflow_assessment">Assessment View</string>
-    <string name="an_image_of_academic_hall">An image of academic hall</string>
-    <string name="welcome_to_the_mgu_app">Welcome to the MGU APP</string>
-    <string name="please_use_the_top_right_menu_to_navigate">Please use the top-right menu to navigate.</string>
-    <string name="an_image_of_an_academic_hall_with_graduates_about_to_through_thier_caps">An image of an academic hall with graduates about to through their caps</string>
+    <string name="home_text">Welcome to the MGU APP</string>
+    <string name="navigation_text">Please use the top-right menu to navigate.</string>
+    <string name="academic_hall">An image of an academic hall with graduates about to through their caps</string>
 </resources>

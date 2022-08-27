@@ -2,7 +2,7 @@
     <string name="app_name">MGU</string>
     <string name="overflow_home">Home View</string>
     <string name="overflow_term">Term View</string>
-    <string name="overflow_course">Term Course</string>
+    <string name="overflow_course">Course View</string>
     <string name="overflow_assessment">Assessment View</string>
     <string name="home_text">Welcome to the MGU APP</string>
     <string name="navigation_text">Please use the top-right menu to navigate.</string>

@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -20,9 +21,6 @@ public class MainActivity extends AppCompatActivity {
         //Which enables me to use more methods.
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        //This
-        //getSupportActionBar().setHomeAsUpIndicator();//This changes the logo for the up indicator
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
     }
 
     //Inflate the menu

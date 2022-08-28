@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
     <item
+        android:id="@+id/course_overflow"
+        android:onClick="gotoCourseView"
+        android:title="@string/overflow_course"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/term_overflow"
         android:title="@string/overflow_term"
         app:showAsAction="never"
         android:onClick="gotoTermView"
         />
-    <item
-        android:id="@+id/course_overflow"
-        android:title="@string/overflow_course"
-        app:showAsAction="never" />
     <item
         android:id="@+id/overflow_assessment"
         android:title="@string/overflow_assessment"

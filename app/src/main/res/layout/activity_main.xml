@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/WguLightBlue"
-    tools:context=".MainActivity">
+    tools:context=".UI.MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:paddingTop="2dp"
                 android:paddingBottom="4dp"
                 android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
-                app:menu="@menu/overflow_menu"
+                app:menu="@menu/main_menu"
                 app:navigationIcon="@drawable/toolbar_icon_medium"
                 app:subtitle="My Great University"
                 app:subtitleTextColor="@color/White"
@@ -113,7 +113,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/term_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"

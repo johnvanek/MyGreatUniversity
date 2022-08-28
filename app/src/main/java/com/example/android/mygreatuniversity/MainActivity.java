@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
     }
 
-
     //Inflate the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -15,7 +15,6 @@
         <!--Icons for overflow menu-->
         <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
         <!-- Rounded corners      -->
-
     </style>
 
     <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">

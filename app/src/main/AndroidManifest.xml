@@ -13,21 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
         tools:targetApi="31">
+
+
+        <!-- This is a child of Main !-->
+        <activity
+            android:name=".TermView"
+            android:exported="false"
+            android:label="TermView"
+            android:parentActivityName="com.example.android.mygreatuniversity.MainActivity" />
+
         <!-- The Home Page !-->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- This is a child of Main !-->
-        <activity
-            android:name=".TermView"
-            android:exported="false"
-            android:parentActivityName="com.example.android.mygreatuniversity.MainActivity" />
-
     </application>
 
 </manifest>

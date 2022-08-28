@@ -6,7 +6,9 @@
     <item
         android:id="@+id/term_overflow"
         android:title="@string/overflow_term"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:onClick="gotoTermView"
+        />
     <item
         android:id="@+id/course_overflow"
         android:title="@string/overflow_course"

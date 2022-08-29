@@ -34,15 +34,17 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     int pos = getAdapterPosition();
                     //The current item on the list that is sent to the adapter. onClick()
                     final Course curCourse = mCourses.get(pos);
-                    //Since we have the information of this listItem we can send the information to
-                    // A new screen aka passing the data with an new intent.
-                    //34.13 part 3
-                    Intent intent = new Intent(context, CourseView.class);
+
+                    //Create the intent
+                    Intent intent = new Intent(context, CourseViewDetailed.class);
+                    //Give some extra data to the intent
                     intent.putExtra("id", curCourse.getCourseID());
                     intent.putExtra("title", curCourse.getTitle());
                     intent.putExtra("startDate", curCourse.getStartDate());
                     intent.putExtra("endDate" , curCourse.getEndDate());
                     intent.putExtra("status", curCourse.getStatus());
+                    //Go to the next screen in this case courseViewDetailed
+                    context.startActivity(intent);
                 }
             });
         }

@@ -27,7 +27,7 @@ public class Repo {
             mCourses = mCourseDAO.getCourses();
         });
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -37,7 +37,7 @@ public class Repo {
     public void insert(Course course) {
         executor.execute(() -> mCourseDAO.insert(course));
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

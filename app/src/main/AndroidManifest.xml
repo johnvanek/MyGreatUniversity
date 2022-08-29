@@ -14,10 +14,13 @@
         android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".UI.CourseViewDetailed"
+            android:exported="false"
+            android:parentActivityName=".UI.CourseView" />  <!-- Child of Course !-->
+        <activity
             android:name=".UI.CourseView"
-            android:parentActivityName=".UI.MainActivity"
-            android:exported="false" />
-        <!-- This is a child of Main ! -->
+            android:exported="false"
+            android:parentActivityName=".UI.MainActivity" /> <!-- Child of Main ! -->
         <activity
             android:name=".UI.TermView"
             android:exported="false"

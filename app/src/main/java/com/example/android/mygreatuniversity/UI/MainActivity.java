@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     public void gotoCourseView(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, CourseView.class);
         startActivity(intent);
+
+        //If coming to a new activity from an intent it refreshed the whole page or maybe use
+        // this.finish(). If intending to end a page activity.
+
         //Test out adding to the database here
         //This is how you would add a new course
 //        Repo repo = new Repo(getApplication());

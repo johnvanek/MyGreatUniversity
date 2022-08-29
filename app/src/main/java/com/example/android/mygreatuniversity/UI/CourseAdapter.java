@@ -2,6 +2,7 @@ package com.example.android.mygreatuniversity.UI;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,26 +36,45 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     final Course curCourse = mCourses.get(pos);
                     //Since we have the information of this listItem we can send the information to
                     // A new screen aka passing the data with an new intent.
-                    //I would want to go to the detailed courseView here.
                     //34.13 part 3
-                    //Intent intent = new Intent(context, )
-
+                    Intent intent = new Intent(context, CourseView.class);
+                    intent.putExtra("id", curCourse.getCourseID());
+                    intent.putExtra("title", curCourse.getTitle());
+                    intent.putExtra("startDate", curCourse.getStartDate());
+                    intent.putExtra("endDate" , curCourse.getEndDate());
+                    intent.putExtra("status", curCourse.getStatus());
                 }
             });
         }
     }
     private List<Course> mCourses;
-//    private final Context context;
-//    private final LayoutInflater mInflater;
+    private final Context context;
+    private final LayoutInflater mInflater;
+    //CourseAdapter constructor given a context
+    public CourseAdapter(Context context) {
+        Log.d("adapter", "The Course adapter has been started");
+        mInflater = LayoutInflater.from(context);
+        this.context = context;
+    }
 
     @NonNull
     @Override
     public CourseAdapter.CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = mInflater.inflate(R.layout.course_list_item, parent, false);
+        return new CourseViewHolder(itemView);
     }
 
+    //This is where you define the view content
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
+
+        if(mCourses != null) {
+            Course current = mCourses.get(position);
+            String title = current.getTitle();
+            holder.courseItemView.setText(title);
+        } else {
+            holder.courseItemView.setText("No title!");
+        }
 
     }
 
@@ -68,6 +88,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
     //This method tells the activity which items to show.
     public void setCourses(List<Course> courses) {
+        Log.d("adapter", "attempting to set courses: " + courses);
         mCourses = courses;
         notifyDataSetChanged();
     }

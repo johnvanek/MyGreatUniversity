@@ -1,6 +1,7 @@
 package com.example.android.mygreatuniversity.Database;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.Entity.Course;
@@ -21,7 +22,18 @@ public class Repo {
         DatabaseBuilder dbb = DatabaseBuilder.getDatabase(app);
         mCourseDAO = dbb.courseDAO();
     }
-
+    public List<Course> getCourses() {
+        executor.execute(() -> {
+            mCourses = mCourseDAO.getCourses();
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get courses " + mCourses);
+        return mCourses;
+    }
     public void insert(Course course) {
         executor.execute(() -> mCourseDAO.insert(course));
         try {
@@ -30,8 +42,5 @@ public class Repo {
             e.printStackTrace();
         }
     }
-    public List<Course> getCourses() {
-        executor.execute(() -> mCourses = mCourseDAO.getCourses());
-        return mCourses;
-    }
+
 }

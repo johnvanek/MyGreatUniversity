@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,5 +41,10 @@ public class MainActivity extends AppCompatActivity {
     public void gotoCourseView(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, CourseView.class);
         startActivity(intent);
+        //Test out adding to the database here
+        //This is how you would add a new course
+//        Repo repo = new Repo(getApplication());
+//        Course course = new Course("test1","today","tomorrow","In-Progress");
+//        repo.insert(course);
     }
 }

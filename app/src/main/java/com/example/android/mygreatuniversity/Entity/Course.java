@@ -66,4 +66,8 @@ public class Course {
                 ", status='" + status + '\'' +
                 '}';
     }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
 }

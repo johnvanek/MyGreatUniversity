@@ -17,7 +17,7 @@ public interface CourseDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Course course);
 
-    @Update
+    @Update()
     void update(Course course);
 
     @Delete

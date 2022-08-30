@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.R;
 
 import java.text.SimpleDateFormat;
@@ -18,17 +19,19 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
+    final Calendar CalenderStart = Calendar.getInstance();
+    final Calendar CalenderEnd = Calendar.getInstance();
     //Declarations for the fields
     EditText courseTitle;
-    EditText startText;
+    EditText startText, endText;
+    EditText courseStatus;
     //intent data references
     String title;
     int courseId;
     Repo repo;
-
     //Date References & Declarations
-    final Calendar CalenderStart = Calendar.getInstance();
-    DatePickerDialog.OnDateSetListener startDatePicker;
+    String format = "MM/dd/yy";
+    DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +41,12 @@ public class CourseViewDetailed extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         //Define an actionbar reference for shorthand
-        ActionBar ab = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
 
         //Set up the back is up when children are present.
-        assert ab != null;
-        ab.setDisplayHomeAsUpEnabled(true);   //show back button
-        ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);   //show back button
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
         //Link the Declared textViews from xml file.
         courseTitle = findViewById(R.id.editTextTitle);
@@ -54,10 +57,10 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Assign the textViews the intent data
         courseTitle.setText(title);
 
-        //DatePicker
+        //DatePicker-Related-Logic
         //Get the xml id's for the edit text fields
         startText = findViewById(R.id.editTextStartDate);
-
+        endText = findViewById(R.id.editTextEndDate);
 
         startDatePicker = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -65,9 +68,17 @@ public class CourseViewDetailed extends AppCompatActivity {
                 CalenderStart.set(Calendar.YEAR, year);
                 CalenderStart.set(Calendar.MONTH, month);
                 CalenderStart.set(Calendar.DAY_OF_MONTH, day);
-                String format = "MM/dd/yy";
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
                 updateStartDateLabel();
+            }
+        };
+
+        endDatePicker = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                CalenderEnd.set(Calendar.YEAR, year);
+                CalenderEnd.set(Calendar.MONTH, month);
+                CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
+                updateEndDateLabel();
             }
         };
 
@@ -75,25 +86,49 @@ public class CourseViewDetailed extends AppCompatActivity {
         startText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(CourseViewDetailed.this, startDatePicker, CalenderStart
-                        .get(Calendar.YEAR), CalenderStart.get(Calendar.MONTH),
-                        CalenderStart.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(CourseViewDetailed.this,
+                        startDatePicker, CalenderStart.get(Calendar.YEAR),
+                        CalenderStart.get(Calendar.MONTH),
+                        CalenderStart.get(Calendar.DAY_OF_MONTH))
+                        .show();
+            }
+        });
+
+        endText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(CourseViewDetailed.this,
+                        endDatePicker, CalenderEnd.get(Calendar.YEAR),
+                        CalenderEnd.get(Calendar.MONTH),
+                        CalenderEnd.get(Calendar.DAY_OF_MONTH))
+                        .show();
             }
         });
     }
 
-    private void updateStartDateLabel(){
-        String format = "MM/dd/yy";
+    private void updateStartDateLabel() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
         startText.setText(simpleDateFormat.format(CalenderStart.getTime()));
+    }
+
+    private void updateEndDateLabel() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
+        endText.setText(simpleDateFormat.format(CalenderEnd.getTime()));
+    }
+
+    public void saveButton(View view) {
+        //Create a new Course
+        //TODO create a method here to check if these fields are null or empty strings.
+        //Need a method here to check if these fields are null or not.
+        Course editedCourse = new Course(
+                courseTitle.getText().toString(),
+                startText.getText().toString(),
+                endText.getText().toString(),
+                courseStatus.getText().toString());
+        // Then update
+        repo.update(editedCourse);
     }
 }
 
 
-//    public void saveButton (View view) {
-//        Course editedCourse;
-//        if(courseId == -1) {
-//            int newID = repo.getCourses().get(repo.getCourses().size() - 1).getCourseID() + 1;
-//            editedCourse = new Course(newID, )
-//        }
-//    }
+

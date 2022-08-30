@@ -43,4 +43,13 @@ public class Repo {
         }
     }
 
+    public void update(Course course) {
+        executor.execute(() -> mCourseDAO.update(course));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

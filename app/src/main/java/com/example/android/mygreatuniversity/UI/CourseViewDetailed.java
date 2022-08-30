@@ -1,8 +1,8 @@
 package com.example.android.mygreatuniversity.UI;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
@@ -10,17 +10,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
-import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
     //Declarations for the fields
     EditText courseTitle;
-
+    EditText startText;
     //intent data references
     String title;
     int courseId;
     Repo repo;
+
+    //Date References & Declarations
+    final Calendar CalenderStart = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener startDatePicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +45,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
         //Link the Declared textViews from xml file.
-        courseTitle = findViewById(R.id.editTextSelectedCourseTitle);
+        courseTitle = findViewById(R.id.editTextTitle);
         courseId = getIntent().getIntExtra("id", -1);
         //get and assign the intent data
         title = getIntent().getStringExtra("title");
@@ -45,8 +53,28 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Assign the textViews the intent data
         courseTitle.setText(title);
 
-        //Add the DatePicker for
+        //DatePicker
+        //Get the xml id's for the edit text fields
+        startText = findViewById(R.id.course_start_text);
+        startDatePicker = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                CalenderStart.set(Calendar.YEAR, year);
+                CalenderStart.set(Calendar.MONTH, month);
+                CalenderStart.set(Calendar.DAY_OF_MONTH, day);
+                String format = "MM/dd/YY";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
+                updateStartDateLabel();
+            }
+        };
     }
+    private void updateStartDateLabel(){
+        String format = "MM/dd/YY";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
+        startText.setText(simpleDateFormat.format(CalenderStart.getTime()));
+    }
+}
+
 
 //    public void saveButton (View view) {
 //        Course editedCourse;
@@ -55,4 +83,3 @@ public class CourseViewDetailed extends AppCompatActivity {
 //            editedCourse = new Course(newID, )
 //        }
 //    }
-}

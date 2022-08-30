@@ -2,6 +2,7 @@ package com.example.android.mygreatuniversity.UI;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -55,21 +56,34 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //DatePicker
         //Get the xml id's for the edit text fields
-        startText = findViewById(R.id.course_start_text);
+        startText = findViewById(R.id.editTextStartDate);
+
+
         startDatePicker = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 CalenderStart.set(Calendar.YEAR, year);
                 CalenderStart.set(Calendar.MONTH, month);
                 CalenderStart.set(Calendar.DAY_OF_MONTH, day);
-                String format = "MM/dd/YY";
+                String format = "MM/dd/yy";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
                 updateStartDateLabel();
             }
         };
+
+        //Set the listener on the start edit Text
+        startText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(CourseViewDetailed.this, startDatePicker, CalenderStart
+                        .get(Calendar.YEAR), CalenderStart.get(Calendar.MONTH),
+                        CalenderStart.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
     }
+
     private void updateStartDateLabel(){
-        String format = "MM/dd/YY";
+        String format = "MM/dd/yy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
         startText.setText(simpleDateFormat.format(CalenderStart.getTime()));
     }

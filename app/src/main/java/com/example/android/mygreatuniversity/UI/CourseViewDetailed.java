@@ -1,5 +1,6 @@
 package com.example.android.mygreatuniversity.UI;
 
+import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.app.DatePickerDialog;
@@ -28,7 +29,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     //Declarations for the fields
     EditText courseTitle;
     EditText startText, endText;
-    EditText courseStatus;
+    Spinner courseStatus;
     //intent data references
     String IntentTitle, IntentStatus;
     int intentCourseId;
@@ -60,14 +61,14 @@ public class CourseViewDetailed extends AppCompatActivity {
         //************ INTENT DATA PASSING ****************
         //XML FIELD DECLARATIONS
         courseTitle = findViewById(R.id.editTextTitle);
-        courseStatus = findViewById(R.id.editTextStatus);
+        courseStatus = findViewById(R.id.spinnerStatus);
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
         IntentTitle = getIntent().getStringExtra("title");
         IntentStatus = getIntent().getStringExtra("status");
         //Assign the XML Fields the values from the intents or that have been edited
         courseTitle.setText(IntentTitle);
-        courseStatus.setText(IntentStatus);
+        courseStatus.setSelection(courseStatusPosition(this,IntentStatus));
 
         //************************ DATEPICKER LOGIC START & END ********************
         //Get the xml id's for the edit text fields representing start and end edit text
@@ -142,16 +143,16 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     public void saveState(View view) {
-        //This is 12:50 part 3 by bike shop.
         //Create a new Course
         //
         Course editedCourse = new Course(
                 courseTitle.getText().toString(),
                 startText.getText().toString(),
                 endText.getText().toString(),
-                courseStatus.getText().toString());
+                courseStatus.getSelectedItem().toString());
+        System.out.println("The value of course status is " + courseStatus.getSelectedItem().toString());
         // Then update the item in the local database
-        repo.update(editedCourse);
+        //repo.update(editedCourse);
     }
 }
 

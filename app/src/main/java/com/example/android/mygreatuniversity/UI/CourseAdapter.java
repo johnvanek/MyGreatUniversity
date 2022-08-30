@@ -69,7 +69,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     //This is where you define the view content
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseViewHolder holder, int position) {
-
         if(mCourses != null) {
             Course current = mCourses.get(position);
             String title = current.getTitle();
@@ -77,7 +76,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         } else {
             holder.courseItemView.setText("No title!");
         }
-
     }
 
     @Override

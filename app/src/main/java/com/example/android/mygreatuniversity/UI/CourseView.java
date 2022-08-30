@@ -37,7 +37,7 @@ public class CourseView extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.courseListRecyclerView);
         Repo repo = new Repo(getApplication());
         List<Course> courses = repo.getCourses();
-        Log.d("adapter", "current value of courses in courseViedw " + courses);
+        Log.d("adapter", "current value of courses in courseVied" + courses);
         //Set the adapter and layoutManger
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);

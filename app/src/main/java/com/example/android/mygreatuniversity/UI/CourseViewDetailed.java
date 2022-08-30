@@ -117,6 +117,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     public void saveButton(View view) {
+        //This is 12:50 part 3 by bike shop.
         //Create a new Course
         //TODO create a method here to check if these fields are null or empty strings.
         //Need a method here to check if these fields are null or not.

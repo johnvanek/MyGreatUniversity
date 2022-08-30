@@ -44,13 +44,11 @@
                 android:layout_margin="7dp"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 app:cardBackgroundColor="@color/WguBlue"
-                app:cardCornerRadius="4dp"
                 app:cardElevation="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp">
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/term_header"
@@ -71,7 +69,6 @@
                         android:id="@+id/constraintLayout"
                         android:layout_width="354dp"
                         android:layout_height="593dp"
-                        android:padding="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/term_header">
@@ -80,16 +77,15 @@
                             android:id="@+id/cardView"
                             android:layout_width="338dp"
                             android:layout_height="259dp"
-                            app:cardBackgroundColor="@color/WguBolderBlue"
-                            app:cardCornerRadius="10dp"
+                            app:cardCornerRadius="4dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="260dp"
-                                android:layout_margin="2dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="8dp"
                                 android:background="@color/White">
 
                                 <EditText
@@ -115,7 +111,6 @@
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="8dp"
-                                    android:editable="false"
                                     android:ems="10"
                                     android:focusable="true"
                                     android:importantForAutofill="no"
@@ -133,7 +128,6 @@
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="8dp"
-                                    android:editable="false"
                                     android:ems="10"
                                     android:inputType="none"
                                     android:minHeight="48dp"
@@ -141,7 +135,7 @@
                                     app:layout_constraintHorizontal_bias="0.702"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/editTextStartDate"
-                                    tools:ignore="SpeakableTextPresentCheck" />
+                                    tools:ignore="SpeakableTextPresentCheck,TextFields" />
 
                                 <TextView
                                     android:id="@+id/textView4"
@@ -150,8 +144,7 @@
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="36dp"
                                     android:fontFamily="@font/convergence"
-                                    android:hint="title"
-                                    android:text="Title: "
+                                    android:text="@string/title"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
@@ -162,11 +155,10 @@
                                     android:id="@+id/textView5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
+                                    android:layout_marginStart="16dp"
                                     android:layout_marginTop="88dp"
                                     android:fontFamily="@font/convergence"
-                                    android:hint="startDate"
-                                    android:text="StartDate:"
+                                    android:text="@string/startdatesemi"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
@@ -177,11 +169,10 @@
                                     android:id="@+id/textView6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
+                                    android:layout_marginStart="16dp"
                                     android:layout_marginTop="140dp"
                                     android:fontFamily="@font/convergence"
-                                    android:hint="endDate"
-                                    android:text="EndDate:"
+                                    android:text="@string/enddate"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
@@ -192,11 +183,10 @@
                                     android:id="@+id/textView7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
+                                    android:layout_marginStart="16dp"
                                     android:layout_marginTop="192dp"
                                     android:fontFamily="@font/convergence"
-                                    android:hint="endDate"
-                                    android:text="Status:"
+                                    android:text="@string/status"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
@@ -224,7 +214,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/convergence"
-                            android:text="Mentor"
+                            android:text="@string/mentor"
                             android:textColor="@color/White"
                             android:textSize="34sp"
                             android:textStyle="bold"
@@ -266,7 +256,7 @@
                         android:fontFamily="@font/convergence"
                         android:onClick="saveState"
                         android:shadowColor="@color/Black"
-                        android:text="Save"
+                        android:text="@string/save"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

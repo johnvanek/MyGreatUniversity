@@ -10,6 +10,13 @@
     <string name="courses">Courses</string>
     <string name="selected_course">Selected Course</string>
     <string name = "digitsForText">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="title">Title:</string>
+    <string name="startdate">startDate</string>
+    <string name="startdatesemi">StartDate:</string>
+    <string name="enddate">EndDate:</string>
+    <string name="status">Status:</string>
+    <string name="mentor">Mentor</string>
+    <string name="save">Save</string>
     <string-array name="course_status_array">
         <item>In-Progress</item>
         <item>Completed</item>

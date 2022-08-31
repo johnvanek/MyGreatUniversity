@@ -48,7 +48,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="6dp">
 
                     <TextView
                         android:id="@+id/term_header"
@@ -78,6 +79,8 @@
                             android:layout_width="338dp"
                             android:layout_height="259dp"
                             app:cardCornerRadius="4dp"
+                            app:cardElevation="5dp"
+                            app:cardMaxElevation="5dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -112,7 +115,9 @@
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="8dp"
                                     android:ems="10"
-                                    android:focusable="true"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:focusedByDefault="false"
                                     android:importantForAutofill="no"
                                     android:inputType="none"
                                     android:minHeight="48dp"
@@ -129,6 +134,9 @@
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="8dp"
                                     android:ems="10"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:focusedByDefault="false"
                                     android:inputType="none"
                                     android:minHeight="48dp"
                                     app:layout_constraintEnd_toEndOf="parent"

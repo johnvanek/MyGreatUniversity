@@ -49,7 +49,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="6dp">
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/term_header"
@@ -93,24 +93,53 @@
 
                                 <EditText
                                     android:id="@+id/editTextTitle"
-                                    android:layout_width="146dp"
+                                    android:layout_width="200dp"
                                     android:layout_height="48dp"
-                                    android:layout_margin="4dp"
+                                    android:layout_marginTop="8dp"
                                     android:digits="@string/digitsForText"
                                     android:ems="10"
+                                    android:focusedByDefault="false"
                                     android:inputType="text"
                                     android:minHeight="48dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.702"
+                                    app:layout_constraintHorizontal_bias="0.724"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintVertical_bias="0.075"
                                     tools:ignore="SpeakableTextPresentCheck" />
 
                                 <EditText
+                                    android:id="@+id/editTextEndDate"
+                                    android:layout_width="170dp"
+                                    android:layout_height="48dp"
+                                    android:layout_margin="4dp"
+                                    android:layout_marginTop="8dp"
+                                    android:ems="10"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:focusedByDefault="false"
+                                    android:inputType="none"
+                                    android:minHeight="48dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.785"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/editTextStartDate"
+                                    tools:ignore="SpeakableTextPresentCheck,TextFields" />
+
+                                <Spinner
+                                    android:id="@+id/spinnerStatus"
+                                    android:layout_width="170dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginTop="4dp"
+                                    android:entries="@array/course_status_array"
+                                    android:spinnerMode="dropdown"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.773"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/editTextEndDate" />
+
+                                <EditText
                                     android:id="@+id/editTextStartDate"
-                                    android:layout_width="146dp"
+                                    android:layout_width="170dp"
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="8dp"
@@ -122,27 +151,9 @@
                                     android:inputType="none"
                                     android:minHeight="48dp"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.702"
+                                    app:layout_constraintHorizontal_bias="0.785"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
-                                    tools:ignore="SpeakableTextPresentCheck,TextFields" />
-
-                                <EditText
-                                    android:id="@+id/editTextEndDate"
-                                    android:layout_width="146dp"
-                                    android:layout_height="48dp"
-                                    android:layout_margin="4dp"
-                                    android:layout_marginTop="8dp"
-                                    android:ems="10"
-                                    android:focusable="false"
-                                    android:focusableInTouchMode="false"
-                                    android:focusedByDefault="false"
-                                    android:inputType="none"
-                                    android:minHeight="48dp"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.702"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/editTextStartDate"
                                     tools:ignore="SpeakableTextPresentCheck,TextFields" />
 
                                 <TextView
@@ -150,12 +161,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
-                                    android:layout_marginTop="36dp"
+                                    android:layout_marginTop="24dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="@string/title"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/editTextTitle"
+                                    app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,12 +177,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
-                                    android:layout_marginTop="88dp"
+                                    android:layout_marginTop="76dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="@string/startdatesemi"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/editTextStartDate"
+                                    app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -178,12 +193,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
-                                    android:layout_marginTop="140dp"
+                                    android:layout_marginTop="124dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="@string/enddate"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/editTextEndDate"
+                                    app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -191,27 +208,30 @@
                                     android:id="@+id/textView7"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="192dp"
+                                    android:layout_marginTop="176dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="@string/status"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/spinnerStatus"
+                                    app:layout_constraintHorizontal_bias="0.225"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <Spinner
-                                    android:id="@+id/spinnerStatus"
-                                    android:layout_width="147dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="12dp"
-                                    android:entries="@array/course_status_array"
-                                    android:spinnerMode="dialog"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.695"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/editTextEndDate" />
+                                <androidx.constraintlayout.widget.Guideline
+                                    android:id="@+id/guideline2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    app:layout_constraintGuide_begin="20dp" />
+
+                                <androidx.constraintlayout.widget.Guideline
+                                    android:id="@+id/guideline3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    app:layout_constraintGuide_begin="20dp" />
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 

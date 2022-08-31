@@ -31,7 +31,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     EditText startText, endText;
     Spinner courseStatus;
     //intent data references
-    String IntentTitle, IntentStatus;
+    String intentTitle, intentStartDate, intentEndDate, intentStatus;
     int intentCourseId;
     Repo repo;
     //Date References & Declarations
@@ -53,7 +53,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Define an actionbar reference for shorthand
         ActionBar actionBar = getSupportActionBar();
 
-        //Set nav icon logcation as back if child
+        //Set nav icon location as back if child
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);   //show back button
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
@@ -61,19 +61,23 @@ public class CourseViewDetailed extends AppCompatActivity {
         //************ INTENT DATA PASSING ****************
         //XML FIELD DECLARATIONS
         courseTitle = findViewById(R.id.editTextTitle);
+        startText = findViewById(R.id.editTextStartDate);
+        endText = findViewById(R.id.editTextEndDate);
         courseStatus = findViewById(R.id.spinnerStatus);
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
-        IntentTitle = getIntent().getStringExtra("title");
-        IntentStatus = getIntent().getStringExtra("status");
+        intentTitle = getIntent().getStringExtra("title");
+        intentStartDate = getIntent().getStringExtra("startDate");
+        intentEndDate = getIntent().getStringExtra("endDate");
+        intentStatus = getIntent().getStringExtra("status");
         //Assign the XML Fields the values from the intents or that have been edited
-        courseTitle.setText(IntentTitle);
-        courseStatus.setSelection(courseStatusPosition(this,IntentStatus));
-
+        courseTitle.setText(intentTitle);
+        courseStatus.setSelection(courseStatusPosition(this, intentStatus));
+        startText.setText(intentStartDate);
+        endText.setText(intentEndDate);
         //************************ DATEPICKER LOGIC START & END ********************
         //Get the xml id's for the edit text fields representing start and end edit text
-        startText = findViewById(R.id.editTextStartDate);
-        endText = findViewById(R.id.editTextEndDate);
+
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
         // condition of if the Dialog date is modified or assigned.

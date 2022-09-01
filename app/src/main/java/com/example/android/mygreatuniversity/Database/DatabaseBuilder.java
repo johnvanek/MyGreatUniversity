@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.Entity.Course;
 
+
 //One database to create another table inset a , after the first class.
 // Every time there is a change made to a entity file, the version needs to be incremented.
 // Also to clean out the database increment the version

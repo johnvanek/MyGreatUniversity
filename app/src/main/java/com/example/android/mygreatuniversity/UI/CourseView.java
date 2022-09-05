@@ -32,17 +32,15 @@ public class CourseView extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
-        //Populate the data for the Recycler view
-        //Get the id
+        //Populate the CourseList for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.courseListRecyclerView);
         Repo repo = new Repo(getApplication());
         List<Course> courses = repo.getCourses();
-        Log.d("adapter", "current value of courses in courseVied" + courses);
-        //Set the adapter and layoutManger
+        //Set the CourseAdapter and LayoutManger
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //Use the Adapter to display the course list
+        //Set The Courses Via the adapter
         courseAdapter.setCourses(courses);
     }
 }

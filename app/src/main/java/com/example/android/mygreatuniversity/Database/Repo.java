@@ -55,6 +55,14 @@ public class Repo {
             e.printStackTrace();
         }
     }
+    public void deleteCourse(Course course){
+        executor.execute(() -> mCourseDAO.deleteCourse(course));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    };
     //Mentor methods
     public List<Mentor> getMentors() {
         executor.execute(() -> {

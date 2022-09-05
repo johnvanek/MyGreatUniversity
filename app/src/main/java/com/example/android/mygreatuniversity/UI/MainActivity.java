@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,13 +43,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, CourseView.class);
         startActivity(intent);
 
-        //If coming to a new activity from an intent it refreshed the whole page or maybe use
-        // this.finish(). If intending to end a page activity.
-
         //Test out adding to the database here
         //This is how you would add a new course
         Repo repo = new Repo(getApplication());
-        Course course = new Course("Java Fundamentals","08/31/22","09/01/22","In-Progress");
+        Course course = new Course("Java Fundamentals",
+                "08/31/22",
+                "09/01/22",
+                "In-Progress");
+        Mentor mentor = new Mentor("John Vanek",
+                "561-146-1463",
+                "JohnV@gmail.com");
         repo.insertCourse(course);
+        repo.insertMentor(mentor);
     }
 }

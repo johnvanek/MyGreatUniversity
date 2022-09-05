@@ -33,7 +33,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     //intent data references
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
     int intentCourseId;
-    Repo repo;
+    Repo repo = new Repo(getApplication());;
     //Date References & Declarations
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
@@ -154,9 +154,14 @@ public class CourseViewDetailed extends AppCompatActivity {
                 startText.getText().toString(),
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString());
-        System.out.println("The value of course status is " + courseStatus.getSelectedItem().toString());
+
+        //Set editedCourse to the id That was passed
+
         // Then update the item in the local database
-        //repo.update(editedCourse);
+        // Based on the ID that was given from
+        // Update works by comparing the primary key aka the id
+        editedCourse.setCourseID(intentCourseId); // This will set it to the data Passed
+        repo.updateCourse(editedCourse);
     }
 }
 

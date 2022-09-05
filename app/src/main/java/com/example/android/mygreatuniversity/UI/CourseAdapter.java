@@ -20,32 +20,30 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
 
-        //This is where you put your onClickListener.
-        //In the constructor
+        //Constructor
         private CourseViewHolder(View itemView) {
             //calls the parent constructor
             super(itemView); // of the list item
             courseItemView = itemView.findViewById(R.id.courseListItemTextView);
-            courseItemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //either show a more detailed screen of the course here
-                    //Or show this in the box below on the course screen.
-                    int pos = getAdapterPosition();
-                    //The current item on the list that is sent to the adapter. onClick()
-                    final Course curCourse = mCourses.get(pos);
+            //This is where you put your onClickListener inside the Constructor for each
+            // Course List Item
+            courseItemView.setOnClickListener(v -> {
+                //either show a more detailed screen of the course here
+                //Or show this in the box below on the course screen.
+                int pos = getAdapterPosition();
+                //The current item on the list that is sent to the adapter. onClick()
+                final Course curCourse = mCourses.get(pos);
 
-                    //Create the intent
-                    Intent intent = new Intent(context, CourseViewDetailed.class);
-                    //Give some extra data to the intent
-                    intent.putExtra("id", curCourse.getCourseID());
-                    intent.putExtra("title", curCourse.getTitle());
-                    intent.putExtra("startDate", curCourse.getStartDate());
-                    intent.putExtra("endDate" , curCourse.getEndDate());
-                    intent.putExtra("status", curCourse.getStatus());
-                    //Go to the next screen in this case courseViewDetailed
-                    context.startActivity(intent);
-                }
+                //Create the Intent that will pass data to the Course Detailed View
+                Intent intent = new Intent(context, CourseViewDetailed.class);
+                //Give some extra data to the intent
+                intent.putExtra("id", curCourse.getCourseID());
+                intent.putExtra("title", curCourse.getTitle());
+                intent.putExtra("startDate", curCourse.getStartDate());
+                intent.putExtra("endDate" , curCourse.getEndDate());
+                intent.putExtra("status", curCourse.getStatus());
+                //Go to the next screen in this case courseViewDetailed
+                context.startActivity(intent);
             });
         }
     }

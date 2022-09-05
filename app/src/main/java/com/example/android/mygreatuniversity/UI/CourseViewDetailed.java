@@ -51,6 +51,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         //Define an actionbar reference for shorthand
+        //test
         ActionBar actionBar = getSupportActionBar();
 
         //Set nav icon location as back if child

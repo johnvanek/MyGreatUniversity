@@ -15,13 +15,13 @@ import java.util.List;
 public interface CourseDAO {
     //What to do if already course already exists.
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Course course);
+    void insertCourse(Course course);
 
     @Update()
-    void update(Course course);
+    void updateCourse(Course course);
 
     @Delete
-    void delete(Course course);
+    void deleteCourse(Course course);
 
     @Query("SELECT * FROM courses ORDER BY courseID ASC")
     List<Course> getCourses();

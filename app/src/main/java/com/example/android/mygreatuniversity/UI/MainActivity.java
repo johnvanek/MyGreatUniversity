@@ -49,6 +49,6 @@ public class MainActivity extends AppCompatActivity {
         //This is how you would add a new course
         Repo repo = new Repo(getApplication());
         Course course = new Course("Java Fundamentals","08/31/22","09/01/22","In-Progress");
-        repo.insert(course);
+        repo.insertCourse(course);
     }
 }

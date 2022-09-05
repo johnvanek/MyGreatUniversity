@@ -7,15 +7,19 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
+import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 
 
 //One database to create another table inset a , after the first class.
 // Every time there is a change made to a entity file, the version needs to be incremented.
 // Also to clean out the database increment the version
-@Database(entities = {Course.class}, version = 4, exportSchema = false)
+@Database(entities = {Course.class, Mentor.class}, version = 8, exportSchema = false)
+
 public abstract class DatabaseBuilder extends RoomDatabase {
     public abstract CourseDAO courseDAO();
+    public abstract CourseMentorDAO mentorDAO();
 
     private static volatile DatabaseBuilder INSTANCE;
 
@@ -23,8 +27,8 @@ public abstract class DatabaseBuilder extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (DatabaseBuilder.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatabaseBuilder.class,
-                                    "MGUDatabase.db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                                    DatabaseBuilder.class, "MGUDatabase.db")
                             .fallbackToDestructiveMigration()
                             .build();
                 }

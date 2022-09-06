@@ -62,6 +62,5 @@ public class MainActivity extends AppCompatActivity {
         repo.insertCourse(course);
         repo.insertMentor(mentor);
         repo.insertAssessment(assessment);
-
     }
 }

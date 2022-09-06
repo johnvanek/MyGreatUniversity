@@ -30,6 +30,7 @@ public class Repo {
         DatabaseBuilder dbb = DatabaseBuilder.getDatabase(app);
         mCourseDAO = dbb.courseDAO();
         mCourseMentorDAO = dbb.mentorDAO();
+        mAssessmentDAO = dbb.assessmentDAO();
     }
     //Course Methods
     public List<Course> getCourses() {

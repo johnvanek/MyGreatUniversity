@@ -24,5 +24,5 @@ public interface CourseMentorDAO {
     void updateMentor(Mentor mentor);
 
     @Delete
-    void delete(Mentor mentor);
+    void deleteMentor(Mentor mentor);
 }

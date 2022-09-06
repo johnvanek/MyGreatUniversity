@@ -3,8 +3,10 @@ package com.example.android.mygreatuniversity.Database;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
+import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 
@@ -15,8 +17,11 @@ import java.util.concurrent.Executors;
 public class Repo {
     private CourseDAO mCourseDAO;
     private CourseMentorDAO mCourseMentorDAO;
+    private AssessmentDAO mAssessmentDAO;
     private List<Course> mCourses;
     private List<Mentor> mMentors;
+    private List<Assessment> mAssessments;
+    private Mentor mMentor;
 
     private static int NUMBER_OF_THREADS = 4;
     static final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -26,7 +31,7 @@ public class Repo {
         mCourseDAO = dbb.courseDAO();
         mCourseMentorDAO = dbb.mentorDAO();
     }
-    //Course methods
+    //Course Methods
     public List<Course> getCourses() {
         executor.execute(() -> {
             mCourses = mCourseDAO.getCourses();
@@ -63,7 +68,7 @@ public class Repo {
             e.printStackTrace();
         }
     };
-    //Mentor methods
+    //Mentor Methods
     public List<Mentor> getMentors() {
         executor.execute(() -> {
             mMentors = mCourseMentorDAO.getMentors();
@@ -91,5 +96,56 @@ public class Repo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public void deleteMentor(Mentor mentor) {
+        executor.execute(() -> mCourseMentorDAO.deleteMentor(mentor));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public Mentor findMentorById(Integer id) {
+        executor.execute(() -> mCourseMentorDAO.findMentorById(id));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return  mMentor;
+    }
+    //Assessment Methods
+    public void insertAssessment(Assessment assessment) {
+        executor.execute(() -> mAssessmentDAO.insertAssessment(assessment));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateAssessment(Assessment assessment) {
+        executor.execute(() -> mAssessmentDAO.updateAssessment(assessment));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteAssessment(Assessment assessment) {
+        executor.execute(() -> mAssessmentDAO.deleteAssessment(assessment));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public List<Assessment> getAssessments() {
+        executor.execute(() -> mAssessmentDAO.getAssessments());
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAssessments;
     }
 }

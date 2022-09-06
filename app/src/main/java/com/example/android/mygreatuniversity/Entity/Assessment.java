@@ -7,12 +7,14 @@ import androidx.room.PrimaryKey;
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentID;
+    private int assessmentCourseID;
     private String title;
     private String type;
     private String startDate;
     private String endDate;
 
     public Assessment(String title, String type, String startDate, String endDate) {
+        this.assessmentCourseID = -1;
         this.title = title;
         this.type = type;
         this.startDate = startDate;
@@ -68,5 +70,13 @@ public class Assessment {
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 '}';
+    }
+
+    public int getAssessmentCourseID() {
+        return assessmentCourseID;
+    }
+
+    public void setAssessmentCourseID(int assessmentCourseID) {
+        this.assessmentCourseID = assessmentCourseID;
     }
 }

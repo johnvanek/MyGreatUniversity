@@ -4,6 +4,7 @@ import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosi
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -33,7 +34,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     //intent data references
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
     int intentCourseId;
-    Repo repo = new Repo(getApplication());;
+    Repo repo = new Repo(getApplication());
+
     //Date References & Declarations
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
@@ -150,6 +152,11 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Convenience methods work by comparing the primary key
         editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
         repo.updateCourse(editedCourse);
+        //After done performing the update return to the the Course View
+        Intent intent = new Intent(
+                CourseViewDetailed.this,
+                CourseView.class);
+        startActivity(intent);
     }
 
     public void deleteState(View view) {
@@ -161,6 +168,10 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         editedCourse.setCourseID(intentCourseId);
         repo.deleteCourse(editedCourse);
+        Intent intent = new Intent(
+                CourseViewDetailed.this,
+                CourseView.class);
+        startActivity(intent);
     }
 }
 

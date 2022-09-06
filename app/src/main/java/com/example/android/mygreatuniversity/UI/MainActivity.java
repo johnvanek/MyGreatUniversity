@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
@@ -53,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
         Mentor mentor = new Mentor("John Vanek",
                 "561-146-1463",
                 "JohnV@gmail.com");
+        Assessment assessment = new Assessment(
+                "Android-Exam",
+                "performance",
+                "09/01/22",
+                "10/01/22");
         repo.insertCourse(course);
         repo.insertMentor(mentor);
+        repo.insertAssessment(assessment);
+
     }
 }

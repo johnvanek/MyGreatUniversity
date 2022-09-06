@@ -12,7 +12,6 @@ public class Course {
     private String endDate;
     private String status;
 
-
     public Course(String title, String startDate, String endDate, String status) {
         this.title = title;
         this.startDate = startDate;

@@ -82,24 +82,18 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Set listeners on both of the Start and End dialogs that will be popping up for the
         // condition of if the Dialog date is modified or assigned.
 
-        startDatePicker = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                CalenderStart.set(Calendar.YEAR, year);
-                CalenderStart.set(Calendar.MONTH, month);
-                CalenderStart.set(Calendar.DAY_OF_MONTH, day);
-                updateStartDateEditTextField();
-            }
+        startDatePicker = (view, year, month, day) -> {
+            CalenderStart.set(Calendar.YEAR, year);
+            CalenderStart.set(Calendar.MONTH, month);
+            CalenderStart.set(Calendar.DAY_OF_MONTH, day);
+            updateStartDateEditTextField();
         };
 
-        endDatePicker = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                CalenderEnd.set(Calendar.YEAR, year);
-                CalenderEnd.set(Calendar.MONTH, month);
-                CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
-                updateEndDateEditTextField();
-            }
+        endDatePicker = (view, year, month, day) -> {
+            CalenderEnd.set(Calendar.YEAR, year);
+            CalenderEnd.set(Calendar.MONTH, month);
+            CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
+            updateEndDateEditTextField();
         };
 
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new

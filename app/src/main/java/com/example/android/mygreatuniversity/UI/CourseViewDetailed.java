@@ -147,21 +147,26 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     public void saveState(View view) {
-        //Create a new Course
-        //
         Course editedCourse = new Course(
                 courseTitle.getText().toString(),
                 startText.getText().toString(),
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString());
 
-        //Set editedCourse to the id That was passed
-
-        // Then update the item in the local database
-        // Based on the ID that was given from
-        // Update works by comparing the primary key aka the id
-        editedCourse.setCourseID(intentCourseId); // This will set it to the data Passed
+        //Convenience methods work by comparing the primary key
+        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
         repo.updateCourse(editedCourse);
+    }
+
+    public void deleteState(View view) {
+        Course editedCourse = new Course(
+                courseTitle.getText().toString(),
+                startText.getText().toString(),
+                endText.getText().toString(),
+                courseStatus.getSelectedItem().toString());
+
+        editedCourse.setCourseID(intentCourseId);
+        repo.deleteCourse(editedCourse);
     }
 }
 

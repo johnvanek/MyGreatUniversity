@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey;
 public class Mentor {
     @PrimaryKey(autoGenerate = true)
     private int mentorID;
-    private int courseID;
     private String name;
     private String phoneNumber;
     private String email;
@@ -16,7 +15,6 @@ public class Mentor {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.courseID = -1;
     }
 
     public int getMentorID() {
@@ -51,19 +49,10 @@ public class Mentor {
         this.email = email;
     }
 
-    public int getCourseID() {
-        return courseID;
-    }
-
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
-    }
-
     @Override
     public String toString() {
         return "Mentor{" +
                 "mentorID=" + mentorID +
-                ", courseID=" + courseID +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +

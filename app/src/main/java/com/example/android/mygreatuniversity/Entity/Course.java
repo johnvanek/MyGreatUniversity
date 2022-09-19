@@ -2,11 +2,16 @@ package com.example.android.mygreatuniversity.Entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+//TODO
+// Courses have mentors, so add a field
+// int courseMentorId;
+// that acts to link the database tables courses and mentors
 
 @Entity(tableName = "courses")
 public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseID;
+    private int courseMentorId;
     private String title;
     private String startDate;
     private String endDate;
@@ -68,5 +73,13 @@ public class Course {
 
     public void setCourseID(int courseID) {
         this.courseID = courseID;
+    }
+
+    public int getCourseMentorId() {
+        return courseMentorId;
+    }
+
+    public void setCourseMentorId(int courseMentorId) {
+        this.courseMentorId = courseMentorId;
     }
 }

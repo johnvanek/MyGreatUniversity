@@ -89,13 +89,16 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="8dp"
-                                android:background="@color/White">
+                                android:background="@color/White"
+                                android:descendantFocusability="beforeDescendants"
+                                android:focusableInTouchMode="true">
 
                                 <EditText
                                     android:id="@+id/editTextTitle"
                                     android:layout_width="200dp"
                                     android:layout_height="48dp"
                                     android:layout_marginTop="8dp"
+                                    android:defaultFocusHighlightEnabled="false"
                                     android:digits="@string/digitsForText"
                                     android:ems="10"
                                     android:focusedByDefault="false"

@@ -5,6 +5,7 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -24,6 +25,12 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
+    //TODO create a method here to take the flickering focus away from the Title text field
+    // even when it is not selected.
+    // A better way than creating a new method is to just to add this to the onClick listener
+    // That has already been created for hidekeyboard or seomthing
+    // This is the only focusable element on the page which is why it keeps getting focused.
+
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -98,24 +105,40 @@ public class CourseViewDetailed extends AppCompatActivity {
             updateEndDateEditTextField();
         };
 
+        courseTitle.setOnClickListener(view -> {
+            courseTitle.requestFocus();
+            courseTitle.setCursorVisible(true);
+        });
+
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
         //DatePicker Dialog's mentioned above and show them.
         startText.setOnClickListener(view -> {
+            //Hide the flickering coming from the title
+
+            courseTitle.setCursorVisible(false);
+
             hideKeyboard(CourseViewDetailed.this);
             new DatePickerDialog(CourseViewDetailed.this,
                     startDatePicker, CalenderStart.get(Calendar.YEAR),
                     CalenderStart.get(Calendar.MONTH),
                     CalenderStart.get(Calendar.DAY_OF_MONTH))
                     .show();
+            courseTitle.clearFocus();
+            startText.requestFocus();
         });
 
         endText.setOnClickListener(view -> {
+            //Hide the flickering coming from the title
+            courseTitle.setCursorVisible(false);
+            // And get the current focus
+            courseTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
             hideKeyboard(CourseViewDetailed.this);
             new DatePickerDialog(CourseViewDetailed.this,
                     endDatePicker, CalenderEnd.get(Calendar.YEAR),
                     CalenderEnd.get(Calendar.MONTH),
                     CalenderEnd.get(Calendar.DAY_OF_MONTH))
                     .show();
+            endText.requestFocus();
         });
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************

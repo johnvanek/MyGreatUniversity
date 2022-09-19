@@ -7,13 +7,11 @@ import androidx.room.PrimaryKey;
 public class Mentor {
     @PrimaryKey(autoGenerate = true)
     private int mentorID;
-    private int mentorCourseID;
     private String name;
     private String phoneNumber;
     private String email;
 
     public Mentor(String name, String phoneNumber, String email) {
-        this.mentorCourseID = -1;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;

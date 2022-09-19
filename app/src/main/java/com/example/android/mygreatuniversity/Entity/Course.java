@@ -64,7 +64,6 @@ public class Course {
                 ", endDate=" + endDate +
                 ", status='" + status + '\'' +
                 '}';
-        //This is a git test
     }
 
     public void setCourseID(int courseID) {

@@ -19,6 +19,7 @@
     <string name="save">Save</string>
     <string name="mentor_view">Mentor View</string>
     <string name="mentors">Mentors</string>
+    <string name="selected_mentor">Selected Mentor</string>
     <string-array name="course_status_array">
         <item>In-Progress</item>
         <item>Completed</item>

@@ -11,9 +11,8 @@ public class MentorView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Assign the xml foe the view
+        //Assign the xml for the view
         super.onCreate(savedInstanceState);
-        //TODO create this layout This layout is just a copy of the course view layout
         setContentView(R.layout.activity_mentor_view);
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
@@ -22,11 +21,11 @@ public class MentorView extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
 
         //Set up the back is up when children are present.
-        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
         //Populate the MentorList for the Recycler view
         //TODO create the mentor list and the recycler view
+        // the mentor list is a
     }
 }

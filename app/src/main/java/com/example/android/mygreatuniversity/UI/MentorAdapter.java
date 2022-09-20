@@ -40,8 +40,10 @@ public class MentorAdapter extends RecyclerView.Adapter<MentorAdapter.MentorView
 
                 //Create the Intent that will pass data to the Course Detailed View
                 Intent intent = new Intent(context, MentorViewDetailed.class);
-                //Give some extra data to the intent
-                // Need to verify that these are the actually names in the database
+
+                //TODO verify via tha app inspection that these intent values match column
+                // database names
+
                 intent.putExtra("id", curMentor.getMentorID());
                 intent.putExtra("name", curMentor.getName());
                 intent.putExtra("phoneNumber", curMentor.getPhoneNumber());

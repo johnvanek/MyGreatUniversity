@@ -27,7 +27,6 @@ import java.util.Locale;
 public class MentorViewDetailed extends AppCompatActivity {
     //TODO Add the mentor information on display to be shown.
 
-
     //**************  START DECLARATIONS *********************
     EditText mentorName, mentorPhoneNumber, mentorEmail;
 

@@ -25,11 +25,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
-    //TODO create a method here to take the flickering focus away from the Title text field
-    // even when it is not selected.
-    // A better way than creating a new method is to just to add this to the onClick listener
-    // That has already been created for hidekeyboard or seomthing
-    // This is the only focusable element on the page which is why it keeps getting focused.
+    //TODO Add the mentor information on display to be shown.
+
 
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();

@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
-                android:minHeight="?attr/actionBarSize"
+                android:minHeight="70dp"
                 android:paddingTop="2dp"
                 android:paddingBottom="4dp"
                 android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
@@ -85,8 +85,8 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="265dp"
+                android:layout_width="wrap_content"
+                android:layout_height="340dp"
                 android:layout_margin="5dp"
                 app:cardBackgroundColor="@color/WguBlue"
                 app:cardCornerRadius="8dp"
@@ -116,7 +116,7 @@
                         android:id="@+id/term_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="52dp"
                         android:fontFamily="@font/convergence"
                         android:text="@string/navigation_text"
                         android:textAlignment="center"
@@ -124,6 +124,7 @@
                         android:textSize="34sp"
                         android:typeface="normal"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

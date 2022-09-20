@@ -27,7 +27,6 @@ import java.util.Locale;
 public class CourseViewDetailed extends AppCompatActivity {
     //TODO Add the mentor information on display to be shown.
 
-
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();

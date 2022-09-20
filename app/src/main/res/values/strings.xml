@@ -17,6 +17,7 @@
     <string name="status">Status:</string>
     <string name="mentor">Mentor</string>
     <string name="save">Save</string>
+    <string name="mentor_view">Mentor View</string>
     <string-array name="course_status_array">
         <item>In-Progress</item>
         <item>Completed</item>

@@ -9,6 +9,10 @@
         android:title="@string/overflow_course"
         app:showAsAction="never" />
     <item
+        android:id="@+id/mentor_overflow"
+        android:onClick="gotoMentorView"
+        android:title="@string/mentor_view" />
+    <item
         android:id="@+id/term_overflow"
         android:title="@string/overflow_term"
         app:showAsAction="never"

@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void gotoMentorView(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this, MentorView.class);
+        startActivity(intent);
+    }
+
     public void gotoCourseView(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, CourseView.class);
         startActivity(intent);

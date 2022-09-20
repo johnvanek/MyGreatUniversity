@@ -19,7 +19,7 @@ public class CourseView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Assign the xml
+        //Assign the xml foe the view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_view);
 

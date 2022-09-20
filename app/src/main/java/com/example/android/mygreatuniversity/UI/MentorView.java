@@ -26,6 +26,8 @@ public class MentorView extends AppCompatActivity {
 
         //Populate the MentorList for the Recycler view
         //TODO create the mentor list and the recycler view
-        // the mentor list is a
+        // First need to create a mentor_list_item
+        // pretty much an exact copy of course_list_item
+        // Damn i really have to take a runny shit though
     }
 }

@@ -43,6 +43,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("endDate" , curCourse.getEndDate());
                 intent.putExtra("status", curCourse.getStatus());
                 //Go to the next screen in this case courseViewDetailed
+                //TODO add mentor data to the intent put
                 context.startActivity(intent);
             });
         }

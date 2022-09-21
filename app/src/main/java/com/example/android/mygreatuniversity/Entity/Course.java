@@ -20,6 +20,7 @@ public class Course {
     private String startDate;
     private String endDate;
     private String status;
+    //TODO course should have a mentor reference change this
 
     public Course(String title, String startDate, String endDate, String status) {
         this.title = title;

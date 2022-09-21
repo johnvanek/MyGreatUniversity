@@ -45,4 +45,16 @@ public class MentorSpinnerAdapter extends ArrayAdapter {
         // Return the textView
         return mentorTextView;
     }
+
+    // Normally is the same view, but you can customize it if you want
+    @Override
+    public View getDropDownView(int pos, View convertView,
+                                ViewGroup parent) {
+        TextView mentorTextView = (TextView) super.getDropDownView(pos, convertView, parent);
+        //mentorTextView.setTextColor(Color.BLACK);
+        //This should call the getName method on the mentor object
+        //But I im not sure these methods ever get called.
+        mentorTextView.setText(mentorArray[pos].getName());
+        return mentorTextView;
+    }
 }

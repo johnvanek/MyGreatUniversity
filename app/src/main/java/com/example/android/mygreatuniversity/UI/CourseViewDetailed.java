@@ -184,6 +184,9 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseViewDetailed.this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 mentorArray);
+        //Have to set the view resource for the spinner adapter to enable the dropdown
+        //Have to make the page larger or else the drop down will not fit.
+        mentorSpinnerAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         //TODO pass in the intent the information for the mentor
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);

@@ -284,10 +284,12 @@
                                     android:id="@+id/mentorSpinner"
                                     android:layout_width="170dp"
                                     android:layout_height="48dp"
+                                    android:layout_marginTop="16dp"
                                     android:entries="@array/course_status_array"
-                                    android:spinnerMode="dropdown"
-                                    tools:layout_editor_absoluteX="84dp"
-                                    tools:layout_editor_absoluteY="16dp" />
+                                    android:spinnerMode="dialog"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
 

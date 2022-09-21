@@ -51,11 +51,6 @@ public class Mentor {
 
     @Override
     public String toString() {
-        return "Mentor{" +
-                "mentorID=" + mentorID +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return name;
     }
 }

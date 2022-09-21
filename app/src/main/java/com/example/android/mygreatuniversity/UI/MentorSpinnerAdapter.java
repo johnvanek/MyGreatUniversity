@@ -1,7 +1,7 @@
 package com.example.android.mygreatuniversity.UI;
 
 import android.content.Context;
-import android.graphics.Color;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -39,7 +39,6 @@ public class MentorSpinnerAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Create a text view
         TextView mentorTextView = (TextView) super.getView(position, convertView, parent);
-        //mentorTextView.setTextColor(Color.BLACK); not sure i need this
         // Set the text to the current position in the array and call the getName method
         mentorTextView.setText(mentorArray[position].getName());
         // Return the textView

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
@@ -18,6 +19,7 @@ import com.example.android.mygreatuniversity.R;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
+
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
 
@@ -34,8 +36,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 int pos = getAdapterPosition();
                 //The current item on the list that is sent to the adapter. onClick()
                 final Course curCourse = mCourses.get(pos);
-                //
-                //Mentor courseMentor = curCourse.getM
+                // call repo
+                //Mentor courseMentor =
                 //Create the Intent that will pass data to the Course Detailed View
                 Intent intent = new Intent(context, CourseViewDetailed.class);
                 //Give some extra data to the intent
@@ -45,7 +47,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("endDate" , curCourse.getEndDate());
                 intent.putExtra("status", curCourse.getStatus());
                 //TODO add mentor data to the intent put
-
+                //Repo repo = new Repo(CourseView.class.getClass().get);
                 //TODO need a utility method here to search the database and return a mentor reference
                 // Already have a mentor id maybe that will work
 
@@ -58,11 +60,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     private List<Course> mCourses;
     private final Context context;
     private final LayoutInflater mInflater;
+
     //CourseAdapter constructor given a context
     public CourseAdapter(Context context) {
         Log.d("adapter", "The Course adapter has been started");
         mInflater = LayoutInflater.from(context);
         this.context = context;
+
     }
 
     @NonNull

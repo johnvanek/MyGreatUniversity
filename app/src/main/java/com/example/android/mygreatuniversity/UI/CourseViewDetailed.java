@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +25,7 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -36,10 +40,10 @@ public class CourseViewDetailed extends AppCompatActivity {
     EditText courseTitle;
     EditText startText, endText;
     Spinner courseStatus;
-    Spinner mentorList;
-    // TODO have to create a custom spinner adapter
-    //private Spin
-    MentorAdapter mentorAdapter;
+    Spinner mentorSpinner;
+    MentorSpinnerAdapter mentorSpinnerAdapter;
+
+
     LinearLayout courseLayout;
 
     //intent data references
@@ -170,6 +174,32 @@ public class CourseViewDetailed extends AppCompatActivity {
             if (hasFocus) {
                 hideKeyboard(this);
             }
+        });
+        //SPINNER POPULATION FROM ROOM DATABASE
+        mentorSpinner = findViewById(R.id.mentorSpinner);
+        //This is a list of mentors from the room database
+        List<Mentor> mentorList = repo.getMentors();
+        //This converts the list from Mentors to an array to be used by the mentor spinner adapter.
+        Mentor[] mentorArray = mentorList.toArray(new Mentor[mentorList.size()]);
+        mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseViewDetailed.this,
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                mentorArray);
+        //TODO pass in the intent the information for the mentor
+        //set the adapter
+        mentorSpinner.setAdapter(mentorSpinnerAdapter);
+        mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                // This gets the current mentor that is selected by returning the spinner position.
+                Mentor mentor = mentorSpinnerAdapter.getItem(position);
+                // for test purposes I am going to make this a toast.
+                Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapter) {  }
         });
     }
 

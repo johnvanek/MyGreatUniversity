@@ -187,6 +187,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Have to make the page larger or else the drop down will not fit.
         //TODO test this with a custom text view
         // Create a custom text view in layout
+        // I have a custom text view but what i need is a custom spinner dialog
         mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
         //TODO pass in the intent the information for the mentor
         //set the adapter

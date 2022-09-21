@@ -1,6 +1,5 @@
 package com.example.android.mygreatuniversity.UI;
 
-import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.app.DatePickerDialog;
@@ -15,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
-import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.R;
 
 import java.util.Calendar;

@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
@@ -23,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //sets the toolbar defined in the layout as the action bar
         //Which enables me to use more methods.
+
+        //This disables the night mode which changes the color the text to be unreadable.
+        //Shouldn't change disabled in the style setting but not sure.
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
     }

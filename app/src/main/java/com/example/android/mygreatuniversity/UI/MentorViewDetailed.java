@@ -3,8 +3,9 @@ package com.example.android.mygreatuniversity.UI;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.content.Intent;
-import android.graphics.Typeface;
+
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.EditText;
 
@@ -14,8 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.R;
-
-import java.util.Calendar;
 
 public class MentorViewDetailed extends AppCompatActivity {
     //TODO Add the mentor information on display to be shown.
@@ -63,7 +62,21 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorName.setText(intentName);
         mentorPhoneNumber.setText(intentPhoneNumber);
         mentorEmail.setText(intentEmail);
-        // TODO also add keyboard hiding and input filtering
+        // TODO also add
+
+        //************ KEYBOARD HIDING ****************
+
+//        mentorName.setOnFocusChangeListener((v, hasFocus) -> {
+//            if (!hasFocus) {
+//                hideKeyboard(this);
+//            }
+//        });
+
+
+
+
+
+
         // TODO save the state
 //    public void saveState(View view) {
 //        Course editedCourse = new Course(

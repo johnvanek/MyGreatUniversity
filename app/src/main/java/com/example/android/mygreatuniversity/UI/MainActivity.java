@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Test out adding to the database here
         //This is how you would add a new course
+
         Repo repo = new Repo(getApplication());
         Course course = new Course("Java Fundamentals",
                 "08/31/22",

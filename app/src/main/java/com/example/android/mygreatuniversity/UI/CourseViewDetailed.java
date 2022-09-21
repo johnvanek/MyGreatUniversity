@@ -43,7 +43,6 @@ public class CourseViewDetailed extends AppCompatActivity {
     Spinner mentorSpinner;
     MentorSpinnerAdapter mentorSpinnerAdapter;
 
-
     LinearLayout courseLayout;
 
     //intent data references
@@ -182,11 +181,13 @@ public class CourseViewDetailed extends AppCompatActivity {
         //This converts the list from Mentors to an array to be used by the mentor spinner adapter.
         Mentor[] mentorArray = mentorList.toArray(new Mentor[mentorList.size()]);
         mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseViewDetailed.this,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                R.layout.mentor_spinner_item,
                 mentorArray);
         //Have to set the view resource for the spinner adapter to enable the dropdown
         //Have to make the page larger or else the drop down will not fit.
-        mentorSpinnerAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        //TODO test this with a custom text view
+        // Create a custom text view in layout
+        mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
         //TODO pass in the intent the information for the mentor
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/f053ca72a4906620f9d7f529c412475e/transformed/appcompat-1.4.2/res/layout/support_simple_spinner_dropdown_item.xml" value="0.5635416666666667" />
         <entry key="..\:/Users/jvani/AndroidStudioProjects/MyGreatUniversity/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.227" />
         <entry key="..\:/Users/jvani/AndroidStudioProjects/MyGreatUniversity/app/src/main/res/drawable/ic_baseline_school_24.xml" value="0.227" />
         <entry key="..\:/Users/jvani/AndroidStudioProjects/MyGreatUniversity/app/src/main/res/drawable/ic_launcher_background.xml" value="0.227" />
@@ -30,6 +31,7 @@
         <entry key="app/src/main/res/layout/course_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.2507598784194529" />
         <entry key="app/src/main/res/layout/mentor_list_item.xml" value="0.2631712259371834" />
+        <entry key="app/src/main/res/layout/mentor_spinner_item.xml" value="0.32083333333333336" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.41875" />
       </map>
     </option>

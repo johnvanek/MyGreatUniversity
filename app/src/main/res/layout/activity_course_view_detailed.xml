@@ -280,6 +280,14 @@
                                 tools:layout_editor_absoluteX="2dp"
                                 tools:layout_editor_absoluteY="2dp">
 
+                                <Spinner
+                                    android:id="@+id/mentorSpinner"
+                                    android:layout_width="170dp"
+                                    android:layout_height="48dp"
+                                    android:entries="@array/course_status_array"
+                                    android:spinnerMode="dropdown"
+                                    tools:layout_editor_absoluteX="84dp"
+                                    tools:layout_editor_absoluteY="16dp" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
 

@@ -18,10 +18,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
@@ -34,7 +36,12 @@ public class CourseViewDetailed extends AppCompatActivity {
     EditText courseTitle;
     EditText startText, endText;
     Spinner courseStatus;
+    Spinner mentorList;
+    // TODO have to create a custom spinner adapter
+    //private Spin
+    MentorAdapter mentorAdapter;
     LinearLayout courseLayout;
+
     //intent data references
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
     int intentCourseId;
@@ -71,6 +78,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         endText = findViewById(R.id.editTextEmail);
         courseStatus = findViewById(R.id.spinnerStatus);
         courseLayout = findViewById(R.id.LayoutCourse);
+
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
         intentTitle = getIntent().getStringExtra("title");
@@ -84,7 +92,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         endText.setText(intentEndDate);
         //************************ DATEPICKER LOGIC START & END ********************
         //Get the xml id's for the edit text fields representing start and end edit text
-
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
         // condition of if the Dialog date is modified or assigned.

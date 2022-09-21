@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,8 @@ public class MentorViewDetailed extends AppCompatActivity {
 
     //**************  START DECLARATIONS *********************
     EditText mentorName, mentorPhoneNumber, mentorEmail;
-
+    ScrollView mentorScrollView;
+    LinearLayout mentorLayout;
     String intentName, intentPhoneNumber, intentEmail;
     int intentMentorId;
     Repo repo = new Repo(getApplication());
@@ -51,7 +54,8 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorName = findViewById(R.id.editTextName);
         mentorPhoneNumber = findViewById(R.id.editTextPhone);
         mentorEmail = findViewById(R.id.editTextEmail);
-
+        mentorScrollView = findViewById(R.id.MentorDetailedScrollView);
+        mentorLayout = findViewById(R.id.MentorLinear);
         //Get and assign the intent data to local variables
         intentMentorId = getIntent().getIntExtra("id", -1);
         intentName = getIntent().getStringExtra("name");
@@ -66,11 +70,20 @@ public class MentorViewDetailed extends AppCompatActivity {
 
         //************ KEYBOARD HIDING ****************
 
-//        mentorName.setOnFocusChangeListener((v, hasFocus) -> {
-//            if (!hasFocus) {
-//                hideKeyboard(this);
-//            }
-//        });
+        mentorLayout.setOnClickListener(v -> {
+            //clear the focus and clear the keyboard
+            mentorPhoneNumber.clearFocus();
+            mentorName.clearFocus();
+            mentorEmail.clearFocus();
+            hideKeyboard(this);
+        });
+
+        myToolbar.setOnClickListener(v -> {
+            mentorPhoneNumber.clearFocus();
+            mentorName.clearFocus();
+            mentorEmail.clearFocus();
+            hideKeyboard(this);
+        });
 
 
 

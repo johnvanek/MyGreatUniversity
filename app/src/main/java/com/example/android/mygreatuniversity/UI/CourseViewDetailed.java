@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.ActionBar;
@@ -33,6 +34,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     EditText courseTitle;
     EditText startText, endText;
     Spinner courseStatus;
+    LinearLayout courseLayout;
     //intent data references
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
     int intentCourseId;
@@ -68,6 +70,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         startText = findViewById(R.id.editTextPhone);
         endText = findViewById(R.id.editTextEmail);
         courseStatus = findViewById(R.id.spinnerStatus);
+        courseLayout = findViewById(R.id.LayoutCourse);
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
         intentTitle = getIntent().getStringExtra("title");
@@ -137,6 +140,19 @@ public class CourseViewDetailed extends AppCompatActivity {
         });
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
+        //Better way to do this is like the example in mentor
+        // Keep other methods for now just to not break anything.
+
+        myToolbar.setOnClickListener(v ->{
+            hideKeyboard(this);
+            courseTitle.clearFocus();
+        });
+
+        courseLayout.setOnClickListener(v -> {
+            hideKeyboard(this);
+            courseTitle.clearFocus();
+        });
+
         startText.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
                 hideKeyboard(this);

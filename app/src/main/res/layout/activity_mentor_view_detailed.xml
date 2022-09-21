@@ -8,8 +8,11 @@
     tools:context=".UI.MentorViewDetailed">
 
     <ScrollView
+        android:id="@+id/MentorDetailedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -18,9 +21,12 @@
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
+            android:id="@+id/MentorLinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/WguLightBlue"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar

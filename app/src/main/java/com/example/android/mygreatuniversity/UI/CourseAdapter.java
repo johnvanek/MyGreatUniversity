@@ -1,5 +1,6 @@
 package com.example.android.mygreatuniversity.UI;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -47,7 +48,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("endDate" , curCourse.getEndDate());
                 intent.putExtra("status", curCourse.getStatus());
                 //TODO add mentor data to the intent put
-                //Repo repo = new Repo(CourseView.class.getClass().get);
+                Repo repo = new Repo((Application) context.getApplicationContext());
+                Mentor courseMentor = repo.findMentorById(curCourse.getCourseMentorId());
+
                 //TODO need a utility method here to search the database and return a mentor reference
                 // Already have a mentor id maybe that will work
 

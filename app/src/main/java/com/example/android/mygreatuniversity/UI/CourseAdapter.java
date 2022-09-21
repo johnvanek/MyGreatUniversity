@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 
 import java.util.List;
@@ -33,7 +34,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 int pos = getAdapterPosition();
                 //The current item on the list that is sent to the adapter. onClick()
                 final Course curCourse = mCourses.get(pos);
-
+                //
+                //Mentor courseMentor = curCourse.getM
                 //Create the Intent that will pass data to the Course Detailed View
                 Intent intent = new Intent(context, CourseViewDetailed.class);
                 //Give some extra data to the intent
@@ -42,8 +44,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("startDate", curCourse.getStartDate());
                 intent.putExtra("endDate" , curCourse.getEndDate());
                 intent.putExtra("status", curCourse.getStatus());
-                //Go to the next screen in this case courseViewDetailed
                 //TODO add mentor data to the intent put
+
+                //TODO need a utility method here to search the database and return a mentor reference
+                // Already have a mentor id maybe that will work
+
+                //Go to the next screen in this case courseViewDetailed
+
                 context.startActivity(intent);
             });
         }

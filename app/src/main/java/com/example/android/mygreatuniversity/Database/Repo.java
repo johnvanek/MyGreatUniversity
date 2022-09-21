@@ -22,6 +22,7 @@ public class Repo {
     private List<Mentor> mMentors;
     private List<Assessment> mAssessments;
     private Mentor mMentor;
+    private Mentor courseMentor;
 
     private static int NUMBER_OF_THREADS = 4;
     static final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -69,6 +70,14 @@ public class Repo {
             e.printStackTrace();
         }
     };
+    public void findMentorById(int mentorId){
+        executor.execute(() -> mCourseDAO.findMentorById(mentorId));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     //Mentor Methods
     public List<Mentor> getMentors() {
         executor.execute(() -> {

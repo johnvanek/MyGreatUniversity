@@ -59,18 +59,21 @@ public class MainActivity extends AppCompatActivity {
         //This is how you would add a new course
 
         Repo repo = new Repo(getApplication());
-        Course course = new Course("Java Fundamentals",
-                "08/31/22",
-                "09/01/22",
-                "In-Progress");
         Mentor mentor = new Mentor("John Vanek",
                 "561-146-1463",
                 "JohnV@gmail.com");
+
+        Course course = new Course("Java Fundamentals",
+                "08/31/22",
+                "09/01/22",
+                "In-Progress",mentor.getMentorID());
+
         Assessment assessment = new Assessment(
                 "Android-Exam",
                 "performance",
                 "09/01/22",
                 "10/01/22");
+
         repo.insertCourse(course);
         repo.insertMentor(mentor);
         repo.insertAssessment(assessment);

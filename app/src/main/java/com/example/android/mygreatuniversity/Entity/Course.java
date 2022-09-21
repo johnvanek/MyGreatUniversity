@@ -15,18 +15,19 @@ import androidx.room.PrimaryKey;
 public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseID;
-    private int courseMentorId;
     private String title;
     private String startDate;
     private String endDate;
     private String status;
+    private int courseMentorId;
     //TODO course should have a mentor reference change this
 
-    public Course(String title, String startDate, String endDate, String status) {
+    public Course(String title, String startDate, String endDate, String status, int courseMentorId) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
+        this.courseMentorId = courseMentorId;
     }
 
     public int getCourseID() {

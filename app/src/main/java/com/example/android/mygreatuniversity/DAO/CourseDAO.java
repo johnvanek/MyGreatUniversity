@@ -28,4 +28,7 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM courses ORDER BY courseID ASC")
     List<Course> getCourses();
+
+    @Query("SELECT * FROM mentors WHERE mentorID LIKE :mentorID LIMIT 1")
+    Mentor findMentorById(int mentorID);
 }

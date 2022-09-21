@@ -37,6 +37,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
     //Declarations for the fields
+    //Selected Course fields
     EditText courseTitle;
     EditText startText, endText;
     Spinner courseStatus;
@@ -44,7 +45,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     MentorSpinnerAdapter mentorSpinnerAdapter;
 
     LinearLayout courseLayout;
-
+    // Mentor fields
+    EditText mentorName, mentorPhone, mentorEmail;
     //intent data references
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
     int intentCourseId;
@@ -76,11 +78,17 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //************ INTENT DATA PASSING ****************
         //XML FIELD DECLARATIONS
+
+        //Course Declarations
         courseTitle = findViewById(R.id.editTextName);
         startText = findViewById(R.id.editTextPhone);
         endText = findViewById(R.id.editTextEmail);
         courseStatus = findViewById(R.id.spinnerStatus);
         courseLayout = findViewById(R.id.LayoutCourse);
+        //Mentor Declarations
+        mentorName = findViewById(R.id.mentorNameText);
+        mentorPhone = findViewById(R.id.mentorPhoneText);
+        mentorEmail = findViewById(R.id.mentorEmailText);
 
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
@@ -185,11 +193,8 @@ public class CourseViewDetailed extends AppCompatActivity {
                 mentorArray);
         //Have to set the view resource for the spinner adapter to enable the dropdown
         //Have to make the page larger or else the drop down will not fit.
-        //TODO test this with a custom text view
-        // Create a custom text view in layout
-        // I have a custom text view but what i need is a custom spinner dialog
         mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
-        //TODO pass in the intent the information for the mentor
+
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);
         mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -220,37 +225,43 @@ public class CourseViewDetailed extends AppCompatActivity {
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
-    public void saveState(View view) {
-        Course editedCourse = new Course(
-                courseTitle.getText().toString(),
-                startText.getText().toString(),
-                endText.getText().toString(),
-                courseStatus.getSelectedItem().toString());
 
-        //Convenience methods work by comparing the primary key
-        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
-        repo.updateCourse(editedCourse);
-        //After done performing the update return to the the Course View
-        Intent intent = new Intent(
-                CourseViewDetailed.this,
-                CourseView.class);
-        startActivity(intent);
-    }
+//TODO implement save state again
 
-    public void deleteState(View view) {
-        Course editedCourse = new Course(
-                courseTitle.getText().toString(),
-                startText.getText().toString(),
-                endText.getText().toString(),
-                courseStatus.getSelectedItem().toString());
+//    public void saveState(View view) {
+//        Course editedCourse = new Course(
+//                courseTitle.getText().toString(),
+//                startText.getText().toString(),
+//                endText.getText().toString(),
+//                courseStatus.getSelectedItem().toString());
+//
+//        //Convenience methods work by comparing the primary key
+//        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
+//        repo.updateCourse(editedCourse);
+//        //After done performing the update return to the the Course View
+//        Intent intent = new Intent(
+//                CourseViewDetailed.this,
+//                CourseView.class);
+//        startActivity(intent);
+//    }
 
-        editedCourse.setCourseID(intentCourseId);
-        repo.deleteCourse(editedCourse);
-        Intent intent = new Intent(
-                CourseViewDetailed.this,
-                CourseView.class);
-        startActivity(intent);
-    }
+
+//TODO implement deleteState again
+
+//    public void deleteState(View view) {
+//        Course editedCourse = new Course(
+//                courseTitle.getText().toString(),
+//                startText.getText().toString(),
+//                endText.getText().toString(),
+//                courseStatus.getSelectedItem().toString());
+//
+//        editedCourse.setCourseID(intentCourseId);
+//        repo.deleteCourse(editedCourse);
+//        Intent intent = new Intent(
+//                CourseViewDetailed.this,
+//                CourseView.class);
+//        startActivity(intent);
+//    }
 }
 
 

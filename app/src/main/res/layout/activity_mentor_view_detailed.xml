@@ -40,7 +40,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="800dp"
+                android:layout_height="612dp"
                 android:layout_margin="7dp"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 app:cardBackgroundColor="@color/WguBlue"
@@ -68,16 +68,16 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
-                        android:layout_width="354dp"
-                        android:layout_height="593dp"
+                        android:layout_width="353dp"
+                        android:layout_height="383dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/term_header">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardView"
-                            android:layout_width="338dp"
-                            android:layout_height="259dp"
+                            android:layout_width="331dp"
+                            android:layout_height="190dp"
                             app:cardCornerRadius="4dp"
                             app:cardElevation="5dp"
                             app:cardMaxElevation="5dp"
@@ -94,7 +94,7 @@
                                 android:focusableInTouchMode="true">
 
                                 <EditText
-                                    android:id="@+id/editTextTitle"
+                                    android:id="@+id/editTextName"
                                     android:layout_width="200dp"
                                     android:layout_height="48dp"
                                     android:layout_marginTop="8dp"
@@ -111,44 +111,32 @@
                                     tools:ignore="SpeakableTextPresentCheck" />
 
                                 <EditText
-                                    android:id="@+id/editTextEndDate"
+                                    android:id="@+id/editTextEmail"
                                     android:layout_width="170dp"
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="8dp"
                                     android:ems="10"
                                     android:focusable="false"
-                                    android:focusableInTouchMode="false"
+                                    android:focusableInTouchMode="true"
                                     android:focusedByDefault="false"
-                                    android:inputType="none"
+                                    android:inputType="textEmailAddress"
                                     android:minHeight="48dp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.785"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/editTextStartDate"
+                                    app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
                                     tools:ignore="SpeakableTextPresentCheck,TextFields" />
 
-                                <Spinner
-                                    android:id="@+id/spinnerStatus"
-                                    android:layout_width="170dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="4dp"
-                                    android:entries="@array/course_status_array"
-                                    android:spinnerMode="dropdown"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.773"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/editTextEndDate" />
-
                                 <EditText
-                                    android:id="@+id/editTextStartDate"
+                                    android:id="@+id/editTextPhone"
                                     android:layout_width="170dp"
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="8dp"
                                     android:ems="10"
                                     android:focusable="false"
-                                    android:focusableInTouchMode="false"
+                                    android:focusableInTouchMode="true"
                                     android:focusedByDefault="false"
                                     android:importantForAutofill="no"
                                     android:inputType="none"
@@ -156,7 +144,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.785"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/editTextTitle"
+                                    app:layout_constraintTop_toBottomOf="@+id/editTextName"
                                     tools:ignore="SpeakableTextPresentCheck,TextFields" />
 
                                 <TextView
@@ -166,11 +154,11 @@
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="24dp"
                                     android:fontFamily="@font/convergence"
-                                    android:text="@string/title"
+                                    android:text="Name"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/editTextTitle"
+                                    app:layout_constraintEnd_toStartOf="@+id/editTextName"
                                     app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -182,11 +170,11 @@
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="76dp"
                                     android:fontFamily="@font/convergence"
-                                    android:text="@string/startdatesemi"
+                                    android:text="Phone"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/editTextStartDate"
+                                    app:layout_constraintEnd_toStartOf="@+id/editTextPhone"
                                     app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -198,27 +186,12 @@
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="124dp"
                                     android:fontFamily="@font/convergence"
-                                    android:text="@string/enddate"
+                                    android:text="Email"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/editTextEndDate"
+                                    app:layout_constraintEnd_toStartOf="@+id/editTextEmail"
                                     app:layout_constraintHorizontal_bias="0.0"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/textView7"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="176dp"
-                                    android:fontFamily="@font/convergence"
-                                    android:text="@string/status"
-                                    android:textColor="@color/Black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/spinnerStatus"
-                                    app:layout_constraintHorizontal_bias="0.225"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -240,81 +213,45 @@
 
                         </androidx.cardview.widget.CardView>
 
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <Button
+                            android:id="@+id/saveButton"
+                            android:layout_width="93dp"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="72dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/WguLightBlue"
                             android:fontFamily="@font/convergence"
-                            android:text="@string/mentor"
-                            android:textColor="@color/White"
-                            android:textSize="34sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/cardView2"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.502"
+                            android:onClick="saveState"
+                            android:shadowColor="@color/Black"
+                            android:text="@string/save"
+                            android:textSize="18sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/cardView"
-                            app:layout_constraintVertical_bias="1.0" />
+                            app:rippleColor="@color/White"
+                            app:strokeColor="@color/NeutralWhite"
+                            app:strokeWidth="2dp" />
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView2"
-                            android:layout_width="338dp"
-                            android:layout_height="259dp"
-                            android:layout_marginTop="64dp"
-                            app:cardCornerRadius="10dp"
+                        <Button
+                            android:id="@+id/deleteButton"
+                            android:layout_width="120dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="28dp"
+                            android:layout_marginEnd="56dp"
+                            android:backgroundTint="#EC1B0C"
+                            android:fontFamily="@font/convergence"
+                            android:onClick="deleteState"
+                            android:shadowColor="@color/Black"
+                            android:text="Delete"
+                            android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.625"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="260dp"
-                                tools:layout_editor_absoluteX="2dp"
-                                tools:layout_editor_absoluteY="2dp">
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </androidx.cardview.widget.CardView>
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/saveButton"
+                            app:layout_constraintTop_toBottomOf="@+id/cardView"
+                            app:rippleColor="@color/White"
+                            app:strokeColor="@color/Black"
+                            app:strokeWidth="2dp" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <Button
-                        android:id="@+id/saveButton"
-                        android:layout_width="93dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="28dp"
-                        android:backgroundTint="@color/WguLightBlue"
-                        android:fontFamily="@font/convergence"
-                        android:onClick="saveState"
-                        android:shadowColor="@color/Black"
-                        android:text="@string/save"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.285"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                        app:rippleColor="@color/White"
-                        app:strokeColor="@color/NeutralWhite"
-                        app:strokeWidth="2dp" />
-
-                    <Button
-                        android:id="@+id/deleteButton"
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="28dp"
-                        android:backgroundTint="#EC1B0C"
-                        android:fontFamily="@font/convergence"
-                        android:onClick="deleteState"
-                        android:shadowColor="@color/Black"
-                        android:text="Delete"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.785"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                        app:rippleColor="@color/White"
-                        app:strokeColor="@color/Black"
-                        app:strokeWidth="2dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

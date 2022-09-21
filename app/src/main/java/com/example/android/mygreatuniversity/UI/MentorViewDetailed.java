@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +18,7 @@ import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.R;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class MentorViewDetailed extends AppCompatActivity {
     //TODO Add the mentor information on display to be shown.
@@ -56,132 +52,54 @@ public class MentorViewDetailed extends AppCompatActivity {
 
         //************ INTENT DATA PASSING ****************
         //XML FIELD DECLARATIONS
-        courseTitle = findViewById(R.id.editTextTitle);
-        startText = findViewById(R.id.editTextStartDate);
-        endText = findViewById(R.id.editTextEndDate);
-        courseStatus = findViewById(R.id.spinnerStatus);
+        mentorName = findViewById(R.id.editTextName);
+        mentorPhoneNumber = findViewById(R.id.editTextPhone);
+        mentorEmail = findViewById(R.id.editTextEmail);
+
         //Get and assign the intent data to local variables
-        intentCourseId = getIntent().getIntExtra("id", -1);
-        intentTitle = getIntent().getStringExtra("title");
-        intentStartDate = getIntent().getStringExtra("startDate");
-        intentEndDate = getIntent().getStringExtra("endDate");
-        intentStatus = getIntent().getStringExtra("status");
+        intentMentorId = getIntent().getIntExtra("id", -1);
+        intentName = getIntent().getStringExtra("name");
+        intentPhoneNumber = getIntent().getStringExtra("phone");
+        intentEmail = getIntent().getStringExtra("email");
+
         //Assign the XML Fields the values from the intents or that have been edited
-        courseTitle.setText(intentTitle);
-        courseStatus.setSelection(courseStatusPosition(this, intentStatus));
-        startText.setText(intentStartDate);
-        endText.setText(intentEndDate);
-        //************************ DATEPICKER LOGIC START & END ********************
-        //Get the xml id's for the edit text fields representing start and end edit text
+        mentorName.setText(intentName);
+        mentorPhoneNumber.setText(intentPhoneNumber);
+        mentorEmail.setText(intentEmail);
 
-
-        //Set listeners on both of the Start and End dialogs that will be popping up for the
-        // condition of if the Dialog date is modified or assigned.
-
-        startDatePicker = (view, year, month, day) -> {
-            CalenderStart.set(Calendar.YEAR, year);
-            CalenderStart.set(Calendar.MONTH, month);
-            CalenderStart.set(Calendar.DAY_OF_MONTH, day);
-            updateStartDateEditTextField();
-        };
-
-        endDatePicker = (view, year, month, day) -> {
-            CalenderEnd.set(Calendar.YEAR, year);
-            CalenderEnd.set(Calendar.MONTH, month);
-            CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
-            updateEndDateEditTextField();
-        };
-
-        courseTitle.setOnClickListener(view -> {
-            courseTitle.requestFocus();
-            courseTitle.setCursorVisible(true);
-        });
-
-        //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
-        //DatePicker Dialog's mentioned above and show them.
-        startText.setOnClickListener(view -> {
-            //Hide the flickering coming from the title
-
-            courseTitle.setCursorVisible(false);
-
-            hideKeyboard(CourseViewDetailed.this);
-            new DatePickerDialog(CourseViewDetailed.this,
-                    startDatePicker, CalenderStart.get(Calendar.YEAR),
-                    CalenderStart.get(Calendar.MONTH),
-                    CalenderStart.get(Calendar.DAY_OF_MONTH))
-                    .show();
-            courseTitle.clearFocus();
-            startText.requestFocus();
-        });
-
-        endText.setOnClickListener(view -> {
-            //Hide the flickering coming from the title
-            courseTitle.setCursorVisible(false);
-            // And get the current focus
-            courseTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-            hideKeyboard(CourseViewDetailed.this);
-            new DatePickerDialog(CourseViewDetailed.this,
-                    endDatePicker, CalenderEnd.get(Calendar.YEAR),
-                    CalenderEnd.get(Calendar.MONTH),
-                    CalenderEnd.get(Calendar.DAY_OF_MONTH))
-                    .show();
-            endText.requestFocus();
-        });
-
-        //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
-        startText.setOnFocusChangeListener((view, hasFocus) -> {
-            if (hasFocus) {
-                hideKeyboard(this);
-            }
-        });
-
-        endText.setOnFocusChangeListener((view, hasFocus) -> {
-            if (hasFocus) {
-                hideKeyboard(this);
-            }
-        });
-    }
-
-    private void updateStartDateEditTextField() {
-        hideKeyboard(this);
-        startText.setText(dateFormat.format(CalenderStart.getTime()));
-    }
-
-    private void updateEndDateEditTextField() {
-        hideKeyboard(this);
-        endText.setText(dateFormat.format(CalenderEnd.getTime()));
-    }
-
-    public void saveState(View view) {
-        Course editedCourse = new Course(
-                courseTitle.getText().toString(),
-                startText.getText().toString(),
-                endText.getText().toString(),
-                courseStatus.getSelectedItem().toString());
+        // TODO save the state
+//    public void saveState(View view) {
+//        Course editedCourse = new Course(
+//                courseTitle.getText().toString(),
+//                startText.getText().toString(),
+//                endText.getText().toString(),
+//                courseStatus.getSelectedItem().toString());
 
         //Convenience methods work by comparing the primary key
-        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
-        repo.updateCourse(editedCourse);
-        //After done performing the update return to the the Course View
-        Intent intent = new Intent(
-                CourseViewDetailed.this,
-                CourseView.class);
-        startActivity(intent);
-    }
+//        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
+//        repo.updateCourse(editedCourse);
+//        //After done performing the update return to the the Course View
+//        Intent intent = new Intent(
+//                CourseViewDetailed.this,
+//                CourseView.class);
+//        startActivity(intent);
+//    }
 
-    public void deleteState(View view) {
-        Course editedCourse = new Course(
-                courseTitle.getText().toString(),
-                startText.getText().toString(),
-                endText.getText().toString(),
-                courseStatus.getSelectedItem().toString());
-
-        editedCourse.setCourseID(intentCourseId);
-        repo.deleteCourse(editedCourse);
-        Intent intent = new Intent(
-                CourseViewDetailed.this,
-                CourseView.class);
-        startActivity(intent);
+        // TODO add an option to delete the state
+//    public void deleteState(View view) {
+//        Course editedCourse = new Course(
+//                courseTitle.getText().toString(),
+//                startText.getText().toString(),
+//                endText.getText().toString(),
+//                courseStatus.getSelectedItem().toString());
+//
+//        editedCourse.setCourseID(intentCourseId);
+//        repo.deleteCourse(editedCourse);
+//        Intent intent = new Intent(
+//                CourseViewDetailed.this,
+//                CourseView.class);
+//        startActivity(intent);
+//    }
     }
 }
 

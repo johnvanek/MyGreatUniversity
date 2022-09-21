@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -65,9 +64,9 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //************ INTENT DATA PASSING ****************
         //XML FIELD DECLARATIONS
-        courseTitle = findViewById(R.id.editTextTitle);
-        startText = findViewById(R.id.editTextStartDate);
-        endText = findViewById(R.id.editTextEndDate);
+        courseTitle = findViewById(R.id.editTextName);
+        startText = findViewById(R.id.editTextPhone);
+        endText = findViewById(R.id.editTextEmail);
         courseStatus = findViewById(R.id.spinnerStatus);
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);

@@ -4,8 +4,14 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
+
+import java.util.List;
 
 public class MentorView extends AppCompatActivity {
 
@@ -25,9 +31,14 @@ public class MentorView extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
         //Populate the MentorList for the Recycler view
-        //TODO create the mentor list and the recycler view
-        // First need to create a mentor_list_item
-        // pretty much an exact copy of course_list_item
-        // Damn i really have to take a runny shit though
+        RecyclerView recyclerView = findViewById(R.id.mentorListRecyclerView);
+        Repo repo = new Repo(getApplication());
+        List<Mentor> mentors = repo.getMentors();
+        //Set the CourseAdapter and LayoutManger
+        final MentorAdapter mentorAdapter = new MentorAdapter(this);
+        recyclerView.setAdapter(mentorAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //Set The Courses Via the adapter
+        mentorAdapter.setMentors(mentors);
     }
 }

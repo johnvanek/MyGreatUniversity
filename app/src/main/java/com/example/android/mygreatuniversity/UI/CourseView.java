@@ -1,7 +1,6 @@
 package com.example.android.mygreatuniversity.UI;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +32,7 @@ public class CourseView extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
         //Populate the CourseList for the Recycler view
-        RecyclerView recyclerView = findViewById(R.id.courseListRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.mentorListRecyclerView);
         Repo repo = new Repo(getApplication());
         List<Course> courses = repo.getCourses();
         //Set the CourseAdapter and LayoutManger

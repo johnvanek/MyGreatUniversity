@@ -46,7 +46,7 @@ public class MentorAdapter extends RecyclerView.Adapter<MentorAdapter.MentorView
 
                 intent.putExtra("id", curMentor.getMentorID());
                 intent.putExtra("name", curMentor.getName());
-                intent.putExtra("phoneNumber", curMentor.getPhoneNumber());
+                intent.putExtra("phone", curMentor.getPhoneNumber());
                 intent.putExtra("email" , curMentor.getEmail());
                 //Go to the next screen in this case courseViewDetailed
                 context.startActivity(intent);
@@ -66,7 +66,7 @@ public class MentorAdapter extends RecyclerView.Adapter<MentorAdapter.MentorView
     @NonNull
     @Override
     public MentorAdapter.MentorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.course_list_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.mentor_list_item, parent, false);
         return new MentorViewHolder(itemView);
     }
 
@@ -91,7 +91,7 @@ public class MentorAdapter extends RecyclerView.Adapter<MentorAdapter.MentorView
         } else return 0;
     }
     //This method tells the activity which items to show.
-    public void setCourses(List<Mentor> mentors) {
+    public void setMentors(List<Mentor> mentors) {
         Log.d("adapter", "attempting to set mentors: " + mentors);
         mMentors = mentors;
         //Notifies any observers if the dataset has changed

@@ -27,6 +27,10 @@
             android:exported="false"
             android:parentActivityName=".UI.MainActivity" /> <!-- Child of Main ! -->
         <activity
+            android:name=".UI.MentorViewDetailed"
+            android:exported="false"
+            android:parentActivityName=".UI.MentorView" /> <!-- Child of Mentor! -->
+        <activity
             android:name=".UI.TermView"
             android:exported="false"
             android:label="TermView"

@@ -2,7 +2,6 @@ package com.example.android.mygreatuniversity.UI;
 
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -64,7 +63,7 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorName.setText(intentName);
         mentorPhoneNumber.setText(intentPhoneNumber);
         mentorEmail.setText(intentEmail);
-
+        // TODO also add keyboard hiding and input filtering
         // TODO save the state
 //    public void saveState(View view) {
 //        Course editedCourse = new Course(

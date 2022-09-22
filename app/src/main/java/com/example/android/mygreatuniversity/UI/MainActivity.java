@@ -62,11 +62,17 @@ public class MainActivity extends AppCompatActivity {
         Mentor mentor = new Mentor("John Vanek",
                 "561-146-1463",
                 "JohnV@gmail.com");
-
+        //TODO fix how this mentorId is assigned to the courses this is currently zero the database
+        // auto increments the id's currently both course and mentor are zero.
+        //Insert the mentor and let the database handle the incrementing of the primary Id's.
+        //After mentor is inserted the id should auto-increment.
+        // Call the get id method and pass it to the course
+        repo.insertMentor(mentor);
+        //TODO This is currently set to one but does not matter as the way it willed be created and delete is with a spinner. This is just testing
         Course course = new Course("Java Fundamentals",
                 "08/31/22",
                 "09/01/22",
-                "In-Progress",mentor.getMentorID());
+                "In-Progress",1);
 
         Assessment assessment = new Assessment(
                 "Android-Exam",
@@ -74,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 "09/01/22",
                 "10/01/22");
 
+
+
         repo.insertCourse(course);
-        repo.insertMentor(mentor);
+
         repo.insertAssessment(assessment);
     }
 }

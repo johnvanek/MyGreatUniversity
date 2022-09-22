@@ -48,9 +48,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("endDate" , curCourse.getEndDate());
                 intent.putExtra("status", curCourse.getStatus());
                 //Using the mentorId from the course get the linked mentor
-                Repo repo = new Repo((Application) context.getApplicationContext());
-                Mentor courseMentor = repo.findMentorById(curCourse.getCourseMentorId());
-
+//                Repo repo = new Repo((Application) context.getApplicationContext());
+//                Mentor courseMentor = repo.findMentorById(curCourse.getCourseMentorId());
+//                //Put the courseMentor information in the intent as well
+//                intent.putExtra("mentorId", courseMentor.getMentorID());
+//                intent.putExtra("mentorName", courseMentor.getName());
+//                intent.putExtra("mentorPhone",courseMentor.getPhoneNumber());
+//                intent.putExtra("mentorEmail", courseMentor.getEmail());
                 //Go to the next screen in this case courseViewDetailed
                 context.startActivity(intent);
             });

@@ -69,11 +69,10 @@ public class MentorViewDetailed extends AppCompatActivity {
 
         mentorLayout.setOnClickListener(v -> {
             //clear the focus and clear the keyboard
+            hideKeyboard(this);
             mentorPhoneNumber.clearFocus();
             mentorName.clearFocus();
             mentorEmail.clearFocus();
-
-            hideKeyboard(this);
         });
 
         mentorName.setOnEditorActionListener((v, actionId, event) -> {

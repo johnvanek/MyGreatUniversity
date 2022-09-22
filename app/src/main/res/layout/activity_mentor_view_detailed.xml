@@ -150,7 +150,7 @@
                                     android:ems="10"
                                     android:focusedByDefault="false"
                                     android:imeOptions="actionDone"
-                                    android:inputType="text"
+                                    android:inputType="textNoSuggestions"
                                     android:minHeight="48dp"
                                     android:singleLine="true"
                                     app:layout_constraintEnd_toEndOf="parent"

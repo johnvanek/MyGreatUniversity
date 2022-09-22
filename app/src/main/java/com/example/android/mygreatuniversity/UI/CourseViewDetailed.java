@@ -3,12 +3,15 @@ package com.example.android.mygreatuniversity.UI;
 import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
@@ -43,7 +47,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     Spinner mentorSpinner;
     MentorSpinnerAdapter mentorSpinnerAdapter;
 
-    LinearLayout courseLayout;
+    ConstraintLayout courseLayout;
     // Mentor fields
     EditText mentorName, mentorPhone, mentorEmail;
     //intent data references
@@ -63,6 +67,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         hideKeyboard(this);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         //***************** DISPLAY LOGIC *************
         //Sets the activity
         super.onCreate(savedInstanceState);
@@ -141,12 +147,19 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseTitle.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edit text
-                courseTitle.clearFocus();
+                //by clearing the focus here Im messing with the view
+                //courseTitle.clearFocus();
                 //And hide that keyboard
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(this);
             }
             return false;
         });
+
+        courseTitle.setOnFocusChangeListener((v, hasFocus) -> {
+               hideKeyboard(CourseViewDetailed.this);
+        });
+
+
 
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
         //DatePicker Dialog's mentioned above and show them.
@@ -161,7 +174,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                     CalenderStart.get(Calendar.MONTH),
                     CalenderStart.get(Calendar.DAY_OF_MONTH))
                     .show();
-            courseTitle.clearFocus();
+            //courseTitle.clearFocus();
             startText.requestFocus();
         });
 
@@ -186,9 +199,14 @@ public class CourseViewDetailed extends AppCompatActivity {
             courseTitle.clearFocus();
         });
 
-        courseLayout.setOnClickListener(v -> {
-            hideKeyboard(this);
-            courseTitle.clearFocus();
+        //TODO fix the layout method This method is not working
+        courseLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(CourseViewDetailed.this);
+                courseTitle.clearFocus();
+                return false;
+            }
         });
 
         startText.setOnFocusChangeListener((view, hasFocus) -> {

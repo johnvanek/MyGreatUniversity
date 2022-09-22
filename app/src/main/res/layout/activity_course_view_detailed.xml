@@ -18,11 +18,10 @@
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
-            android:id="@+id/LayoutCourse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/WguLightBlue"
-            android:focusable="true"
+            android:focusable="false"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
@@ -93,11 +92,13 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/LayoutCourse"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="8dp"
                                 android:background="@color/White"
                                 android:descendantFocusability="beforeDescendants"
+                                android:focusable="true"
                                 android:focusableInTouchMode="true">
 
                                 <EditText

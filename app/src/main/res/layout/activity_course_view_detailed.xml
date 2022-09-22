@@ -284,7 +284,7 @@
                                     android:id="@+id/mentorSpinner"
                                     android:layout_width="200dp"
                                     android:layout_height="48dp"
-                                    android:layout_marginTop="16dp"
+                                    android:layout_marginTop="12dp"
                                     android:entries="@array/course_status_array"
                                     android:spinnerMode="dialog"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -295,50 +295,54 @@
                                     android:id="@+id/textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="24dp"
+                                    android:layout_marginTop="84dp"
+                                    android:layout_marginEnd="24dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="Name:"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/mentorSpinner" />
+                                    app:layout_constraintEnd_toStartOf="@+id/mentorNameText"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
                                     android:id="@+id/textView8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="24dp"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="140dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="Phone:"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/mentorPhoneText"
+                                    app:layout_constraintHorizontal_bias="0.324"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
                                     android:id="@+id/textView9"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="8dp"
-                                    android:layout_marginTop="28dp"
+                                    android:layout_marginTop="196dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="Email:"
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/mentorEmailText"
+                                    app:layout_constraintHorizontal_bias="0.216"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                                 <EditText
                                     android:id="@+id/mentorNameText"
                                     android:layout_width="200dp"
                                     android:layout_height="48dp"
-                                    android:layout_marginTop="4dp"
-                                    android:layout_marginEnd="52dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="40dp"
                                     android:defaultFocusHighlightEnabled="false"
                                     android:digits="@string/digitsForText"
                                     android:ems="10"
@@ -350,11 +354,27 @@
                                     tools:ignore="SpeakableTextPresentCheck" />
 
                                 <EditText
+                                    android:id="@+id/mentorEmailText"
+                                    android:layout_width="200dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="40dp"
+                                    android:defaultFocusHighlightEnabled="false"
+                                    android:digits="@string/digitsForText"
+                                    android:ems="10"
+                                    android:focusedByDefault="false"
+                                    android:inputType="text"
+                                    android:minHeight="48dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/mentorPhoneText"
+                                    tools:ignore="SpeakableTextPresentCheck" />
+
+                                <EditText
                                     android:id="@+id/mentorPhoneText"
                                     android:layout_width="200dp"
                                     android:layout_height="48dp"
-                                    android:layout_marginTop="1dp"
-                                    android:layout_marginEnd="52dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="40dp"
                                     android:defaultFocusHighlightEnabled="false"
                                     android:digits="@string/digitsForText"
                                     android:ems="10"
@@ -365,20 +385,6 @@
                                     app:layout_constraintTop_toBottomOf="@+id/mentorNameText"
                                     tools:ignore="SpeakableTextPresentCheck" />
 
-                                <EditText
-                                    android:id="@+id/mentorEmailText"
-                                    android:layout_width="200dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginEnd="52dp"
-                                    android:defaultFocusHighlightEnabled="false"
-                                    android:digits="@string/digitsForText"
-                                    android:ems="10"
-                                    android:focusedByDefault="false"
-                                    android:inputType="text"
-                                    android:minHeight="48dp"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/mentorPhoneText"
-                                    tools:ignore="SpeakableTextPresentCheck" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
 

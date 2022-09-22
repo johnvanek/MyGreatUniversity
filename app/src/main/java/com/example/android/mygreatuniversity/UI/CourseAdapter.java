@@ -47,15 +47,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("startDate", curCourse.getStartDate());
                 intent.putExtra("endDate" , curCourse.getEndDate());
                 intent.putExtra("status", curCourse.getStatus());
-                //TODO add mentor data to the intent put
+                //Using the mentorId from the course get the linked mentor
                 Repo repo = new Repo((Application) context.getApplicationContext());
                 Mentor courseMentor = repo.findMentorById(curCourse.getCourseMentorId());
 
-                //TODO need a utility method here to search the database and return a mentor reference
-                // Already have a mentor id maybe that will work
-
                 //Go to the next screen in this case courseViewDetailed
-
                 context.startActivity(intent);
             });
         }
@@ -69,7 +65,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         Log.d("adapter", "The Course adapter has been started");
         mInflater = LayoutInflater.from(context);
         this.context = context;
-
     }
 
     @NonNull

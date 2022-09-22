@@ -228,7 +228,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         hideKeyboard(this);
         startText.setText(dateFormat.format(CalenderStart.getTime()));
     }
-
+    //TODO also hide the keyboard on keyboard enter press
     private void updateEndDateEditTextField() {
         hideKeyboard(this);
         endText.setText(dateFormat.format(CalenderEnd.getTime()));

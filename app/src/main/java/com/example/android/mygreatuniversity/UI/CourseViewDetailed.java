@@ -218,8 +218,6 @@ public class CourseViewDetailed extends AppCompatActivity {
                 // for test purposes I am going to make this a toast.
                 Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
                         Toast.LENGTH_SHORT).show();
-
-                //TODO on selection populate the fields for the mentor below
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapter) {  }

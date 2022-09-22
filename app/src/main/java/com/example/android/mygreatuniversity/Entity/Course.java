@@ -2,15 +2,6 @@ package com.example.android.mygreatuniversity.Entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-//TODO
-// Courses have mentors, so add a field
-// int courseMentorId;
-// Change this so that when a new course is created a mentor is also assigned to the course.
-// So that when the course information is shown the information for the mentor also gets shown.
-// The mentor view also needs to exist somewhere else in the application as a stand alone List of mentors.
-
-
-
 @Entity(tableName = "courses")
 public class Course {
     @PrimaryKey(autoGenerate = true)
@@ -20,7 +11,6 @@ public class Course {
     private String endDate;
     private String status;
     private int courseMentorId;
-    //TODO course should have a mentor reference change this
 
     public Course(String title, String startDate, String endDate, String status, int courseMentorId) {
         this.title = title;

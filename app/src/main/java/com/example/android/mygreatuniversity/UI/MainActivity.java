@@ -80,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 "09/01/22",
                 "10/01/22");
 
-
-
         repo.insertCourse(course);
 
         repo.insertAssessment(assessment);

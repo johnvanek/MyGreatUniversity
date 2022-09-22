@@ -49,6 +49,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     EditText mentorName, mentorPhone, mentorEmail;
     //intent data references
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
+    //mentor intent strings
+    String mentorIntentName, mentorIntentPhone, mentorIntentEmail;
     int intentCourseId;
     Repo repo = new Repo(getApplication());
 
@@ -86,6 +88,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseStatus = findViewById(R.id.spinnerStatus);
         courseLayout = findViewById(R.id.LayoutCourse);
         //Mentor Declarations
+
         mentorName = findViewById(R.id.mentorNameText);
         mentorPhone = findViewById(R.id.mentorPhoneText);
         mentorEmail = findViewById(R.id.mentorEmailText);
@@ -96,11 +99,19 @@ public class CourseViewDetailed extends AppCompatActivity {
         intentStartDate = getIntent().getStringExtra("startDate");
         intentEndDate = getIntent().getStringExtra("endDate");
         intentStatus = getIntent().getStringExtra("status");
+        //Mentor intent data
+        mentorIntentName = getIntent().getStringExtra("mentorName");
+        mentorIntentPhone = getIntent().getStringExtra("mentorPhone");
+        mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
         //Assign the XML Fields the values from the intents or that have been edited
         courseTitle.setText(intentTitle);
         courseStatus.setSelection(courseStatusPosition(this, intentStatus));
         startText.setText(intentStartDate);
         endText.setText(intentEndDate);
+        //Set the XML fields for the mentor section
+        mentorName.setText(mentorIntentName);
+        mentorEmail.setText(mentorIntentEmail);
+        mentorPhone.setText(mentorIntentPhone);
         //************************ DATEPICKER LOGIC START & END ********************
         //Get the xml id's for the edit text fields representing start and end edit text
 

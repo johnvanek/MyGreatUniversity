@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -19,15 +20,13 @@ import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.R;
 
 public class MentorViewDetailed extends AppCompatActivity {
-    //TODO Add the mentor information on display to be shown.
-
     //**************  START DECLARATIONS *********************
     EditText mentorName, mentorPhoneNumber, mentorEmail;
     ScrollView mentorScrollView;
     LinearLayout mentorLayout;
     String intentName, intentPhoneNumber, intentEmail;
     int intentMentorId;
-    Repo repo = new Repo(getApplication());
+
 
     //****************** END DECLARATIONS **************************************
     @Override
@@ -36,7 +35,6 @@ public class MentorViewDetailed extends AppCompatActivity {
         //***************** DISPLAY LOGIC *************
         //Sets the activity
         super.onCreate(savedInstanceState);
-        //TODO also have to create this layout before I can test anything as well.
         setContentView(R.layout.activity_mentor_view_detailed);
         //Assigns the toolbar from xml
         Toolbar myToolbar = findViewById(R.id.toolbar);
@@ -66,7 +64,6 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorName.setText(intentName);
         mentorPhoneNumber.setText(intentPhoneNumber);
         mentorEmail.setText(intentEmail);
-        // TODO also add
 
         //************ KEYBOARD HIDING ****************
 
@@ -75,7 +72,24 @@ public class MentorViewDetailed extends AppCompatActivity {
             mentorPhoneNumber.clearFocus();
             mentorName.clearFocus();
             mentorEmail.clearFocus();
+
             hideKeyboard(this);
+        });
+
+        mentorName.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                //Clear focus here from edit text
+                mentorName.clearFocus();
+                //And hide that keyboard
+                hideKeyboard(MentorViewDetailed.this);
+            }
+            return false;
+        });
+
+        mentorName.setOnFocusChangeListener((view, hasFocus) -> {
+            if (!hasFocus) {
+                hideKeyboard(this);
+            }
         });
 
         myToolbar.setOnClickListener(v -> {
@@ -84,11 +98,6 @@ public class MentorViewDetailed extends AppCompatActivity {
             mentorEmail.clearFocus();
             hideKeyboard(this);
         });
-
-
-
-
-
 
         // TODO save the state
 //    public void saveState(View view) {

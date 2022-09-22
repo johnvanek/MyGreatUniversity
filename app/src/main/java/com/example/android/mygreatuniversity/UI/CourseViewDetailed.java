@@ -7,15 +7,12 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -28,7 +25,6 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -36,13 +32,11 @@ import java.util.Locale;
 public class CourseViewDetailed extends AppCompatActivity {
     //TODO Add the mentor information on display to be shown.
 
-    //**************  START DECLARATIONS *********************
-    boolean hasSpinnerBeenBuilt = false;
-    boolean isSpinnerFirstPosition = true;
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
+    //**************  START DECLARATIONS *********************
+    boolean hasSpinnerBeenBuilt = false;
     //Declarations for the fields
-    //Selected Course fields
     EditText courseTitle;
     EditText startText, endText;
     Spinner courseStatus;
@@ -119,7 +113,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorName.setText(mentorIntentName);
         mentorEmail.setText(mentorIntentEmail);
         mentorPhone.setText(mentorIntentPhone);
-        //************************ DATEPICKER LOGIC START & END ********************
+        //************************* DATEPICKER LOGIC START & END ************************
         //Get the xml id's for the edit text fields representing start and end edit text
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
@@ -144,16 +138,14 @@ public class CourseViewDetailed extends AppCompatActivity {
             courseTitle.setCursorVisible(true);
         });
 
-        courseTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId== EditorInfo.IME_ACTION_DONE){
-                    //Clear focus here from edittext
-                    courseTitle.clearFocus();
-                    hideKeyboard(CourseViewDetailed.this);
-                }
-                return false;
+        courseTitle.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                //Clear focus here from edit text
+                courseTitle.clearFocus();
+                //And hide that keyboard
+                hideKeyboard(CourseViewDetailed.this);
             }
+            return false;
         });
 
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
@@ -188,10 +180,8 @@ public class CourseViewDetailed extends AppCompatActivity {
         });
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
-        //Better way to do this is like the example in mentor
-        // Keep other methods for now just to not break anything.
 
-        myToolbar.setOnClickListener(v ->{
+        myToolbar.setOnClickListener(v -> {
             hideKeyboard(this);
             courseTitle.clearFocus();
         });
@@ -237,20 +227,21 @@ public class CourseViewDetailed extends AppCompatActivity {
                 // This gets the current mentor that is selected by returning the spinner position.
                 // The position here has defaulted to zero from the override
                 Mentor mentor;
-                if(!hasSpinnerBeenBuilt) {
+                if (!hasSpinnerBeenBuilt) {
                     mentor = mentorSpinnerAdapter.getItem(intentMentorId - 1);
                     mentorSpinner.setSelection(intentMentorId - 1);
                 } else {
                     mentor = mentorSpinnerAdapter.getItem(position);
                 }
-                    // for test purposes I am going to make this a toast.
-                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
-                            Toast.LENGTH_SHORT).show();
+                // for test purposes I am going to make this a toast.
+                Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
+                        Toast.LENGTH_SHORT).show();
                 hasSpinnerBeenBuilt = true;
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapter) {  }
+            public void onNothingSelected(AdapterView<?> adapter) {
+            }
         });
     }
 
@@ -258,14 +249,11 @@ public class CourseViewDetailed extends AppCompatActivity {
         hideKeyboard(this);
         startText.setText(dateFormat.format(CalenderStart.getTime()));
     }
-    //TODO also hide the keyboard on keyboard enter press
+
     private void updateEndDateEditTextField() {
         hideKeyboard(this);
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
     }
-
-
-//TODO implement save state again these should be working just have to test it
 
     public void saveState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
@@ -287,9 +275,6 @@ public class CourseViewDetailed extends AppCompatActivity {
                 CourseView.class);
         startActivity(intent);
     }
-
-
-//TODO implement deleteState again
 
     public void deleteState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();

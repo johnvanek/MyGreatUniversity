@@ -34,6 +34,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     //TODO Add the mentor information on display to be shown.
 
     //**************  START DECLARATIONS *********************
+    boolean hasSpinnerBeenBuilt = false;
+    boolean isSpinnerFirstPosition = true;
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
     //Declarations for the fields
@@ -52,6 +54,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     //mentor intent strings
     String mentorIntentName, mentorIntentPhone, mentorIntentEmail;
     int intentCourseId;
+    int intentMentorId;
     Repo repo = new Repo(getApplication());
 
     //Date References & Declarations
@@ -100,6 +103,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         intentEndDate = getIntent().getStringExtra("endDate");
         intentStatus = getIntent().getStringExtra("status");
         //Mentor intent data
+        intentMentorId = getIntent().getIntExtra("mentorId", -1);
         mentorIntentName = getIntent().getStringExtra("mentorName");
         mentorIntentPhone = getIntent().getStringExtra("mentorPhone");
         mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
@@ -205,7 +209,9 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Have to set the view resource for the spinner adapter to enable the dropdown
         //Have to make the page larger or else the drop down will not fit.
         mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
-
+        //This is okay because we are still in the onCreate
+        //The primary keys auto increment starting from one
+        mentorSpinner.setSelection(intentMentorId - 1);
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);
         mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -214,11 +220,21 @@ public class CourseViewDetailed extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
                 // This gets the current mentor that is selected by returning the spinner position.
-                Mentor mentor = mentorSpinnerAdapter.getItem(position);
-                // for test purposes I am going to make this a toast.
-                Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
-                        Toast.LENGTH_SHORT).show();
+                // The position here has defaulted to zero from the override
+                Mentor mentor;
+                if(!hasSpinnerBeenBuilt) {
+                    mentor = mentorSpinnerAdapter.getItem(intentMentorId - 1);
+                    mentorSpinner.setSelection(intentMentorId - 1);
+                } else {
+                    mentor = mentorSpinnerAdapter.getItem(position);
+                }
+                //Need a condition here if the position is 0 and the spinner has been built
+                    // for test purposes I am going to make this a toast.
+                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
+                            Toast.LENGTH_SHORT).show();
+                hasSpinnerBeenBuilt = true;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapter) {  }
         });
@@ -235,42 +251,49 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
 
-//TODO implement save state again
+//TODO implement save state again these should be working just have to test it
 
-//    public void saveState(View view) {
-//        Course editedCourse = new Course(
-//                courseTitle.getText().toString(),
-//                startText.getText().toString(),
-//                endText.getText().toString(),
-//                courseStatus.getSelectedItem().toString());
-//
-//        //Convenience methods work by comparing the primary key
-//        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
-//        repo.updateCourse(editedCourse);
-//        //After done performing the update return to the the Course View
-//        Intent intent = new Intent(
-//                CourseViewDetailed.this,
-//                CourseView.class);
-//        startActivity(intent);
-//    }
+    public void saveState(View view) {
+        Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
+        Course editedCourse = new Course(
+                courseTitle.getText().toString(),
+                startText.getText().toString(),
+                endText.getText().toString(),
+                courseStatus.getSelectedItem().toString(),
+                selectedMentor.getMentorID()
+        );
+
+        //Convenience methods work by comparing the primary key
+        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
+        repo.updateCourse(editedCourse);
+
+        //After done performing the update return to the the Course View
+        Intent intent = new Intent(
+                CourseViewDetailed.this,
+                CourseView.class);
+        startActivity(intent);
+    }
 
 
 //TODO implement deleteState again
 
-//    public void deleteState(View view) {
-//        Course editedCourse = new Course(
-//                courseTitle.getText().toString(),
-//                startText.getText().toString(),
-//                endText.getText().toString(),
-//                courseStatus.getSelectedItem().toString());
-//
-//        editedCourse.setCourseID(intentCourseId);
-//        repo.deleteCourse(editedCourse);
-//        Intent intent = new Intent(
-//                CourseViewDetailed.this,
-//                CourseView.class);
-//        startActivity(intent);
-//    }
+    public void deleteState(View view) {
+        Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
+        Course editedCourse = new Course(
+                courseTitle.getText().toString(),
+                startText.getText().toString(),
+                endText.getText().toString(),
+                courseStatus.getSelectedItem().toString(),
+                selectedMentor.getMentorID()
+        );
+
+        editedCourse.setCourseID(intentCourseId);
+        repo.deleteCourse(editedCourse);
+        Intent intent = new Intent(
+                CourseViewDetailed.this,
+                CourseView.class);
+        startActivity(intent);
+    }
 }
 
 

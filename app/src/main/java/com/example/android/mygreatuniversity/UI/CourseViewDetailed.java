@@ -7,12 +7,15 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -141,6 +144,18 @@ public class CourseViewDetailed extends AppCompatActivity {
             courseTitle.setCursorVisible(true);
         });
 
+        courseTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId== EditorInfo.IME_ACTION_DONE){
+                    //Clear focus here from edittext
+                    courseTitle.clearFocus();
+                    hideKeyboard(CourseViewDetailed.this);
+                }
+                return false;
+            }
+        });
+
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
         //DatePicker Dialog's mentioned above and show them.
         startText.setOnClickListener(view -> {
@@ -228,7 +243,6 @@ public class CourseViewDetailed extends AppCompatActivity {
                 } else {
                     mentor = mentorSpinnerAdapter.getItem(position);
                 }
-                //Need a condition here if the position is 0 and the spinner has been built
                     // for test purposes I am going to make this a toast.
                     Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
                             Toast.LENGTH_SHORT).show();

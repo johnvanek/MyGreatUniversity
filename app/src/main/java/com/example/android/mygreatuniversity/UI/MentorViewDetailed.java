@@ -2,16 +2,20 @@ package com.example.android.mygreatuniversity.UI;
 
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 
 public class MentorViewDetailed extends AppCompatActivity {
@@ -21,7 +25,7 @@ public class MentorViewDetailed extends AppCompatActivity {
     LinearLayout mentorLayout;
     String intentName, intentPhoneNumber, intentEmail;
     int intentMentorId;
-
+    Repo repo = new Repo(getApplication());
 
     //****************** END DECLARATIONS **************************************
     @Override
@@ -92,40 +96,39 @@ public class MentorViewDetailed extends AppCompatActivity {
             mentorEmail.clearFocus();
             hideKeyboard(this);
         });
+    }
 
-        // TODO save the state
-//    public void saveState(View view) {
-//        Course editedCourse = new Course(
-//                courseTitle.getText().toString(),
-//                startText.getText().toString(),
-//                endText.getText().toString(),
-//                courseStatus.getSelectedItem().toString());
+
+    public void saveState(View view) {
+        Mentor editedMentor = new Mentor(
+                mentorName.getText().toString(),
+                mentorPhoneNumber.getText().toString(),
+                mentorEmail.getText().toString());
 
         //Convenience methods work by comparing the primary key
-//        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
-//        repo.updateCourse(editedCourse);
-//        //After done performing the update return to the the Course View
-//        Intent intent = new Intent(
-//                CourseViewDetailed.this,
-//                CourseView.class);
-//        startActivity(intent);
-//    }
+        editedMentor.setMentorID(intentMentorId); // This will set it to Id that was passed
+        repo.updateMentor(editedMentor);
+        //After done performing the update return to the the Course View
+        Intent intent = new Intent(
+                MentorViewDetailed.this,
+                MentorView.class);
+        startActivity(intent);
+    }
 
-        // TODO add an option to delete the state
-//    public void deleteState(View view) {
-//        Course editedCourse = new Course(
-//                courseTitle.getText().toString(),
-//                startText.getText().toString(),
-//                endText.getText().toString(),
-//                courseStatus.getSelectedItem().toString());
-//
-//        editedCourse.setCourseID(intentCourseId);
-//        repo.deleteCourse(editedCourse);
-//        Intent intent = new Intent(
-//                CourseViewDetailed.this,
-//                CourseView.class);
-//        startActivity(intent);
-//    }
+     //TODO add an option to delete the state
+    public void deleteState(View view) {
+        Mentor editedMentor = new Mentor(
+                mentorName.getText().toString(),
+                mentorPhoneNumber.getText().toString(),
+                mentorEmail.getText().toString());
+
+        editedMentor.setMentorID(intentMentorId); // This will set it to Id that was passed
+        repo.deleteMentor(editedMentor);
+        //After done performing the update return to the the Course View
+        Intent intent = new Intent(
+                MentorViewDetailed.this,
+                MentorView.class);
+        startActivity(intent);
     }
 }
 

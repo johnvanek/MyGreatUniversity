@@ -245,6 +245,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                 if (arrivedFromIntent) {
                     mentor = mentorSpinnerAdapter.getItem(intentMentorId - 1);
                     //This sets the mentor to the one passed from intent
+                    //TODO fix this from intent if deleted = 1 debug
                     mentorSpinner.setSelection(intentMentorId - 1);
                     Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
                             Toast.LENGTH_SHORT).show();

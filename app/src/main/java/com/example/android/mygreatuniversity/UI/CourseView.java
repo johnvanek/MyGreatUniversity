@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 
 import java.util.List;
@@ -35,11 +36,13 @@ public class CourseView extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.mentorListRecyclerView);
         Repo repo = new Repo(getApplication());
         List<Course> courses = repo.getCourses();
+        List<Mentor> mentors = repo.getMentors();
         //Set the CourseAdapter and LayoutManger
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         //Set The Courses Via the adapter
         courseAdapter.setCourses(courses);
+        courseAdapter.setMentors(mentors);
     }
 }

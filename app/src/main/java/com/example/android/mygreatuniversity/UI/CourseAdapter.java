@@ -20,7 +20,6 @@ import com.example.android.mygreatuniversity.R;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
-
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
 
@@ -49,7 +48,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("status", curCourse.getStatus());
                 //Using the mentorId from the course get the linked mentor
                 Repo repo = new Repo((Application) context.getApplicationContext());
+                //If the courseMentor was deleted this will return null so
                 Mentor courseMentor = repo.findMentorById(curCourse.getCourseMentorId());
+                if(courseMentor == null){
+                    //default to the first course mentor if there arent any will time out.
+                    courseMentor = mMentors.get(0);
+                }
+
                 //Put the courseMentor information in the intent as well
                 intent.putExtra("mentorId", courseMentor.getMentorID());
                 intent.putExtra("mentorName", courseMentor.getName());
@@ -61,6 +66,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         }
     }
     private List<Course> mCourses;
+    private List<Mentor> mMentors;
     private final Context context;
     private final LayoutInflater mInflater;
 
@@ -102,6 +108,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public void setCourses(List<Course> courses) {
         Log.d("adapter", "attempting to set courses: " + courses);
         mCourses = courses;
+        notifyDataSetChanged();
+    }
+
+    public void setMentors(List<Mentor> mentors) {
+        Log.d("adapter", "attempting to set mentors: " + mentors);
+        mMentors = mentors;
         notifyDataSetChanged();
     }
 }

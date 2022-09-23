@@ -2,11 +2,7 @@ package com.example.android.mygreatuniversity.UI;
 
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
-import android.content.Intent;
-
 import android.os.Bundle;
-
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,7 +12,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.R;
 
 public class MentorViewDetailed extends AppCompatActivity {

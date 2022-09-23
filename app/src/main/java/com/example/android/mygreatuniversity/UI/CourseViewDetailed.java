@@ -14,7 +14,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -39,7 +38,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
     //**************  START DECLARATIONS *********************
-    boolean hasSpinnerBeenBuilt = false;
+    boolean arrivedFromIntent = true;
+    int itemSpinnerChangeCounter = 0;
     //Declarations for the fields
     EditText courseTitle;
     EditText startText, endText;
@@ -156,10 +156,8 @@ public class CourseViewDetailed extends AppCompatActivity {
         });
 
         courseTitle.setOnFocusChangeListener((v, hasFocus) -> {
-               hideKeyboard(CourseViewDetailed.this);
+            hideKeyboard(CourseViewDetailed.this);
         });
-
-
 
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
         //DatePicker Dialog's mentioned above and show them.
@@ -199,7 +197,6 @@ public class CourseViewDetailed extends AppCompatActivity {
             courseTitle.clearFocus();
         });
 
-        //TODO fix the layout method This method is not working
         courseLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -234,7 +231,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
         //This is okay because we are still in the onCreate
         //The primary keys auto increment starting from one
-        mentorSpinner.setSelection(intentMentorId - 1);
+        //mentorSpinner.setSelection(intentMentorId - 1);
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);
         mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -245,16 +242,20 @@ public class CourseViewDetailed extends AppCompatActivity {
                 // This gets the current mentor that is selected by returning the spinner position.
                 // The position here has defaulted to zero from the override
                 Mentor mentor;
-                if (!hasSpinnerBeenBuilt) {
+                if (arrivedFromIntent) {
                     mentor = mentorSpinnerAdapter.getItem(intentMentorId - 1);
+                    //This sets the mentor to the one passed from intent
                     mentorSpinner.setSelection(intentMentorId - 1);
-                } else {
+                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
+                            Toast.LENGTH_SHORT).show();
+                    arrivedFromIntent = false;
+                } else if (itemSpinnerChangeCounter >= 2) {
                     mentor = mentorSpinnerAdapter.getItem(position);
+                    // for test purposes I am going to make this a toast.
+                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
+                            Toast.LENGTH_SHORT).show();
                 }
-                // for test purposes I am going to make this a toast.
-                Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
-                        Toast.LENGTH_SHORT).show();
-                hasSpinnerBeenBuilt = true;
+                itemSpinnerChangeCounter++;
             }
 
             @Override

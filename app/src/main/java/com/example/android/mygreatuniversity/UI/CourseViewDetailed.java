@@ -235,7 +235,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);
         mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+            //Token test
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {

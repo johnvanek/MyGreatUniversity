@@ -56,4 +56,8 @@ public class MentorSpinnerAdapter extends ArrayAdapter {
         mentorTextView.setText(mentorArray[pos].getName());
         return mentorTextView;
     }
+
+    public Mentor[] returnValuesAsArray (){
+        return mentorArray;
+    }
 }

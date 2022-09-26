@@ -17,7 +17,7 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 //One database to create another table inset a , after the first class.
 // Every time there is a change made to a entity file, the version needs to be incremented.
 // Also to clean out the database increment the version
-@Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 22, exportSchema = false)
+@Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 23, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     public abstract CourseDAO courseDAO();

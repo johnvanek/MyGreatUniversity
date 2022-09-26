@@ -115,7 +115,6 @@ public class MentorViewDetailed extends AppCompatActivity {
         startActivity(intent);
     }
 
-     //TODO add an option to delete the state
     public void deleteState(View view) {
         Mentor editedMentor = new Mentor(
                 mentorName.getText().toString(),

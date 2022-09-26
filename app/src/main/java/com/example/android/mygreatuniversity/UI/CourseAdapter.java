@@ -51,7 +51,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 //If the courseMentor was deleted this will return null so
                 Mentor courseMentor = repo.findMentorById(curCourse.getCourseMentorId());
                 if(courseMentor == null){
-                    //default to the first course mentor if there arent any will time out.
+                    //default to the first course mentor
                     courseMentor = mMentors.get(0);
                 }
 

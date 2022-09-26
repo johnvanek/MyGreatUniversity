@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
-    //TODO Add the mentor information on display to be shown.
 
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -235,25 +234,35 @@ public class CourseViewDetailed extends AppCompatActivity {
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);
         mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            //TODO check that this is fixed by creating a more different dummy data
             //Token test
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
                 // This gets the current mentor that is selected by returning the spinner position.
                 // The position here has defaulted to zero from the override
-                Mentor mentor;
+                Mentor mentor = null;
                 if (arrivedFromIntent) {
-                    mentor = mentorSpinnerAdapter.getItem(intentMentorId - 1);
-                    //This sets the mentor to the one passed from intent
-                    //TODO fix this from intent if deleted = 1 debug
-                    mentorSpinner.setSelection(intentMentorId - 1);
-                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
+                    Mentor[] mentorValues = mentorSpinnerAdapter.returnValuesAsArray();
+                    //DO something here
+                    int intentMentorPosition = 0;
+                    for (Mentor spinnerMentor: mentorValues) {
+                        if(spinnerMentor.getMentorID() == intentMentorId) {
+                           intentMentorPosition = mentorSpinnerAdapter.getPosition(spinnerMentor);
+                           mentor = spinnerMentor;
+                        }
+                    }
+                    mentorSpinner.setSelection(intentMentorPosition);
+                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID()
+                                    + "\nName: " + mentor.getName(),
                             Toast.LENGTH_SHORT).show();
                     arrivedFromIntent = false;
-                } else if (itemSpinnerChangeCounter >= 2) {
+                } else if (itemSpinnerChangeCounter >= 1) {
                     mentor = mentorSpinnerAdapter.getItem(position);
                     // for test purposes I am going to make this a toast.
-                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID() + "\nName: " + mentor.getName(),
+                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID()
+                                    + "\nName: " + mentor.getName(),
                             Toast.LENGTH_SHORT).show();
                 }
                 itemSpinnerChangeCounter++;

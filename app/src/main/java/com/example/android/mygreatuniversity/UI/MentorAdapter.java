@@ -34,14 +34,8 @@ public class MentorAdapter extends RecyclerView.Adapter<MentorAdapter.MentorView
                 //The current item on the list that is sent to the adapter. onClick()
                 final Mentor curMentor = mMentors.get(pos);
 
-                //TODO have to create this class in order for the adapter to work
-                // Cant compile this code to test it until that class is built.
-
                 //Create the Intent that will pass data to the Course Detailed View
                 Intent intent = new Intent(context, MentorViewDetailed.class);
-
-                //TODO verify via tha app inspection that these intent values match column
-                // database names
 
                 intent.putExtra("id", curMentor.getMentorID());
                 intent.putExtra("name", curMentor.getName());

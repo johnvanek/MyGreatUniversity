@@ -22,11 +22,16 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 @Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 23, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
+    /**
+     * Must have the DAO in order to use the insert operations
+     */
+    @SuppressWarnings("WeakerAccess")
     public abstract CourseDAO courseDAO();
     public abstract CourseMentorDAO mentorDAO();
     public abstract AssessmentDAO assessmentDAO();
 
     private static volatile DatabaseBuilder INSTANCE;
+
 
     static DatabaseBuilder getDatabase(final Context context) {
         // TODO Change this to just return an instance of the database not to
@@ -39,25 +44,18 @@ public abstract class DatabaseBuilder extends RoomDatabase {
                                     DatabaseBuilder.class, "MGUDatabase.db")
                             .fallbackToDestructiveMigration()
                             .build();
+                    INSTANCE.populateDummyData();
                 }
             }
         }
         return INSTANCE;
     }
 
-    class DummyData extends RoomDatabase.Callback {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            //TODO add all the dummy data here that I want to insert into the application anyting
-            // That is inserted here is only going to run once.
-            db.beginTransaction();
-            db.execSQL("INSERT INTO Sport('sportName','gender','sportType') VALUES(?,?,?)",new Object[]{"Basketball","BOTH","TEAM"});
-            db.execSQL("INSERT INTO Sport('sportName','gender','sportType') VALUES(?,?,?)",new Object[]{"Football","MALE","TEAM"});
-            db.execSQL("INSERT INTO Sport('sportName','gender','sportType') VALUES(?,?,?)",new Object[]{"Ping Pong","BOTH","SINGLE"});
-            db.endTransaction();
-        }
+    /**
+     * Inserts the dummy data into the database if it is empty.
+     */
+    private void populateDummyData() {
+        //If the Dao is empty does not make much sense to me
     }
 }
 

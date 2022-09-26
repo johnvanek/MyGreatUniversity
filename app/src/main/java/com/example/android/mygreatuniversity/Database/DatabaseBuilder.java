@@ -2,9 +2,11 @@ package com.example.android.mygreatuniversity.Database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
@@ -27,6 +29,9 @@ public abstract class DatabaseBuilder extends RoomDatabase {
     private static volatile DatabaseBuilder INSTANCE;
 
     static DatabaseBuilder getDatabase(final Context context) {
+        // TODO Change this to just return an instance of the database not to
+        // actually build it like it currently is.
+
         if (INSTANCE == null) {
             synchronized (DatabaseBuilder.class) {
                 if (INSTANCE == null) {
@@ -38,6 +43,21 @@ public abstract class DatabaseBuilder extends RoomDatabase {
             }
         }
         return INSTANCE;
+    }
+
+    class DummyData extends RoomDatabase.Callback {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+
+            //TODO add all the dummy data here that I want to insert into the application anyting
+            // That is inserted here is only going to run once.
+            db.beginTransaction();
+            db.execSQL("INSERT INTO Sport('sportName','gender','sportType') VALUES(?,?,?)",new Object[]{"Basketball","BOTH","TEAM"});
+            db.execSQL("INSERT INTO Sport('sportName','gender','sportType') VALUES(?,?,?)",new Object[]{"Football","MALE","TEAM"});
+            db.execSQL("INSERT INTO Sport('sportName','gender','sportType') VALUES(?,?,?)",new Object[]{"Ping Pong","BOTH","SINGLE"});
+            db.endTransaction();
+        }
     }
 }
 

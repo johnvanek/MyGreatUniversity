@@ -30,15 +30,8 @@ public class MainActivity extends AppCompatActivity {
         // Sets the toolbar defined in the layout as the action bar
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-
-        // Call the readable method from a DAO here in order to get the pre-population
-        // For the database working.
-        Repo repo = new Repo(getApplication());
-        //This DAO call is a concrete readable operation which should trigger the OnCreate
-        // TODO fix this so that OnCreate is trigger might have to perform a crud operation
-        Log.d("DUMMYDATA", "The courses in the database are " + repo.getCourses());
-        //
-
+        //Insert the Dummy Data
+        InsertDummyData();
     }
 
     //Inflate the menu
@@ -62,5 +55,18 @@ public class MainActivity extends AppCompatActivity {
     public void gotoCourseView(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, CourseView.class);
         startActivity(intent);
+    }
+
+    private void InsertDummyData() {
+        // Call concrete method from a DAO here in order to get the pre-population
+        // For the database working.
+        //TODO implement this method so that Dummy Data 3 or 5 record gets inserted into the database.
+        Repo repo = new Repo(getApplication());
+        Log.d("DUMMYDATA", "The courses in the database are " + repo.getCourses());
+        //If there are no courses add one
+        if(repo.getCourses().size() < 1) {
+            //Insert the Records here
+            repo.insertCourse(new Course("Test", "01/01/20","02/02/21","Testing",1));
+        }
     }
 }

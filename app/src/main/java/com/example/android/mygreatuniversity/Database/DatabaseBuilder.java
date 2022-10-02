@@ -1,6 +1,7 @@
 package com.example.android.mygreatuniversity.Database;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -19,7 +20,11 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 //One database to create another table inset a , after the first class.
 // Every time there is a change made to a entity file, the version needs to be incremented.
 // Also to clean out the database increment the version
-@Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 23, exportSchema = false)
+// The DummyData Callback should run once on database creation
+// To Test the OnCreate and OnOpen methods some sort of concrete implementation must be invoked.
+// Call A readable method in order to populate
+
+@Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 24, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**
@@ -43,20 +48,35 @@ public abstract class DatabaseBuilder extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     DatabaseBuilder.class, "MGUDatabase.db")
                             .fallbackToDestructiveMigration()
+                            .addCallback(new DummyDataCallBack())
+                            .allowMainThreadQueries() //This is just for the initial insertion
                             .build();
-                    INSTANCE.populateDummyData();
                 }
             }
         }
         return INSTANCE;
     }
 
-    /**
-     * Inserts the dummy data into the database if it is empty.
-     */
-    private void populateDummyData() {
-        //If the Dao is empty does not make much sense to me
+     static class DummyDataCallBack extends RoomDatabase.Callback {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            Log.d("ONCREATE","Database has been created.");
+            //Just test this for now and I need to see inside of the app inspection.
+            db.beginTransaction();
+            //Rework this here to work with my own dummy data
+//            db.execSQL("INSERT INTO Sport('sportName','gender','sportType') VALUES(?,?,?)", new Object[]{"Basketball", "BOTH", "TEAM"});
+            db.execSQL("INSERT INTO courses('title', 'startDate', 'endDate', 'status', 'courseMentorId') VALUES(?,?,?,?,?)", new Object[]{"Biology", "10/02/22", "11/01/22", "In-Progress", 1});
+            db.endTransaction();
+        }
+         @Override
+         public void onOpen(@NonNull SupportSQLiteDatabase db) {
+             super.onOpen(db);
+             Log.d("ONOPEN","Database has been opened.");
+         }
     }
+
+
 }
 
 

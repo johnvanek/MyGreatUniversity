@@ -111,6 +111,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
         //Assign the XML Fields the values from the intents or that have been edited
         courseTitle.setText(intentTitle);
+        //If this does not match one of the spinner values it is set to In-Progress
         courseStatus.setSelection(courseStatusPosition(this, intentStatus));
         startText.setText(intentStartDate);
         endText.setText(intentEndDate);

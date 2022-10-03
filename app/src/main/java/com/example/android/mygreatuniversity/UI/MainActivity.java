@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private void InsertDummyData() {
         // Call concrete method from a DAO here in order to get the pre-population
         // For the database working.
-        //TODO ADD to this method when assessment functionality is added.
+        //TODO ADD to this method when assessment/ Term functionality is added.
         Repo repo = new Repo(getApplication());
         Log.d("DUMMYDATA", "The courses in the database before dummy data are " + repo.getCourses());
         // If there are no courses insert some dummy data

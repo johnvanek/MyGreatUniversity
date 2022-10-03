@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         //Insert the Dummy Data
+        //Comment this out in order to not inset dummyData ever.
         InsertDummyData();
     }
 
@@ -64,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
         Repo repo = new Repo(getApplication());
         Log.d("DUMMYDATA", "The courses in the database are " + repo.getCourses());
         //If there are no courses add one
-        if(repo.getCourses().size() < 1) {
+        if(repo.getCourses().size() <= 0) {
             //Insert the Records here
+            //Courses
             repo.insertCourse(new Course("Test", "01/01/20","02/02/21","Testing",1));
         }
     }

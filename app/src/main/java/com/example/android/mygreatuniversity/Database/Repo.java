@@ -69,7 +69,7 @@ public class Repo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    };
+    }
     public Mentor findMentorById(int mentorId){
         executor.execute(() -> {
             mCourseMentor = mCourseMentorDAO.findMentorById(mentorId);

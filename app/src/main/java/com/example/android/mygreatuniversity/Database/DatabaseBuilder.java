@@ -24,7 +24,7 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 // Because this is Instance being returned there are problems trigger overridden OnCreate and OnOpen
 // DummyData will instead be handled in the Main activity via a method call in onCreate.
 
-@Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 24, exportSchema = false)
+@Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 25, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**

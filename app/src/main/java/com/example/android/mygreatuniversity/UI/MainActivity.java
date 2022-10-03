@@ -64,11 +64,14 @@ public class MainActivity extends AppCompatActivity {
         //TODO implement this method so that Dummy Data 3 or 5 record gets inserted into the database.
         Repo repo = new Repo(getApplication());
         Log.d("DUMMYDATA", "The courses in the database are " + repo.getCourses());
-        //If there are no courses add one
+        // If there are no courses insert some dummy data
+        //
         if(repo.getCourses().size() <= 0) {
             //Insert the Records here
             //Courses
             repo.insertCourse(new Course("Test", "01/01/20","02/02/21","Testing",1));
+            //Mentors (The primary Id for mentor should be assigned automatically)
+            repo.insertMentor(new Mentor("Sarah Conor", "123-1484", "Mentor_Sarah@gmail.com"));
         }
     }
 }

@@ -123,7 +123,7 @@
                                 <EditText
                                     android:id="@+id/editTextEmail"
                                     android:layout_width="200dp"
-                                    android:layout_height="48dp"
+                                    android:layout_height="70dp"
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="4dp"
                                     android:digits='=".0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@"'
@@ -132,7 +132,7 @@
                                     android:focusableInTouchMode="true"
                                     android:focusedByDefault="false"
                                     android:imeOptions="actionDone"
-                                    android:inputType="textWebEmailAddress|text|textEmailAddress"
+                                    android:inputType="textMultiLine|textWebEmailAddress|text|textEmailAddress"
                                     android:minHeight="48dp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.709"
@@ -196,7 +196,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
-                                    android:layout_marginTop="124dp"
+                                    android:layout_marginTop="144dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="Email:"
                                     android:textColor="@color/Black"

@@ -28,4 +28,7 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM mentors WHERE mentorID LIKE :mentorID LIMIT 1")
     Mentor findMentorById(int mentorID);
+
+    @Query("SELECT * FROM courses WHERE termID LIKE :termID")
+    List<Course> getTermCourses(int termID);
 }

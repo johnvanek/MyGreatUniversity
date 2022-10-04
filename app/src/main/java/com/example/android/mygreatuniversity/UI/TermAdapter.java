@@ -40,7 +40,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 // call repo
                 //Mentor courseMentor =
                 //Create the Intent that will pass data to the Course Detailed View
-                Intent intent = new Intent(context, CourseViewDetailed.class);
+                Intent intent = new Intent(context, TermViewDetailed.class);
                 //Give some extra data to the intent
                 intent.putExtra("id", curTerm.getTermID());
                 intent.putExtra("title", curTerm.getTitle());

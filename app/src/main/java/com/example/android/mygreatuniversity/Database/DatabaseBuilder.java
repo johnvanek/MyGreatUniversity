@@ -12,9 +12,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
+import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
 
 
 //One database to create another table inset a , after the first class.
@@ -24,7 +26,7 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 // Because this is Instance being returned there are problems trigger overridden OnCreate and OnOpen
 // DummyData will instead be handled in the Main activity via a method call in onCreate.
 
-@Database(entities = {Course.class, Mentor.class, Assessment.class}, version = 26, exportSchema = false)
+@Database(entities = {Course.class, Mentor.class, Assessment.class, Term.class}, version = 30, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**
@@ -34,6 +36,7 @@ public abstract class DatabaseBuilder extends RoomDatabase {
     public abstract CourseDAO courseDAO();
     public abstract CourseMentorDAO mentorDAO();
     public abstract AssessmentDAO assessmentDAO();
+    public abstract TermDAO termDAO();
 
     private static volatile DatabaseBuilder INSTANCE;
 

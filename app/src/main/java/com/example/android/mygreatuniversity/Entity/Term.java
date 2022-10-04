@@ -1,12 +1,11 @@
 package com.example.android.mygreatuniversity.Entity;
 
-import androidx.annotation.NonNull;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-@Entity(tableName = "terms")
 
+@Entity(tableName = "terms")
 public class Term {
-    //TODO make this entity
     @PrimaryKey(autoGenerate = true)
     private int termID;
     private String title;
@@ -51,7 +50,6 @@ public class Term {
         this.endDate = endDate;
     }
 
-    @NonNull
     @Override
     public String toString() {
         return "Term{" +

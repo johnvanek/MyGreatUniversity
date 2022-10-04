@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.mygreatuniversity.Database.Repo;
 
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 
 import java.util.List;
@@ -34,13 +35,12 @@ public class TermView extends AppCompatActivity {
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.termListRecyclerView);
         Repo repo = new Repo(getApplication());
-        //TODO create getTerms here in repo
-        List<Mentor> mentors = repo.getMentors();
-        //Set the CourseAdapter and LayoutManger
-        final MentorAdapter mentorAdapter = new MentorAdapter(this);
-        recyclerView.setAdapter(mentorAdapter);
+        List<Term> terms = repo.getTerms();
+        //Set the TermAdapter and LayoutManger
+        final TermAdapter termAdapter = new TermAdapter(this);
+        recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //Set The Courses Via the adapter
-        mentorAdapter.setMentors(mentors);
+        //Set The Terms Via the adapter
+        termAdapter.setTerms(terms);
     }
 }

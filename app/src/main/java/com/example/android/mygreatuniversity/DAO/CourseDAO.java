@@ -7,16 +7,13 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 
 import java.util.List;
-import java.util.Map;
 
 @Dao
 public interface CourseDAO {
-    //What to do if already course already exists.
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertCourse(Course course);
 

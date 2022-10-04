@@ -6,9 +6,11 @@ import android.util.Log;
 import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
+import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -18,9 +20,11 @@ public class Repo {
     private CourseDAO mCourseDAO;
     private CourseMentorDAO mCourseMentorDAO;
     private AssessmentDAO mAssessmentDAO;
+    private TermDAO mTermDAO;
     private List<Course> mCourses;
     private List<Mentor> mMentors;
     private List<Assessment> mAssessments;
+    private List<Term> mTerms;
     private Mentor mMentor;
     private Mentor mCourseMentor;
 
@@ -32,6 +36,7 @@ public class Repo {
         mCourseDAO = dbb.courseDAO();
         mCourseMentorDAO = dbb.mentorDAO();
         mAssessmentDAO = dbb.assessmentDAO();
+        mTermDAO = dbb.termDAO();
     }
     //Course Methods
     public List<Course> getCourses() {
@@ -163,5 +168,40 @@ public class Repo {
         return mAssessments;
     }
     //Term Methods
-
+    public List<Term> getTerms() {
+        executor.execute(() -> {
+            mTerms = mTermDAO.getTerms();
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get terms " + mTerms);
+        return mTerms;
+    }
+    public void insertTerm(Term term) {
+        executor.execute(() -> mTermDAO.insertTerm(term));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateTerm(Term term) {
+        executor.execute(() -> mTermDAO.updateTerm(term));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteTerm(Term term){
+        executor.execute(() -> mTermDAO.deleteTerm(term));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

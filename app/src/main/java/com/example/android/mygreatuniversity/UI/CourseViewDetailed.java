@@ -287,12 +287,14 @@ public class CourseViewDetailed extends AppCompatActivity {
 
     public void saveState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
+        //TODO fix this at a later date
         Course editedCourse = new Course(
                 courseTitle.getText().toString(),
                 startText.getText().toString(),
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString(),
-                selectedMentor.getMentorID()
+                selectedMentor.getMentorID(),
+                1
         );
 
         //Convenience methods work by comparing the primary key
@@ -308,12 +310,14 @@ public class CourseViewDetailed extends AppCompatActivity {
 
     public void deleteState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
+        //TODO fix this at a later date
         Course editedCourse = new Course(
                 courseTitle.getText().toString(),
                 startText.getText().toString(),
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString(),
-                selectedMentor.getMentorID()
+                selectedMentor.getMentorID(),
+                1
         );
 
         editedCourse.setCourseID(intentCourseId);

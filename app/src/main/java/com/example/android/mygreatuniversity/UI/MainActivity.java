@@ -89,11 +89,20 @@ public class MainActivity extends AppCompatActivity {
             // Date Format is MM/dd/YY
             //Values for Status
             // In-Progress -- Completed -- Dropped -- Plan To Take
-            repo.insertCourse(new Course("Mobile Development", "10/01/22","10/30/22","In Progress",1));
-            repo.insertCourse(new Course("Operating Systems", "06/01/22", "07/30/22", "Completed",2));
-            repo.insertCourse(new Course("Java Fundamentals", "08/01/22", "08/30/22", "Completed",3));
-            repo.insertCourse(new Course("Javascript Basics", "12/01/22", "01/30/22", "Plan To Take",4));
-            repo.insertCourse(new Course("Design Patterns", "07/01/22", "07/15/22", "Dropped",5));
+
+            //TODO need to figure out a way to reimplement this so that
+            // The Courses need to be contained inside of Terms as such
+            // So That when The Date-Picker for Courses needs to be a Subset of the DateRange from
+            // Term which would be its parent ( Or else the Course can pick dates out of Range )
+            //
+
+            repo.insertCourse(new Course("Mobile Development", "10/01/22","10/30/22","In Progress",1,1));
+            repo.insertCourse(new Course("Operating Systems", "06/01/22", "07/30/22", "Completed",2,1));
+            repo.insertCourse(new Course("Java Fundamentals", "08/01/22", "08/30/22", "Completed",3,1));
+            repo.insertCourse(new Course("Javascript Basics", "12/01/22", "01/30/22", "Plan To Take",4,1));
+            repo.insertCourse(new Course("Design Patterns", "07/01/22", "07/15/22", "Dropped",5,1));
+
+            //TODO determine if the functionality for mentors would still work if relocated.
             //******Mentors******
             //Should always be at least one or else Course view detailed will throw an error.
             repo.insertMentor(new Mentor("Sarah Conor", "561-123-1991", "ResistSky@gmail.com"));

@@ -1,29 +1,30 @@
 package com.example.android.mygreatuniversity.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-@Entity(tableName = "courses")
+@Entity(tableName = "terms")
 
-//TODO modify this class so that classes know what terms they belong in.
-public class Course {
+public class Term {
+    //TODO make this entity
     @PrimaryKey(autoGenerate = true)
-    private int courseID;
+    private int termID;
     private String title;
     private String startDate;
     private String endDate;
-    private String status;
-    private int courseMentorId;
 
-    public Course(String title, String startDate, String endDate, String status, int courseMentorId) {
+    public Term(String title, String startDate, String endDate) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.status = status;
-        this.courseMentorId = courseMentorId;
     }
 
-    public int getCourseID() {
-        return courseID;
+    public int getTermID() {
+        return termID;
+    }
+
+    public void setTermID(int termID) {
+        this.termID = termID;
     }
 
     public String getTitle() {
@@ -50,34 +51,14 @@ public class Course {
         this.endDate = endDate;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
+    @NonNull
     @Override
     public String toString() {
-        return "Course{" +
-                "courseID=" + courseID +
+        return "Term{" +
+                ", term_ID ='" + termID + '\'' +
                 ", title='" + title + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", status='" + status + '\'' +
                 '}';
-    }
-
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
-    }
-
-    public int getCourseMentorId() {
-        return courseMentorId;
-    }
-
-    public void setCourseMentorId(int courseMentorId) {
-        this.courseMentorId = courseMentorId;
     }
 }

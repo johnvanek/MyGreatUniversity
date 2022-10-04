@@ -254,6 +254,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                         }
                     }
                     mentorSpinner.setSelection(intentMentorPosition);
+                    //TODO disable this when done this just for testing
                     Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID()
                                     + "\nName: " + mentor.getName(),
                             Toast.LENGTH_SHORT).show();

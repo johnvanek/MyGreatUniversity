@@ -36,6 +36,10 @@
             android:label="TermView"
             android:parentActivityName=".UI.MainActivity" /> <!-- The Home Page ! -->
         <activity
+            android:name=".UI.TermViewDetailed"
+            android:exported="false"
+            android:parentActivityName=".UI.TermView" /> <!-- Child of the Term View! -->
+        <activity
             android:name=".UI.MainActivity"
             android:exported="true">
             <intent-filter>

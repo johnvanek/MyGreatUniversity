@@ -1,9 +1,64 @@
 package com.example.android.mygreatuniversity.UI;
 
-public class TermViewDetailed {
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.android.mygreatuniversity.Database.Repo;
+
+import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
+import com.example.android.mygreatuniversity.R;
+
+import java.util.List;
+
+public class TermViewDetailed extends AppCompatActivity {
     //TODO implement an adapter here to show only the relevant courses on load
     // for the Selected Term
 
+    //TODO
+    // Need to add a recycler view to display the list of selected courses
+
     //TODO this is where the creation of courses should happen so that the program know which term
     // Value to give to the course and also makes the datePicker problem easier to sort out.
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //Assign the xml for the view
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_term_view_detailed);
+
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        //Define an actionbar reference for shorthand
+        ActionBar ab = getSupportActionBar();
+
+        //Set up the back is up when children are present.
+        ab.setDisplayHomeAsUpEnabled(true);   //show back button
+        ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+
+        //Populate the Term List for the Recycler view
+        RecyclerView recyclerView = findViewById(R.id.termListRecyclerView);
+        Repo repo = new Repo(getApplication());
+        //TODO Need to implement a method here to get relevant course relevant to term id
+        // For that to work first need to pass intent data from term view
+
+        //List<Course> termCourses = repo.getTermCourses();
+        // TODO create another adapter here to handle courses that are specific for the selected term.
+        // Set the TermAdapter and LayoutManger
+//        final TermAdapter termAdapter = new TermAdapter(this);
+//        recyclerView.setAdapter(termAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //Set The Terms Via the adapter
+        //termAdapter.setCourses(termCourses);
+    }
 }

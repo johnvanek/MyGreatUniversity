@@ -29,7 +29,7 @@
         <entry key="app/src/main/res/layout/activity_mentor_view.xml" value="0.2598958333333333" />
         <entry key="app/src/main/res/layout/activity_mentor_view_detailed.xml" value="0.29841156005859376" />
         <entry key="app/src/main/res/layout/activity_term_view.xml" value="0.39947916666666666" />
-        <entry key="app/src/main/res/layout/activity_term_view_detailed.xml" value="0.6011111111111112" />
+        <entry key="app/src/main/res/layout/activity_term_view_detailed.xml" value="0.5" />
         <entry key="app/src/main/res/layout/course_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.2507598784194529" />
         <entry key="app/src/main/res/layout/mentor_list_item.xml" value="0.2631712259371834" />

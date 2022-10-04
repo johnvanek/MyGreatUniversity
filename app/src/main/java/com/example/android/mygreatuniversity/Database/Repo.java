@@ -25,7 +25,6 @@ public class Repo {
     private List<Mentor> mMentors;
     private List<Assessment> mAssessments;
     private List<Term> mTerms;
-    private Mentor mMentor;
     private Mentor mCourseMentor;
 
     private static int NUMBER_OF_THREADS = 4;
@@ -124,15 +123,7 @@ public class Repo {
             e.printStackTrace();
         }
     }
-    public Mentor findMentorById(Integer id) {
-        executor.execute(() -> mCourseMentorDAO.findMentorById(id));
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return  mMentor;
-    }
+
     //Assessment Methods
     public void insertAssessment(Assessment assessment) {
         executor.execute(() -> mAssessmentDAO.insertAssessment(assessment));

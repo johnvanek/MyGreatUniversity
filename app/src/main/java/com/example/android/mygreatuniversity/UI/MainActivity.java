@@ -15,6 +15,7 @@ import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             // So That when The Date-Picker for Courses needs to be a Subset of the DateRange from
             // Term which would be its parent ( Or else the Course can pick dates out of Range )
             //
+            //TODO rework this dummy data so that it makes sense with the terms.
 
             repo.insertCourse(new Course("Mobile Development", "10/01/22","10/30/22","In Progress",1,1));
             repo.insertCourse(new Course("Operating Systems", "06/01/22", "07/30/22", "Completed",2,1));
@@ -110,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
             repo.insertMentor(new Mentor("Professor Xavier", "010-603-1963", "XMen@gmail.com"));
             repo.insertMentor(new Mentor("Dan Abramov", "203-898-2085", "DanMov@gmail.com"));
             repo.insertMentor(new Mentor("Robert Martin", "943-185-3814", "DanMov@gmail.com"));
+            //******Terms******
+            repo.insertTerm(new Term("Spring2021","6/01/21","12/31/21"));
+            repo.insertTerm(new Term("Fall2022","01//01/22","5/31/22"));
+            repo.insertTerm(new Term("Spring2022","6/01/22","12/31/22"));
+            repo.insertTerm(new Term("Fall2023","01//01/23","5/31/23"));
 
             Log.d("DUMMYCOURSE", "The Dummy courses are " + repo.getCourses());
             Log.d("DUMMYMENTOR", "The Dummy mentors are " + repo.getMentors());

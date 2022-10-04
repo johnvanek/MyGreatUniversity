@@ -44,6 +44,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoTermView(MenuItem item) {
+        //TODO implement Terms
+        // 1. Create a user option to enter term titles (e.g., Term 1, Term 2, Spring Term), start dates, and end dates for each term.
+        // 2. Create features that allow the user to add as many terms as needed.
+        // 3. Implement validation so that a term cannot be deleted if courses are assigned to it.
+        // 4. Create features that allow the user to do the following for each term:
+        //      a. Add as many courses as needed
+        //          (Need to migrate most of the logic that was written for courses to Terms)
+        //          ( Aka Courses should be show inside of terms )
+        //      b. Display a list of Courses associated with each term
+        //      c. Display a detailed view of the term title (e.g., Term 1, Term 2, Spring Term), the start date, and the end date for each term
+
+
+        //TODO in order to implement Terms
+        // Going to need to create an adapter like with Courses.
+        // Should start off by showing a list of terms that goes to the detailed view.
+        //
+
+        //TODO for the detailed view of Terms
+        // Show a relevant list of courses
         Intent intent = new Intent(MainActivity.this, TermView.class);
         startActivity(intent);
     }
@@ -87,4 +106,15 @@ public class MainActivity extends AppCompatActivity {
             Log.d("DUMMYMENTOR", "The Dummy mentors are " + repo.getMentors());
         }
     }
+
+    //TODO
+    // B.  Design the following screen layouts, including appropriate GUI (graphical user interface)
+    // elements (e.g., navigation, input, and information) for each layout:
+    //  home screen
+    //  list of terms
+    //  list of courses
+    //  list of assessments
+    //  detailed course view
+    //  detailed term view
+    //  detailed assessment view
 }

@@ -49,6 +49,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 //Using the mentorId from the course get the linked mentor
                 Repo repo = new Repo((Application) context.getApplicationContext());
                 //If the courseMentor was deleted this will return null so
+                //TODO WARNING if the structure of this is changed need to rework this to prevent errors
                 Mentor courseMentor = repo.findMentorById(curCourse.getCourseMentorId());
                 if(courseMentor == null){
                     //default to the first course mentor

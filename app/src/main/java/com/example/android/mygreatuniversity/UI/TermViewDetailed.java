@@ -29,13 +29,10 @@ public class TermViewDetailed extends AppCompatActivity {
     int intentID;
     //XML Fields
     EditText termTitle, termStart, termEnd;
-    //Repo Acess
+    //Repo Access
     Repo repo = new Repo(getApplication());
 
     //TODO Make this edit Text functionality with the dates similar to to dates from Course View.
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

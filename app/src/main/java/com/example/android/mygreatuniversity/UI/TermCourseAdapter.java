@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 
@@ -26,6 +28,7 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
         //Constructor
         private TermCourseViewHolder(View itemView) {
             //calls the parent constructor
+
             super(itemView); // of the list item
             termCourseItemView = itemView.findViewById(R.id.termCoursesListItemTextView);
             //This is where you put your onClickListener inside the Constructor for each
@@ -39,13 +42,27 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 final Course curTermCourse = mTermCourses.get(pos);
                 // call repo
                 Intent intent = new Intent(context, CourseViewDetailed.class);
+                Repo repo = new Repo((Application) context.getApplicationContext());
                 //Give some extra data to the intent for the Course
                 intent.putExtra("id", curTermCourse.getCourseID());
                 intent.putExtra("title", curTermCourse.getTitle());
                 intent.putExtra("startDate", curTermCourse.getStartDate());
                 intent.putExtra("endDate" , curTermCourse.getEndDate());
-                //But also get some information about the current term
-                //TODO see if extra information is needed here to pass to the course.
+                intent.putExtra("status", curTermCourse.getStatus());
+                //Also give some information for the mentor
+                Mentor courseMentor = repo.findMentorById(curTermCourse.getCourseMentorId());
+                if(courseMentor == null){
+                    //default to the first course mentor
+                    courseMentor = mMentors.get(0);
+                }
+
+                //Put the courseMentor information in the intent as well
+                intent.putExtra("mentorId", courseMentor.getMentorID());
+                intent.putExtra("mentorName", courseMentor.getName());
+                intent.putExtra("mentorPhone",courseMentor.getPhoneNumber());
+                intent.putExtra("mentorEmail", courseMentor.getEmail());
+                //Go to the next screen in this case courseViewDetailed
+                context.startActivity(intent);
                 //curTermCourse
                 //Sent the intent go to the next activity
                 context.startActivity(intent);
@@ -53,6 +70,7 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
         }
     }
     private List<Course> mTermCourses;
+    private List<Mentor> mMentors;
     private final Context context;
     private final LayoutInflater mInflater;
 
@@ -95,6 +113,12 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
     public void setTermCourses(List<Course> termCourses) {
         Log.d("adapter", "attempting to set term courses: " + termCourses);
         mTermCourses = termCourses;
+        notifyDataSetChanged();
+    }
+
+    public void setMentors(List<Mentor> mentors) {
+        Log.d("adapter", "attempting to set mentors: " + mentors);
+        mMentors = mentors;
         notifyDataSetChanged();
     }
 }

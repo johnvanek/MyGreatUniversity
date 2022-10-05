@@ -17,7 +17,7 @@
             android:name=".UI.CourseViewDetailed"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
-            android:parentActivityName=".UI.CourseView" />  <!-- Child of Course !-->
+            android:parentActivityName=".UI.TermViewDetailed" />  <!--  !-->
         <activity
             android:name=".UI.CourseView"
             android:exported="false"

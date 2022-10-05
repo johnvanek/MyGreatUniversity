@@ -37,6 +37,9 @@ public class TermViewDetailed extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Assign the xml for the view
+        //TODO Rework this perhaps override the OnCreate or OnDestroy method to save the state
+        // Perhaps in a utility class called state manager or something.
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_view_detailed);
 
@@ -49,7 +52,8 @@ public class TermViewDetailed extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
         //
-        //TODO get the intent data passed from term view and show it
+        //TODO get the intent data passed because were are not passing intent data back from
+        // The child all of these intent values intialize to null
         //************ INTENT DATA PASSING ****************
         //Define the fields
         termTitle = findViewById(R.id.termTitle);
@@ -62,12 +66,20 @@ public class TermViewDetailed extends AppCompatActivity {
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
         //Using the method in Courses query which courses belong to this term
+        //TODO because this based on intent data this is not showing either.
+        // If I can swap this itent data into some sort of state it should work fine.
+        // When coming from the back button.
+
         List<Course> termCourses = repo.getTermCourses(intentTermID);
         // Set the TermAdapter and LayoutManger
         final TermCourseAdapter termCourseAdapter = new TermCourseAdapter(this);
         recyclerView.setAdapter(termCourseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         //Set The TermsCourses Via the adapter
+        //Get the list of mentors from the repository
+        List<Mentor> mentors = repo.getMentors();
+        //Set the data for the adapters
         termCourseAdapter.setTermCourses(termCourses);
+        termCourseAdapter.setMentors(mentors);
     }
 }

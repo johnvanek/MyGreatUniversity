@@ -48,7 +48,7 @@ public class TermViewDetailed extends AppCompatActivity {
         //Set up the back is up when children are present.
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-
+        //
         //TODO get the intent data passed from term view and show it
         //************ INTENT DATA PASSING ****************
         //Define the fields
@@ -60,12 +60,10 @@ public class TermViewDetailed extends AppCompatActivity {
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.termListRecyclerView);
         //Repo repo = new Repo(getApplication());
-        //TODO Need to implement a method here to get relevant course relevant to term id
-        // For that to work first need to pass intent data from term view
-
-        //List<Course> termCourses = repo.getTermCourses();
+        List<Course> termCourses = repo.getTermCourses(intentID);
         // Set the TermAdapter and LayoutManger
-        // TODO going to need to make a new adapter here
+        //TODO going to need to make a new adapter here in order to show to courses for the
+        // selected term and onClick of those courses should go to a detailed course view.
         final TermAdapter termAdapter = new TermAdapter(this);
 //        recyclerView.setAdapter(termAdapter);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

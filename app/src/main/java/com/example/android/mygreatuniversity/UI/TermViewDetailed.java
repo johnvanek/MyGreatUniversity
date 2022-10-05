@@ -1,11 +1,13 @@
 package com.example.android.mygreatuniversity.UI;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,8 @@ import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
+import com.example.android.mygreatuniversity.Utils.StateManager;
+import com.example.android.mygreatuniversity.Utils.Utils;
 
 import java.util.List;
 
@@ -36,10 +40,20 @@ public class TermViewDetailed extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //This gets called from the back button meaning that OnDestroy must be being called
+
+        Context context = getApplicationContext();
+        CharSequence text = "Hello From the OnCreate LifeCycle";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
         //Assign the xml for the view
         //TODO Rework this perhaps override the OnCreate or OnDestroy method to save the state
         // Perhaps in a utility class called state manager or something.
 
+        //This line right here restores from the saved instance state if this activity were
+        // to de destroyed.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_view_detailed);
 
@@ -65,10 +79,11 @@ public class TermViewDetailed extends AppCompatActivity {
         termTitle.setText(intentTitle);
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
-        //Using the method in Courses query which courses belong to this term
-        //TODO because this based on intent data this is not showing either.
-        // If I can swap this itent data into some sort of state it should work fine.
-        // When coming from the back button.
+
+        //TODO the better way to do this is to use built in lifecycle callback methods
+        //Save the state into stateManager if they go back
+        StateManager.SelectedTermState.setTermID(intentTermID);
+        StateManager.SelectedTermState.setTermTitle(intentTitle);
 
         List<Course> termCourses = repo.getTermCourses(intentTermID);
         // Set the TermAdapter and LayoutManger
@@ -81,5 +96,31 @@ public class TermViewDetailed extends AppCompatActivity {
         //Set the data for the adapters
         termCourseAdapter.setTermCourses(termCourses);
         termCourseAdapter.setMentors(mentors);
+    }
+
+    @Override
+    public void onResume() {
+        //This method never gets called
+        super.onResume();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        Context context = getApplicationContext();
+        CharSequence text = "Hello From the OnResume LifeCycle";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    @Override
+    public void onDestroy() {
+        //For some reason on going back android detroyes then recreates this scene perhaps there
+        // is a user for stateManager after all.
+        super.onDestroy();
+        Context context = getApplicationContext();
+        CharSequence text = "Hello From the OnDestroy LifeCycle";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 }

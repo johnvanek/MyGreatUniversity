@@ -21,6 +21,8 @@ import com.example.android.mygreatuniversity.R;
 import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder>{
+    //TODO determine if I can perform a long press to delete watch understanding the requirements for
+    // Greater clarification.
     class TermViewHolder extends RecyclerView.ViewHolder {
         private final TextView termItemView;
 
@@ -46,8 +48,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 intent.putExtra("title", curTerm.getTitle());
                 intent.putExtra("startDate", curTerm.getStartDate());
                 intent.putExtra("endDate" , curTerm.getEndDate());
-                //Don't need access to repo currently
-                //Repo repo = new Repo((Application) context.getApplicationContext());
                 //Sent the intent go to the next activity
                 context.startActivity(intent);
             });
@@ -57,9 +57,9 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     private final Context context;
     private final LayoutInflater mInflater;
 
-    //CourseAdapter constructor given a context
+    //TermAdapter constructor given a context
     public TermAdapter(Context context) {
-        Log.d("adapter", "The Course adapter has been started");
+        Log.d("adapter", "The term adapter has been started");
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }

@@ -26,7 +26,7 @@ public class TermViewDetailed extends AppCompatActivity {
     //**************  FIELDS *********************
     //Intent Data
     String intentTitle, intentStart, intentEnd;
-    int intentID;
+    int intentTermID;
     //XML Fields
     EditText termTitle, termStart, termEnd;
     //Repo Access
@@ -55,19 +55,19 @@ public class TermViewDetailed extends AppCompatActivity {
         termTitle = findViewById(R.id.termTitle);
         //Assign the Intent Data
         intentTitle = getIntent().getStringExtra("title");
+        //This will crash if not valid id
+        intentTermID = getIntent().getIntExtra("id", -1);
         // Set fields to the Intent Data
         termTitle.setText(intentTitle);
         //Populate the Term List for the Recycler view
-        RecyclerView recyclerView = findViewById(R.id.termListRecyclerView);
-        //Repo repo = new Repo(getApplication());
-        List<Course> termCourses = repo.getTermCourses(intentID);
+        RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
+        //Using the method in Courses query which courses belong to this term
+        List<Course> termCourses = repo.getTermCourses(intentTermID);
         // Set the TermAdapter and LayoutManger
-        //TODO going to need to make a new adapter here in order to show to courses for the
-        // selected term and onClick of those courses should go to a detailed course view.
-        final TermAdapter termAdapter = new TermAdapter(this);
-//        recyclerView.setAdapter(termAdapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        //Set The Terms Via the adapter
-//        termAdapter.setCourses(termCourses);
+        final TermCourseAdapter termCourseAdapter = new TermCourseAdapter(this);
+        recyclerView.setAdapter(termCourseAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //Set The TermsCourses Via the adapter
+        termCourseAdapter.setTermCourses(termCourses);
     }
 }

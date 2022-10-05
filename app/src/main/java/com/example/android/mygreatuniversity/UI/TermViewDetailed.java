@@ -110,7 +110,7 @@ public class TermViewDetailed extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
     }
-
+//TODO could override the onBack event from the courseView detailed
     @Override
     public void onDestroy() {
         //For some reason on going back android detroyes then recreates this scene perhaps there

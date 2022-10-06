@@ -92,7 +92,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/LayoutCourse"
+                                android:id="@+id/LayoutTerm"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="8dp"
@@ -121,7 +121,7 @@
                                     tools:ignore="SpeakableTextPresentCheck" />
 
                                 <EditText
-                                    android:id="@+id/editTextEmail"
+                                    android:id="@+id/termEnd"
                                     android:layout_width="170dp"
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
@@ -135,11 +135,11 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.785"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+                                    app:layout_constraintTop_toBottomOf="@+id/termStart"
                                     tools:ignore="SpeakableTextPresentCheck,TextFields" />
 
                                 <EditText
-                                    android:id="@+id/editTextPhone"
+                                    android:id="@+id/termStart"
                                     android:layout_width="170dp"
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
@@ -184,7 +184,7 @@
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/editTextPhone"
+                                    app:layout_constraintEnd_toStartOf="@+id/termStart"
                                     app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -200,7 +200,7 @@
                                     android:textColor="@color/Black"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/editTextEmail"
+                                    app:layout_constraintEnd_toStartOf="@+id/termEnd"
                                     app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />

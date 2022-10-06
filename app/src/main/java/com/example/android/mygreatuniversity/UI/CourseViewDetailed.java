@@ -33,10 +33,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
-
+    //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
-    //**************  START DECLARATIONS *********************
+
     boolean arrivedFromIntent = true;
     int itemSpinnerChangeCounter = 0;
     //Declarations for the fields
@@ -120,7 +120,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorEmail.setText(mentorIntentEmail);
         mentorPhone.setText(mentorIntentPhone);
         //************************* DATEPICKER LOGIC START & END ************************
-        //Get the xml id's for the edit text fields representing start and end edit text
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
         // condition of if the Dialog date is modified or assigned.

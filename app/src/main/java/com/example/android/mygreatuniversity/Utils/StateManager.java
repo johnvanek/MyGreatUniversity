@@ -11,10 +11,11 @@ public class StateManager {
     public static final class SelectedTerm {
         //Constructor
         private SelectedTerm () {
-            // Do nada..
+            // Do nada.. effectively final? Supposed to be a global static class.
         }
         //Fields
         private static boolean hasSavedData = false;
+        private static boolean arrivedToCourseFromTermView = false;
         private static int termID;
         private static String termTitle, termStart, termEnd;
         private static List<Course> termCourses;
@@ -65,6 +66,14 @@ public class StateManager {
 
         public static void setTermCourses(List<Course> termCourses) {
             SelectedTerm.termCourses = termCourses;
+        }
+
+        public static boolean getArrivedToCourseFromTermView() {
+            return arrivedToCourseFromTermView;
+        }
+
+        public static void setArrivedToCourseFromTermView(boolean arrivedToCourseFromTermView) {
+            SelectedTerm.arrivedToCourseFromTermView = arrivedToCourseFromTermView;
         }
     }
 }

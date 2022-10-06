@@ -34,7 +34,8 @@
                 android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
                 app:menu="@menu/main_menu"
                 app:navigationIcon="@drawable/toolbar_icon_medium"
-                app:subtitle="My Great University"
+                app:subtitle="Modern Governess University"
+                app:subtitleTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                 app:subtitleTextColor="@color/White"
                 app:title="MGU"
                 app:titleTextColor="@color/White" />

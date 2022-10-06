@@ -17,6 +17,7 @@ import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
+import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.util.List;
 
@@ -61,10 +62,11 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 intent.putExtra("mentorName", courseMentor.getName());
                 intent.putExtra("mentorPhone",courseMentor.getPhoneNumber());
                 intent.putExtra("mentorEmail", courseMentor.getEmail());
-                //Go to the next screen in this case courseViewDetailed
-                context.startActivity(intent);
-                //curTermCourse
-                //Sent the intent go to the next activity
+                //Put the associated Term information in
+                intent.putExtra("termID", curTermCourse.getTermID());
+                //Let the StateManager know that we are coming from the Term Detailed Activity
+                StateManager.SelectedTerm.setArrivedToCourseFromTermView(true);
+                //Go to the next screen in this case TermViewDetailed
                 context.startActivity(intent);
             });
         }

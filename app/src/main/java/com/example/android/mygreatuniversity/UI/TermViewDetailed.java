@@ -215,10 +215,6 @@ public class TermViewDetailed extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        //TODO add the rest of the fields to be stored
-        // Start Date
-        // End Date
-        // Modify the onSave and Delete functionality for this.
 
         //For some reason on going back android destroys then recreates this activity on back
         //Save the state into stateManager if the user goes back from the selected course
@@ -245,4 +241,10 @@ public class TermViewDetailed extends AppCompatActivity {
         //TODO implement functionality here to delete all the associated courses
         // Create a toast evaluators like to see toast or messages for state changes
     }
+
+    public void saveState(View view) {
+
+    }
+
+
 }

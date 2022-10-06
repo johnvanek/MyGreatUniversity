@@ -26,6 +26,7 @@ import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
+import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,10 +54,9 @@ public class CourseViewDetailed extends AppCompatActivity {
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
     //mentor intent strings
     String mentorIntentName, mentorIntentPhone, mentorIntentEmail;
-    int intentCourseId;
-    int intentMentorId;
+    int intentTermId;
+    int intentCourseId, intentMentorId;
     Repo repo = new Repo(getApplication());
-
     //Date References & Declarations
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
@@ -109,6 +109,8 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorIntentName = getIntent().getStringExtra("mentorName");
         mentorIntentPhone = getIntent().getStringExtra("mentorPhone");
         mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
+        //Term intent data
+        intentTermId = getIntent().getIntExtra("termID", -1);
         //Assign the XML Fields the values from the intents or that have been edited
         courseTitle.setText(intentTitle);
         //If this does not match one of the spinner values it is set to In-Progress
@@ -284,43 +286,55 @@ public class CourseViewDetailed extends AppCompatActivity {
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
+    //TODO might need another method here to navigating from course View detailed back but I don't
+    // think so
+
+
     public void saveState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
-        //TODO fix this at a later date
         Course editedCourse = new Course(
                 courseTitle.getText().toString(),
                 startText.getText().toString(),
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString(),
                 selectedMentor.getMentorID(),
-                1
+                intentTermId
         );
 
-        //Convenience methods work by comparing the primary key
+        //The primary key is auto-incremented in the database
         editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
         repo.updateCourse(editedCourse);
 
-        //After done performing the update return to the the Course View
-        Intent intent = new Intent(
-                CourseViewDetailed.this,
-                CourseView.class);
+        //TODO change this so that we go back based on where we just arrived from
+        Intent intent;
+        if(StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
+            intent = new Intent(
+                    CourseViewDetailed.this,
+                    TermViewDetailed.class);
+        } else {
+            //Must have come from the course Activity Then
+            intent = new Intent(
+                    CourseViewDetailed.this,
+                    CourseView.class);
+        }
+
         startActivity(intent);
     }
 
     public void deleteState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
-        //TODO fix this at a later date
         Course editedCourse = new Course(
                 courseTitle.getText().toString(),
                 startText.getText().toString(),
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString(),
                 selectedMentor.getMentorID(),
-                1
+                intentTermId
         );
 
         editedCourse.setCourseID(intentCourseId);
         repo.deleteCourse(editedCourse);
+        //TODO change this so that we go back based on where we just arrived from
         Intent intent = new Intent(
                 CourseViewDetailed.this,
                 CourseView.class);

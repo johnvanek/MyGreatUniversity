@@ -4,22 +4,35 @@ import com.example.android.mygreatuniversity.Entity.Course;
 
 import java.util.List;
 
+//TODO don't need this class instead learn how to use the onSaveInstanceStateGetsCalled when navigating
+// Away from an activity
+
 public class StateManager {
-    public static final class SelectedTermState {
+    public static final class SelectedTerm {
         //Constructor
-        private SelectedTermState() {
+        private SelectedTerm () {
+            // Do nada..
         }
         //Fields
+        private static boolean hasSavedData = false;
         private static int termID;
         private static String termTitle, termStart, termEnd;
         private static List<Course> termCourses;
+
+        public static void setHasSavedData(boolean hasSavedData) {
+            SelectedTerm.hasSavedData = hasSavedData;
+        }
+
+        public static boolean getHasSavedData() {
+            return hasSavedData;
+        }
 
         public static int getTermID() {
             return termID;
         }
 
         public static void setTermID(int termID) {
-            SelectedTermState.termID = termID;
+            SelectedTerm.termID = termID;
         }
 
         public static String getTermTitle() {
@@ -27,7 +40,7 @@ public class StateManager {
         }
 
         public static void setTermTitle(String termTitle) {
-            SelectedTermState.termTitle = termTitle;
+            SelectedTerm.termTitle = termTitle;
         }
 
         public static String getTermStart() {
@@ -35,7 +48,7 @@ public class StateManager {
         }
 
         public static void setTermStart(String termStart) {
-            SelectedTermState.termStart = termStart;
+            SelectedTerm.termStart = termStart;
         }
 
         public static String getTermEnd() {
@@ -43,7 +56,7 @@ public class StateManager {
         }
 
         public static void setTermEnd(String termEnd) {
-            SelectedTermState.termEnd = termEnd;
+            SelectedTerm.termEnd = termEnd;
         }
 
         public static List<Course> getTermCourses() {
@@ -51,7 +64,7 @@ public class StateManager {
         }
 
         public static void setTermCourses(List<Course> termCourses) {
-            SelectedTermState.termCourses = termCourses;
+            SelectedTerm.termCourses = termCourses;
         }
     }
 }

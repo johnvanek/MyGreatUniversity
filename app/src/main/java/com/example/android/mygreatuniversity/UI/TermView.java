@@ -41,7 +41,6 @@ public class TermView extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.termListRecyclerView);
         Repo repo = new Repo(getApplication());
         List<Term> terms = repo.getTerms();
-        // TODO create another adapter here to handle courses that are specific for the selected term.  
         // Set the TermAdapter and LayoutManger
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);

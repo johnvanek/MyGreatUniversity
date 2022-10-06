@@ -97,4 +97,9 @@ public class TermViewDetailed extends AppCompatActivity {
         StateManager.SelectedTerm.setHasSavedData(true);
         super.onDestroy();
     }
+
+    public void deleteAllCourses() {
+        //TODO implement functionality here to delete all the associated courses
+        // Create a toast evaluators like to see toast or messages for state changes
+    }
 }

@@ -17,6 +17,7 @@ import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
+import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.util.List;
 
@@ -39,8 +40,6 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 int pos = getAdapterPosition();
                 //The current item on the list that is sent to the adapter. onClick()
                 final Term curTerm = mTerms.get(pos);
-                // call repo
-                //Mentor courseMentor =
                 //Create the Intent that will pass data to the Course Detailed View
                 Intent intent = new Intent(context, TermViewDetailed.class);
                 //Give some extra data to the intent
@@ -48,6 +47,9 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 intent.putExtra("title", curTerm.getTitle());
                 intent.putExtra("startDate", curTerm.getStartDate());
                 intent.putExtra("endDate" , curTerm.getEndDate());
+
+                //Since we now have intent data change the state
+                StateManager.SelectedTerm.setHasSavedData(false);
                 //Sent the intent go to the next activity
                 context.startActivity(intent);
             });

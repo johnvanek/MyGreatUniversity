@@ -33,30 +33,28 @@ public class TermViewDetailed extends AppCompatActivity {
     //TODO Make this edit Text functionality with the dates similar to to dates from Course View.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //This line right here restores from the saved instance state if this activity were
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_view_detailed);
-
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        //Define an actionbar reference for shorthand
         ActionBar ab = getSupportActionBar();
-
         //Set up the back is up when children are present.
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
+        //Data Values
+        List<Course> termCourses;
+
         //************ XML Fields ****************
         termTitle = findViewById(R.id.termTitle);
 
-
-
         if(StateManager.SelectedTerm.getHasSavedData()) {
-            //************ Data Recovery ****************
+            //************ Data Recovery From StateManager ****************
             //Set the termTitle
             termTitle.setText(StateManager.SelectedTerm.getTermTitle());
-
-            //Set is back to false after done here
+            //Get the term Id from the saved state and then call from the repo
+            termCourses = repo.getTermCourses(StateManager.SelectedTerm.getTermID());
+            //Set state back to false
             StateManager.SelectedTerm.setHasSavedData(false);
         } else {
             //************ INTENT DATA PASSING ****************
@@ -66,15 +64,16 @@ public class TermViewDetailed extends AppCompatActivity {
             intentTermID = getIntent().getIntExtra("id", -1);
             // Set fields to the Intent Data
             termTitle.setText(intentTitle);
+            // Get the term Id from the Intent and pass that to the repo
+            termCourses = repo.getTermCourses(intentTermID);
         }
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
-        List<Course> termCourses = repo.getTermCourses(intentTermID);
         // Set the TermAdapter and LayoutManger
         final TermCourseAdapter termCourseAdapter = new TermCourseAdapter(this);
         recyclerView.setAdapter(termCourseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //Set The TermsCourses Via the adapter
+
         //Get the list of mentors from the repository
         List<Mentor> mentors = repo.getMentors();
         //Set the data for the adapters
@@ -84,17 +83,18 @@ public class TermViewDetailed extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        //For some reason on going back android destroys then recreates this activity
-        //Save the state into stateManager if they go back
+        //TODO add the rest of the fields to be stored
+        // Start Date
+        // End Date
+        // Modify the onSave and Delete functionality for this.
 
-        Context context = getApplicationContext();
-        CharSequence text = "Hello From the OnDestroy LifeCycle current Title is " + termTitle.getText();
-        StateManager.SelectedTerm.setHasSavedData(true);
+        //For some reason on going back android destroys then recreates this activity on back
+        //Save the state into stateManager if the user goes back from the selected course
+        StateManager.SelectedTerm.setTermID(intentTermID);
         StateManager.SelectedTerm.setTermTitle(termTitle.getText().toString());
-        int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        //We now have saved some data
+        StateManager.SelectedTerm.setHasSavedData(true);
         super.onDestroy();
     }
 }

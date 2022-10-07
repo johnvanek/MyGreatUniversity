@@ -153,6 +153,8 @@ public class TermViewDetailed extends AppCompatActivity {
                 //courseTitle.clearFocus();
                 //And hide that keyboard
                 hideKeyboard(this);
+                //TODO Fix this here also the mouse clicker remains after ime action.
+                // For mentor works perfectly check that logic.
             }
             return false;
         });

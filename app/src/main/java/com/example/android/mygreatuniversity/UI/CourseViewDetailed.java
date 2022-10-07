@@ -152,6 +152,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                 //courseTitle.clearFocus();
                 //And hide that keyboard
                 hideKeyboard(this);
+                //TODO also need to remove the blinking cursor somehow on check click
             }
             return false;
         });
@@ -320,9 +321,10 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         startActivity(intent);
     }
-
+//TODO test that this works
     public void deleteState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
+        //Delete the associated course
         Course editedCourse = new Course(
                 courseTitle.getText().toString(),
                 startText.getText().toString(),
@@ -331,13 +333,21 @@ public class CourseViewDetailed extends AppCompatActivity {
                 selectedMentor.getMentorID(),
                 intentTermId
         );
-
         editedCourse.setCourseID(intentCourseId);
         repo.deleteCourse(editedCourse);
-        //TODO change this so that we go back based on where we just arrived from
-        Intent intent = new Intent(
-                CourseViewDetailed.this,
-                CourseView.class);
+
+        //Declare the intent
+        Intent intent;
+        if(StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
+            intent = new Intent(
+                    CourseViewDetailed.this,
+                    TermViewDetailed.class);
+        } else {
+            //Must have come from the course Activity Then
+            intent = new Intent(
+                    CourseViewDetailed.this,
+                    CourseView.class);
+        }
         startActivity(intent);
     }
 }

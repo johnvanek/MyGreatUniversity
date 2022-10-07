@@ -22,8 +22,6 @@ import com.example.android.mygreatuniversity.Utils.StateManager;
 import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder>{
-    //TODO determine if I can perform a long press to delete watch understanding the requirements for
-    // Greater clarification.
     class TermViewHolder extends RecyclerView.ViewHolder {
         private final TextView termItemView;
 
@@ -49,7 +47,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 intent.putExtra("endDate" , curTerm.getEndDate());
 
                 //Since we now have intent data change the state
-                StateManager.SelectedTerm.setHasSavedData(false);
+                //StateManager.SelectedTerm.setHasSavedData(false);
                 //Sent the intent go to the next activity
                 context.startActivity(intent);
             });

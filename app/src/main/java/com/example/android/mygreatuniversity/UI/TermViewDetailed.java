@@ -4,6 +4,7 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +53,12 @@ public class TermViewDetailed extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        Context context = getApplicationContext();
+//        CharSequence text = "Hello From onCreate!";
+//        int duration = Toast.LENGTH_SHORT;
+//
+//        Toast toast = Toast.makeText(context, text, duration);
+//        toast.show();
         //Call the Super
         super.onCreate(savedInstanceState);
         //Stop the title from automatically coming into focus
@@ -77,13 +85,14 @@ public class TermViewDetailed extends AppCompatActivity {
         if (StateManager.SelectedTerm.getHasSavedData()) {
             //************ Data Recovery From StateManager ****************
             //Set the termTitle
+            //TODO this is not works once after that does not work check why
             termTitle.setText(StateManager.SelectedTerm.getTermTitle());
             termStart.setText(StateManager.SelectedTerm.getTermStart());
             termEnd.setText(StateManager.SelectedTerm.getTermEnd());
             //Get the term Id from the saved state and then call from the repo
             termCourses = repo.getTermCourses(StateManager.SelectedTerm.getTermID());
             //Set state back to false
-            StateManager.SelectedTerm.setHasSavedData(false);
+            //StateManager.SelectedTerm.setHasSavedData(false);
         } else {
             //************ INTENT DATA PASSING ****************
             //Assign the Intent Data
@@ -215,16 +224,23 @@ public class TermViewDetailed extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-
+        super.onDestroy();
         //For some reason on going back android destroys then recreates this activity on back
         //Save the state into stateManager if the user goes back from the selected course
-        StateManager.SelectedTerm.setTermID(intentTermID);
-        StateManager.SelectedTerm.setTermTitle(termTitle.getText().toString());
-        StateManager.SelectedTerm.setTermStart(termStart.getText().toString());
-        StateManager.SelectedTerm.setTermEnd(termEnd.getText().toString());
-        //We now have saved some data change to true
-        StateManager.SelectedTerm.setHasSavedData(true);
-        super.onDestroy();
+        //Basically this just checks if the fields are blank before storing them in state
+        if(
+                intentTermID != 0 &&
+                termTitle.getText().toString() != "" &&
+                termStart.getText().toString() != "" &&
+                termEnd.getText().toString() != ""
+        ) {
+            StateManager.SelectedTerm.setTermID(intentTermID);
+            StateManager.SelectedTerm.setTermTitle(termTitle.getText().toString());
+            StateManager.SelectedTerm.setTermStart(termStart.getText().toString());
+            StateManager.SelectedTerm.setTermEnd(termEnd.getText().toString());
+            //We now have saved some data change to true
+            StateManager.SelectedTerm.setHasSavedData(true);
+        }
     }
 
     private void updateStartDateEditTextField() {

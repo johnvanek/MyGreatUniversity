@@ -151,6 +151,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                 //by clearing the focus here Im messing with the view
                 //courseTitle.clearFocus();
                 //And hide that keyboard
+                courseTitle.clearFocus();
                 hideKeyboard(this);
                 //TODO also need to remove the blinking cursor somehow on check click
             }
@@ -286,10 +287,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         hideKeyboard(this);
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
     }
-
-    //TODO might need another method here to navigating from course View detailed back but I don't
-    // think so
-
 
     public void saveState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();

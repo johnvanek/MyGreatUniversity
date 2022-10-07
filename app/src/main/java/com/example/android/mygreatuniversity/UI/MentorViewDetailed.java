@@ -4,15 +4,17 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Mentor;
@@ -23,6 +25,7 @@ public class MentorViewDetailed extends AppCompatActivity {
     EditText mentorName, mentorPhoneNumber, mentorEmail;
     ScrollView mentorScrollView;
     LinearLayout mentorLayout;
+    CardView mentorCard;
     String intentName, intentPhoneNumber, intentEmail;
     int intentMentorId;
     Repo repo = new Repo(getApplication());
@@ -30,6 +33,9 @@ public class MentorViewDetailed extends AppCompatActivity {
     //****************** END DECLARATIONS **************************************
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
         hideKeyboard(this);
         //***************** DISPLAY LOGIC *************
         //Sets the activity
@@ -53,6 +59,7 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorEmail = findViewById(R.id.editTextEmail);
         mentorScrollView = findViewById(R.id.MentorDetailedScrollView);
         mentorLayout = findViewById(R.id.MentorLinear);
+        mentorCard = findViewById(R.id.mentorCard);
         //Get and assign the intent data to local variables
         intentMentorId = getIntent().getIntExtra("id", -1);
         intentName = getIntent().getStringExtra("name");
@@ -65,15 +72,16 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorEmail.setText(intentEmail);
 
         //************ KEYBOARD HIDING ****************
-
-        mentorLayout.setOnClickListener(v -> {
+        //TODO Copy the layout of the course view detailed examine the xml structure therein lies
+        // success
+        mentorCard.setOnClickListener(v -> {
             //clear the focus and clear the keyboard
             hideKeyboard(this);
             mentorPhoneNumber.clearFocus();
             mentorName.clearFocus();
             mentorEmail.clearFocus();
         });
-
+        //Set the IME Actions to clear the focus when done is clicked
         mentorName.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edit text
@@ -81,6 +89,17 @@ public class MentorViewDetailed extends AppCompatActivity {
                 //And hide that keyboard
                 hideKeyboard(MentorViewDetailed.this);
             }
+            return false;
+        });
+
+        mentorPhoneNumber.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                //Clear focus here from edit text
+                mentorPhoneNumber.clearFocus();
+                //And hide that keyboard
+                hideKeyboard(MentorViewDetailed.this);
+            }
+            //Do not consume the event
             return false;
         });
 
@@ -94,7 +113,6 @@ public class MentorViewDetailed extends AppCompatActivity {
             mentorPhoneNumber.clearFocus();
             mentorName.clearFocus();
             mentorEmail.clearFocus();
-            hideKeyboard(this);
         });
     }
 

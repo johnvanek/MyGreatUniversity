@@ -181,6 +181,18 @@ public class TermViewDetailed extends AppCompatActivity {
         });
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
+        //TODO need to rework these to be on click events require two clicks on the phone.
+
+        termTitle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(TermViewDetailed.this);
+                termTitle.requestFocus();
+                termTitle.setCursorVisible(true);
+                return false;
+            }
+        });
+
 
         myToolbar.setOnClickListener(v -> {
             hideKeyboard(this);
@@ -192,6 +204,7 @@ public class TermViewDetailed extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 hideKeyboard(TermViewDetailed.this);
                 termTitle.clearFocus();
+                termTitle.setCursorVisible(false);
                 return false;
             }
         });

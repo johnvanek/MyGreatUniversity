@@ -140,6 +140,7 @@ public class CourseViewDetailed extends AppCompatActivity {
             updateEndDateEditTextField();
         };
 
+        //************ KEYBOARD HIDING ****************
         courseTitle.setOnClickListener(view -> {
             courseTitle.requestFocus();
             courseTitle.setCursorVisible(true);

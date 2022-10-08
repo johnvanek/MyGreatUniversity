@@ -28,6 +28,7 @@
             android:parentActivityName=".UI.MainActivity" /> <!-- Child of Main ! -->
         <activity
             android:name=".UI.MentorViewDetailed"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
         android:parentActivityName=".UI.MentorView" /> <!-- Child of Mentor! -->
         <activity

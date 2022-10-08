@@ -4,6 +4,8 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Mentor;
@@ -74,18 +77,29 @@ public class MentorViewDetailed extends AppCompatActivity {
         //************ KEYBOARD HIDING ****************
         //TODO Copy the layout of the course view detailed examine the xml structure therein lies
         // success
-        mentorCard.setOnClickListener(v -> {
-            //clear the focus and clear the keyboard
-            hideKeyboard(this);
-            mentorPhoneNumber.clearFocus();
-            mentorName.clearFocus();
-            mentorEmail.clearFocus();
+
+        mentorName.setOnClickListener(view -> {
+            mentorName.requestFocus();
+            mentorName.setCursorVisible(true);
+        });
+
+        mentorCard.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(MentorViewDetailed.this);
+                mentorName.clearFocus();
+                mentorName.setCursorVisible(false);
+                mentorEmail.clearFocus();
+                mentorPhoneNumber.clearFocus();
+                return false;
+            }
         });
         //Set the IME Actions to clear the focus when done is clicked
         mentorName.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edit text
                 mentorName.clearFocus();
+                mentorName.setCursorVisible(false);
                 //And hide that keyboard
                 hideKeyboard(MentorViewDetailed.this);
             }
@@ -96,6 +110,18 @@ public class MentorViewDetailed extends AppCompatActivity {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edit text
                 mentorPhoneNumber.clearFocus();
+                //And hide that keyboard
+                hideKeyboard(MentorViewDetailed.this);
+            }
+            //Do not consume the event
+            return false;
+        });
+        //For some reason this has a return key
+
+        mentorEmail.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                //Clear focus here from edit text
+                mentorEmail.clearFocus();
                 //And hide that keyboard
                 hideKeyboard(MentorViewDetailed.this);
             }

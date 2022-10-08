@@ -75,9 +75,6 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorEmail.setText(intentEmail);
 
         //************ KEYBOARD HIDING ****************
-        //TODO Copy the layout of the course view detailed examine the xml structure therein lies
-        // success
-
         mentorName.setOnClickListener(view -> {
             mentorName.requestFocus();
             mentorName.setCursorVisible(true);
@@ -116,7 +113,6 @@ public class MentorViewDetailed extends AppCompatActivity {
             //Do not consume the event
             return false;
         });
-        //For some reason this has a return key
 
         mentorEmail.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEND) {
@@ -136,12 +132,12 @@ public class MentorViewDetailed extends AppCompatActivity {
         });
 
         myToolbar.setOnClickListener(v -> {
+            hideKeyboard(this);
             mentorPhoneNumber.clearFocus();
             mentorName.clearFocus();
             mentorEmail.clearFocus();
         });
     }
-
 
     public void saveState(View view) {
         Mentor editedMentor = new Mentor(

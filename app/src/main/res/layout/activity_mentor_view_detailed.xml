@@ -127,7 +127,7 @@
 
                                 <EditText
                                     android:id="@+id/editTextEmail"
-                                    android:layout_width="200dp"
+                                    android:layout_width="236dp"
                                     android:layout_height="48dp"
                                     android:layout_margin="4dp"
                                     android:layout_marginTop="4dp"
@@ -137,11 +137,12 @@
                                     android:focusableInTouchMode="true"
                                     android:focusedByDefault="false"
                                     android:imeOptions="actionDone"
-                                    android:inputType="textNoSuggestions|textEmailAddress"
+                                    android:inputType="textNoSuggestions"
+                                    android:maxLines="2"
                                     android:minHeight="48dp"
                                     android:singleLine="true"
                                     app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.709"
+                                    app:layout_constraintHorizontal_bias="0.978"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
                                     tools:ignore="SpeakableTextPresentCheck,TextFields" />
@@ -202,7 +203,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
-                                    android:layout_marginTop="124dp"
+                                    android:layout_marginTop="116dp"
                                     android:fontFamily="@font/convergence"
                                     android:text="Email:"
                                     android:textColor="@color/Black"

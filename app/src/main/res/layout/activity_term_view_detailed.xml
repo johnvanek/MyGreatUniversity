@@ -71,7 +71,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
                         android:layout_width="354dp"
-                        android:layout_height="593dp"
+                        android:layout_height="600dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardView"
                             android:layout_width="338dp"
-                            android:layout_height="259dp"
+                            android:layout_height="195dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
                             app:cardCornerRadius="4dp"
@@ -254,7 +254,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="260dp"
                                 tools:layout_editor_absoluteX="2dp"
-                                tools:layout_editor_absoluteY="2dp" >
+                                tools:layout_editor_absoluteY="2dp">
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/selectedTermRecyler"
@@ -264,45 +264,45 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
 
+                        <Button
+                            android:id="@+id/saveButton"
+                            android:layout_width="93dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="@color/WguLightBlue"
+                            android:fontFamily="@font/convergence"
+                            android:onClick="saveState"
+                            android:shadowColor="@color/Black"
+                            android:text="@string/save"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.283"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                            app:rippleColor="@color/White"
+                            app:strokeColor="@color/NeutralWhite"
+                            app:strokeWidth="2dp" />
+
+                        <Button
+                            android:id="@+id/deleteButton"
+                            android:layout_width="120dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="28dp"
+                            android:backgroundTint="#EC1B0C"
+                            android:fontFamily="@font/convergence"
+                            android:onClick="deleteState"
+                            android:shadowColor="@color/Black"
+                            android:text="Delete"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.773"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                            app:rippleColor="@color/White"
+                            app:strokeColor="@color/Black"
+                            app:strokeWidth="2dp" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <Button
-                        android:id="@+id/saveButton"
-                        android:layout_width="93dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="28dp"
-                        android:backgroundTint="@color/WguLightBlue"
-                        android:fontFamily="@font/convergence"
-                        android:onClick="saveState"
-                        android:shadowColor="@color/Black"
-                        android:text="@string/save"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.285"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                        app:rippleColor="@color/White"
-                        app:strokeColor="@color/NeutralWhite"
-                        app:strokeWidth="2dp" />
-
-                    <Button
-                        android:id="@+id/deleteButton"
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="28dp"
-                        android:backgroundTint="#EC1B0C"
-                        android:fontFamily="@font/convergence"
-                        android:onClick="deleteState"
-                        android:shadowColor="@color/Black"
-                        android:text="Delete"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.785"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                        app:rippleColor="@color/White"
-                        app:strokeColor="@color/Black"
-                        app:strokeWidth="2dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

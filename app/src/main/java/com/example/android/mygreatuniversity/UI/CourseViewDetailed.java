@@ -15,11 +15,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.android.mygreatuniversity.Database.Repo;
@@ -43,9 +45,11 @@ public class CourseViewDetailed extends AppCompatActivity {
     //Declarations for the fields
     EditText courseTitle;
     EditText startText, endText;
+    TextView mentorTextView;
     Spinner courseStatus;
     Spinner mentorSpinner;
     MentorSpinnerAdapter mentorSpinnerAdapter;
+    CardView mentorCard;
 
     ConstraintLayout courseLayout;
     // Mentor fields
@@ -94,9 +98,12 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseLayout = findViewById(R.id.LayoutCourse);
         //Mentor Declarations
 
+
         mentorName = findViewById(R.id.mentorNameText);
         mentorPhone = findViewById(R.id.mentorPhoneText);
         mentorEmail = findViewById(R.id.mentorEmailText);
+        mentorCard = findViewById(R.id.courseViewMentorCard);
+        mentorTextView = findViewById(R.id.mentorLabel);
 
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
@@ -141,6 +148,10 @@ public class CourseViewDetailed extends AppCompatActivity {
         };
 
         //************ KEYBOARD HIDING ****************
+        //Known Issues ****
+        //There is a slight UI problem if the user continues to scroll to the bottom of the Mentor view
+        //And tries to click there as the title will still be in focus cant resolve.
+
         courseTitle.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -153,18 +164,24 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseTitle.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 courseTitle.clearFocus();
+                courseTitle.setCursorVisible(false);
                 hideKeyboard(this);
             }
             return false;
         });
 
+        //I do not think that this actually works
         courseTitle.setOnFocusChangeListener((v, hasFocus) -> {
+            if(!hasFocus){
+                courseTitle.clearFocus();
+                courseTitle.setCursorVisible(false);
+            }
             hideKeyboard(CourseViewDetailed.this);
         });
 
         startText.setOnClickListener(view -> {
             //Hide the flickering coming from the title
-
+            courseTitle.clearFocus();
             courseTitle.setCursorVisible(false);
 
             hideKeyboard(CourseViewDetailed.this);
@@ -181,12 +198,14 @@ public class CourseViewDetailed extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 hideKeyboard(CourseViewDetailed.this);
                 courseTitle.clearFocus();
+                courseTitle.setCursorVisible(false);
                 return false;
             }
         });
 
         endText.setOnClickListener(view -> {
             //Hide the flickering coming from the title
+            courseTitle.clearFocus();
             courseTitle.setCursorVisible(false);
             // And get the current focus
             courseTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
@@ -199,6 +218,8 @@ public class CourseViewDetailed extends AppCompatActivity {
             endText.requestFocus();
         });
 
+
+
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
 
         myToolbar.setOnClickListener(v -> {
@@ -210,6 +231,7 @@ public class CourseViewDetailed extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideKeyboard(CourseViewDetailed.this);
+                courseTitle.setCursorVisible(false);
                 courseTitle.clearFocus();
                 return false;
             }
@@ -226,8 +248,30 @@ public class CourseViewDetailed extends AppCompatActivity {
                 hideKeyboard(this);
             }
         });
+
+        courseStatus.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(CourseViewDetailed.this);
+                courseTitle.setCursorVisible(false);
+                courseTitle.clearFocus();
+                return false;
+            }
+        });
+
         //SPINNER POPULATION FROM ROOM DATABASE
         mentorSpinner = findViewById(R.id.mentorSpinner);
+        //Part of the Keyboard hiding logic
+        mentorSpinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(CourseViewDetailed.this);
+                courseTitle.setCursorVisible(false);
+                courseTitle.clearFocus();
+                return false;
+            }
+        });
+
         //This is a list of mentors from the room database
         List<Mentor> mentorList = repo.getMentors();
         //This converts the list from Mentors to an array to be used by the mentor spinner adapter.

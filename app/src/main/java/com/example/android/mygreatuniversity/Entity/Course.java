@@ -4,7 +4,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 @Entity(tableName = "courses")
 
-//TODO modify this class so that classes know what terms they belong in.
 public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseID;

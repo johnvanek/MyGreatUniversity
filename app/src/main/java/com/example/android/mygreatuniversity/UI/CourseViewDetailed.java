@@ -141,20 +141,19 @@ public class CourseViewDetailed extends AppCompatActivity {
         };
 
         //************ KEYBOARD HIDING ****************
-        courseTitle.setOnClickListener(view -> {
-            courseTitle.requestFocus();
-            courseTitle.setCursorVisible(true);
+        courseTitle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                courseTitle.requestFocus();
+                courseTitle.setCursorVisible(true);
+                return false;
+            }
         });
 
         courseTitle.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                //Clear focus here from edit text
-                //by clearing the focus here Im messing with the view
-                //courseTitle.clearFocus();
-                //And hide that keyboard
                 courseTitle.clearFocus();
                 hideKeyboard(this);
-                //TODO also need to remove the blinking cursor somehow on check click
             }
             return false;
         });
@@ -163,8 +162,6 @@ public class CourseViewDetailed extends AppCompatActivity {
             hideKeyboard(CourseViewDetailed.this);
         });
 
-        //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
-        //DatePicker Dialog's mentioned above and show them.
         startText.setOnClickListener(view -> {
             //Hide the flickering coming from the title
 
@@ -176,8 +173,16 @@ public class CourseViewDetailed extends AppCompatActivity {
                     CalenderStart.get(Calendar.MONTH),
                     CalenderStart.get(Calendar.DAY_OF_MONTH))
                     .show();
-            //courseTitle.clearFocus();
             startText.requestFocus();
+        });
+
+        courseLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(CourseViewDetailed.this);
+                courseTitle.clearFocus();
+                return false;
+            }
         });
 
         endText.setOnClickListener(view -> {
@@ -304,7 +309,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
         repo.updateCourse(editedCourse);
 
-        //TODO change this so that we go back based on where we just arrived from
         Intent intent;
         if(StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
             intent = new Intent(

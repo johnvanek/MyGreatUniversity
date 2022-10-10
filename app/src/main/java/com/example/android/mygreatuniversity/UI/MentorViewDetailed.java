@@ -75,19 +75,44 @@ public class MentorViewDetailed extends AppCompatActivity {
         mentorEmail.setText(intentEmail);
 
         //************ KEYBOARD HIDING ****************
-        mentorName.setOnClickListener(view -> {
-            mentorName.requestFocus();
-            mentorName.setCursorVisible(true);
+        mentorName.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mentorName.requestFocus();
+                mentorName.setCursorVisible(true);
+                return false;
+            }
+        });
+
+        mentorPhoneNumber.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mentorPhoneNumber.requestFocus();
+                mentorPhoneNumber.setCursorVisible(true);
+                return false;
+            }
+        });
+
+        mentorEmail.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mentorEmail.requestFocus();
+                mentorEmail.setCursorVisible(true);
+                return false;
+            }
         });
 
         mentorCard.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideKeyboard(MentorViewDetailed.this);
+                //Clear the focus and set all the cursors to false
                 mentorName.clearFocus();
                 mentorName.setCursorVisible(false);
                 mentorEmail.clearFocus();
+                mentorEmail.setCursorVisible(false);
                 mentorPhoneNumber.clearFocus();
+                mentorPhoneNumber.setCursorVisible(false);
                 return false;
             }
         });
@@ -107,6 +132,7 @@ public class MentorViewDetailed extends AppCompatActivity {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edit text
                 mentorPhoneNumber.clearFocus();
+                mentorPhoneNumber.setCursorVisible(false);
                 //And hide that keyboard
                 hideKeyboard(MentorViewDetailed.this);
             }
@@ -115,9 +141,10 @@ public class MentorViewDetailed extends AppCompatActivity {
         });
 
         mentorEmail.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEND) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edit text
                 mentorEmail.clearFocus();
+                mentorEmail.setCursorVisible(false);
                 //And hide that keyboard
                 hideKeyboard(MentorViewDetailed.this);
             }
@@ -134,8 +161,11 @@ public class MentorViewDetailed extends AppCompatActivity {
         myToolbar.setOnClickListener(v -> {
             hideKeyboard(this);
             mentorPhoneNumber.clearFocus();
+            mentorPhoneNumber.setCursorVisible(false);
             mentorName.clearFocus();
+            mentorName.setCursorVisible(false);
             mentorEmail.clearFocus();
+            mentorEmail.setCursorVisible(false);
         });
     }
 

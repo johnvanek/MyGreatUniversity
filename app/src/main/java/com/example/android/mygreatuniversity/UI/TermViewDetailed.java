@@ -181,7 +181,9 @@ public class TermViewDetailed extends AppCompatActivity {
         });
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
-        //TODO need to rework these to be on click events require two clicks on the phone.
+        //TODO need to rework Term,Course,Mentor to all use On Touch methods ON Click only works
+        // For the mouse when testing the emulator on the computer. Technically A OnClick event is
+        // comprised to 2 On Touch events.
 
         termTitle.setOnTouchListener(new View.OnTouchListener() {
             @Override

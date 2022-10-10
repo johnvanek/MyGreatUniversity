@@ -141,20 +141,14 @@ public class TermViewDetailed extends AppCompatActivity {
             updateEndDateEditTextField();
         };
 
-        termTitle.setOnClickListener(view -> {
-            termTitle.requestFocus();
-            termTitle.setCursorVisible(true);
-        });
 
         termTitle.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 //Clear focus here from edit text
-                //by clearing the focus here Im messing with the view
-                //courseTitle.clearFocus();
+                termTitle.clearFocus();
+                termTitle.setCursorVisible(false);
                 //And hide that keyboard
                 hideKeyboard(this);
-                //TODO Fix this here also the mouse clicker remains after ime action.
-                // For mentor works perfectly check that logic.
             }
             return false;
         });
@@ -169,7 +163,7 @@ public class TermViewDetailed extends AppCompatActivity {
             //Hide the flickering coming from the title
 
             termTitle.setCursorVisible(false);
-
+            termTitle.clearFocus();
             hideKeyboard(TermViewDetailed.this);
             new DatePickerDialog(TermViewDetailed.this,
                     startDatePicker, CalenderStart.get(Calendar.YEAR),
@@ -199,6 +193,7 @@ public class TermViewDetailed extends AppCompatActivity {
         myToolbar.setOnClickListener(v -> {
             hideKeyboard(this);
             termTitle.clearFocus();
+            termTitle.setCursorVisible(false);
         });
 
         termLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -212,8 +207,9 @@ public class TermViewDetailed extends AppCompatActivity {
         });
 
         termEnd.setOnClickListener(view -> {
-            //Hide the flickering coming from the title
+            // Hide the flickering coming from the title
             termTitle.setCursorVisible(false);
+            termTitle.clearFocus();
             // And get the current focus
             termTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
             hideKeyboard(TermViewDetailed.this);
@@ -227,12 +223,16 @@ public class TermViewDetailed extends AppCompatActivity {
 
         termStart.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
+                termTitle.clearFocus();
+                termTitle.setCursorVisible(false);
                 hideKeyboard(this);
             }
         });
 
         termEnd.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
+                termTitle.clearFocus();
+                termTitle.setCursorVisible(false);
                 hideKeyboard(this);
             }
         });

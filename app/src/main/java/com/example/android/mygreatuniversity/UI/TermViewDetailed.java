@@ -293,8 +293,8 @@ public class TermViewDetailed extends AppCompatActivity {
     private boolean doesTermHaveEnrolledCourses() {
         //If there are now elements in the list it must not have any courses
         if(repo.getTermCourses(intentTermID).size() < 1) {
-            return true;
-        } else return false;
+            return false;
+        } else return true;
     }
 
     private void showSnackbarMessageDeletionAction() {

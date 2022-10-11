@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoTermView(MenuItem item) {
+        //TODO set the subheading of each page to modern governess university
+        // Either in the xml or by setting it onCreate
+
         //TODO implement Terms
         // 1. Create a user option to enter term titles (e.g., Term 1, Term 2, Spring Term), start dates, and end dates for each term.
         // 2. Create features that allow the user to add as many terms as needed.

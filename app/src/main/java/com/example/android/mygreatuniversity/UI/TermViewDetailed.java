@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -26,6 +27,7 @@ import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,6 +38,7 @@ public class TermViewDetailed extends AppCompatActivity {
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
+    ConstraintLayout termCourseLayout;
     //**************  FIELDS *********************
     //Intent Data
     String intentTitle, intentStart, intentEnd;
@@ -80,7 +83,7 @@ public class TermViewDetailed extends AppCompatActivity {
         termStart = findViewById(R.id.termStart);
         termEnd = findViewById(R.id.termEnd);
         termLayout = findViewById(R.id.LayoutTerm);
-
+        termCourseLayout = findViewById(R.id.termLayout);
         //************ Data PrePopulation ****************
         if (StateManager.SelectedTerm.getHasSavedData()) {
             //************ Data Recovery From StateManager ****************
@@ -268,6 +271,7 @@ public class TermViewDetailed extends AppCompatActivity {
 
     public void deleteAllCourses() {
         //TODO implement functionality here to delete all the associated courses
+        // only Add the to the overflow method
         // Create a toast evaluators like to see toast or messages for state changes
     }
 
@@ -275,5 +279,22 @@ public class TermViewDetailed extends AppCompatActivity {
 
     }
 
+    public void deleteState(View view) {
+        Snackbar snackbar = Snackbar.make(termCourseLayout,"This is Simple Snackbar",Snackbar.LENGTH_SHORT);
+        snackbar.show();
+        //If clicked this should only delete the term if there are no assoicated courses
+//        if (!doesTermHaveEnrolledCourses()) {
+//            //delete the term
+//        } else {
+//            //send a message or toast letting the user know that they have enrolled courses for this
+//            //term would you like to delete those courses now.
+//        }
+    }
 
+    private boolean doesTermHaveEnrolledCourses() {
+        //If there are now elements in the list it must not have any courses
+        if(repo.getTermCourses(intentTermID).size() < 1) {
+            return false;
+        } else return true;
+    }
 }

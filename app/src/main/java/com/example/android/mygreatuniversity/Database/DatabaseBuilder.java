@@ -25,8 +25,9 @@ import com.example.android.mygreatuniversity.Entity.Term;
 // The DummyData Callback should run once on database creation
 // Because this is Instance being returned there are problems trigger overridden OnCreate and OnOpen
 // DummyData will instead be handled in the Main activity via a method call in onCreate.
+// SomeTimes incrementing this will Reproc the DummyData in combination with deleting in from the device.
 
-@Database(entities = {Course.class, Mentor.class, Assessment.class, Term.class}, version = 34, exportSchema = false)
+@Database(entities = {Course.class, Mentor.class, Assessment.class, Term.class}, version = 35, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**

@@ -12,6 +12,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -178,7 +179,8 @@ public class MentorViewDetailed extends AppCompatActivity {
         //Convenience methods work by comparing the primary key
         editedMentor.setMentorID(intentMentorId); // This will set it to Id that was passed
         repo.updateMentor(editedMentor);
-        //After done performing the update return to the the Course View
+        //After done performing the update return to the the Course View but first show a toast to indicate a state change.
+        Toast.makeText(getApplicationContext(),"Mentor Data Saved",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(
                 MentorViewDetailed.this,
                 MentorView.class);
@@ -197,6 +199,7 @@ public class MentorViewDetailed extends AppCompatActivity {
         Intent intent = new Intent(
                 MentorViewDetailed.this,
                 MentorView.class);
+        Toast.makeText(getApplicationContext(),"Mentor Deleted",Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 }

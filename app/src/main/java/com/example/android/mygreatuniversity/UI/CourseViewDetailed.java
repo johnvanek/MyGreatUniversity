@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -351,11 +352,11 @@ public class CourseViewDetailed extends AppCompatActivity {
                     CourseViewDetailed.this,
                     CourseView.class);
         }
-
+        //Change back to the intended destination. And let the user know a state change has occurred.
+        Toast.makeText(getApplicationContext(),"Course Data Saved",Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
-    //TODO test that this works
     public void deleteState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
         //Delete the associated course
@@ -382,6 +383,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                     CourseViewDetailed.this,
                     CourseView.class);
         }
+        Toast.makeText(getApplicationContext(),"Course Deleted",Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 }

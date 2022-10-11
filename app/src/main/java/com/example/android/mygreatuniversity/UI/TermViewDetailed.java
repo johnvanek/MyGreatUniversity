@@ -280,21 +280,34 @@ public class TermViewDetailed extends AppCompatActivity {
     }
 
     public void deleteState(View view) {
-        Snackbar snackbar = Snackbar.make(termCourseLayout,"This is Simple Snackbar",Snackbar.LENGTH_SHORT);
-        snackbar.show();
-        //If clicked this should only delete the term if there are no assoicated courses
-//        if (!doesTermHaveEnrolledCourses()) {
-//            //delete the term
-//        } else {
-//            //send a message or toast letting the user know that they have enrolled courses for this
-//            //term would you like to delete those courses now.
-//        }
+        //If clicked this should only delete the term if there are no associated courses
+        if (!doesTermHaveEnrolledCourses()) {
+            showSnackbarMessageDeletionAction();
+        } else {
+            //just let the user delete the course show a toast that the term has been deleted and
+            // route them back to the the term view.
+            Toast.makeText(getApplicationContext(),"Term Deleted",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private boolean doesTermHaveEnrolledCourses() {
         //If there are now elements in the list it must not have any courses
         if(repo.getTermCourses(intentTermID).size() < 1) {
-            return false;
-        } else return true;
+            return true;
+        } else return false;
+    }
+
+    private void showSnackbarMessageDeletionAction() {
+        Snackbar snackbar = Snackbar.make(termCourseLayout,"You cannot delete a term while still enrolled in courses. If you would like to delete all Courses, Please confirm by clicking the action.",Snackbar.LENGTH_LONG);
+        snackbar.setTextMaxLines(30);
+        snackbar.setDuration(7000);
+        snackbar.setAction("DELETE ALL Courses", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO add a method call deletes the courses from a specified term probably wanna make this method in repo.
+                Toast.makeText(getApplicationContext(),"Deleting all of the courses associated with this term",Toast.LENGTH_SHORT).show();
+            }
+        });
+        snackbar.show();
     }
 }

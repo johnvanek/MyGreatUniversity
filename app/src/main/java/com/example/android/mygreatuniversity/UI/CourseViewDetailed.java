@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +40,6 @@ public class CourseViewDetailed extends AppCompatActivity {
     final Calendar CalenderEnd = Calendar.getInstance();
 
     boolean arrivedFromIntent = true;
-    int itemSpinnerChangeCounter = 0;
     //Declarations for the fields
     EditText courseTitle;
     EditText startText, endText;
@@ -276,11 +274,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseViewDetailed.this,
                 R.layout.mentor_spinner_item,
                 mentorArray);
-        //Have to set the view resource for the spinner adapter to enable the dropdown
-        //Have to make the page larger or else the drop down will not fit.
         mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
-        //This is okay because we are still in the onCreate
-        //The primary keys auto increment starting from one
         //mentorSpinner.setSelection(intentMentorId - 1);
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);
@@ -290,33 +284,29 @@ public class CourseViewDetailed extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
-                // This gets the current mentor that is selected by returning the spinner position.
+                // Note that is a a mentor is deleted that is assigned it will default to the first mentor.
                 // The position here has defaulted to zero from the override
-                Mentor mentor = null;
                 if (arrivedFromIntent) {
                     Mentor[] mentorValues = mentorSpinnerAdapter.returnValuesAsArray();
                     //DO something here
                     int intentMentorPosition = 0;
                     for (Mentor spinnerMentor : mentorValues) {
                         if (spinnerMentor.getMentorID() == intentMentorId) {
+                            //Verify that this is different
                             intentMentorPosition = mentorSpinnerAdapter.getPosition(spinnerMentor);
-                            mentor = spinnerMentor;
+                            //Need to also change the first value of this to be
+                            mentorSpinner.setSelected(true);
+                            mentorSpinner.setSelection(intentMentorPosition);
                         }
                     }
-                    mentorSpinner.setSelection(intentMentorPosition);
-                    //TODO disable this when done this just for testing
-                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID()
-                                    + "\nName: " + mentor.getName(),
-                            Toast.LENGTH_SHORT).show();
                     arrivedFromIntent = false;
-                } else if (itemSpinnerChangeCounter >= 1) {
-                    mentor = mentorSpinnerAdapter.getItem(position);
-                    // for test purposes I am going to make this a toast.
-                    Toast.makeText(CourseViewDetailed.this, "ID: " + mentor.getMentorID()
-                                    + "\nName: " + mentor.getName(),
-                            Toast.LENGTH_SHORT).show();
                 }
-                itemSpinnerChangeCounter++;
+                //Set the data related to the Selection.
+                Mentor currentSelectedMentor = (Mentor) mentorSpinner.getSelectedItem();
+                //mentorSpinner.setSelection(intentMentorPosition);
+                mentorName.setText(currentSelectedMentor.getName());
+                mentorPhone.setText(currentSelectedMentor.getPhoneNumber());
+                mentorEmail.setText(currentSelectedMentor.getEmail());
             }
 
             @Override

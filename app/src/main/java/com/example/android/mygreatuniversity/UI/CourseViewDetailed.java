@@ -98,7 +98,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseLayout = findViewById(R.id.LayoutCourse);
         //Mentor Declarations
 
-
         mentorName = findViewById(R.id.mentorNameText);
         mentorPhone = findViewById(R.id.mentorPhoneText);
         mentorEmail = findViewById(R.id.mentorEmailText);
@@ -172,7 +171,7 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //I do not think that this actually works
         courseTitle.setOnFocusChangeListener((v, hasFocus) -> {
-            if(!hasFocus){
+            if (!hasFocus) {
                 courseTitle.clearFocus();
                 courseTitle.setCursorVisible(false);
             }
@@ -217,8 +216,6 @@ public class CourseViewDetailed extends AppCompatActivity {
                     .show();
             endText.requestFocus();
         });
-
-
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
 
@@ -300,10 +297,10 @@ public class CourseViewDetailed extends AppCompatActivity {
                     Mentor[] mentorValues = mentorSpinnerAdapter.returnValuesAsArray();
                     //DO something here
                     int intentMentorPosition = 0;
-                    for (Mentor spinnerMentor: mentorValues) {
-                        if(spinnerMentor.getMentorID() == intentMentorId) {
-                           intentMentorPosition = mentorSpinnerAdapter.getPosition(spinnerMentor);
-                           mentor = spinnerMentor;
+                    for (Mentor spinnerMentor : mentorValues) {
+                        if (spinnerMentor.getMentorID() == intentMentorId) {
+                            intentMentorPosition = mentorSpinnerAdapter.getPosition(spinnerMentor);
+                            mentor = spinnerMentor;
                         }
                     }
                     mentorSpinner.setSelection(intentMentorPosition);
@@ -354,7 +351,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         repo.updateCourse(editedCourse);
 
         Intent intent;
-        if(StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
+        if (StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
             intent = new Intent(
                     CourseViewDetailed.this,
                     TermViewDetailed.class);
@@ -367,7 +364,8 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         startActivity(intent);
     }
-//TODO test that this works
+
+    //TODO test that this works
     public void deleteState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
         //Delete the associated course
@@ -384,7 +382,7 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //Declare the intent
         Intent intent;
-        if(StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
+        if (StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
             intent = new Intent(
                     CourseViewDetailed.this,
                     TermViewDetailed.class);

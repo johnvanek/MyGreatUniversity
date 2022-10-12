@@ -95,11 +95,11 @@ public class MainActivity extends AppCompatActivity {
             // In-Progress -- Completed -- Dropped -- Plan To Take
 
             //TODO need to figure out a way to reimplement this so that
-            // The Courses need to be contained inside of Terms as such
+            // The terms need to be associated with Courses
             // So That when The Date-Picker for Courses needs to be a Subset of the DateRange from
             // Term which would be its parent ( Or else the Course can pick dates out of Range )
             //
-            //TODO rework this dummy data so that it makes sense with the terms.
+            //TODO rework this dummy data so that it makes sense with assessments.
 
             repo.insertCourse(new Course("Mobile Development", "10/01/22","10/30/22","In Progress",1,1));
             repo.insertCourse(new Course("Operating Systems", "06/01/22", "07/30/22", "Completed",2,1));

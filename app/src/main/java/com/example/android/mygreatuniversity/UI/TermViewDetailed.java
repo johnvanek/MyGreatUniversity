@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -265,29 +267,48 @@ public class TermViewDetailed extends AppCompatActivity {
     }
 
     public void saveState(View view) {
-
+        //TODO implement functionality to save the Term Data.
+        // send up a toast Term Updated.
     }
 
     public void deleteState(View view) {
         //If clicked this should only delete the term if there are no associated courses
-        if (!doesTermHaveEnrolledCourses()) {
+        if (doesTermHaveEnrolledCourses()) {
             showSnackbarMessageDeletionAction();
         } else {
-            //just let the user delete the course show a toast that the term has been deleted and
-            // route them back to the the term view.
+            // Just let the user know that a state change has occurred
             Toast.makeText(getApplicationContext(),"Term Deleted",Toast.LENGTH_SHORT).show();
+            // route them back to the the term view.
+            Intent intent = new Intent(
+                    TermViewDetailed.this,
+                    TermView.class);
+            //Create term to delete kinda cumbersome
+            Term termToDelete;
+            if (intentTermID != -1 && intentTermID != 0) {
+                termToDelete = repo.lookupTermById(intentTermID);
+            } else {
+                termToDelete = repo.lookupTermById(StateManager.SelectedTerm.getTermID());
+            }
+            repo.deleteTerm(termToDelete);
+            //Start the intent
+            startActivity(intent);
         }
     }
 
     private boolean doesTermHaveEnrolledCourses() {
         //If there are now elements in the list it must not have any courses
-        return repo.getTermCourses(intentTermID).size() >= 1;
+        if (intentTermID != -1 && intentTermID != 0) {
+            return repo.getTermCourses(intentTermID).size() >= 1;
+        } else {
+            return repo.getTermCourses((StateManager.SelectedTerm.getTermID())).size() >= 1;
+        }
     }
 
     private void showSnackbarMessageDeletionAction() {
         Snackbar snackbar = Snackbar.make(termCourseLayout,"You cannot delete a term while still enrolled in courses. If you would like to delete all Courses, Please confirm by clicking the action.",Snackbar.LENGTH_LONG);
+        snackbar.setDuration(6000);
         snackbar.setTextMaxLines(30);
-        snackbar.setDuration(7000);
+
         snackbar.setAction("DELETE ALL Courses", new View.OnClickListener() {
             @Override
             public void onClick(View view) {

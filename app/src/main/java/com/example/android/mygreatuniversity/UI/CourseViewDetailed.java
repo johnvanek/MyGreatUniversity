@@ -375,6 +375,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                 selectedMentor.getMentorID(),
                 intentTermId
         );
+        //This is seems like a lot of work when I could just delete by the id
         editedCourse.setCourseID(intentCourseId);
         repo.deleteCourse(editedCourse);
 

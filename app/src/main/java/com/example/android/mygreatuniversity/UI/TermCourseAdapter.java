@@ -65,7 +65,7 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 //Put the associated Term information in
                 intent.putExtra("termID", curTermCourse.getTermID());
                 //Let the StateManager know that we are coming from the Term Detailed Activity
-                StateManager.SelectedTerm.setArrivedToCourseFromTermView(true);
+                StateManager.setArrivedToCourseFromTermView(true);
                 //Go to the next screen in this case TermViewDetailed
                 context.startActivity(intent);
             });

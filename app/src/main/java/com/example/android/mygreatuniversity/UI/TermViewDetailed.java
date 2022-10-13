@@ -2,11 +2,13 @@ package com.example.android.mygreatuniversity.UI;
 
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
 import com.google.android.material.snackbar.Snackbar;
@@ -54,6 +57,7 @@ public class TermViewDetailed extends AppCompatActivity {
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
     DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        Context context = getApplicationContext();
@@ -75,6 +79,7 @@ public class TermViewDetailed extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
         //Set up the back is up when children are present.
+        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
@@ -85,33 +90,39 @@ public class TermViewDetailed extends AppCompatActivity {
         termLayout = findViewById(R.id.LayoutTerm);
         termCourseLayout = findViewById(R.id.termLayout);
         //************ Data PrePopulation ****************
-        if (StateManager.SelectedTerm.getHasSavedData()) {
-            //************ Data Recovery From StateManager ****************
-            //Set the termTitle
-            //TODO this is not works once after that does not work check why
-            termTitle.setText(StateManager.SelectedTerm.getTermTitle());
-            termStart.setText(StateManager.SelectedTerm.getTermStart());
-            termEnd.setText(StateManager.SelectedTerm.getTermEnd());
-            //Get the term Id from the saved state and then call from the repo
-            termCourses = repo.getTermCourses(StateManager.SelectedTerm.getTermID());
-            //Set state back to false
-            //StateManager.SelectedTerm.setHasSavedData(false);
-        } else {
-            //************ INTENT DATA PASSING ****************
-            //Assign the Intent Data
-            intentTitle = getIntent().getStringExtra("title");
-            intentStart = getIntent().getStringExtra("startDate");
-            intentEnd = getIntent().getStringExtra("endDate");
-            //This will crash if not valid id
-            intentTermID = getIntent().getIntExtra("id", -1);
-            // Set fields to the Intent Data
-            termTitle.setText(intentTitle);
-            termStart.setText(intentStart);
-            termEnd.setText(intentEnd);
+        //Can now just always set this data from the repo
+        //Set state back to false
 
-            // Get the term Id from the Intent and pass that to the repo
-            termCourses = repo.getTermCourses(intentTermID);
-        }
+        intentTitle = getIntent().getStringExtra("title");
+        intentStart = getIntent().getStringExtra("startDate");
+        intentEnd = getIntent().getStringExtra("endDate");
+        //This will crash if not valid id
+        intentTermID = getIntent().getIntExtra("id", -1);
+
+
+            //************ INTENT DATA PASSING ****************
+            //If we have valid intent data use it.
+            if(intentTermID != 0 && intentTermID != -1) {
+                // Set fields to the Intent Data
+                termTitle.setText(intentTitle);
+                termStart.setText(intentStart);
+                termEnd.setText(intentEnd);
+                termCourses = repo.getTermCourses(intentTermID);
+                // When this is created and valid we should store the reference of this variable
+                // Into StateManager as is the currently selected term if we have made it to this screen
+                StateManager.SelectedTerm.setTermID(intentTermID); //This is a Valid term ID
+                //This will override the current value everyTime there is a valid ID.
+                StateManager.SelectedTerm.setIsTermSelected(true);
+            } else {
+                //The intent is no longer valid and as such we have to use the backup that is
+                // Saved in the StateManager.
+                int stateID = StateManager.SelectedTerm.getTermID();
+                Term stateTerm = repo.lookupTermById(stateID);
+                termTitle.setText(stateTerm.getTitle());
+                termStart.setText(stateTerm.getStartDate());
+                termEnd.setText(stateTerm.getEndDate());
+                termCourses = repo.getTermCourses(stateID);
+            }
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
         // Set the TermAdapter and LayoutManger
@@ -143,7 +154,6 @@ public class TermViewDetailed extends AppCompatActivity {
             CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
             updateEndDateEditTextField();
         };
-
 
         termTitle.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -238,27 +248,6 @@ public class TermViewDetailed extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //For some reason on going back android destroys then recreates this activity on back
-        //Save the state into stateManager if the user goes back from the selected course
-        //Basically this just checks if the fields are blank before storing them in state
-        if(
-                intentTermID != 0 &&
-                termTitle.getText().toString() != "" &&
-                termStart.getText().toString() != "" &&
-                termEnd.getText().toString() != ""
-        ) {
-            StateManager.SelectedTerm.setTermID(intentTermID);
-            StateManager.SelectedTerm.setTermTitle(termTitle.getText().toString());
-            StateManager.SelectedTerm.setTermStart(termStart.getText().toString());
-            StateManager.SelectedTerm.setTermEnd(termEnd.getText().toString());
-            //We now have saved some data change to true
-            StateManager.SelectedTerm.setHasSavedData(true);
-        }
-    }
-
     private void updateStartDateEditTextField() {
         hideKeyboard(this);
         termStart.setText(dateFormat.format(CalenderStart.getTime()));
@@ -292,9 +281,7 @@ public class TermViewDetailed extends AppCompatActivity {
 
     private boolean doesTermHaveEnrolledCourses() {
         //If there are now elements in the list it must not have any courses
-        if(repo.getTermCourses(intentTermID).size() < 1) {
-            return false;
-        } else return true;
+        return repo.getTermCourses(intentTermID).size() >= 1;
     }
 
     private void showSnackbarMessageDeletionAction() {

@@ -24,4 +24,7 @@ public interface TermDAO {
 
     @Query("SELECT * FROM terms ORDER BY termID ASC")
     List<Term> getTerms();
+
+    @Query("SELECT * FROM terms WHERE termID LIKE :termID LIMIT 1")
+    Term lookupTermById(int termID);
 }

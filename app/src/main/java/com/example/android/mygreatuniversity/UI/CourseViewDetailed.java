@@ -3,6 +3,7 @@ package com.example.android.mygreatuniversity.UI;
 import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
 
@@ -66,6 +68,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;
 
     //****************** END DECLARATIONS **************************************
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         hideKeyboard(this);
@@ -231,6 +234,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                 courseTitle.clearFocus();
                 return false;
             }
+
         });
 
         startText.setOnFocusChangeListener((view, hasFocus) -> {
@@ -248,6 +252,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseStatus.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                v.performClick();
                 hideKeyboard(CourseViewDetailed.this);
                 courseTitle.setCursorVisible(false);
                 courseTitle.clearFocus();
@@ -261,6 +266,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorSpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                v.performClick();
                 hideKeyboard(CourseViewDetailed.this);
                 courseTitle.setCursorVisible(false);
                 courseTitle.clearFocus();
@@ -271,7 +277,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         //This is a list of mentors from the room database
         List<Mentor> mentorList = repo.getMentors();
         //This converts the list from Mentors to an array to be used by the mentor spinner adapter.
-        Mentor[] mentorArray = mentorList.toArray(new Mentor[mentorList.size()]);
+        Mentor[] mentorArray = mentorList.toArray(new Mentor[0]);
         mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseViewDetailed.this,
                 R.layout.mentor_spinner_item,
                 mentorArray);
@@ -342,7 +348,8 @@ public class CourseViewDetailed extends AppCompatActivity {
         repo.updateCourse(editedCourse);
 
         Intent intent;
-        if (StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
+        //If there is a valid selected term take us back
+        if (StateManager.SelectedTerm.isTermSelected()) {
             intent = new Intent(
                     CourseViewDetailed.this,
                     TermViewDetailed.class);
@@ -373,12 +380,21 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //Declare the intent
         Intent intent;
-        if (StateManager.SelectedTerm.getArrivedToCourseFromTermView()) {
+        //If we arrived here from the TermViewDetailed Screen essentially. We want to return to that
+        // activity. And we will pass in the current intent since we currently the term information.
+        if (StateManager.isArrivedToCourseFromTermView()) {
             intent = new Intent(
                     CourseViewDetailed.this,
                     TermViewDetailed.class);
+            //Give some extra data to the intent
+            Term term = repo.lookupTermById(intentTermId);
+            intent.putExtra("id", term.getTermID());
+            intent.putExtra("title", term.getTitle());
+            intent.putExtra("startDate", term.getStartDate());
+            intent.putExtra("endDate" , term.getEndDate());
         } else {
-            //Must have come from the course Activity Then
+            //Must have come from the course Activity Then and we do not need to pass data back
+            //via the intent.
             intent = new Intent(
                     CourseViewDetailed.this,
                     CourseView.class);

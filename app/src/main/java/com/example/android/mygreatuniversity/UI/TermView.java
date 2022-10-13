@@ -34,6 +34,7 @@ public class TermView extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
 
         //Set up the back is up when children are present.
+        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 

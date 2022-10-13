@@ -26,6 +26,7 @@ public class Repo {
     private List<Assessment> mAssessments;
     private List<Term> mTerms;
     private Mentor mCourseMentor;
+    private Term mTerm;
     private List<Course> mTermCourses;
 
     private static int NUMBER_OF_THREADS = 4;
@@ -208,5 +209,18 @@ public class Repo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public Term lookupTermById(int id) {
+        executor.execute(() -> {
+            mTerm = mTermDAO.lookupTermById(id);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get Term from an ID " + mTerm);
+        return mTerm;
     }
 }

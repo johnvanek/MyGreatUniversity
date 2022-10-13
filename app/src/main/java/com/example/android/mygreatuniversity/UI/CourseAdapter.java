@@ -16,6 +16,7 @@ import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
+import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.text.BreakIterator;
 import java.util.List;
@@ -64,6 +65,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 intent.putExtra("mentorEmail", courseMentor.getEmail());
                 //Put the Associated Term information in
                 intent.putExtra("termID", curCourse.getTermID());
+                //Since we can get to course detailed view 2 ways let State know
+                StateManager.setArrivedToCourseFromTermView(false);
                 //Go to the next screen in this case courseViewDetailed
                 context.startActivity(intent);
             });

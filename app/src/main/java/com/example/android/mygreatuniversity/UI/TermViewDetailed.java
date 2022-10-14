@@ -248,6 +248,11 @@ public class TermViewDetailed extends AppCompatActivity {
                 hideKeyboard(this);
             }
         });
+
+        //TODO rework this so that courses and can be added and delete via selecting which ones the
+        // User wants to add or delete similar to mentor using spinners.
+
+
     }
 
     private void updateStartDateEditTextField() {

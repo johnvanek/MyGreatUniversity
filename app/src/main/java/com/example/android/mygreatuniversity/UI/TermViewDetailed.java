@@ -40,6 +40,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermViewDetailed extends AppCompatActivity {
+    //TODO need to change this functionality so that the user cannot click through on courses
+    // instead on click they should be given the option to delete the course via a snackbar.
+    // All this does is simply remove the course from the term by unassigned the termId or setting
+    // It to zero or negative 1 or something.
+
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -267,14 +272,36 @@ public class TermViewDetailed extends AppCompatActivity {
 
     public void deleteAllCourses() {
         //TODO implement functionality here to delete all the associated courses
+        // When these course are delete it should just unassigned there term ids
         // Create a toast evaluators like to see toast or messages for state changes
     }
 
     public void saveState(View view) {
-        //TODO implement functionality to save the Term Data.
-        // send up a toast Term Updated.
+        //TODO test out this feature
+        Term editedTerm = new Term(
+                termTitle.getText().toString(),
+                termStart.getText().toString(),
+                termEnd.getText().toString()
+        );
+        //This is needed due to the fact that this can sometimes be defaulted to the wrong primary
+        // key.
+        if (intentTermID != -1 && intentTermID != 0) {
+            editedTerm.setTermID(intentTermID);
+        } else {
+            editedTerm.setTermID(StateManager.SelectedTerm.getTermID());
+        }
+        // And finally once that is done call the update method from repo.
+        repo.updateTerm(editedTerm);
+        //And then route the user back to the term view and send up a toast to indicate that the state
 
-
+        Intent intent;
+        //If create the intent and take us back
+        intent = new Intent(
+                    TermViewDetailed.this,
+                    TermView.class);
+        //And let the user know a state change has occurred.
+        Toast.makeText(getApplicationContext(),"Term Data Saved",Toast.LENGTH_SHORT).show();
+        startActivity(intent);
     }
 
     public void deleteState(View view) {

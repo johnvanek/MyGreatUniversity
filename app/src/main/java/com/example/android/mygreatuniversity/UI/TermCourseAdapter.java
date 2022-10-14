@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -46,11 +48,11 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 intent.putExtra("id", curTermCourse.getCourseID());
                 intent.putExtra("title", curTermCourse.getTitle());
                 intent.putExtra("startDate", curTermCourse.getStartDate());
-                intent.putExtra("endDate" , curTermCourse.getEndDate());
+                intent.putExtra("endDate", curTermCourse.getEndDate());
                 intent.putExtra("status", curTermCourse.getStatus());
                 //Also give some information for the mentor
                 Mentor courseMentor = repo.findMentorById(curTermCourse.getCourseMentorId());
-                if(courseMentor == null){
+                if (courseMentor == null) {
                     //default to the first course mentor
                     courseMentor = mMentors.get(0);
                 }
@@ -58,16 +60,33 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 //Put the courseMentor information in the intent as well
                 intent.putExtra("mentorId", courseMentor.getMentorID());
                 intent.putExtra("mentorName", courseMentor.getName());
-                intent.putExtra("mentorPhone",courseMentor.getPhoneNumber());
+                intent.putExtra("mentorPhone", courseMentor.getPhoneNumber());
                 intent.putExtra("mentorEmail", courseMentor.getEmail());
                 //Put the associated Term information in
                 intent.putExtra("termID", curTermCourse.getTermID());
                 //Let the StateManager know that we are coming from the Term Detailed Activity
                 StateManager.setArrivedToCourseFromTermView(true);
                 //Go to the next screen in this case TermViewDetailed
-                context.startActivity(intent);
+                //context.startActivity(intent);
+            });
+
+            termCourseItemView.setOnLongClickListener(v -> {
+                Snackbar snackbar = Snackbar.make(termCourseItemView,"Remove Course From Term?",Snackbar.LENGTH_LONG);
+                snackbar.setDuration(5000);
+                snackbar.setTextMaxLines(30);
+
+                snackbar.setAction("Yes", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO add a method call deletes the courses from a specified term probably wanna make this method in repo.
+
+                    }
+                });
+                snackbar.show();
+                return false;
             });
         }
+
     }
     private List<Course> mTermCourses;
     private List<Mentor> mMentors;

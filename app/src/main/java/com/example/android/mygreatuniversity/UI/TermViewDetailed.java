@@ -262,13 +262,14 @@ public class TermViewDetailed extends AppCompatActivity {
 
     public void deleteAllCourses() {
         //TODO implement functionality here to delete all the associated courses
-        // only Add the to the overflow method
         // Create a toast evaluators like to see toast or messages for state changes
     }
 
     public void saveState(View view) {
         //TODO implement functionality to save the Term Data.
         // send up a toast Term Updated.
+
+
     }
 
     public void deleteState(View view) {

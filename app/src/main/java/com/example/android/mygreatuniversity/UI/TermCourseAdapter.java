@@ -21,7 +21,6 @@ import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.util.List;
 
-// TODO implement this adapter for the term courses to work properly
 public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.TermCourseViewHolder>{
     class TermCourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView termCourseItemView;
@@ -39,7 +38,6 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 //Or show this in the box below on the course screen.
                 int pos = getAdapterPosition();
                 //The current item on the list that is sent to the adapter. onClick()
-                //TODO implement
                 final Course curTermCourse = mTermCourses.get(pos);
                 // call repo
                 Intent intent = new Intent(context, CourseViewDetailed.class);
@@ -78,7 +76,6 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
 
     //TermAdapter constructor given a context
     public TermCourseAdapter(Context context) {
-        //TODO figure out why this is crashing here
         Log.d("adapter", "The Term-Course adapter has been started");
         mInflater = LayoutInflater.from(context);
         this.context = context;

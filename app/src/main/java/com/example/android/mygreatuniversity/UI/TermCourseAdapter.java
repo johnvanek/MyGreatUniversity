@@ -57,7 +57,7 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                         // previous screen cant figure out another way.
                         Intent intent = new Intent(context, TermView.class);
                         //Create a toast here if possible
-                        Toast.makeText(context,"TermCourses Changed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"Term Course Removed",Toast.LENGTH_SHORT).show();
                         context.startActivity(intent);
                     }
                 });

@@ -40,11 +40,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermViewDetailed extends AppCompatActivity {
-    //TODO need to change this functionality so that the user cannot click through on courses
-    // instead on click they should be given the option to delete the course via a snackbar.
-    // All this does is simply remove the course from the term by unassigned the termId or setting
-    // It to zero or negative 1 or something.
-
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -254,10 +249,8 @@ public class TermViewDetailed extends AppCompatActivity {
             }
         });
 
-        //TODO rework this so that courses and can be added and delete via selecting which ones the
-        // User wants to add or delete similar to mentor using spinners.
-
-
+        //TODO Add to the menu-bar of this activity a new overflow item to add terms which would take them to
+        // A new screen activity etc. This functionality should be similar to The add screen overflow that is to be added.
     }
 
     private void updateStartDateEditTextField() {
@@ -270,14 +263,7 @@ public class TermViewDetailed extends AppCompatActivity {
         termEnd.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
-    public void deleteAllCourses() {
-        //TODO implement functionality here to delete all the associated courses
-        // When these course are delete it should just unassigned there term ids
-        // Create a toast evaluators like to see toast or messages for state changes
-    }
-
     public void saveState(View view) {
-        //TODO test out this feature
         Term editedTerm = new Term(
                 termTitle.getText().toString(),
                 termStart.getText().toString(),
@@ -338,15 +324,27 @@ public class TermViewDetailed extends AppCompatActivity {
     }
 
     private void showSnackbarMessageDeletionAction() {
-        Snackbar snackbar = Snackbar.make(termCourseLayout,"You cannot delete a term while still enrolled in courses. If you would like to delete all Courses, Please confirm by clicking the action.",Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(termCourseLayout,"You cannot delete a term while still enrolled in courses. If you would like to remove all Courses, Please confirm by clicking the action.",Snackbar.LENGTH_LONG);
         snackbar.setDuration(6000);
         snackbar.setTextMaxLines(30);
 
-        snackbar.setAction("DELETE ALL Courses", new View.OnClickListener() {
+        snackbar.setAction("Remove All Courses", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO add a method call deletes the courses from a specified term probably wanna make this method in repo.
-                Toast.makeText(getApplicationContext(),"Deleting all of the courses associated with this term",Toast.LENGTH_SHORT).show();
+                // Need to call the update course method for every course than is in this list
+                termCourses.forEach(course -> {
+                    //This set the term Id for each course to 0 effectively making them -
+                    // Unassociated with any Terms.
+                    course.setTermID(0);
+                    repo.updateCourse(course);
+                });
+
+                //Start an intent and go back one level
+
+                Intent intent = new Intent(TermViewDetailed.this, TermView.class);
+                //Create a toast here if possible
+                Toast.makeText(getApplicationContext(),"All Courses Removed from Term",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
         });
         snackbar.show();

@@ -34,10 +34,10 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
 
             super(itemView); // of the list item
             termCourseItemView = itemView.findViewById(R.id.termCoursesListItemTextView);
-            //TODO got rid of this onClick listener could remove the came from termView Functionality
-            // In courseView detailed.
-
-            termCourseItemView.setOnLongClickListener(v -> {
+            //This is where you put your onClickListener inside the Constructor for each
+            // Course List Item
+            //Swap this so on a click
+            termCourseItemView.setOnClickListener(v -> {
                 Snackbar snackbar = Snackbar.make(termCourseItemView,"Remove Course From Term?",Snackbar.LENGTH_LONG);
                 snackbar.setDuration(5000);
                 snackbar.setTextMaxLines(30);
@@ -62,6 +62,42 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                     }
                 });
                 snackbar.show();
+            });
+
+            termCourseItemView.setOnLongClickListener(v -> {
+                //either show a more detailed screen of the course here
+                //Or show this in the box below on the course screen.
+                int pos = getAdapterPosition();
+                //The current item on the list that is sent to the adapter. onClick()
+                final Course curTermCourse = mTermCourses.get(pos);
+                // call repo
+                Intent intent = new Intent(context, CourseViewDetailed.class);
+                Repo repo = new Repo((Application) context.getApplicationContext());
+                //Give some extra data to the intent for the Course
+                intent.putExtra("id", curTermCourse.getCourseID());
+                intent.putExtra("title", curTermCourse.getTitle());
+                intent.putExtra("startDate", curTermCourse.getStartDate());
+                intent.putExtra("endDate", curTermCourse.getEndDate());
+                intent.putExtra("status", curTermCourse.getStatus());
+                //Also give some information for the mentor
+                Mentor courseMentor = repo.findMentorById(curTermCourse.getCourseMentorId());
+                if (courseMentor == null) {
+                    //default to the first course mentor
+                    courseMentor = mMentors.get(0);
+                }
+
+                //Put the courseMentor information in the intent as well
+                intent.putExtra("mentorId", courseMentor.getMentorID());
+                intent.putExtra("mentorName", courseMentor.getName());
+                intent.putExtra("mentorPhone", courseMentor.getPhoneNumber());
+                intent.putExtra("mentorEmail", courseMentor.getEmail());
+                //Put the associated Term information in
+                intent.putExtra("termID", curTermCourse.getTermID());
+                //Let the StateManager know that we are coming from the Term Detailed Activity
+                StateManager.setArrivedToCourseFromTermView(true);
+                //Go to the next screen in this case TermViewDetailed
+                context.startActivity(intent);
+
                 return false;
             });
         }

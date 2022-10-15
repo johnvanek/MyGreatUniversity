@@ -17,6 +17,7 @@ import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
+import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class TermView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //Assign the xml for the view
         super.onCreate(savedInstanceState);
+
+        //Set the Repo State in StateManager so that it can be accessed from adapters.
+        StateManager.setApp(getApplication());
         setContentView(R.layout.activity_term_view);
 
         Toolbar myToolbar = findViewById(R.id.toolbar);

@@ -26,6 +26,7 @@ import java.util.List;
 public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.TermCourseViewHolder>{
     class TermCourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView termCourseItemView;
+        Repo repo = new Repo(StateManager.getApp());
 
         //Constructor
         private TermCourseViewHolder(View itemView) {
@@ -33,42 +34,8 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
 
             super(itemView); // of the list item
             termCourseItemView = itemView.findViewById(R.id.termCoursesListItemTextView);
-            //This is where you put your onClickListener inside the Constructor for each
-            // Course List Item
-            termCourseItemView.setOnClickListener(v -> {
-                //either show a more detailed screen of the course here
-                //Or show this in the box below on the course screen.
-                int pos = getAdapterPosition();
-                //The current item on the list that is sent to the adapter. onClick()
-                final Course curTermCourse = mTermCourses.get(pos);
-                // call repo
-                Intent intent = new Intent(context, CourseViewDetailed.class);
-                Repo repo = new Repo((Application) context.getApplicationContext());
-                //Give some extra data to the intent for the Course
-                intent.putExtra("id", curTermCourse.getCourseID());
-                intent.putExtra("title", curTermCourse.getTitle());
-                intent.putExtra("startDate", curTermCourse.getStartDate());
-                intent.putExtra("endDate", curTermCourse.getEndDate());
-                intent.putExtra("status", curTermCourse.getStatus());
-                //Also give some information for the mentor
-                Mentor courseMentor = repo.findMentorById(curTermCourse.getCourseMentorId());
-                if (courseMentor == null) {
-                    //default to the first course mentor
-                    courseMentor = mMentors.get(0);
-                }
-
-                //Put the courseMentor information in the intent as well
-                intent.putExtra("mentorId", courseMentor.getMentorID());
-                intent.putExtra("mentorName", courseMentor.getName());
-                intent.putExtra("mentorPhone", courseMentor.getPhoneNumber());
-                intent.putExtra("mentorEmail", courseMentor.getEmail());
-                //Put the associated Term information in
-                intent.putExtra("termID", curTermCourse.getTermID());
-                //Let the StateManager know that we are coming from the Term Detailed Activity
-                StateManager.setArrivedToCourseFromTermView(true);
-                //Go to the next screen in this case TermViewDetailed
-                //context.startActivity(intent);
-            });
+            //TODO got rid of this onClick listener could remove the came from termView Functionality
+            // In courseView detailed.
 
             termCourseItemView.setOnLongClickListener(v -> {
                 Snackbar snackbar = Snackbar.make(termCourseItemView,"Remove Course From Term?",Snackbar.LENGTH_LONG);
@@ -78,8 +45,20 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 snackbar.setAction("Yes", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // TODO add a method call deletes the courses from a specified term probably wanna make this method in repo.
+                        int pos = getAdapterPosition();
+                        //The current item on the list that is sent to the adapter. onClick()
+                        final Course curTermCourse = mTermCourses.get(pos);
 
+                        Repo repo = new Repo((Application) context.getApplicationContext());
+                        //update the course setting its adapter to zero
+                        curTermCourse.setTermID(0);
+                        repo.updateCourse(curTermCourse);
+                        //In order to redraw the adapter I have to send to user back to the
+                        // previous screen cant figure out another way.
+                        Intent intent = new Intent(context, TermView.class);
+                        //Create a toast here if possible
+                        Toast.makeText(context,"TermCourses Changed",Toast.LENGTH_SHORT).show();
+                        context.startActivity(intent);
                     }
                 });
                 snackbar.show();

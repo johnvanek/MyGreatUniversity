@@ -1,11 +1,20 @@
 package com.example.android.mygreatuniversity.Utils;
 
-import com.example.android.mygreatuniversity.Entity.Course;
+import android.app.Application;
 
-import java.util.List;
+import com.example.android.mygreatuniversity.Database.Repo;
 
 public class StateManager {
+    static Application app;
+    public static void setApp(Application application) {
+        app = application;
+    }
+    public static Application getApp(){
+        return app;
+    }
     public static final class SelectedTerm {
+
+
         //Constructor
         private SelectedTerm () {
             // Do nada.. effectively final? Supposed to be a global static class.

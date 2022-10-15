@@ -2,6 +2,7 @@ package com.example.android.mygreatuniversity.UI;
 
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -77,6 +78,7 @@ public class MentorViewDetailed extends AppCompatActivity {
 
         //************ KEYBOARD HIDING ****************
         mentorName.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 mentorName.requestFocus();

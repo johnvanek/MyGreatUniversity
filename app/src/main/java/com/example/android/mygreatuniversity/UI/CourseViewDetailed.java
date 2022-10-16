@@ -37,6 +37,24 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+//TODO need to add assessments to the course probably by tracking they the same way as term by adding an integer ID field
+// 1) add an ID field in the course entity
+// 2) Make a similar repo method to filter all the courses that have the assessment ID
+// 3) Create the assessment entity
+// 4) Create the necessary methods is repo to account for that.
+// 5) Courses need to have notes added - probably a text area.
+// 5A This course note information needed to be auto-populated,
+// 6) Assessments are of two types either a Performance or an Objective.
+// 7) Need to be able to add them from Courses Aka the view detailed should have an overflow
+// 7) A this can be sent by using an intent text/plain using sms messaging
+// 8) Offer up a spinner to select one of the two types
+// 9) Assessments have titles, Start and End Dates
+// 10) Assessments need to be editable just like Courses
+// 11) Final steps are to Create the landscape view of everything & set up the
+// 12) Broadcast Receivers, Alarms with the intents via alarm manager for Courses & Assessments.
+// 13) Then have to answer the section about the paper writing requirements for.
+// 14) Sign the Apk and take a picture - but does not actually need to be submitted to the app store.
+
 public class CourseViewDetailed extends AppCompatActivity {
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();

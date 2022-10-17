@@ -40,6 +40,8 @@ import java.util.Locale;
 //TODO need to add assessments to the course probably by tracking they the same way as term by adding an integer ID field
 // 1) add an ID field in the course entity
 // 2) Make a similar repo method to filter all the courses that have the assessment ID
+//   2)A Need a way to add a new Course from the course view list screen ( Course View )
+//   2)B Going to also need to implement something Similar for assessment in course view detailed.
 // 3) Create the assessment entity
 // 4) Create the necessary methods is repo to account for that.
 // 5) Courses need to have notes added - probably a text area.

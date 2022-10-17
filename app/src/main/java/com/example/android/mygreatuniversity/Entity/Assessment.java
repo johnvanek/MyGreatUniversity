@@ -1,5 +1,6 @@
 package com.example.android.mygreatuniversity.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,6 +8,7 @@ import androidx.room.PrimaryKey;
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentID;
+    //Assessments know what course they belong too.
     private int assessmentCourseID;
     private String title;
     private String type;
@@ -61,6 +63,7 @@ public class Assessment {
         this.endDate = endDate;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Assessment{" +

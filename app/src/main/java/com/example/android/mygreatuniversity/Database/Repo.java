@@ -165,7 +165,7 @@ public class Repo {
         }
     }
     public List<Assessment> getAssessments() {
-        executor.execute(() -> mAssessmentDAO.getAssessments());
+        executor.execute(() -> mAssessments = mAssessmentDAO.getAssessments());
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {

@@ -57,7 +57,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     //default to the first course mentor
                     courseMentor = mMentors.get(0);
                 }
-
                 //Put the courseMentor information in the intent as well
                 intent.putExtra("mentorId", courseMentor.getMentorID());
                 intent.putExtra("mentorName", courseMentor.getName());

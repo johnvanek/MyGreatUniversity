@@ -101,7 +101,6 @@ public class TermViewDetailed extends AppCompatActivity {
         //This will crash if not valid id
         intentTermID = getIntent().getIntExtra("id", -1);
 
-
             //************ INTENT DATA PASSING ****************
             //If we have valid intent data use it.
             if(intentTermID != 0 && intentTermID != -1) {
@@ -248,7 +247,6 @@ public class TermViewDetailed extends AppCompatActivity {
                 hideKeyboard(this);
             }
         });
-
         //TODO Add to the menu-bar of this activity a new overflow item to add terms which would take them to
         // A new screen activity etc. This functionality should be similar to The add screen overflow that is to be added.
     }

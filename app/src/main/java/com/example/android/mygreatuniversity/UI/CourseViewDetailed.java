@@ -61,7 +61,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     final Calendar CalenderEnd = Calendar.getInstance();
 
     boolean arrivedFromIntent = true;
-    //Declarations for the fields
+    //Field Declarations
     EditText courseTitle;
     EditText startText, endText;
     TextView mentorTextView;

@@ -46,28 +46,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoTermView(MenuItem item) {
-        //TODO set the subheading of each page to modern governess university
-        // Either in the xml or by setting it onCreate
-
-        //TODO implement Terms
-        // 1. Create a user option to enter term titles (e.g., Term 1, Term 2, Spring Term), start dates, and end dates for each term.
-        // 2. Create features that allow the user to add as many terms as needed.
-        // 3. Implement validation so that a term cannot be deleted if courses are assigned to it.
-        // 4. Create features that allow the user to do the following for each term:
-        //      a. Add as many courses as needed
-        //          (Need to migrate most of the logic that was written for courses to Terms)
-        //          ( Aka Courses should be show inside of terms )
-        //      b. Display a list of Courses associated with each term
-        //      c. Display a detailed view of the term title (e.g., Term 1, Term 2, Spring Term), the start date, and the end date for each term
-
-
-        //TODO in order to implement Terms
-        // Going to need to create an adapter like with Courses.
-        // Should start off by showing a list of terms that goes to the detailed view.
-        //
-
-        //TODO for the detailed view of Terms
-        // Show a relevant list of courses
         Intent intent = new Intent(MainActivity.this, TermView.class);
         startActivity(intent);
     }
@@ -82,10 +60,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void gotoAssessmentView(MenuItem item) {
+        //TODO create Assessment View.class the UI should be similar to a list
+        Intent intent = new Intent(MainActivity.this, AssessmentView.class);
+        startActivity(intent);
+    }
+
     private void InsertDummyData() {
         // Call concrete method from a DAO here in order to get the pre-population
         // For the database working.
-        //TODO ADD to this method when assessment/ Term functionality is added.
+        //TODO ADD to this method when assessment creation is enabled to create dummy data for that
+        // as well.
+
         Repo repo = new Repo(getApplication());
         Log.d("DUMMYDATA", "The courses in the database before dummy data are " + repo.getCourses());
         // If there are no courses insert some dummy data
@@ -101,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             // Term which would be its parent ( Or else the Course can pick dates out of Range )
             //
             //TODO rework this dummy data so that it makes sense with assessments.
-
             repo.insertCourse(new Course("Mobile Development", "10/01/22","10/30/22","In Progress",1,1));
             repo.insertCourse(new Course("Operating Systems", "06/01/22", "07/30/22", "Completed",2,1));
             repo.insertCourse(new Course("Java Fundamentals", "08/01/22", "08/30/22", "Completed",3,1));

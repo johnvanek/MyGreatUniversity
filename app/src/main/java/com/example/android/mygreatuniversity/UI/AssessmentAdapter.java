@@ -14,10 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
-import com.example.android.mygreatuniversity.Entity.Course;
-import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
-import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.util.List;
 
@@ -27,15 +24,16 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
         //Constructor
         private AssessmentViewHolder(View itemView) {
-            //calls the parent constructor
+            // Calls the parent constructor
             super(itemView); // of the list item
             assessmentItemView = itemView.findViewById(R.id.assessmentListItemTextView);
-            //This is where you put your onClickListener inside the Constructor for each
+            // This is where you put your onClickListener inside the Constructor for each
             // Course List Item
             assessmentItemView.setOnClickListener(v -> {
-                //either show a more detailed screen of the course here
+                //Either show a more detailed screen of the course here
                 //Or show this in the box below on the course screen.
                 int pos = getAdapterPosition();
+
                 //The current item on the list that is sent to the adapter. onClick()
                 //TODO have to add assessments to repo make sure that the dao methods
                 // are implemented and then make sure that the database is Reproduced in dbb
@@ -50,8 +48,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 // The context should fix itself once this is created.
 
                 Intent intent = new Intent(context, AssessmentViewDetailed.class);
-                //Give some extra data to the intent
-                //
+
                 intent.putExtra("assessmentID", curAssessment.getAssessmentID());
                 intent.putExtra("title", curAssessment.getTitle());
                 intent.putExtra("startDate", curAssessment.getStartDate());
@@ -61,7 +58,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 //Using the mentorId from the course get the linked mentor
                 Repo repo = new Repo((Application) context.getApplicationContext());
                 //If the courseMentor was deleted this will return null so
-
+                //
                 //TODO create a lookup method for everything or else I have to keep passing
                 // the intent for the entire parent every single time.
                 // Should be a lookup method for by id for every Entity.

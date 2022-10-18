@@ -61,17 +61,13 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     //Intent data references might not need as many of these with lookup methods aka: the ids
     // replace the need to pass so much data through to the intents.
 
-    //TODO need to compare this to what is actually passed in from assessment view and then compare
-    // As to what you need. Need to replace the spinner ID here with two string values.
-
     String intentTitle, intentStartDate, intentEndDate, intentType;
     //mentor intent strings
     int intentCourseId;
     int intentAssessmentId;
 
     Repo repo = new Repo(getApplication());
-    // I mean right here I have access to repo which means that I can make a method to lookup all
-    // assessment information by the id.
+    // Could use repo to perform a lookup
 
     //Date References & Declarations
     String format = "MM/dd/yy";
@@ -298,6 +294,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     }
 
     public void saveState(View view) {
+
         Assessment editedAssessment = new Assessment(
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
@@ -307,8 +304,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         );
 
         //The primary key is auto-incremented in the database
-        //This must work since we can only get here from an intent.
-//        editedAssessment.setAssessmentID(intentAssessmentId); // This will set it to Id that was passed
+        editedAssessment.setAssessmentID(intentAssessmentId);
         repo.updateAssessment(editedAssessment);
 
         Intent intent;
@@ -317,7 +313,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         // and perhaps make a new line class in StateManager
         intent = new Intent(
                 AssessmentViewDetailed.this,
-                TermViewDetailed.class);
+                AssessmentView.class);
 
         //Change back to the intended destination. And let the user know a state change has occurred.
         Toast.makeText(getApplicationContext(), "Assessment Data Saved", Toast.LENGTH_SHORT).show();
@@ -325,7 +321,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     }
 
     public void deleteState(View view) {
-        //Delete the associated course
+
         Assessment editedAssessment = new Assessment(
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
@@ -334,7 +330,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
                 intentCourseId
         );
         //This is seems like a lot of work when I could just delete by the id
-        //TODO might need to reimplement this once more than one way to arrive to this class.
+
         editedAssessment.setAssessmentID(intentAssessmentId);
         repo.deleteAssessment(editedAssessment);
 

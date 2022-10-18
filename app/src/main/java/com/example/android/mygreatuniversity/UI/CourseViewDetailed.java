@@ -24,8 +24,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
@@ -82,6 +85,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     int intentTermId;
     int intentCourseId, intentMentorId;
     Repo repo = new Repo(getApplication());
+    List<Assessment>courseAssessments;
     //Date References & Declarations
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
@@ -149,6 +153,16 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorName.setText(mentorIntentName);
         mentorEmail.setText(mentorIntentEmail);
         mentorPhone.setText(mentorIntentPhone);
+        //Recycler View Logic
+        RecyclerView recyclerView = findViewById(R.id.courseAssessmentsRecycler);
+        // Set the TermAdapter and LayoutManger
+        final CourseAssessmentAdapter courseAssessmentAdapter = new CourseAssessmentAdapter(this);
+        recyclerView.setAdapter(courseAssessmentAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //Get the assessments that have the same course ID
+        courseAssessments = repo.getCourseAssessments(intentCourseId);
+        //And they display it in the recycler view
+        courseAssessmentAdapter.setCourseAssessments(courseAssessments);
         //************************* DATEPICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the

@@ -28,6 +28,7 @@ public class Repo {
     private Mentor mCourseMentor;
     private Term mTerm;
     private List<Course> mTermCourses;
+    private List<Assessment> mCourseAssessments;
 
     private static int NUMBER_OF_THREADS = 4;
     static final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -222,5 +223,17 @@ public class Repo {
         }
         Log.d("adapter", "In Repo attempting to get Term from an ID " + mTerm);
         return mTerm;
+    }
+    public List<Assessment> getCourseAssessments(int courseID) {
+        executor.execute(() -> {
+            mCourseAssessments = mAssessmentDAO.getCourseAssessments(courseID);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get assessments for a selected course " + mCourseAssessments);
+        return mCourseAssessments;
     }
 }

@@ -37,4 +37,18 @@ public class Utils {
         }
         return position;
     }
+    public static int assessmentTypePosition(Activity activity, String intentString){
+        Resources res = activity.getResources();
+        int position = 0;
+        int index = 0;
+        String[] assessment_type = res.getStringArray(R.array.type_array);
+        for (String type: assessment_type) {
+            if(intentString.equals(type)){
+                position = index;
+                break;
+            }
+            index++;
+        }
+        return position;
+    }
 }

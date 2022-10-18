@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         // This disables the night mode which changes the color the text to be unreadable.
@@ -105,7 +104,13 @@ public class MainActivity extends AppCompatActivity {
             // TODO need to refactor this insert statement so that it knows which course it belong to.
             //I believe that this is correct in that it is not index based and that it starts from 1.
 
-            repo.insertAssessment(new Assessment("Android dev","Performance","10/15/22","10/30/22",1));
+            repo.insertAssessment(new Assessment("Android App Dev","Performance","10/15/22","10/30/22",1));
+            repo.insertAssessment(new Assessment("OSx86 Basics","Objective","06/15/22","07/30/22",2));
+            repo.insertAssessment(new Assessment("Java App-1","Performance","08/15/22","08/30/22",3));
+            repo.insertAssessment(new Assessment("ECMAScript Cert.","Objective","12/15/22","01/30/22",4));
+            repo.insertAssessment(new Assessment("GangOfFour Test","Objective","07/15/22","08/30/22",5));
+
+
             Log.d("DUMMYCOURSE", "The Dummy courses are " + repo.getCourses());
             Log.d("DUMMYMENTOR", "The Dummy mentors are " + repo.getMentors());
             Log.d("DUMMYASSESSMENT", "The Dummy assessments are " + repo.getAssessments());

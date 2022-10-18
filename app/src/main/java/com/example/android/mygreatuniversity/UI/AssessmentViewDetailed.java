@@ -1,5 +1,6 @@
 package com.example.android.mygreatuniversity.UI;
 
+import static com.example.android.mygreatuniversity.Utils.Utils.assessmentTypePosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
@@ -119,7 +120,10 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         // correctly
 
         //Get and assign the intent data to local variables
-        intentCourseId = getIntent().getIntExtra("id", -1);
+        //These default to negative 1 so I will know if the intent passed successfully.
+
+        intentAssessmentId = getIntent().getIntExtra("assessmentID", -1);
+        intentCourseId = getIntent().getIntExtra("courseID", -1);
         intentTitle = getIntent().getStringExtra("title");
         intentStartDate = getIntent().getStringExtra("startDate");
         intentEndDate = getIntent().getStringExtra("endDate");
@@ -133,8 +137,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
         //Assign the Intent Data to the Fields
         assessmentTitle.setText(intentTitle);
-        //If this does not match one of the spinner values it is set to In-Progress
-        typeSpinner.setSelection(courseStatusPosition(this, intentType));
+        typeSpinner.setSelection(assessmentTypePosition(this, intentType));
         assessmentStart.setText(intentStartDate);
         assessmentEnd.setText(intentEndDate);
 

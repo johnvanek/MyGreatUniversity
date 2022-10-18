@@ -26,6 +26,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
@@ -48,25 +49,29 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
     boolean arrivedFromIntent = true;
     //Field Declarations
-    EditText courseTitle;
-    EditText startText, endText;
-    TextView mentorTextView;
+    EditText assessmentTitle;
+    EditText assessmentStart, assessmentEnd;
+    //TextView mentorTextView;
     Spinner typeSpinner;
     //MentorSpinnerAdapter mentorSpinnerAdapter;
     CardView assessmentCard;
-
     ConstraintLayout assessmentLayout;
-    // Mentor fields
-    EditText titleEditText;
-    // Don't think I need the same amount of edit Texts as Course
-    //intent data references
+
+    //Intent data references might not need as many of these with lookup methods aka: the ids
+    // replace the need to pass so much data through to the intents.
+
     //TODO need to compare this to what is actually passed in from assessment view and then compare
     // As to what you need.
-    String intentTitle, intentStartDate, intentEndDate, intentStatus;
+
+    String intentTitle, intentStartDate, intentEndDate, intentType;
     //mentor intent strings
-    int intentTermId;
     int intentCourseId;
+    int intentAssessmentId;
+
     Repo repo = new Repo(getApplication());
+    // I mean right here I have access to repo which means that I can make a method to lookup all
+    // assessment information by the id.
+
     //Date References & Declarations
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
@@ -82,13 +87,12 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         //***************** DISPLAY LOGIC *************
         //Sets the activity
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_view_detailed);
+        setContentView(R.layout.activity_assessment_view_detailed);
         //Assigns the toolbar from xml
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         //Define an actionbar reference for shorthand
         ActionBar actionBar = getSupportActionBar();
-
         //Set nav icon location as back if child
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);   //show back button
@@ -102,41 +106,38 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         // These are probably not going to work until the red errors for the rest of the file are gone
 
 
-        titleEditText = findViewById(R.id.assessmentTitleEditText;
-        startText = findViewById(R.id.assessmentStart);
-        endText = findViewById(R.id.editTextEmail);
-        typeSpinner = findViewById(R.id.spinnerStatus);
-        assessmentLayout = findViewById(R.id.LayoutCourse);
-        //Mentor Declarations
+        assessmentTitle = findViewById(R.id.assessmentTitleEditText);
+        assessmentStart = findViewById(R.id.assessmentStart);
+        assessmentEnd = findViewById(R.id.assessmentEnd);
+        typeSpinner = findViewById(R.id.spinnerType);
+        assessmentLayout = findViewById(R.id.assessmentLayout);
+        //Assessment Declarations
 
-        titleEditText = findViewById(R.id.mentorNameText);
-        mentorEmail = findViewById(R.id.mentorEmailText);
-        assessmentCard = findViewById(R.id.courseViewMentorCard);
-        mentorTextView = findViewById(R.id.mentorLabel);
+        assessmentCard = findViewById(R.id.assessmentCard);
+
+        //TODO have to check what the previous values passed in were make sure that they match up
+        // correctly
 
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
         intentTitle = getIntent().getStringExtra("title");
         intentStartDate = getIntent().getStringExtra("startDate");
         intentEndDate = getIntent().getStringExtra("endDate");
-        intentStatus = getIntent().getStringExtra("status");
-        //Mentor intent data
-        intentMentorId = getIntent().getIntExtra("mentorId", -1);
-        mentorIntentName = getIntent().getStringExtra("mentorName");
-        mentorIntentPhone = getIntent().getStringExtra("mentorPhone");
-        mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
-        //Term intent data
-        intentTermId = getIntent().getIntExtra("termID", -1);
-        //Assign the XML Fields the values from the intents or that have been edited
-        courseTitle.setText(intentTitle);
+        intentType = getIntent().getStringExtra("type");
+//       // Might need Course Data but currently do not need any mentor data.
+
+//       intentMentorId = getIntent().getIntExtra("mentorId", -1);
+//       mentorIntentName = getIntent().getStringExtra("mentorName");
+//       mentorIntentPhone = getIntent().getStringExtra("mentorPhone");
+//       mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
+
+        //Assign the Intent Data to the Fields
+        assessmentTitle.setText(intentTitle);
         //If this does not match one of the spinner values it is set to In-Progress
-        typeSpinner.setSelection(courseStatusPosition(this, intentStatus));
-        startText.setText(intentStartDate);
-        endText.setText(intentEndDate);
-        //Set the XML fields for the mentor section
-        titleEditText.setText(mentorIntentName);
-        mentorEmail.setText(mentorIntentEmail);
-        .setText(mentorIntentPhone);
+        typeSpinner.setSelection(courseStatusPosition(this, intentType));
+        assessmentStart.setText(intentStartDate);
+        assessmentEnd.setText(intentEndDate);
+
         //************************* DATEPICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
@@ -161,97 +162,97 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         //There is a slight UI problem if the user continues to scroll to the bottom of the Mentor view
         //And tries to click there as the title will still be in focus cant resolve.
 
-        courseTitle.setOnTouchListener(new View.OnTouchListener() {
+        assessmentTitle.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                courseTitle.requestFocus();
-                courseTitle.setCursorVisible(true);
+                assessmentTitle.requestFocus();
+                assessmentTitle.setCursorVisible(true);
                 return false;
             }
         });
 
-        courseTitle.setOnEditorActionListener((v, actionId, event) -> {
+        assessmentTitle.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                courseTitle.clearFocus();
-                courseTitle.setCursorVisible(false);
+                assessmentTitle.clearFocus();
+                assessmentTitle.setCursorVisible(false);
                 hideKeyboard(this);
             }
             return false;
         });
 
         //I do not think that this actually works
-        courseTitle.setOnFocusChangeListener((v, hasFocus) -> {
+        assessmentTitle.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                courseTitle.clearFocus();
-                courseTitle.setCursorVisible(false);
+                assessmentTitle.clearFocus();
+                assessmentTitle.setCursorVisible(false);
             }
-            hideKeyboard(CourseViewDetailed.this);
+            hideKeyboard(AssessmentViewDetailed.this);
         });
 
-        startText.setOnClickListener(view -> {
+        assessmentStart.setOnClickListener(view -> {
             //Hide the flickering coming from the title
-            courseTitle.clearFocus();
-            courseTitle.setCursorVisible(false);
+            assessmentTitle.clearFocus();
+            assessmentTitle.setCursorVisible(false);
 
-            hideKeyboard(CourseViewDetailed.this);
-            new DatePickerDialog(CourseViewDetailed.this,
+            hideKeyboard(AssessmentViewDetailed.this);
+            new DatePickerDialog(AssessmentViewDetailed.this,
                     startDatePicker, CalenderStart.get(Calendar.YEAR),
                     CalenderStart.get(Calendar.MONTH),
                     CalenderStart.get(Calendar.DAY_OF_MONTH))
                     .show();
-            startText.requestFocus();
+            assessmentStart.requestFocus();
         });
 
         assessmentLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(CourseViewDetailed.this);
-                courseTitle.clearFocus();
-                courseTitle.setCursorVisible(false);
+                hideKeyboard(AssessmentViewDetailed.this);
+                assessmentTitle.clearFocus();
+                assessmentTitle.setCursorVisible(false);
                 return false;
             }
         });
 
-        endText.setOnClickListener(view -> {
+        assessmentEnd.setOnClickListener(view -> {
             //Hide the flickering coming from the title
-            courseTitle.clearFocus();
-            courseTitle.setCursorVisible(false);
+            assessmentTitle.clearFocus();
+            assessmentTitle.setCursorVisible(false);
             // And get the current focus
-            courseTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-            hideKeyboard(CourseViewDetailed.this);
-            new DatePickerDialog(CourseViewDetailed.this,
+            assessmentTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+            hideKeyboard(AssessmentViewDetailed.this);
+            new DatePickerDialog(AssessmentViewDetailed.this,
                     endDatePicker, CalenderEnd.get(Calendar.YEAR),
                     CalenderEnd.get(Calendar.MONTH),
                     CalenderEnd.get(Calendar.DAY_OF_MONTH))
                     .show();
-            endText.requestFocus();
+            assessmentEnd.requestFocus();
         });
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
 
         myToolbar.setOnClickListener(v -> {
             hideKeyboard(this);
-            courseTitle.clearFocus();
+            assessmentTitle.clearFocus();
         });
 
         assessmentLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(CourseViewDetailed.this);
-                courseTitle.setCursorVisible(false);
-                courseTitle.clearFocus();
+                hideKeyboard(AssessmentViewDetailed.this);
+                assessmentTitle.setCursorVisible(false);
+                assessmentTitle.clearFocus();
                 return false;
             }
 
         });
 
-        startText.setOnFocusChangeListener((view, hasFocus) -> {
+        assessmentStart.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
                 hideKeyboard(this);
             }
         });
 
-        endText.setOnFocusChangeListener((view, hasFocus) -> {
+        assessmentEnd.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
                 hideKeyboard(this);
             }
@@ -261,154 +262,87 @@ public class AssessmentViewDetailed extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 v.performClick();
-                hideKeyboard(CourseViewDetailed.this);
-                courseTitle.setCursorVisible(false);
-                courseTitle.clearFocus();
+                hideKeyboard(AssessmentViewDetailed.this);
+                assessmentTitle.setCursorVisible(false);
+                assessmentTitle.clearFocus();
                 return false;
             }
         });
 
         //SPINNER POPULATION FROM ROOM DATABASE
-        mentorSpinner = findViewById(R.id.mentorSpinner);
+        typeSpinner = findViewById(R.id.spinnerType);
         //Part of the Keyboard hiding logic
-        mentorSpinner.setOnTouchListener(new View.OnTouchListener() {
+        typeSpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 v.performClick();
-                hideKeyboard(CourseViewDetailed.this);
-                courseTitle.setCursorVisible(false);
-                courseTitle.clearFocus();
+                hideKeyboard(AssessmentViewDetailed.this);
+                assessmentTitle.setCursorVisible(false);
+                assessmentTitle.clearFocus();
                 return false;
-            }
-        });
-
-        //This is a list of mentors from the room database
-        List<Mentor> mentorList = repo.getMentors();
-        //This converts the list from Mentors to an array to be used by the mentor spinner adapter.
-        Mentor[] mentorArray = mentorList.toArray(new Mentor[0]);
-        mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseViewDetailed.this,
-                R.layout.mentor_spinner_item,
-                mentorArray);
-        mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
-        //mentorSpinner.setSelection(intentMentorId - 1);
-        //set the adapter
-        mentorSpinner.setAdapter(mentorSpinnerAdapter);
-        mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            //Token test
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view,
-                                       int position, long id) {
-                // Note that is a a mentor is deleted that is assigned it will default to the first mentor.
-                // The position here has defaulted to zero from the override
-                if (arrivedFromIntent) {
-                    Mentor[] mentorValues = mentorSpinnerAdapter.returnValuesAsArray();
-                    //DO something here
-                    int intentMentorPosition = 0;
-                    for (Mentor spinnerMentor : mentorValues) {
-                        if (spinnerMentor.getMentorID() == intentMentorId) {
-                            //Verify that this is different
-                            intentMentorPosition = mentorSpinnerAdapter.getPosition(spinnerMentor);
-                            //Need to also change the first value of this to be
-                            mentorSpinner.setSelected(true);
-                            mentorSpinner.setSelection(intentMentorPosition);
-                        }
-                    }
-                    arrivedFromIntent = false;
-                }
-                //Set the data related to the Selection.
-                Mentor currentSelectedMentor = (Mentor) mentorSpinner.getSelectedItem();
-                //mentorSpinner.setSelection(intentMentorPosition);
-                titleEditText.setText(currentSelectedMentor.getName());
-                .setText(currentSelectedMentor.getPhoneNumber());
-                mentorEmail.setText(currentSelectedMentor.getEmail());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapter) {
             }
         });
     }
 
     private void updateStartDateEditTextField() {
         hideKeyboard(this);
-        startText.setText(dateFormat.format(CalenderStart.getTime()));
+        assessmentStart.setText(dateFormat.format(CalenderStart.getTime()));
     }
 
     private void updateEndDateEditTextField() {
         hideKeyboard(this);
-        endText.setText(dateFormat.format(CalenderEnd.getTime()));
+        assessmentEnd.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
     public void saveState(View view) {
-        Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
-        Course editedCourse = new Course(
-                courseTitle.getText().toString(),
-                startText.getText().toString(),
-                endText.getText().toString(),
+        Assessment editedAssessment = new Assessment(
+                assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
-                selectedMentor.getMentorID(),
-                intentTermId
+                assessmentStart.getText().toString(),
+                assessmentEnd.getText().toString()
         );
 
         //The primary key is auto-incremented in the database
-        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
-        repo.updateCourse(editedCourse);
+        //This must work since we can only get here from an intent.
+        editedAssessment.setAssessmentID(intentAssessmentId); // This will set it to Id that was passed
+        repo.updateAssessment(editedAssessment);
 
         Intent intent;
         //If there is a valid selected term take us back
-        if (StateManager.SelectedTerm.isTermSelected()) {
-            intent = new Intent(
-                    AssessmentViewDetailed.this,
-                    TermViewDetailed.class);
-        } else {
-            //Must have come from the course Activity Then
-            intent = new Intent(
-                    CourseViewDetailed.this,
-                    CourseView.class);
-        }
+        //TODO determine if I still need to roll this type of functionality latte
+        // and perhaps make a new line class in Statemanager
+        intent = new Intent(
+                AssessmentViewDetailed.this,
+                TermViewDetailed.class);
+
         //Change back to the intended destination. And let the user know a state change has occurred.
-        Toast.makeText(getApplicationContext(),"Course Data Saved",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Assessment Data Saved", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
     public void deleteState(View view) {
-        Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
         //Delete the associated course
-        Course editedCourse = new Course(
-                courseTitle.getText().toString(),
-                startText.getText().toString(),
-                endText.getText().toString(),
+        Assessment editedAssessment = new Assessment(
+                assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
-                selectedMentor.getMentorID(),
-                intentTermId
+                assessmentStart.getText().toString(),
+                assessmentEnd.getText().toString()
         );
         //This is seems like a lot of work when I could just delete by the id
-        editedCourse.setCourseID(intentCourseId);
-        repo.deleteCourse(editedCourse);
+        //TODO might need to reimplement this once more than one way to arrive to this class.
+        editedAssessment.setAssessmentID(intentAssessmentId);
+        repo.deleteAssessment(editedAssessment);
 
         //Declare the intent
         Intent intent;
         //If we arrived here from the TermViewDetailed Screen essentially. We want to return to that
         // activity. And we will pass in the current intent since we currently the term information.
-        if (StateManager.isArrivedToCourseFromTermView()) {
-            intent = new Intent(
-                    CourseViewDetailed.this,
-                    TermViewDetailed.class);
-            //Give some extra data to the intent
-            Term term = repo.lookupTermById(intentTermId);
-            intent.putExtra("id", term.getTermID());
-            intent.putExtra("title", term.getTitle());
-            intent.putExtra("startDate", term.getStartDate());
-            intent.putExtra("endDate" , term.getEndDate());
-        } else {
-            //Must have come from the course Activity Then and we do not need to pass data back
-            //via the intent.
-            intent = new Intent(
-                    CourseViewDetailed.this,
-                    CourseView.class);
-        }
-        Toast.makeText(getApplicationContext(),"Course Deleted",Toast.LENGTH_SHORT).show();
+
+        intent = new Intent(
+                AssessmentViewDetailed.this,
+                AssessmentView.class);
+
+        Toast.makeText(getApplicationContext(),"Assessment Deleted",Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 }

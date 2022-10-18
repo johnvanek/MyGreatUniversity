@@ -71,7 +71,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
                         android:layout_width="354dp"
-                        android:layout_height="593dp"
+                        android:layout_height="300dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/term_header">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView"
+                            android:id="@+id/assessmentCard"
                             android:layout_width="338dp"
                             android:layout_height="259dp"
                             android:focusable="true"
@@ -92,7 +92,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/LayoutCourse"
+                                android:id="@+id/assessmentLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="8dp"

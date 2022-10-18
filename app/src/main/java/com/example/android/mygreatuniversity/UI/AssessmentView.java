@@ -41,11 +41,10 @@ public class AssessmentView extends AppCompatActivity {
         Repo repo = new Repo(getApplication());
         List<Assessment> assessments = repo.getAssessments();
         //Set the CourseAdapter and LayoutManger
-        //TODO going to have to create a new assessment adapter
-//        final CourseAdapter courseAdapter = new CourseAdapter(this);
-//        recyclerView.setAdapter(courseAdapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        //Set The Assessments Via the adapter
-//        courseAdapter.setMentors(assessments);
+        final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
+        recyclerView.setAdapter(assessmentAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //Set The Assessments Via the adapter
+        assessmentAdapter.setAssessments(assessments);
     }
 }

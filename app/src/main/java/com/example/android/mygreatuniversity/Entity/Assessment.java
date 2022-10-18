@@ -15,12 +15,13 @@ public class Assessment {
     private String startDate;
     private String endDate;
 
-    public Assessment(String title, String type, String startDate, String endDate) {
+    public Assessment(String title, String type, String startDate, String endDate, int assessmentCourseID) {
         this.assessmentCourseID = -1;
         this.title = title;
         this.type = type;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.assessmentCourseID = assessmentCourseID;
     }
 
     public int getAssessmentID() {

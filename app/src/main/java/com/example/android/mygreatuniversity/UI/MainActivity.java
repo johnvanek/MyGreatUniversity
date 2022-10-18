@@ -81,19 +81,13 @@ public class MainActivity extends AppCompatActivity {
             //Values for Status
             // In-Progress -- Completed -- Dropped -- Plan To Take
 
-            //TODO need to figure out a way to reimplement this so that
-            // The terms need to be associated with Courses
-            // So That when The Date-Picker for Courses needs to be a Subset of the DateRange from
-            // Term which would be its parent ( Or else the Course can pick dates out of Range )
-            //
-            //TODO rework this dummy data so that it makes sense with assessments.
+            //******Courses******
             repo.insertCourse(new Course("Mobile Development", "10/01/22","10/30/22","In Progress",1,1));
             repo.insertCourse(new Course("Operating Systems", "06/01/22", "07/30/22", "Completed",2,1));
             repo.insertCourse(new Course("Java Fundamentals", "08/01/22", "08/30/22", "Completed",3,1));
             repo.insertCourse(new Course("Javascript Basics", "12/01/22", "01/30/22", "Plan To Take",4,1));
             repo.insertCourse(new Course("Design Patterns", "07/01/22", "07/15/22", "Dropped",5,1));
 
-            //TODO determine if the functionality for mentors would still work if relocated.
             //******Mentors******
             //Should always be at least one or else Course view detailed will throw an error.
             repo.insertMentor(new Mentor("Sarah Conor", "561-123-1991", "ResistSky@gmail.com"));
@@ -107,8 +101,14 @@ public class MainActivity extends AppCompatActivity {
             repo.insertTerm(new Term("Spring2022","6/01/22","12/31/22"));
             repo.insertTerm(new Term("Fall2023","01//01/23","5/31/23"));
 
+            //******Assessments******
+            // TODO need to refactor this insert statement so that it knows which course it belong to.
+            //I believe that this is correct in that it is not index based and that it starts from 1.
+
+            repo.insertAssessment(new Assessment("Android dev","Performance","10/15/22","10/30/22",1));
             Log.d("DUMMYCOURSE", "The Dummy courses are " + repo.getCourses());
             Log.d("DUMMYMENTOR", "The Dummy mentors are " + repo.getMentors());
+            Log.d("DUMMYASSESSMENT", "The Dummy assessments are " + repo.getAssessments());
         }
     }
 

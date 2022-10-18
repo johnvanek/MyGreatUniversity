@@ -61,7 +61,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     // replace the need to pass so much data through to the intents.
 
     //TODO need to compare this to what is actually passed in from assessment view and then compare
-    // As to what you need.
+    // As to what you need. Need to replace the spinner ID here with two string values.
 
     String intentTitle, intentStartDate, intentEndDate, intentType;
     //mentor intent strings
@@ -138,7 +138,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         assessmentStart.setText(intentStartDate);
         assessmentEnd.setText(intentEndDate);
 
-        //************************* DATEPICKER LOGIC START & END ************************
+        //************************* DATE-PICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
         // condition of if the Dialog date is modified or assigned.
@@ -299,18 +299,19 @@ public class AssessmentViewDetailed extends AppCompatActivity {
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),
-                assessmentEnd.getText().toString()
+                assessmentEnd.getText().toString(),
+                intentCourseId
         );
 
         //The primary key is auto-incremented in the database
         //This must work since we can only get here from an intent.
-        editedAssessment.setAssessmentID(intentAssessmentId); // This will set it to Id that was passed
+//        editedAssessment.setAssessmentID(intentAssessmentId); // This will set it to Id that was passed
         repo.updateAssessment(editedAssessment);
 
         Intent intent;
         //If there is a valid selected term take us back
-        //TODO determine if I still need to roll this type of functionality latte
-        // and perhaps make a new line class in Statemanager
+        //TODO determine if I still need to roll this type of functionality latter
+        // and perhaps make a new line class in StateManager
         intent = new Intent(
                 AssessmentViewDetailed.this,
                 TermViewDetailed.class);
@@ -326,7 +327,8 @@ public class AssessmentViewDetailed extends AppCompatActivity {
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),
-                assessmentEnd.getText().toString()
+                assessmentEnd.getText().toString(),
+                intentCourseId
         );
         //This is seems like a lot of work when I could just delete by the id
         //TODO might need to reimplement this once more than one way to arrive to this class.

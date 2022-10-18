@@ -28,5 +28,9 @@
         <item>Dropped</item>
         <item>Plan To Take</item>
     </string-array>
+    <string-array name="type_array">
+        <item>Performance</item>
+        <item>Objective</item>
+    </string-array>
 
 </resources>

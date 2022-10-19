@@ -544,7 +544,7 @@
                                 android:layout_height="60dp"
                                 android:backgroundTint="@color/WguGold"
                                 android:fontFamily="@font/convergence"
-                                android:onClick="saveState"
+                                android:onClick="sendNote"
                                 android:shadowColor="@color/NeutralGray"
                                 android:shadowDx="3"
                                 android:shadowDy="2"

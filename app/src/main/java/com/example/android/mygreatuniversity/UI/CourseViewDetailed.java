@@ -486,6 +486,11 @@ public class CourseViewDetailed extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Course Deleted",Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
+
+    public void sendNote(View view) {
+        //TODO implement sms messaging
+
+    }
 }
 
 

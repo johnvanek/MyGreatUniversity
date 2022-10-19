@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -60,20 +61,22 @@ public class CourseViewDetailed extends AppCompatActivity {
     boolean arrivedFromIntent = true;
     //Field Declarations
     EditText courseTitle;
-    EditText startText, endText;
-    TextView mentorTextView;
+    EditText startText, endText, courseNoteEditText;
+    TextView mentorTextView, noteCardLabel, courseLabel;
     Spinner courseStatus;
     Spinner mentorSpinner;
     MentorSpinnerAdapter mentorSpinnerAdapter;
-    CardView mentorCard;
+    CardView mentorCard,noteCard;
+    Button sendButton;
 
-    ConstraintLayout courseLayout;
+    ConstraintLayout courseLayout,courseNoteLayout,generalLayout;
     // Mentor fields
     EditText mentorName, mentorPhone, mentorEmail;
     //intent data references
     String intentTitle, intentStartDate, intentEndDate, intentStatus;
     //mentor intent strings
     String mentorIntentName, mentorIntentPhone, mentorIntentEmail;
+
     int intentTermId;
     int intentCourseId, intentMentorId;
     Repo repo = new Repo(getApplication());
@@ -105,16 +108,16 @@ public class CourseViewDetailed extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);   //show back button
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
 
-        //************ INTENT DATA PASSING ****************
-        //XML FIELD DECLARATIONS
+        //XML FIELD Assignments
 
-        //Course Declarations
+        //Course Assignments
         courseTitle = findViewById(R.id.editTextName);
         startText = findViewById(R.id.editTextPhone);
         endText = findViewById(R.id.editTextEmail);
         courseStatus = findViewById(R.id.spinnerStatus);
         courseLayout = findViewById(R.id.LayoutCourse);
-        //Mentor Declarations
+        courseLabel = findViewById(R.id.course_label);
+        //Mentor Assignments
 
         mentorName = findViewById(R.id.mentorNameText);
         mentorPhone = findViewById(R.id.mentorPhoneText);
@@ -122,6 +125,13 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorCard = findViewById(R.id.courseViewMentorCard);
         mentorTextView = findViewById(R.id.mentorLabel);
 
+        //Note Assignments
+        noteCard = findViewById(R.id.courseNoteCard);
+        courseNoteLayout = findViewById(R.id.cardNoteLayout);
+        noteCardLabel = findViewById(R.id.notesLabel);
+        courseNoteEditText = findViewById(R.id.courseNotesEditText);
+        generalLayout = findViewById(R.id.generalLayout);
+        //************ INTENT DATA PASSING ****************
         //Get and assign the intent data to local variables
         intentCourseId = getIntent().getIntExtra("id", -1);
         intentTitle = getIntent().getStringExtra("title");
@@ -133,7 +143,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         mentorIntentName = getIntent().getStringExtra("mentorName");
         mentorIntentPhone = getIntent().getStringExtra("mentorPhone");
         mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
-        //Term intent data
+        //Term intent data //
         intentTermId = getIntent().getIntExtra("termID", -1);
         //Assign the XML Fields the values from the intents or that have been edited
         courseTitle.setText(intentTitle);
@@ -178,6 +188,49 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Known Issues ****
         //There is a slight UI problem if the user continues to scroll to the bottom of the Mentor view
         //And tries to click there as the title will still be in focus cant resolve.
+
+        //Hiding for the note card ime action done does not work unless it is set to a single-line.
+
+        //Set it so that when it is focused it looks correct
+        courseLabel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                courseTitle.clearFocus();
+                courseTitle.setCursorVisible(false);
+                hideKeyboard(CourseViewDetailed.this);
+                return false;
+            }
+        });
+
+        courseNoteEditText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(CourseViewDetailed.this);
+                courseNoteEditText.requestFocus();
+                courseNoteEditText.setCursorVisible(true);
+                return false;
+            }
+        });
+
+        noteCardLabel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(CourseViewDetailed.this);
+                courseNoteEditText.clearFocus();
+                courseNoteEditText.setCursorVisible(false);
+                return false;
+            }
+        });
+
+        noteCardLabel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(CourseViewDetailed.this);
+                courseNoteEditText.clearFocus();
+                courseNoteEditText.setCursorVisible(false);
+                return false;
+            }
+        });
 
         courseTitle.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -408,7 +461,7 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         repo.deleteCourse(editedCourse);
 
-        //Declare the inten
+        //Declare the intent
         Intent intent;
         //If we arrived here from the TermViewDetailed Screen essentially. We want to return to that
         // activity. And we will pass in the current intent since we currently the term information.

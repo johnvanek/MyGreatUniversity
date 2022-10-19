@@ -49,12 +49,16 @@
                 app:cardElevation="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/generalLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/term_header"
+                        android:id="@+id/course_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/convergence"
@@ -76,7 +80,7 @@
                         android:focusableInTouchMode="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/term_header">
+                        app:layout_constraintTop_toBottomOf="@+id/course_label">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/courseViewMentorCard"
@@ -498,14 +502,20 @@
                         android:id="@+id/courseNoteCard"
                         android:layout_width="338dp"
                         android:layout_height="259dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         app:cardCornerRadius="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/notesLabel">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cardNoteLayout"
                             android:layout_width="match_parent"
                             android:layout_height="260dp"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
                             tools:layout_editor_absoluteX="2dp"
                             tools:layout_editor_absoluteY="2dp">
 
@@ -515,7 +525,6 @@
                                 android:layout_height="200dp"
                                 android:backgroundTint="@color/NeutralLightGray"
                                 android:defaultFocusHighlightEnabled="false"
-                                android:digits="@string/digitsForText"
                                 android:ems="10"
                                 android:enabled="true"
                                 android:focusedByDefault="false"
@@ -530,7 +539,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <Button
-                                android:id="@+id/saveButton2"
+                                android:id="@+id/sendNoteButton"
                                 android:layout_width="100dp"
                                 android:layout_height="60dp"
                                 android:backgroundTint="@color/WguGold"

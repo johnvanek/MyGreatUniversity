@@ -24,7 +24,7 @@
             android:parentActivityName=".UI.AssessmentView" />  <!--  !-->
         <activity
             android:name=".UI.CourseViewDetailed"
-            android:windowSoftInputMode="stateAlwaysHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false"
             android:parentActivityName=".UI.TermViewDetailed" />  <!--  !-->
         <activity

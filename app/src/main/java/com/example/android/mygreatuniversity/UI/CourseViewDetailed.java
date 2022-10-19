@@ -489,6 +489,21 @@ public class CourseViewDetailed extends AppCompatActivity {
 
     public void sendNote(View view) {
         //TODO implement sms messaging
+        //Create the Intent
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        String title = courseTitle.getText().toString();
+        String message = courseNoteEditText.getText().toString();
+        if (!courseNoteEditText.getText().toString().equals("")) {
+            //Assign the values of the Intent
+            sendIntent.putExtra(Intent.EXTRA_TITLE, title + " Note");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+            sendIntent.setType("text/plain");
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(sendIntent);
+        } else {
+            Toast.makeText(this,"Please Enter A Note", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

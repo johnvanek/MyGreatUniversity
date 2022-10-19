@@ -41,18 +41,10 @@ import java.util.List;
 import java.util.Locale;
 
 //TODO need to add assessments to the course probably by tracking they the same way as term by adding an integer ID field
-// 1) add an ID field in the course entity
-// 2) Make a similar repo method to filter all the courses that have the assessment ID
-//   2)A Need a way to add a new Course from the course view list screen ( Course View )
-//   2)B Going to also need to implement something Similar for assessment in course view detailed.
-// 3) Create the assessment entity
-// 4) Create the necessary methods is repo to account for that.
 // 5) Courses need to have notes added - probably a text area.
 // 5A This course note information needed to be auto-populated,
-// 6) Assessments are of two types either a Performance or an Objective.
 // 7) Need to be able to add them from Courses Aka the view detailed should have an overflow
 // 7) A this can be sent by using an intent text/plain using sms messaging
-// 8) Offer up a spinner to select one of the two types
 // 9) Assessments have titles, Start and End Dates
 // 10) Assessments need to be editable just like Courses
 // 11) Final steps are to Create the landscape view of everything & set up the
@@ -411,12 +403,16 @@ public class CourseViewDetailed extends AppCompatActivity {
         );
         //This is seems like a lot of work when I could just delete by the id
         editedCourse.setCourseID(intentCourseId);
+        //TODO check the interaction when a course is deleted. I believe this interaction is satisfactory.
+        // Need to update the course entity so courseNotes is kept track off.
+
         repo.deleteCourse(editedCourse);
 
-        //Declare the intent
+        //Declare the inten
         Intent intent;
         //If we arrived here from the TermViewDetailed Screen essentially. We want to return to that
         // activity. And we will pass in the current intent since we currently the term information.
+
         if (StateManager.isArrivedToCourseFromTermView()) {
             intent = new Intent(
                     CourseViewDetailed.this,

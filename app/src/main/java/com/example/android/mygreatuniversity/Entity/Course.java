@@ -13,6 +13,7 @@ public class Course {
     private String status;
     private int courseMentorId;
     private int termID;
+    private String courseNotes;
 
     public Course(String title, String startDate, String endDate, String status, int courseMentorId, int termID) {
         this.title = title;
@@ -21,6 +22,8 @@ public class Course {
         this.status = status;
         this.courseMentorId = courseMentorId;
         this.termID = termID;
+        //This initializes the notes to an empty value so we don't get null.
+        this.courseNotes = "";
     }
 
     public int getCourseID() {
@@ -77,6 +80,14 @@ public class Course {
 
     public void setTermID(int termID) {
         this.termID = termID;
+    }
+
+    public String getCourseNotes() {
+        return courseNotes;
+    }
+
+    public void setCourseNotes(String courseNotes) {
+        this.courseNotes = courseNotes;
     }
 
     @Override

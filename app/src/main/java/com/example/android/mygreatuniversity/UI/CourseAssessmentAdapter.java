@@ -54,9 +54,7 @@ public class CourseAssessmentAdapter extends RecyclerView.Adapter<CourseAssessme
                         //In order to redraw the adapter I have to send to user back to the
                         // previous screen cant figure out another way.
 
-                        //TODO need to write code here to figure out where they came from
-                        // If feeling to tight on time send back to Main Activity.
-                        Intent intent = new Intent(context, MainActivity.class);
+                        Intent intent = new Intent(context, CourseView.class);
                         //Create a toast here if possible
                         Toast.makeText(context,"Assessment Removed From Course",Toast.LENGTH_SHORT).show();
                         context.startActivity(intent);
@@ -71,7 +69,8 @@ public class CourseAssessmentAdapter extends RecyclerView.Adapter<CourseAssessme
                 int pos = getAdapterPosition();
                 //The current item on the list that is sent to the adapter. onClick()
                 final Assessment curCourseAssessment = mCourseAssessments.get(pos);
-                // call repo
+                // Since on am only arriving to this one place
+                //Just go back up a level.
                 Intent intent = new Intent(context, AssessmentViewDetailed.class);
                 Repo repo = new Repo((Application) context.getApplicationContext());
                 //Give some extra data to the intent for the Course
@@ -81,7 +80,8 @@ public class CourseAssessmentAdapter extends RecyclerView.Adapter<CourseAssessme
                 intent.putExtra("startDate", curCourseAssessment.getStartDate());
                 intent.putExtra("endDate", curCourseAssessment.getEndDate());
                 intent.putExtra("type", curCourseAssessment.getType());
-
+                //Dont think that I need this seems to be working.
+                //Could change it so that on
                 //StateManager.setArrivedToCourseFromTermView(true);
                 //Go to the next screen in this case TermViewDetailed
                 context.startActivity(intent);

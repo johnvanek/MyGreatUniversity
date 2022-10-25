@@ -33,6 +33,7 @@ public abstract class DatabaseBuilder extends RoomDatabase {
     /**
      * Must have the DAO in order to use the crud operations provided by room.
      * // Return the following DAO
+     * // Increment the database in order to rebuild the database
      */
     @SuppressWarnings("WeakerAccess")
     public abstract CourseDAO courseDAO();

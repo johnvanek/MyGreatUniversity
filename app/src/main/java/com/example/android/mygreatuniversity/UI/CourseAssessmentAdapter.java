@@ -31,7 +31,7 @@ public class CourseAssessmentAdapter extends RecyclerView.Adapter<CourseAssessme
         //Constructor
         private CourseAssessmentViewHolder(View itemView) {
             //calls the parent constructor
-            super(itemView); // of the list item
+            super(itemView); // of the list item test
             courseAssessmentItemView = itemView.findViewById(R.id.courseAssessmentListItem);
             courseAssessmentItemView.setOnClickListener(v -> {
                 //Could change this to be the logic for a course assessment removal

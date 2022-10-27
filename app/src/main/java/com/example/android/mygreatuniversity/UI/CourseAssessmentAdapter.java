@@ -52,8 +52,7 @@ public class CourseAssessmentAdapter extends RecyclerView.Adapter<CourseAssessme
                         curCourseAssessment.setAssessmentCourseID(0);
                         repo.updateAssessment(curCourseAssessment);
                         //In order to redraw the adapter I have to send to user back to the
-                        // previous screen cant figure out another way.
-
+                        // Previous screen cant figure out another way.
                         Intent intent = new Intent(context, CourseView.class);
                         //Create a toast here if possible
                         Toast.makeText(context,"Assessment Removed From Course",Toast.LENGTH_SHORT).show();
@@ -80,7 +79,7 @@ public class CourseAssessmentAdapter extends RecyclerView.Adapter<CourseAssessme
                 intent.putExtra("startDate", curCourseAssessment.getStartDate());
                 intent.putExtra("endDate", curCourseAssessment.getEndDate());
                 intent.putExtra("type", curCourseAssessment.getType());
-                //Dont think that I need this seems to be working.
+                //Don't think that I need this seems to be working.
                 //Could change it so that on
                 //StateManager.setArrivedToCourseFromTermView(true);
                 //Go to the next screen in this case TermViewDetailed

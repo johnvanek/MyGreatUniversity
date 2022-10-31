@@ -1,6 +1,10 @@
 package com.example.android.mygreatuniversity.UI;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -41,5 +45,21 @@ public class MentorView extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         //Set The Courses Via the adapter
         mentorAdapter.setMentors(mentors);
+    }
+
+    //Inflate the menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mentor_menu, menu);
+        return true;
+    }
+
+    public void goToMentorCreate(MenuItem item) {
+        //TODO should go to a new activity very similar to the screen that is used for the editing.
+        // Will have to create all new activities for those screens as well.
+
+        //Intent intent = new Intent(MainActivity.this, TermView.class);
+        //startActivity(intent);
     }
 }

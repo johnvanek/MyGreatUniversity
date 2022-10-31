@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     // Then have to create the storyboard for the application.
     // 14) Sign the Apk and take a picture - but does not actually need to be submitted to the app store.
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

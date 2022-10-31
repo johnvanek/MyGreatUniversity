@@ -69,7 +69,7 @@ public class TermView extends AppCompatActivity {
         // What this needs to do is take the user to very similar screen as the one for selected term.
         // And should offer the opportunity to create a crud operation.
 
-        //Intent intent = new Intent(MainActivity.this, TermView.class);
-        //startActivity(intent);
+        Intent intent = new Intent(TermView.this, TermCreate.class);
+        //startActivity(intent);o
     }
 }

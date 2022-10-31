@@ -57,6 +57,7 @@ public class TermView extends AppCompatActivity {
     //Inflate the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //TODO repeat this overload for every list type view in the application.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.term_menu, menu);
         return true;
@@ -65,6 +66,8 @@ public class TermView extends AppCompatActivity {
     public void gotoTermCreate(MenuItem item) {
         //TODO implement the logic here that will take the user to the term create screen
         // Need to pretty much copy and paste this logic into everything that can be created.
+        // What this needs to do is take the user to very similar screen as the one for selected term.
+        // And should offer the opportunity to create a crud operation.
 
         //Intent intent = new Intent(MainActivity.this, TermView.class);
         //startActivity(intent);

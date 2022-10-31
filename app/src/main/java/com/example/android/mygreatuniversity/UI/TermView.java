@@ -63,13 +63,15 @@ public class TermView extends AppCompatActivity {
         return true;
     }
 
-    public void gotoTermCreate(MenuItem item) {
+    public void goToTermCreate(MenuItem item) {
+        // This does not seem to do anything on click.
         //TODO implement the logic here that will take the user to the term create screen
         // Need to pretty much copy and paste this logic into everything that can be created.
         // What this needs to do is take the user to very similar screen as the one for selected term.
         // And should offer the opportunity to create a crud operation.
+        // Test that this is working as intended.
 
         Intent intent = new Intent(TermView.this, TermCreate.class);
-        //startActivity(intent);o
+        startActivity(intent);
     }
 }

@@ -36,6 +36,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermViewDetailed extends AppCompatActivity {
+    //TODO need to add an overflow or something to add courses to the term probably pull the values
+    // From a spinner or something.
+    // Could add an Icon that OnClick is going to do open a dialog that would allow the users to select
+    // from a spinner and add a Course to a selected term.
+    // Or I could add a spinner here and add the current selection when the user clicks the add
+    // Button that seems like most simple solution
+    // The logic will be elaborated on further within the page.
+    // Most of the work for this is going to be coming from the layout file itself.
+
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();

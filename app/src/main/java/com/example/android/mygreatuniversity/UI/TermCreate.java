@@ -104,28 +104,11 @@ public class TermCreate extends AppCompatActivity {
         intentTermID = getIntent().getIntExtra("id", -1);
 
         //************ INTENT DATA PASSING ****************
-        //If we have valid intent data use it.
-        if (intentTermID != 0 && intentTermID != -1) {
-            // Set fields to the Intent Data
-            termTitle.setText(intentTitle);
-            termStart.setText(intentStart);
-            termEnd.setText(intentEnd);
-            termCourses = repo.getTermCourses(intentTermID);
-            // When this is created and valid we should store the reference of this variable
-            // Into StateManager as is the currently selected term if we have made it to this screen
-            StateManager.SelectedTerm.setTermID(intentTermID); //This is a Valid term ID
-            //This will override the current value everyTime there is a valid ID.
-            StateManager.SelectedTerm.setIsTermSelected(true);
-        } else {
-            //The intent is no longer valid and as such we have to use the backup that is
-            // Saved in the StateManager.
-            int stateID = StateManager.SelectedTerm.getTermID();
-            Term stateTerm = repo.lookupTermById(stateID);
-            termTitle.setText(stateTerm.getTitle());
-            termStart.setText(stateTerm.getStartDate());
-            termEnd.setText(stateTerm.getEndDate());
-            termCourses = repo.getTermCourses(stateID);
-        }
+            //TODO remove the logic here that is breaking the program.
+            // This fixes it but no data is pre-populated which is what I want.
+            // And I probably need the ability to add courses into the term.
+
+
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
         // Set the TermAdapter and LayoutManger
@@ -170,7 +153,7 @@ public class TermCreate extends AppCompatActivity {
         });
 
         termTitle.setOnFocusChangeListener((v, hasFocus) -> {
-            hideKeyboard(TermViewDetailed.this);
+            hideKeyboard(TermCreate.this);
         });
 
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
@@ -180,8 +163,8 @@ public class TermCreate extends AppCompatActivity {
 
             termTitle.setCursorVisible(false);
             termTitle.clearFocus();
-            hideKeyboard(TermViewDetailed.this);
-            new DatePickerDialog(TermViewDetailed.this,
+            hideKeyboard(TermCreate.this);
+            new DatePickerDialog(TermCreate.this,
                     startDatePicker, CalenderStart.get(Calendar.YEAR),
                     CalenderStart.get(Calendar.MONTH),
                     CalenderStart.get(Calendar.DAY_OF_MONTH))
@@ -194,7 +177,7 @@ public class TermCreate extends AppCompatActivity {
         termTitle.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(TermViewDetailed.this);
+                hideKeyboard(TermCreate.this);
                 termTitle.requestFocus();
                 termTitle.setCursorVisible(true);
                 return false;
@@ -210,7 +193,7 @@ public class TermCreate extends AppCompatActivity {
         termLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(TermViewDetailed.this);
+                hideKeyboard(TermCreate.this);
                 termTitle.clearFocus();
                 termTitle.setCursorVisible(false);
                 return false;
@@ -223,8 +206,8 @@ public class TermCreate extends AppCompatActivity {
             termTitle.clearFocus();
             // And get the current focus
             termTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-            hideKeyboard(TermViewDetailed.this);
-            new DatePickerDialog(TermViewDetailed.this,
+            hideKeyboard(TermCreate.this);
+            new DatePickerDialog(TermCreate.this,
                     endDatePicker, CalenderEnd.get(Calendar.YEAR),
                     CalenderEnd.get(Calendar.MONTH),
                     CalenderEnd.get(Calendar.DAY_OF_MONTH))
@@ -287,7 +270,7 @@ public class TermCreate extends AppCompatActivity {
         Intent intent;
         //If create the intent and take us back
         intent = new Intent(
-                TermViewDetailed.this,
+                TermCreate.this,
                 TermView.class);
         //And let the user know a state change has occurred.
         Toast.makeText(getApplicationContext(), "Term Data Saved", Toast.LENGTH_SHORT).show();
@@ -303,7 +286,7 @@ public class TermCreate extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Term Deleted", Toast.LENGTH_SHORT).show();
             // route them back to the the term view.
             Intent intent = new Intent(
-                    TermViewDetailed.this,
+                    TermCreate.this,
                     TermView.class);
             //Create term to delete kinda cumbersome
             Term termToDelete;
@@ -345,7 +328,7 @@ public class TermCreate extends AppCompatActivity {
 
                 //Start an intent and go back one level
 
-                Intent intent = new Intent(TermViewDetailed.this, TermView.class);
+                Intent intent = new Intent(TermCreate.this, TermView.class);
                 //Create a toast here if possible
                 Toast.makeText(getApplicationContext(), "All Courses Removed from Term", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
@@ -353,5 +336,4 @@ public class TermCreate extends AppCompatActivity {
         });
         snackbar.show();
     }
-}
 }

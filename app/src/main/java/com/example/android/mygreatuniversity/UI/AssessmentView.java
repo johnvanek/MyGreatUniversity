@@ -2,6 +2,9 @@ package com.example.android.mygreatuniversity.UI;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,5 +49,21 @@ public class AssessmentView extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         //Set The Assessments Via the adapter
         assessmentAdapter.setAssessments(assessments);
+    }
+
+    //Inflate the menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.assessment_menu, menu);
+        return true;
+    }
+
+    public void goToAssessmentCreate(MenuItem item) {
+        //TODO should go to a new activity very similar to the screen that is used for the editing.
+        // Will have to create all new activities for those screens as well.
+
+        //Intent intent = new Intent(MainActivity.this, TermView.class);
+        //startActivity(intent);
     }
 }

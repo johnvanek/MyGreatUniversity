@@ -27,7 +27,7 @@ public class CourseAssessmentAdapter extends RecyclerView.Adapter<CourseAssessme
     class CourseAssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView courseAssessmentItemView;
         Repo repo = new Repo(StateManager.getApp());
-
+        //
         //Constructor
         private CourseAssessmentViewHolder(View itemView) {
             //calls the parent constructor

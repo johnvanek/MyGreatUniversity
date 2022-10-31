@@ -25,6 +25,7 @@ public class Repo {
     private List<Mentor> mMentors;
     private List<Assessment> mAssessments;
     private List<Term> mTerms;
+    private Course mCourse;
     private Mentor mCourseMentor;
     private Term mTerm;
     private List<Course> mTermCourses;
@@ -88,6 +89,18 @@ public class Repo {
         }
         Log.d("adapter", "In Repo attempting to get the course mentor " + mCourseMentor);
         return mCourseMentor;
+    }
+    public Course findCourseById(int courseId){
+        executor.execute(() -> {
+            mCourse = mCourseDAO.findCourseById(courseId);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get the course by a provided id " + mCourse);
+        return mCourse;
     }
     public List<Course> getTermCourses(int termID) {
         executor.execute(() -> {

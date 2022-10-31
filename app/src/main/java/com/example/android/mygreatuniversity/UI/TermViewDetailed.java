@@ -249,6 +249,12 @@ public class TermViewDetailed extends AppCompatActivity {
         });
         //TODO Add to the menu-bar of this activity a new overflow item to add terms which would take them to
         // A new screen activity etc. This functionality should be similar to The add screen overflow that is to be added.
+        // This is probably the best way to do this create a menu item that go to a new create to create.
+        // I would need menu-items and creation screens for
+        // Course
+        // Term
+        // Assessment
+        // Mentor
     }
 
     private void updateStartDateEditTextField() {

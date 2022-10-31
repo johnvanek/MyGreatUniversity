@@ -41,18 +41,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-//TODO need to add assessments to the course probably by tracking they the same way as term by adding an integer ID field
-// 5) Courses need to have notes added - probably a text area.
-// 5A This course note information needed to be auto-populated,
-// 7) Need to be able to add them from Courses Aka the view detailed should have an overflow
-// 7) A this can be sent by using an intent text/plain using sms messaging
-// 9) Assessments have titles, Start and End Dates
-// 10) Assessments need to be editable just like Courses
-// 11) Final steps are to Create the landscape view of everything & set up the
-// 12) Broadcast Receivers, Alarms with the intents via alarm manager for Courses & Assessments.
-// 13) Then have to answer the section about the paper writing requirements for.
-// 14) Sign the Apk and take a picture - but does not actually need to be submitted to the app store.
-
 public class CourseViewDetailed extends AppCompatActivity {
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
@@ -138,6 +126,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         intentStartDate = getIntent().getStringExtra("startDate");
         intentEndDate = getIntent().getStringExtra("endDate");
         intentStatus = getIntent().getStringExtra("status");
+
         //Mentor intent data
         intentMentorId = getIntent().getIntExtra("mentorId", -1);
         mentorIntentName = getIntent().getStringExtra("mentorName");
@@ -151,6 +140,9 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseStatus.setSelection(courseStatusPosition(this, intentStatus));
         startText.setText(intentStartDate);
         endText.setText(intentEndDate);
+
+        // Set the course notes from the repo
+        courseNoteEditText.setText(repo.findCourseById(intentCourseId).getCourseNotes());
         //Set the XML fields for the mentor section
         mentorName.setText(mentorIntentName);
         mentorEmail.setText(mentorIntentEmail);
@@ -419,7 +411,8 @@ public class CourseViewDetailed extends AppCompatActivity {
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString(),
                 selectedMentor.getMentorID(),
-                intentTermId
+                intentTermId,
+                courseNoteEditText.getText().toString()
         );
 
         //The primary key is auto-incremented in the database
@@ -452,20 +445,18 @@ public class CourseViewDetailed extends AppCompatActivity {
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString(),
                 selectedMentor.getMentorID(),
-                intentTermId
+                intentTermId,
+                courseNoteEditText.getText().toString()
         );
         //This is seems like a lot of work when I could just delete by the id
         editedCourse.setCourseID(intentCourseId);
-        //TODO check the interaction when a course is deleted. I believe this interaction is satisfactory.
-        // Need to update the course entity so courseNotes is kept track off.
-
         repo.deleteCourse(editedCourse);
 
         //Declare the intent
         Intent intent;
+        //The logic for backing to the next screen.
         //If we arrived here from the TermViewDetailed Screen essentially. We want to return to that
-        // activity. And we will pass in the current intent since we currently the term information.
-
+        // Activity. And we will pass in the current intent since we currently the term information.
         if (StateManager.isArrivedToCourseFromTermView()) {
             intent = new Intent(
                     CourseViewDetailed.this,
@@ -488,7 +479,6 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     public void sendNote(View view) {
-        //TODO implement sms messaging
         //Create the Intent
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -496,15 +486,14 @@ public class CourseViewDetailed extends AppCompatActivity {
         String message = courseNoteEditText.getText().toString();
         if (!courseNoteEditText.getText().toString().equals("")) {
             //Assign the values of the Intent
-            sendIntent.putExtra(Intent.EXTRA_TITLE, title + " Note");
-            sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+            sendIntent.putExtra(Intent.EXTRA_TITLE, title + " Note.");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, title + " Notes: " + message);
             sendIntent.setType("text/plain");
-            Intent shareIntent = Intent.createChooser(sendIntent, null);
-            startActivity(sendIntent);
+            Intent shareIntent = Intent.createChooser(sendIntent, title + " Note.");
+            startActivity(shareIntent);
         } else {
             Toast.makeText(this,"Please Enter A Note", Toast.LENGTH_SHORT).show();
         }
-
     }
 }
 

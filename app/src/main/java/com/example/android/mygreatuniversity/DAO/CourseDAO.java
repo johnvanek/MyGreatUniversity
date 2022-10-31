@@ -17,6 +17,8 @@ public interface CourseDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertCourse(Course course);
 
+
+
     @Update()
     void updateCourse(Course course);
 
@@ -25,6 +27,9 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM courses ORDER BY courseID ASC")
     List<Course> getCourses();
+
+    @Query("SELECT * FROM courses WHERE courseID LIKE :courseID LIMIT 1")
+    Course findCourseById(int courseID);
 
     @Query("SELECT * FROM mentors WHERE mentorID LIKE :mentorID LIMIT 1")
     Mentor findMentorById(int mentorID);

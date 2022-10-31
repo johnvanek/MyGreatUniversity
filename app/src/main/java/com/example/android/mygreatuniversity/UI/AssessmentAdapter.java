@@ -35,17 +35,10 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 int pos = getAdapterPosition();
 
                 //The current item on the list that is sent to the adapter. onClick()
-                //TODO have to add assessments to repo make sure that the dao methods
-                // are implemented and then make sure that the database is Reproduced in dbb
-                // Determine if this is indeed not already in repo I remember this being created
-                // Before
-
                 final Assessment curAssessment = mAssessments.get(pos);
                 // call repo
                 //Mentor courseMentor =
                 //Create the Intent that will pass data to the Course Detailed View
-                //TODO need to create a detailed view for assessmentView
-                // The context should fix itself once this is created.
 
                 Intent intent = new Intent(context, AssessmentViewDetailed.class);
 
@@ -58,11 +51,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 //Using the mentorId from the course get the linked mentor
                 Repo repo = new Repo((Application) context.getApplicationContext());
                 //If the courseMentor was deleted this will return null so
-                //
-                //TODO create a lookup method for everything or else I have to keep passing
-                // the intent for the entire parent every single time.
-                // Should be a lookup method for by id for every Entity.
-
+                // Could just create a lookup method in repo instead of passing all of this intent data around.
                 //Since we can get to assessment view detailed in two ways as well are probably
                 // Going to need to reduplicate the data for selected assessment
                 //StateManager.setArrivedToCourseFromTermView(false);
@@ -77,7 +66,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
     private final Context context;
     private final LayoutInflater mInflater;
 
-    //CourseAdapter constructor given a context
+    //AssessmentAdapter constructor given a context
     public AssessmentAdapter(Context context) {
         Log.d("adapter", "The Assessment adapter has been started");
         mInflater = LayoutInflater.from(context);
@@ -117,5 +106,4 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         mAssessments = assessments;
         notifyDataSetChanged();
     }
-    //Might need a set courses method here not sure yet
 }

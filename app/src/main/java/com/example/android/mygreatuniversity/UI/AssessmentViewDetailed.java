@@ -40,10 +40,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class AssessmentViewDetailed extends AppCompatActivity {
-    //TODO need to rename most of these to their respective class name and when renamed, need to also
-    // Rename the id's so that the R.find.by.ID method actually works.
-    // Not sure what else needs to be refactored.
-
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -99,10 +95,6 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         //XML FIELD DECLARATIONS
 
         //Assessment Fields assignments
-        //TODO need to redefine the ids for the fields on edit Text fields.
-        // These are probably not going to work until the red errors for the rest of the file are gone
-
-
         assessmentTitle = findViewById(R.id.assessmentTitleEditText);
         assessmentStart = findViewById(R.id.assessmentStart);
         assessmentEnd = findViewById(R.id.assessmentEnd);
@@ -111,9 +103,6 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         //Assessment Declarations
 
         assessmentCard = findViewById(R.id.assessmentCard);
-
-        //TODO have to check what the previous values passed in were make sure that they match up
-        // correctly
 
         //Get and assign the intent data to local variables
         //These default to negative 1 so I will know if the intent passed successfully.
@@ -309,8 +298,6 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
         Intent intent;
         //If there is a valid selected term take us back
-        //TODO determine if I still need to roll this type of functionality latter
-        // and perhaps make a new line class in StateManager
         intent = new Intent(
                 AssessmentViewDetailed.this,
                 AssessmentView.class);

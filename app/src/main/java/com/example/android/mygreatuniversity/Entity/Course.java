@@ -15,7 +15,7 @@ public class Course {
     private int termID;
     private String courseNotes;
 
-    public Course(String title, String startDate, String endDate, String status, int courseMentorId, int termID) {
+    public Course(String title, String startDate, String endDate, String status, int courseMentorId, int termID, String courseNotes) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -23,7 +23,7 @@ public class Course {
         this.courseMentorId = courseMentorId;
         this.termID = termID;
         //This initializes the notes to an empty value so we don't get null.
-        this.courseNotes = "";
+        this.courseNotes = courseNotes;
     }
 
     public int getCourseID() {

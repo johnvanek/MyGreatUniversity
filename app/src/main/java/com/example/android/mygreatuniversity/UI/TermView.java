@@ -64,6 +64,8 @@ public class TermView extends AppCompatActivity {
 
     public void gotoTermCreate(MenuItem item) {
         //TODO implement the logic here that will take the user to the term create screen
+        // Need to pretty much copy and paste this logic into everything that can be created.
+
         //Intent intent = new Intent(MainActivity.this, TermView.class);
         //startActivity(intent);
     }

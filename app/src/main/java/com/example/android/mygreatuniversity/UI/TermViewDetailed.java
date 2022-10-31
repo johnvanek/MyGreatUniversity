@@ -5,17 +5,14 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -31,7 +28,6 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -101,29 +97,29 @@ public class TermViewDetailed extends AppCompatActivity {
         //This will crash if not valid id
         intentTermID = getIntent().getIntExtra("id", -1);
 
-            //************ INTENT DATA PASSING ****************
-            //If we have valid intent data use it.
-            if(intentTermID != 0 && intentTermID != -1) {
-                // Set fields to the Intent Data
-                termTitle.setText(intentTitle);
-                termStart.setText(intentStart);
-                termEnd.setText(intentEnd);
-                termCourses = repo.getTermCourses(intentTermID);
-                // When this is created and valid we should store the reference of this variable
-                // Into StateManager as is the currently selected term if we have made it to this screen
-                StateManager.SelectedTerm.setTermID(intentTermID); //This is a Valid term ID
-                //This will override the current value everyTime there is a valid ID.
-                StateManager.SelectedTerm.setIsTermSelected(true);
-            } else {
-                //The intent is no longer valid and as such we have to use the backup that is
-                // Saved in the StateManager.
-                int stateID = StateManager.SelectedTerm.getTermID();
-                Term stateTerm = repo.lookupTermById(stateID);
-                termTitle.setText(stateTerm.getTitle());
-                termStart.setText(stateTerm.getStartDate());
-                termEnd.setText(stateTerm.getEndDate());
-                termCourses = repo.getTermCourses(stateID);
-            }
+        //************ INTENT DATA PASSING ****************
+        //If we have valid intent data use it.
+        if (intentTermID != 0 && intentTermID != -1) {
+            // Set fields to the Intent Data
+            termTitle.setText(intentTitle);
+            termStart.setText(intentStart);
+            termEnd.setText(intentEnd);
+            termCourses = repo.getTermCourses(intentTermID);
+            // When this is created and valid we should store the reference of this variable
+            // Into StateManager as is the currently selected term if we have made it to this screen
+            StateManager.SelectedTerm.setTermID(intentTermID); //This is a Valid term ID
+            //This will override the current value everyTime there is a valid ID.
+            StateManager.SelectedTerm.setIsTermSelected(true);
+        } else {
+            //The intent is no longer valid and as such we have to use the backup that is
+            // Saved in the StateManager.
+            int stateID = StateManager.SelectedTerm.getTermID();
+            Term stateTerm = repo.lookupTermById(stateID);
+            termTitle.setText(stateTerm.getTitle());
+            termStart.setText(stateTerm.getStartDate());
+            termEnd.setText(stateTerm.getEndDate());
+            termCourses = repo.getTermCourses(stateID);
+        }
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
         // Set the TermAdapter and LayoutManger
@@ -189,7 +185,6 @@ public class TermViewDetailed extends AppCompatActivity {
         });
 
         //************************ KEYBOARD HIDING LOGIC SOFT KEYBOARD ********************
-
         termTitle.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -199,7 +194,6 @@ public class TermViewDetailed extends AppCompatActivity {
                 return false;
             }
         });
-
 
         myToolbar.setOnClickListener(v -> {
             hideKeyboard(this);
@@ -287,10 +281,10 @@ public class TermViewDetailed extends AppCompatActivity {
         Intent intent;
         //If create the intent and take us back
         intent = new Intent(
-                    TermViewDetailed.this,
-                    TermView.class);
+                TermViewDetailed.this,
+                TermView.class);
         //And let the user know a state change has occurred.
-        Toast.makeText(getApplicationContext(),"Term Data Saved",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Term Data Saved", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
@@ -300,7 +294,7 @@ public class TermViewDetailed extends AppCompatActivity {
             showSnackbarMessageDeletionAction();
         } else {
             // Just let the user know that a state change has occurred
-            Toast.makeText(getApplicationContext(),"Term Deleted",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Term Deleted", Toast.LENGTH_SHORT).show();
             // route them back to the the term view.
             Intent intent = new Intent(
                     TermViewDetailed.this,
@@ -328,7 +322,7 @@ public class TermViewDetailed extends AppCompatActivity {
     }
 
     private void showSnackbarMessageDeletionAction() {
-        Snackbar snackbar = Snackbar.make(termCourseLayout,"You cannot delete a term while still enrolled in courses. If you would like to remove all Courses, Please confirm by clicking the action.",Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(termCourseLayout, "You cannot delete a term while still enrolled in courses. If you would like to remove all Courses, Please confirm by clicking the action.", Snackbar.LENGTH_LONG);
         snackbar.setDuration(6000);
         snackbar.setTextMaxLines(30);
 
@@ -347,7 +341,7 @@ public class TermViewDetailed extends AppCompatActivity {
 
                 Intent intent = new Intent(TermViewDetailed.this, TermView.class);
                 //Create a toast here if possible
-                Toast.makeText(getApplicationContext(),"All Courses Removed from Term",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "All Courses Removed from Term", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

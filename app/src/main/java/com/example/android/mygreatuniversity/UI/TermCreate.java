@@ -73,6 +73,7 @@ public class TermCreate extends AppCompatActivity {
         //Call the Super
         super.onCreate(savedInstanceState);
         //Stop the title from automatically coming into focus
+        //Token test
         hideKeyboard(this);
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);

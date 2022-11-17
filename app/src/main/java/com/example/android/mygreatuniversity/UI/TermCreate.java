@@ -84,7 +84,6 @@ public class TermCreate extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
         //Set up the back is up when children are present.
-        //This should now push with no problem
         assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
@@ -98,7 +97,6 @@ public class TermCreate extends AppCompatActivity {
         //************ Data PrePopulation ****************
         //Can now just always set this data from the repo
         //Set state back to false
-
         intentTitle = getIntent().getStringExtra("title");
         intentStart = getIntent().getStringExtra("startDate");
         intentEnd = getIntent().getStringExtra("endDate");

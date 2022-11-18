@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.android.mygreatuniversity.Entity.Course;
-import com.example.android.mygreatuniversity.Entity.Mentor;
 
 public class CourseSpinnerAdapter extends ArrayAdapter {
     //FIELDS

@@ -36,14 +36,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermViewDetailed extends AppCompatActivity {
-    //TODO need to add an overflow or something to add courses to the term probably pull the values
-    // From a spinner or something.
-    // Could add an Icon that OnClick is going to do open a dialog that would allow the users to select
-    // from a spinner and add a Course to a selected term.
-    // Or I could add a spinner here and add the current selection when the user clicks the add
-    // Button that seems like most simple solution
-    // The logic will be elaborated on further within the page.
-    // Most of the work for this is going to be coming from the layout file itself.
+    //TODO
+    // Populate the Spinner with the Courses that are Currently Available.
+    // 1) To populate a spinner the data has to be backed into a list
+    // 2) This data for this list already exists on Repo course dao.
+    // just need to back the spinner with it similar to how the mentor is populated in .
+    // course view detailed.
+    // Going to have to create a new adapter
+    // A new xml spinner item
+    // populate the date coming from the intent or make repo method call.
 
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
@@ -250,14 +251,6 @@ public class TermViewDetailed extends AppCompatActivity {
                 hideKeyboard(this);
             }
         });
-        //TODO Add to the menu-bar of this activity a new overflow item to add terms which would take them to
-        // A new screen activity etc. This functionality should be similar to The add screen overflow that is to be added.
-        // This is probably the best way to do this create a menu item that go to a new create to create.
-        // I would need menu-items and creation screens for
-        // Course
-        // Term
-        // Assessment
-        // Mentor
     }
 
     private void updateStartDateEditTextField() {

@@ -7,27 +7,28 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 
-public class MentorSpinnerAdapter extends ArrayAdapter {
+public class CourseSpinnerAdapter extends ArrayAdapter {
     //FIELDS
     private Context context;
-    private Mentor[] mentorArray;
+    private Course[] courseArray;
     //CONSTRUCTOR
-    public MentorSpinnerAdapter(Context context, int resId, Mentor[] mentorArray) {
-        super(context, resId, mentorArray);
+    public CourseSpinnerAdapter(Context context, int resId, Course[] courseArray) {
+        super(context, resId, courseArray);
         this.context = context;
-        this.mentorArray = mentorArray;
+        this.courseArray = courseArray;
     }
 
     @Override
     public int getCount(){
-        return mentorArray.length;
+        return courseArray.length;
     }
 
     @Override
-    public Mentor getItem(int pos){
-        return mentorArray[pos];
+    public Course getItem(int pos){
+        return courseArray[pos];
     }
 
     @Override
@@ -38,26 +39,26 @@ public class MentorSpinnerAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Create a text view
-        TextView mentorTextView = (TextView) super.getView(position, convertView, parent);
+        TextView courseTextView = (TextView) super.getView(position, convertView, parent);
         // Set the text to the current position in the array and call the getName method
-        mentorTextView.setText(mentorArray[position].getName());
+        courseTextView.setText(courseArray[position].getTitle());
         // Return the textView
-        return mentorTextView;
+        return courseTextView;
     }
 
     // Normally is the same view, but you can customize it if you want
     @Override
     public View getDropDownView(int pos, View convertView,
                                 ViewGroup parent) {
-        TextView mentorTextView = (TextView) super.getDropDownView(pos, convertView, parent);
-        //mentorTextView.setTextColor(Color.BLACK);
+        TextView courseTextView = (TextView) super.getDropDownView(pos, convertView, parent);
+        //courseTextView.setTextColor(Color.BLACK);
         //This should call the getName method on the mentor object
         //But I im not sure these methods ever get called.
-        mentorTextView.setText(mentorArray[pos].getName());
-        return mentorTextView;
+        courseTextView.setText(courseArray[pos].getTitle());
+        return courseTextView;
     }
 
-    public Mentor[] returnValuesAsArray (){
-        return mentorArray;
+    public Course[] returnValuesAsArray (){
+        return courseArray;
     }
 }

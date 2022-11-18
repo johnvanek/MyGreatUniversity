@@ -307,7 +307,7 @@
                             app:strokeWidth="2dp" />
 
                         <Button
-                            android:id="@+id/saveButton3"
+                            android:id="@+id/AddCourseButton"
                             android:layout_width="80dp"
                             android:layout_height="50dp"
                             android:layout_marginStart="3dp"
@@ -341,6 +341,7 @@
                             app:layout_constraintVertical_bias="0.6">
 
                             <androidx.appcompat.widget.AppCompatSpinner
+                                android:id="@+id/termCourseSpinner"
                                 android:layout_width="160dp"
                                 android:layout_height="40dp"
                                 android:spinnerMode="dropdown"

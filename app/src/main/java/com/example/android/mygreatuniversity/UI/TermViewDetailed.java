@@ -12,7 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -64,6 +66,9 @@ public class TermViewDetailed extends AppCompatActivity {
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
     DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;
+
+    Spinner courseSpinner;
+    CourseSpinnerAdapter courseSpinnerAdapter;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -251,6 +256,49 @@ public class TermViewDetailed extends AppCompatActivity {
                 hideKeyboard(this);
             }
         });
+
+        //SPINNER POPULATION FROM ROOM DATABASE
+        // Click behavior
+        courseSpinner = findViewById(R.id.termCourseSpinner);
+        //Part of the Keyboard hiding logic
+        courseSpinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.performClick();
+                hideKeyboard(TermViewDetailed.this);
+                termTitle.setCursorVisible(false);
+                termTitle.clearFocus();
+                return false;
+            }
+        });
+
+        //This is a list of mentors from the room database
+        List<Course> courseList = repo.getCourses();
+        //This converts the list from Mentors to an array to be used by the mentor spinner adapter.
+        Course[] courseArray = courseList.toArray(new Course[0]);
+        courseSpinnerAdapter = new CourseSpinnerAdapter(TermViewDetailed.this,
+                R.layout.mentor_spinner_item,
+                courseArray);
+        courseSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
+        //mentorSpinner.setSelection(intentMentorId - 1);
+        //set the adapter
+        courseSpinner.setAdapter(courseSpinnerAdapter);
+
+        //Override the selected behavior
+        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view,
+        int position, long id) {
+            // Note that is a a mentor is deleted that is assigned it will default to the first mentor.
+            // The position here has defaulted to zero from the override
+            //Set the data related to the Selection.
+            // Maybe clear the keyboard from view
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapter) {
+        }
+    });
     }
 
     private void updateStartDateEditTextField() {

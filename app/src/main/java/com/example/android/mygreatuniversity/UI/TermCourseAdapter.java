@@ -52,6 +52,8 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                         Repo repo = new Repo((Application) context.getApplicationContext());
                         //update the course setting its adapter to zero
                         curTermCourse.setTermID(0);
+                        //Setting the term Id in one course changes it for all courses.
+                        //Where it is assigned through the application.
                         repo.updateCourse(curTermCourse);
                         //In order to redraw the adapter I have to send to user back to the
                         // previous screen cant figure out another way.

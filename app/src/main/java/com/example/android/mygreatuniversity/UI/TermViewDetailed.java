@@ -4,7 +4,9 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Application;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -25,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
@@ -62,6 +66,7 @@ public class TermViewDetailed extends AppCompatActivity {
     Repo repo = new Repo(getApplication());
     List<Course> termCourses;
     ConstraintLayout termLayout;
+    View anyView;
     //Date References & Declarations
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
@@ -102,6 +107,7 @@ public class TermViewDetailed extends AppCompatActivity {
         termEnd = findViewById(R.id.termEnd);
         termLayout = findViewById(R.id.LayoutTerm);
         termCourseLayout = findViewById(R.id.termLayout);
+        anyView = findViewById(R.id.termLayout);
         //************ Data PrePopulation ****************
         //Can now just always set this data from the repo
         //Set state back to false
@@ -327,7 +333,6 @@ public class TermViewDetailed extends AppCompatActivity {
         // And finally once that is done call the update method from repo.
         repo.updateTerm(editedTerm);
         //And then route the user back to the term view and send up a toast to indicate that the state
-
         Intent intent;
         //If create the intent and take us back
         intent = new Intent(
@@ -396,5 +401,43 @@ public class TermViewDetailed extends AppCompatActivity {
             }
         });
         snackbar.show();
+    }
+
+    public void addCourse(View view) {
+        //If the course does not already exist add it to the term
+        Course curCourse = (Course) courseSpinner.getSelectedItem();
+        if(isCourseUnique(curCourse)) {
+            //Change the term Id for this course
+            Snackbar snackbar = Snackbar.make(anyView,"If this Course is already Assigned, " +
+                    "Add-Action becomes a Replace! \n\nDo you wish to continue?",Snackbar.LENGTH_LONG);
+            snackbar.setDuration(8000);
+            snackbar.setTextMaxLines(30);
+
+            snackbar.setAction("Yes", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Reassign the term ID for the Course
+                    curCourse.setTermID(intentTermID);
+                    repo.updateCourse(curCourse);
+                    //Reload the term
+                    // And go back to the last page to reload
+                    Toast.makeText(getApplicationContext(),"Term Course Added.",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TermViewDetailed.this, TermView.class);
+                    startActivity(intent);
+                }
+            });
+            snackbar.show();
+        } else {
+            Toast.makeText(getApplicationContext(),"Course Already in Term.",Toast.LENGTH_SHORT).show();
+        }
+    }
+    private boolean isCourseUnique (Course course) {
+        boolean flag = true;
+        for (Course termCourse: termCourses) {
+            if(course.getCourseID() == termCourse.getCourseID()) {
+                flag = false;
+            }
+        }
+        return flag;
     }
 }

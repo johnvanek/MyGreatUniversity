@@ -56,6 +56,10 @@ public class TermCreate extends AppCompatActivity {
     EditText termTitle, termStart, termEnd;
     //Repo Access & data
     Repo repo = new Repo(getApplication());
+    //TODO this is the area in which I need to dynamically re-render
+    // 1) First need to copy the layout file from Term-View Detailed.
+    // 2) Then modify the on-Click functionality of the Term.
+    //
     List<Course> termCourses;
     ConstraintLayout termLayout;
     //Date References & Declarations
@@ -106,10 +110,6 @@ public class TermCreate extends AppCompatActivity {
         intentTermID = getIntent().getIntExtra("id", -1);
 
         //************ INTENT DATA PASSING ****************
-            //TODO remove the logic here that is breaking the program.
-            // This fixes it but no data is pre-populated which is what I want.
-            // And I probably need the ability to add courses into the term.
-
 
         //Populate the Term List for the Recycler view
         RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
@@ -162,7 +162,6 @@ public class TermCreate extends AppCompatActivity {
         //DatePicker Dialog's mentioned above and show them.
         termStart.setOnClickListener(view -> {
             //Hide the flickering coming from the title
-
             termTitle.setCursorVisible(false);
             termTitle.clearFocus();
             hideKeyboard(TermCreate.this);

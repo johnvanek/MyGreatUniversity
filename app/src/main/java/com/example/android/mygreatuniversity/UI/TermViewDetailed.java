@@ -51,6 +51,9 @@ public class TermViewDetailed extends AppCompatActivity {
     // Going to have to create a new adapter
     // A new xml spinner item
     // populate the date coming from the intent or make repo method call.
+    // If this logic is created on term create reuse the logic here in order
+    // Create dynamically loaded course addition
+    // Keep the Toast though the more notifications the better.
 
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();

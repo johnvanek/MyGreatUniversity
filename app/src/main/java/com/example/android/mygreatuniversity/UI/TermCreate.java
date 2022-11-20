@@ -37,12 +37,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermCreate extends AppCompatActivity {
-    //TODO implement Find a way to implement the functionality that
-    // Is in TermView Detailed but the Courses view inside of the terminal.
-    // Needs to refresh on add.
-    // So when the add button is clicked the courses view needs to be told
-    // To be redrawn dynamically
-    // Change the buttons at the bottom from save and delete to a Create
+    //TODO
+    // Implement the features to add dynamically, create on click. And persist data.
 
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
@@ -290,7 +286,7 @@ public class TermCreate extends AppCompatActivity {
         termEnd.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
-    public void saveState(View view) {
+    public void createTerm(View view) {
         Term editedTerm = new Term(
                 termTitle.getText().toString(),
                 termStart.getText().toString(),
@@ -303,8 +299,8 @@ public class TermCreate extends AppCompatActivity {
         } else {
             editedTerm.setTermID(StateManager.SelectedTerm.getTermID());
         }
-        // And finally once that is done call the update method from repo.
-        repo.updateTerm(editedTerm);
+        // TODO This is performing an update I need it to perform a create
+        repo.insertTerm(editedTerm);
         //And then route the user back to the term view and send up a toast to indicate that the state
 
         Intent intent;
@@ -313,67 +309,7 @@ public class TermCreate extends AppCompatActivity {
                 TermCreate.this,
                 TermView.class);
         //And let the user know a state change has occurred.
-        Toast.makeText(getApplicationContext(), "Term Data Saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Term Created", Toast.LENGTH_SHORT).show();
         startActivity(intent);
-    }
-
-    public void deleteState(View view) {
-        //If clicked this should only delete the term if there are no associated courses
-        if (doesTermHaveEnrolledCourses()) {
-            showSnackbarMessageDeletionAction();
-        } else {
-            // Just let the user know that a state change has occurred
-            Toast.makeText(getApplicationContext(), "Term Deleted", Toast.LENGTH_SHORT).show();
-            // route them back to the the term view.
-            Intent intent = new Intent(
-                    TermCreate.this,
-                    TermView.class);
-            //Create term to delete kinda cumbersome
-            Term termToDelete;
-            if (intentTermID != -1 && intentTermID != 0) {
-                termToDelete = repo.lookupTermById(intentTermID);
-            } else {
-                termToDelete = repo.lookupTermById(StateManager.SelectedTerm.getTermID());
-            }
-            repo.deleteTerm(termToDelete);
-            //Start the intent
-            startActivity(intent);
-        }
-    }
-
-    private boolean doesTermHaveEnrolledCourses() {
-        //If there are now elements in the list it must not have any courses
-        if (intentTermID != -1 && intentTermID != 0) {
-            return repo.getTermCourses(intentTermID).size() >= 1;
-        } else {
-            return repo.getTermCourses((StateManager.SelectedTerm.getTermID())).size() >= 1;
-        }
-    }
-
-    private void showSnackbarMessageDeletionAction() {
-        Snackbar snackbar = Snackbar.make(termCourseLayout, "You cannot delete a term while still enrolled in courses. If you would like to remove all Courses, Please confirm by clicking the action.", Snackbar.LENGTH_LONG);
-        snackbar.setDuration(6000);
-        snackbar.setTextMaxLines(30);
-
-        snackbar.setAction("Remove All Courses", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Need to call the update course method for every course than is in this list
-                termCourses.forEach(course -> {
-                    //This set the term Id for each course to 0 effectively making them -
-                    // Unassociated with any Terms.
-                    course.setTermID(0);
-                    repo.updateCourse(course);
-                });
-
-                //Start an intent and go back one level
-
-                Intent intent = new Intent(TermCreate.this, TermView.class);
-                //Create a toast here if possible
-                Toast.makeText(getApplicationContext(), "All Courses Removed from Term", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-            }
-        });
-        snackbar.show();
     }
 }

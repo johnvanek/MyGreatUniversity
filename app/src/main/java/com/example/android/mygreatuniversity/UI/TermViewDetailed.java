@@ -393,11 +393,13 @@ public class TermViewDetailed extends AppCompatActivity {
                     course.setTermID(0);
                     repo.updateCourse(course);
                 });
-                //Start an intent and go back one level
-                Intent intent = new Intent(TermViewDetailed.this, TermView.class);
-                //Create a toast here if possible
+                //Update the data
+                //Redraw the Recycler View
+                //Recreate the list
+                termCourses = repo.getTermCourses(intentTermID);
+                termCourseAdapter.setTermCourses(termCourses);
+                termCourseRecyclerView.setAdapter(termCourseAdapter);
                 Toast.makeText(getApplicationContext(), "All Courses Removed from Term", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
             }
         });
         snackbar.show();

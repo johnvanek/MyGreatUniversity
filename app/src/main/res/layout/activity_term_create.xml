@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/WguLightBlue"
-    tools:context=".UI.TermViewDetailed">
+    tools:context=".UI.TermCreate">
 
     <ScrollView
         android:id="@+id/scrollViewTerm"
@@ -276,7 +276,7 @@
                             android:layout_marginBottom="16dp"
                             android:backgroundTint="@color/WguGold"
                             android:fontFamily="@font/convergence"
-                            android:onClick="deleteState"
+                            android:onClick="createTerm"
                             android:shadowColor="@color/Black"
                             android:text="Create"
                             android:textSize="18sp"

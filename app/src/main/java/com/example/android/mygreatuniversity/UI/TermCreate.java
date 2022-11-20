@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -57,11 +58,17 @@ public class TermCreate extends AppCompatActivity {
     //Repo Access & data
     Repo repo = new Repo(getApplication());
     //TODO this is the area in which I need to dynamically re-render
+    // Since this logic should be the same first figure out the dynamic reload function in view detailed.
     // 1) First need to copy the layout file from Term-View Detailed.
+    // 1) -A Need to then assign the xml fields for access
     // 2) Then modify the on-Click functionality of the Term.
-    //
+
+    //XML Fields
     List<Course> termCourses;
     ConstraintLayout termLayout;
+    Spinner courseSpinner;
+    CourseSpinnerAdapter courseSpinnerAdapter;
+    View anyView;
     //Date References & Declarations
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
@@ -70,12 +77,6 @@ public class TermCreate extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        Context context = getApplicationContext();
-//        CharSequence text = "Hello From onCreate!";
-//        int duration = Toast.LENGTH_SHORT;
-//
-//        Toast toast = Toast.makeText(context, text, duration);
-//        toast.show();
         //Call the Super
         super.onCreate(savedInstanceState);
         //Stop the title from automatically coming into focus
@@ -239,6 +240,44 @@ public class TermCreate extends AppCompatActivity {
         // Term
         // Assessment
         // Mentor
+    }
+
+//    public void addCourse(View view) {
+//        //If the course does not already exist add it to the term
+//        Course curCourse = (Course) courseSpinner.getSelectedItem();
+//        if(isCourseUnique(curCourse)) {
+//            //Change the term Id for this course
+//            Snackbar snackbar = Snackbar.make(anyView,"If this Course is already Assigned, " +
+//                    "Add-Action becomes a Replace! \n\nDo you wish to continue?",Snackbar.LENGTH_LONG);
+//            snackbar.setDuration(8000);
+//            snackbar.setTextMaxLines(30);
+//
+//            snackbar.setAction("Yes", new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    // Reassign the term ID for the Course
+//                    curCourse.setTermID(intentTermID);
+//                    repo.updateCourse(curCourse);
+//                    //Reload the term
+//                    // And go back to the last page to reload
+//                    Toast.makeText(getApplicationContext(),"Term Course Added.",Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(TermViewDetailed.this, TermView.class);
+//                    startActivity(intent);
+//                }
+//            });
+//            snackbar.show();
+//        } else {
+//            Toast.makeText(getApplicationContext(),"Course Already in Term.",Toast.LENGTH_SHORT).show();
+//        }
+//    }
+    private boolean isCourseUnique (Course course) {
+        boolean flag = true;
+        for (Course termCourse: termCourses) {
+            if(course.getCourseID() == termCourse.getCourseID()) {
+                flag = false;
+            }
+        }
+        return flag;
     }
 
     private void updateStartDateEditTextField() {

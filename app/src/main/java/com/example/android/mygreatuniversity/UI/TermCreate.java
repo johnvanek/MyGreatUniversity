@@ -36,10 +36,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermCreate extends AppCompatActivity {
-    //TODO implement this and make is similar to term view detailed in appearance, also in logic.
-    // First need to add the layout file I think.
-    // And need to replace this logic so that it is not dependant on intents.
-    // Which this code
+    //TODO implement Find a way to implement the functionality that
+    // Is in TermView Detailed but the Courses view inside of the terminal.
+    // Needs to refresh on add.
+    // So when the add button is clicked the courses view needs to be told
+    // To be redrawn dynamically
+    // Change the buttons at the bottom from save and delete to a Create
 
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();

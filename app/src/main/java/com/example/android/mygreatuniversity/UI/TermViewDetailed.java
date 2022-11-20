@@ -393,9 +393,7 @@ public class TermViewDetailed extends AppCompatActivity {
                     course.setTermID(0);
                     repo.updateCourse(course);
                 });
-
                 //Start an intent and go back one level
-
                 Intent intent = new Intent(TermViewDetailed.this, TermView.class);
                 //Create a toast here if possible
                 Toast.makeText(getApplicationContext(), "All Courses Removed from Term", Toast.LENGTH_SHORT).show();

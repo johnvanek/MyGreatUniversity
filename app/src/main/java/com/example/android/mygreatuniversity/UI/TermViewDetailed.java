@@ -345,6 +345,7 @@ public class TermViewDetailed extends AppCompatActivity {
 
     public void deleteState(View view) {
         //This is test of the offline commit mode
+        // Now that I am online this should push out 2 commit on behind on the repo.
         //If clicked this should only delete the term if there are no associated courses
         if (doesTermHaveEnrolledCourses()) {
             showSnackbarMessageDeletionAction();

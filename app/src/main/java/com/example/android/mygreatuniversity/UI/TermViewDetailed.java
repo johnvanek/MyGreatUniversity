@@ -77,17 +77,12 @@ public class TermViewDetailed extends AppCompatActivity {
 
     Spinner courseSpinner;
     CourseSpinnerAdapter courseSpinnerAdapter;
+    TermCourseAdapter termCourseAdapter;
+    RecyclerView termCourseRecyclerView;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        Context context = getApplicationContext();
-//        CharSequence text = "Hello From onCreate!";
-//        int duration = Toast.LENGTH_SHORT;
-//
-//        Toast toast = Toast.makeText(context, text, duration);
-//        toast.show();
-        //Call the Super
         super.onCreate(savedInstanceState);
         //Stop the title from automatically coming into focus
         hideKeyboard(this);
@@ -111,6 +106,7 @@ public class TermViewDetailed extends AppCompatActivity {
         termLayout = findViewById(R.id.LayoutTerm);
         termCourseLayout = findViewById(R.id.termLayout);
         anyView = findViewById(R.id.termLayout);
+        termCourseRecyclerView = findViewById(R.id.selectedTermRecyler);
         //************ Data PrePopulation ****************
         //Can now just always set this data from the repo
         //Set state back to false
@@ -145,15 +141,16 @@ public class TermViewDetailed extends AppCompatActivity {
             termCourses = repo.getTermCourses(stateID);
         }
         //Populate the Term List for the Recycler view
-        RecyclerView recyclerView = findViewById(R.id.selectedTermRecyler);
         // Set the TermAdapter and LayoutManger
-        final TermCourseAdapter termCourseAdapter = new TermCourseAdapter(this);
-        recyclerView.setAdapter(termCourseAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        termCourseAdapter = new TermCourseAdapter(this);
+        TermViewDetailed.this.termCourseRecyclerView.setAdapter(termCourseAdapter);
+        TermViewDetailed.this.termCourseRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         //Get the list of mentors from the repository
         List<Mentor> mentors = repo.getMentors();
         //Set the data for the adapters
+        //Todo this is what needs to be re-rendered if at all possible.
+        // Should be possible using notifyDateSet
         termCourseAdapter.setTermCourses(termCourses);
         termCourseAdapter.setMentors(mentors);
 
@@ -281,9 +278,9 @@ public class TermViewDetailed extends AppCompatActivity {
             }
         });
 
-        //This is a list of mentors from the room database
+        //This is a list of courses from the room database
         List<Course> courseList = repo.getCourses();
-        //This converts the list from Mentors to an array to be used by the mentor spinner adapter.
+        //This converts the list from Courses to an array to be used by the mentor spinner adapter.
         Course[] courseArray = courseList.toArray(new Course[0]);
         courseSpinnerAdapter = new CourseSpinnerAdapter(TermViewDetailed.this,
                 R.layout.mentor_spinner_item,
@@ -422,11 +419,14 @@ public class TermViewDetailed extends AppCompatActivity {
                     // Reassign the term ID for the Course
                     curCourse.setTermID(intentTermID);
                     repo.updateCourse(curCourse);
-                    //Reload the term
-                    // And go back to the last page to reload
+                    //Show a toast alerting the user to a state change.
                     Toast.makeText(getApplicationContext(),"Term Course Added.",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(TermViewDetailed.this, TermView.class);
-                    startActivity(intent);
+                    // And regenerate the list dynamically
+                    //TODO where applicable replace the practice of sending the user back.
+                    // On data change.
+                    termCourses = repo.getTermCourses(intentTermID);
+                    termCourseAdapter.setTermCourses(termCourses);
+                    termCourseRecyclerView.setAdapter(termCourseAdapter);
                 }
             });
             snackbar.show();

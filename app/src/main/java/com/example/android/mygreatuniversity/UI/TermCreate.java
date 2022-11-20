@@ -55,12 +55,7 @@ public class TermCreate extends AppCompatActivity {
     EditText termTitle, termStart, termEnd;
     //Repo Access & data
     Repo repo = new Repo(getApplication());
-    //TODO this is the area in which I need to dynamically re-render
-    // Since this logic should be the same first figure out the dynamic reload function in view detailed.
-    // 1) First need to copy the layout file from Term-View Detailed.
-    // 1) -A Need to then assign the xml fields for access
-    // 2) Then modify the on-Click functionality of the Term.
-
+    //TODO implement the add feature and pasta the dynamic part.
     //XML Fields
     List<Course> termCourses;
     ConstraintLayout termLayout;

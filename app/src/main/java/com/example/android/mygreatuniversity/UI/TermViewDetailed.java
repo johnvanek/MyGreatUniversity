@@ -42,19 +42,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermViewDetailed extends AppCompatActivity {
-    //TODO
-    // Populate the Spinner with the Courses that are Currently Available.
-    // 1) To populate a spinner the data has to be backed into a list
-    // 2) This data for this list already exists on Repo course dao.
-    // just need to back the spinner with it similar to how the mentor is populated in .
-    // course view detailed.
-    // Going to have to create a new adapter
-    // A new xml spinner item
-    // populate the date coming from the intent or make repo method call.
-    // If this logic is created on term create reuse the logic here in order
-    // Create dynamically loaded course addition
-    // Keep the Toast though the more notifications the better.
-
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();

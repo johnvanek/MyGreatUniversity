@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -39,6 +40,7 @@ import java.util.Locale;
 public class TermCreate extends AppCompatActivity {
     //TODO
     // Implement the features to add dynamically, create on click. And persist data.
+    // Make sure that the user cannot create empty terms send up a toast or something.
 
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
@@ -287,29 +289,32 @@ public class TermCreate extends AppCompatActivity {
     }
 
     public void createTerm(View view) {
-        Term editedTerm = new Term(
-                termTitle.getText().toString(),
-                termStart.getText().toString(),
-                termEnd.getText().toString()
-        );
-        //This is needed due to the fact that this can sometimes be defaulted to the wrong primary
-        // key.
-        if (intentTermID != -1 && intentTermID != 0) {
-            editedTerm.setTermID(intentTermID);
+        if(TextUtils.isEmpty(termTitle.getText().toString()) || TextUtils.isEmpty(termStart.getText().toString())
+        || TextUtils.isEmpty(termEnd.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "Please Fill Out Fields", Toast.LENGTH_SHORT).show();
         } else {
-            editedTerm.setTermID(StateManager.SelectedTerm.getTermID());
-        }
-        // TODO This is performing an update I need it to perform a create
-        repo.insertTerm(editedTerm);
-        //And then route the user back to the term view and send up a toast to indicate that the state
+            Term editedTerm = new Term(
+                    termTitle.getText().toString(),
+                    termStart.getText().toString(),
+                    termEnd.getText().toString()
+            );
+            //This is needed due to the fact that this can sometimes be defaulted to the wrong primary
+            // key.
+            if (intentTermID != -1 && intentTermID != 0) {
+                editedTerm.setTermID(intentTermID);
+            } else {
+                editedTerm.setTermID(StateManager.SelectedTerm.getTermID());
+            }
+            // TODO This is performing an update I need it to perform a create
+            repo.insertTerm(editedTerm);
+            //And then route the user back to the term view and send up a toast to indicate that the state
 
-        Intent intent;
-        //If create the intent and take us back
-        intent = new Intent(
-                TermCreate.this,
-                TermView.class);
-        //And let the user know a state change has occurred.
-        Toast.makeText(getApplicationContext(), "Term Created", Toast.LENGTH_SHORT).show();
-        startActivity(intent);
+            Intent intent = new Intent(
+                    TermCreate.this,
+                    TermView.class);
+            //And let the user know a state change has occurred.
+            Toast.makeText(getApplicationContext(), "Term Created", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+        }
     }
 }

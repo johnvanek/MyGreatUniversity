@@ -149,8 +149,6 @@ public class TermViewDetailed extends AppCompatActivity {
         //Get the list of mentors from the repository
         List<Mentor> mentors = repo.getMentors();
         //Set the data for the adapters
-        //Todo this is what needs to be re-rendered if at all possible.
-        // Should be possible using notifyDateSet
         termCourseAdapter.setTermCourses(termCourses);
         termCourseAdapter.setMentors(mentors);
 
@@ -353,9 +351,6 @@ public class TermViewDetailed extends AppCompatActivity {
             // Just let the user know that a state change has occurred
             Toast.makeText(getApplicationContext(), "Term Deleted", Toast.LENGTH_SHORT).show();
             // route them back to the the term view.
-            Intent intent = new Intent(
-                    TermViewDetailed.this,
-                    TermView.class);
             //Create term to delete kinda cumbersome
             Term termToDelete;
             if (intentTermID != -1 && intentTermID != 0) {
@@ -365,6 +360,9 @@ public class TermViewDetailed extends AppCompatActivity {
             }
             repo.deleteTerm(termToDelete);
             //Start the intent
+            Intent intent = new Intent(
+                    TermViewDetailed.this,
+                    TermView.class);
             startActivity(intent);
         }
     }

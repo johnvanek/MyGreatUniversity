@@ -27,7 +27,7 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
     class TermCourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView termCourseItemView;
         Repo repo = new Repo(StateManager.getApp());
-
+        TermCourseAdapter adapter = TermCourseAdapter.this;
         //Constructor
         private TermCourseViewHolder(View itemView) {
             //calls the parent constructor
@@ -38,6 +38,7 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
             // Course List Item
             //Swap this so on a click
             termCourseItemView.setOnClickListener(v -> {
+                int pos = getAdapterPosition();
                 Snackbar snackbar = Snackbar.make(termCourseItemView,"Remove Course From Term?",Snackbar.LENGTH_LONG);
                 snackbar.setDuration(5000);
                 snackbar.setTextMaxLines(30);
@@ -51,16 +52,16 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
 
                         Repo repo = new Repo((Application) context.getApplicationContext());
                         //update the course setting its adapter to zero
+                        int termID = curTermCourse.getTermID();
                         curTermCourse.setTermID(0);
                         //Setting the term Id in one course changes it for all courses.
                         //Where it is assigned through the application.
+
                         repo.updateCourse(curTermCourse);
-                        //In order to redraw the adapter I have to send to user back to the
-                        // previous screen cant figure out another way.
-                        Intent intent = new Intent(context, TermView.class);
-                        //Create a toast here if possible
+                        //This will call notify data changed itself
+                        setTermCourses(repo.getTermCourses(termID));
                         Toast.makeText(context,"Term Course Removed",Toast.LENGTH_SHORT).show();
-                        context.startActivity(intent);
+                        //notifyItemChanged(pos);
                     }
                 });
                 snackbar.show();
@@ -99,7 +100,6 @@ public class TermCourseAdapter extends RecyclerView.Adapter<TermCourseAdapter.Te
                 StateManager.setArrivedToCourseFromTermView(true);
                 //Go to the next screen in this case TermViewDetailed
                 context.startActivity(intent);
-
                 return false;
             });
         }

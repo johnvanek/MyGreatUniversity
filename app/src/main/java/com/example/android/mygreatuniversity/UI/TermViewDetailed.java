@@ -134,6 +134,7 @@ public class TermViewDetailed extends AppCompatActivity {
         TermViewDetailed.this.termCourseRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         //Get the list of mentors from the repository
+        // TODO determine if I even need this pretty certain it can be deleted
         List<Mentor> mentors = repo.getMentors();
         //Set the data for the adapters
         termCourseAdapter.setTermCourses(termCourses);

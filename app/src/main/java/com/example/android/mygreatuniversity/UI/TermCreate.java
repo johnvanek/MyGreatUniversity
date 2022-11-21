@@ -96,8 +96,6 @@ public class TermCreate extends AppCompatActivity {
         //This will crash if not valid id
         intentTermID = getIntent().getIntExtra("id", -1);
 
-
-
         //************************* DATEPICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the

@@ -57,7 +57,6 @@ public class TermView extends AppCompatActivity {
     //Inflate the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //TODO repeat this overload for every list type view in the application.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.term_menu, menu);
         return true;
@@ -66,14 +65,14 @@ public class TermView extends AppCompatActivity {
     //TODO Add to the menu-bar of this activity a new overflow item to add terms which would take them to
     // A new screen activity etc. This functionality should be similar to The add screen overflow that is to be added.
     // This is probably the best way to do this create a menu item that go to a new create to create.
-    // I would need menu-items and creation screens for
+    // I would need menu-items and creation screens
+    // Simplify the Creation screen where applicable
     // Course
     // Term - In Progress
     // Assessment
     // Mentor
 
     public void goToTermCreate(MenuItem item) {
-        // This does not seem to do anything on click.
         //TODO implement the logic here that will take the user to the term create screen
         // Need to pretty much copy and paste this logic into everything that can be created.
         // What this needs to do is take the user to very similar screen as the one for selected term.

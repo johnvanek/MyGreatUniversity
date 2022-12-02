@@ -129,7 +129,6 @@ public class TermCreate extends AppCompatActivity {
         termTitle.setOnFocusChangeListener((v, hasFocus) -> {
             hideKeyboard(TermCreate.this);
         });
-
         //Set onClick Listeners for both the Start and End XML EditTexts -> that creates the new
         //DatePicker Dialog's mentioned above and show them.
         termStart.setOnClickListener(view -> {

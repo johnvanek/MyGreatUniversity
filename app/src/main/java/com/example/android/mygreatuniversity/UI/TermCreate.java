@@ -231,10 +231,9 @@ public class TermCreate extends AppCompatActivity {
             } else {
                 editedTerm.setTermID(StateManager.SelectedTerm.getTermID());
             }
-            // TODO This is performing an update I need it to perform a create
+            //Insertion in repo provides the create functionality.
             repo.insertTerm(editedTerm);
             //And then route the user back to the term view and send up a toast to indicate that the state
-
             Intent intent = new Intent(
                     TermCreate.this,
                     TermView.class);

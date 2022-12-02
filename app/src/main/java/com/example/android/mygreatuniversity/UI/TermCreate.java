@@ -39,6 +39,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class TermCreate extends AppCompatActivity {
+    //The date-picker functionality is fine just alert the user that they have to
+    // Click the ok button if they don't want unintended functionality.
+
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();

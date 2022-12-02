@@ -305,7 +305,6 @@ public class CourseViewDetailed extends AppCompatActivity {
                 courseTitle.clearFocus();
                 return false;
             }
-
         });
 
         startText.setOnFocusChangeListener((view, hasFocus) -> {

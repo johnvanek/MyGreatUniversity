@@ -55,7 +55,7 @@ public class TermView extends AppCompatActivity {
     }
 
     //Inflate the menu
-    // Test commit token test
+    // Test commit take 2
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

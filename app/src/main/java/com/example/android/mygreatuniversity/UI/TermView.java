@@ -22,7 +22,7 @@ import com.example.android.mygreatuniversity.Utils.StateManager;
 import java.util.List;
 
 public class TermView extends AppCompatActivity {
-
+    //Commit test Delete this after confirming that this works from a mac.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Assign the xml for the view

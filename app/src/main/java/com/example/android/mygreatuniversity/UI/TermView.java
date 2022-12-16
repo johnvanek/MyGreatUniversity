@@ -52,6 +52,7 @@ public class TermView extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         //Set The Terms Via the adapter
         termAdapter.setTerms(terms);
+        //test
     }
 
     //Inflate the menu

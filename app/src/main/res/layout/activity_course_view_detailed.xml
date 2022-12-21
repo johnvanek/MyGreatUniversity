@@ -416,7 +416,7 @@
                             android:id="@+id/assessmentCard"
                             android:layout_width="338dp"
                             android:layout_height="259dp"
-                            android:layout_marginTop="85dp"
+                            android:layout_marginTop="65dp"
                             app:cardCornerRadius="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -443,20 +443,33 @@
                             android:id="@+id/CourseAssessmentLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="25dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
                             android:fontFamily="@font/convergence"
                             android:text="Course Assessments"
                             android:textAlignment="center"
                             android:textColor="@color/White"
-                            android:textSize="34sp"
+                            android:textSize="32sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@+id/assessmentCard"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.163"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/courseViewMentorCard" />
+                            app:layout_constraintTop_toBottomOf="@+id/courseViewMentorCard"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton"
+                            android:layout_width="29dp"
+                            android:layout_height="32dp"
+                            android:background="@color/WguBlue"
+                            android:backgroundTintMode="src_atop"
+                            app:layout_constraintBottom_toBottomOf="@+id/CourseAssessmentLabel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/CourseAssessmentLabel"
+                            app:layout_constraintTop_toTopOf="@+id/CourseAssessmentLabel"
+                            app:srcCompat="@drawable/add_light_blue_lighter" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -45,6 +45,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     //TODO change the layout and logic so that a plus icon is displayed under courses Assessments
     // That when clicked takes to the add screen but so that it already knows the course to add too.
 
+    //TODO create create functionality for a new course
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();

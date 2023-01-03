@@ -26,6 +26,7 @@ public class TermView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Assign the xml for the view
+        // Token test
         super.onCreate(savedInstanceState);
 
         //Set the Repo State in StateManager so that it can be accessed from adapters.

@@ -43,9 +43,7 @@ import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
     //TODO change the layout and logic so that a plus icon is displayed under courses Assessments
-    // That when clicked takes to the add screen but so that it already knows the course to add too.
-    // This needs to be re-created on change
-    // On a rotation this view should probably load a landscape view .. AKA Recreate
+    // Add an Item in the menu-bar that when clicked navigates to a course add screen.
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();

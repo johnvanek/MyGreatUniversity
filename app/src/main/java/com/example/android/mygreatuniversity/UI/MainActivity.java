@@ -20,14 +20,12 @@ import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
     //TODO Remaining
-    // Need to be able to add them from Courses Aka the view detailed should have an overflow
-    // Need to add the Crud operations via an overflow menu
-    // 11) Final steps are to Create the landscape view of everything & set up the
-    // To figure out part 12 watch the last part 4 of Artic-Fox and that should be it for features.
-    // 12) Broadcast Receivers, Alarms with the intents via alarm manager for Courses & Assessments.
-    // 13) Then have to answer the section about the paper writing requirements for.
-    // Then have to create the storyboard for the application.
-    // 14) Sign the Apk and take a picture - but does not actually need to be submitted to the app store.
+    // 1) Need to add the Crud operations via an overflow menu for all items
+    // 2) Final steps are to Create the landscape view of everything
+    // 3) Broadcast Receivers, Watch Artic fox new one
+    // 4) Then have to answer the section about the paper writing requirements for.
+    // 5)Then have to create the storyboard for the application.
+    // 6) Sign the Apk and take a picture Submit to the app store - optional
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

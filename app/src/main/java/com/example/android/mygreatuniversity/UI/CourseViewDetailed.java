@@ -35,6 +35,7 @@ import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,6 +56,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     TextView mentorTextView, noteCardLabel, courseLabel;
     Spinner courseStatus;
     Spinner mentorSpinner;
+    Spinner assessmentSpinner;
     MentorSpinnerAdapter mentorSpinnerAdapter;
     CardView mentorCard,noteCard;
     Button sendButton;
@@ -159,6 +161,36 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseAssessments = repo.getCourseAssessments(intentCourseId);
         //And they display it in the recycler view
         courseAssessmentAdapter.setCourseAssessments(courseAssessments);
+
+        //Populate the spinner for adding in the Course Assessments
+        //This is a list of courses from the room database
+        List<Assessment> assessmentList = repo.getAssessments();
+        //This converts the list from Courses to an array to be used by the mentor spinner adapter.
+        Assessment[] AssessmentArray = assessmentList.toArray(new Assessment[0]);
+        //TODO have to create a Assessment Spinner adapter in order to use assessment is a spinner?
+//        assessmentSpinnerAdapter = new AssessmentAdapter(CourseViewDetailed.this,
+//                R.layout.mentor_spinner_item,
+//                courseArray);
+//        assessmentSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
+//        //mentorSpinner.setSelection(intentMentorId - 1);
+//        //set the adapter
+//        courseSpinner.setAdapter(assessmentSpinnerAdapter);
+//
+//        //Override the selected behavior
+//        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view,
+//                                       int position, long id) {
+//                // Note that is a a mentor is deleted that is assigned it will default to the first mentor.
+//                // The position here has defaulted to zero from the override
+//                //Set the data related to the Selection.
+//                // Maybe clear the keyboard from view
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapter) {
+//            }
+//        });
         //************************* DATEPICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
@@ -496,6 +528,40 @@ public class CourseViewDetailed extends AppCompatActivity {
             Toast.makeText(this,"Please Enter A Note", Toast.LENGTH_SHORT).show();
         }
     }
+
+    //Method for add Course Assessment onClick
+//    public void addAssessment(View view) {
+//        //If the course does not already exist add it to the term
+//        //TODO refactor for assessments
+//        Assessment curAssessment = (Assessment) courseSpinner.getSelectedItem();
+//        if(isCourseUnique(curCourse)) {
+//            //Change the term Id for this course
+//            Snackbar snackbar = Snackbar.make(anyView,"If this Course is already Assigned, " +
+//                    "Add-Action becomes a Replace! \n\nDo you wish to continue?",Snackbar.LENGTH_LONG);
+//            snackbar.setDuration(8000);
+//            snackbar.setTextMaxLines(30);
+//
+//            snackbar.setAction("Yes", new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    // Reassign the term ID for the Course
+//                    curCourse.setTermID(intentTermID);
+//                    repo.updateCourse(curCourse);
+//                    //Show a toast alerting the user to a state change.
+//                    Toast.makeText(getApplicationContext(),"Term Course Added.",Toast.LENGTH_SHORT).show();
+//                    // And regenerate the list dynamically
+//                    //TODO where applicable replace the practice of sending the user back.
+//                    // On data change.
+//                    termCourses = repo.getTermCourses(intentTermID);
+//                    termCourseAdapter.setTermCourses(termCourses);
+//                    termCourseRecyclerView.setAdapter(termCourseAdapter);
+//                }
+//            });
+//            snackbar.show();
+//        } else {
+//            Toast.makeText(getApplicationContext(),"Course Already in Term.",Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }
 
 

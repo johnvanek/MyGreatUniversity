@@ -43,8 +43,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class CourseViewDetailed extends AppCompatActivity {
-    //TODO change the layout and logic so that a plus icon is displayed under courses Assessments
-    // Add an Item in the menu-bar that when clicked navigates to a course add screen.
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -57,6 +55,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     Spinner courseStatus;
     Spinner mentorSpinner;
     Spinner assessmentSpinner;
+    AssessmentSpinnerAdapter assessmentSpinnerAdapter;
     MentorSpinnerAdapter mentorSpinnerAdapter;
     CardView mentorCard,noteCard;
     Button sendButton;
@@ -164,33 +163,32 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //Populate the spinner for adding in the Course Assessments
         //This is a list of courses from the room database
+        assessmentSpinner = findViewById(R.id.courseAssessmentSpinner);
         List<Assessment> assessmentList = repo.getAssessments();
         //This converts the list from Courses to an array to be used by the mentor spinner adapter.
         Assessment[] AssessmentArray = assessmentList.toArray(new Assessment[0]);
-        //TODO have to create a Assessment Spinner adapter in order to use assessment is a spinner?
-//        assessmentSpinnerAdapter = new AssessmentAdapter(CourseViewDetailed.this,
-//                R.layout.mentor_spinner_item,
-//                courseArray);
-//        assessmentSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
-//        //mentorSpinner.setSelection(intentMentorId - 1);
-//        //set the adapter
-//        courseSpinner.setAdapter(assessmentSpinnerAdapter);
-//
-//        //Override the selected behavior
-//        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view,
-//                                       int position, long id) {
-//                // Note that is a a mentor is deleted that is assigned it will default to the first mentor.
-//                // The position here has defaulted to zero from the override
-//                //Set the data related to the Selection.
-//                // Maybe clear the keyboard from view
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapter) {
-//            }
-//        });
+        //TODO test why this is not working
+        assessmentSpinnerAdapter = new AssessmentSpinnerAdapter(CourseViewDetailed.this,
+                //This should be fine even if not unique it's just for layout purposes.
+                R.layout.mentor_spinner_item,
+                AssessmentArray);
+        assessmentSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
+        //set the adapter
+        //Trying to set this spinner is null but the object reference is null
+        assessmentSpinner.setAdapter(assessmentSpinnerAdapter);
+
+        //Override the selected behavior
+        assessmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                //This is just a placeholder it has to be here
+                //Same with onNothing
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapter) {
+            }
+        });
         //************************* DATEPICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the

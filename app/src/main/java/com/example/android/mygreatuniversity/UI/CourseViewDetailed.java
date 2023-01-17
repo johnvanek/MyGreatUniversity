@@ -56,6 +56,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     Spinner mentorSpinner;
     Spinner assessmentSpinner;
     AssessmentSpinnerAdapter assessmentSpinnerAdapter;
+    RecyclerView courseAssessmentRecyclerView;
     MentorSpinnerAdapter mentorSpinnerAdapter;
     CardView mentorCard,noteCard;
     Button sendButton;
@@ -162,7 +163,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         courseAssessmentAdapter.setCourseAssessments(courseAssessments);
 
         //Populate the spinner for adding in the Course Assessments
-        //This is a list of courses from the room database
+        //Define the fields from the Xml that you are going to need
         assessmentSpinner = findViewById(R.id.courseAssessmentSpinner);
         List<Assessment> assessmentList = repo.getAssessments();
         //This converts the list from Courses to an array to be used by the mentor spinner adapter.
@@ -552,19 +553,18 @@ public class CourseViewDetailed extends AppCompatActivity {
                 public void onClick(View view) {
                     // Reassign the term ID for the Course
                     curAssessment.setAssessmentCourseID(intentCourseId);
+                    //Alter the data in the repo
                     repo.updateAssessment(curAssessment);
                     //Show a toast alerting the user to a state change.
                     Toast.makeText(getApplicationContext(),"Course Assessment Added.",Toast.LENGTH_SHORT).show();
-                    // And regenerate the list dynamically
+                    // Get the new data from the repo
                     courseAssessments = repo.getCourseAssessments(intentCourseId);
-                    //This should work to repopulate the data if changed
-                    //TODO fix this is not repopulating the fields correctly
-                    // Did not copy all the correct file from term View adapter for
-                    // AssessmentSpinnerAdapter in order to get all of the functinality I need all
-                    // extra methods.
-                    assessmentSpinnerAdapter.notifyDataSetChanged();
-                    //And reset the adapter
-                    assessmentSpinner.setAdapter(assessmentSpinnerAdapter);
+                    //Repopulate the recycler view now that a data change has occurred.
+                    RecyclerView  recyclerView = findViewById(R.id.courseAssessmentsRecycler);
+                    final CourseAssessmentAdapter courseAssessmentAdapter = new CourseAssessmentAdapter(CourseViewDetailed.this);
+                    //And they display it in the recycler view
+                    courseAssessmentAdapter.setCourseAssessments(courseAssessments);
+                    recyclerView.setAdapter(courseAssessmentAdapter);
                 }
             });
             snackbar.show();

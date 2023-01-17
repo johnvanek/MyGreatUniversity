@@ -136,73 +136,12 @@ public class CourseCreateView extends AppCompatActivity {
 
         //************ INTENT DATA PASSING ****************
         //For the creation screen we really should not have any intent logic leaving this just
-        // As to not conflict with any other pre-existing code though.
-        //TODO might need to remove or modify this as there is no intent data being passed.
-        //Get and assign the intent data to local variables
-        intentCourseId = getIntent().getIntExtra("id", -1);
-        intentTitle = getIntent().getStringExtra("title");
-        intentStartDate = getIntent().getStringExtra("startDate");
-        intentEndDate = getIntent().getStringExtra("endDate");
-        intentStatus = getIntent().getStringExtra("status");
-
-        //Mentor intent data
-        intentMentorId = getIntent().getIntExtra("mentorId", -1);
-        mentorIntentName = getIntent().getStringExtra("mentorName");
-        mentorIntentPhone = getIntent().getStringExtra("mentorPhone");
-        mentorIntentEmail = getIntent().getStringExtra("mentorEmail");
-        //Term intent data //
-        intentTermId = getIntent().getIntExtra("termID", -1);
         //Assign the XML Fields the values from the intents or that have been edited
         courseTitle.setText(intentTitle);
         //If this does not match one of the spinner values it is set to In-Progress
-        courseStatus.setSelection(courseStatusPosition(this, intentStatus));
-        startText.setText(intentStartDate);
-        endText.setText(intentEndDate);
+        //TODO need to clean up this intent data logic anything trying to set will cause an error.
+        // In this case the Course is setting itself must have been copied over from term.
 
-        //TODO might new to rework this also same reasons
-        // Set the course notes from the repo
-        courseNoteEditText.setText(repo.findCourseById(intentCourseId).getCourseNotes());
-        //Set the XML fields for the mentor section
-        mentorName.setText(mentorIntentName);
-        mentorEmail.setText(mentorIntentEmail);
-        mentorPhone.setText(mentorIntentPhone);
-        //Recycler View Logic
-        RecyclerView recyclerView = findViewById(R.id.courseAssessmentsRecycler);
-        // Set the TermAdapter and LayoutManger
-        final CourseAssessmentAdapter courseAssessmentAdapter = new CourseAssessmentAdapter(this);
-        recyclerView.setAdapter(courseAssessmentAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //Get the assessments that have the same course ID
-        courseAssessments = repo.getCourseAssessments(intentCourseId);
-        //And they display it in the recycler view
-        courseAssessmentAdapter.setCourseAssessments(courseAssessments);
-
-        //Populate the spinner for adding in the Course Assessments
-        //Define the fields from the Xml that you are going to need
-        assessmentSpinner = findViewById(R.id.courseAssessmentSpinner);
-        List<Assessment> assessmentList = repo.getAssessments();
-        //This converts the list from Courses to an array to be used by the mentor spinner adapter.
-        Assessment[] AssessmentArray = assessmentList.toArray(new Assessment[0]);
-        assessmentSpinnerAdapter = new AssessmentSpinnerAdapter(CourseCreateView.this,
-                //This should be fine even if not unique it's just for layout purposes.
-                R.layout.mentor_spinner_item,
-                AssessmentArray);
-        assessmentSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
-        assessmentSpinner.setAdapter(assessmentSpinnerAdapter);
-
-        //Override the selected behavior
-        assessmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view,
-                                       int position, long id) {
-                //This is just a placeholder it has to be here
-                //Same with onNothing
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapter) {
-            }
-        });
         //************************* DATEPICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the

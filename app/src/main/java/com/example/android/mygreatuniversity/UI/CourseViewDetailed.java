@@ -88,6 +88,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         //***************** DISPLAY LOGIC *************
         //Sets the activity
         super.onCreate(savedInstanceState);
+        //This tell android what xml file to use for the layout
         setContentView(R.layout.activity_course_view_detailed);
         //Assigns the toolbar from xml
         Toolbar myToolbar = findViewById(R.id.toolbar);

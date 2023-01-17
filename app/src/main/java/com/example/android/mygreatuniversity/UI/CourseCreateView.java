@@ -134,14 +134,6 @@ public class CourseCreateView extends AppCompatActivity {
         courseNoteEditText = findViewById(R.id.courseNotesEditText);
         generalLayout = findViewById(R.id.generalLayout);
 
-        //************ INTENT DATA PASSING ****************
-        //For the creation screen we really should not have any intent logic leaving this just
-        //Assign the XML Fields the values from the intents or that have been edited
-        courseTitle.setText(intentTitle);
-        //If this does not match one of the spinner values it is set to In-Progress
-        //TODO need to clean up this intent data logic anything trying to set will cause an error.
-        // In this case the Course is setting itself must have been copied over from term.
-
         //************************* DATEPICKER LOGIC START & END ************************
 
         //Set listeners on both of the Start and End dialogs that will be popping up for the
@@ -165,7 +157,6 @@ public class CourseCreateView extends AppCompatActivity {
         //Known Issues ****
         //There is a slight UI problem if the user continues to scroll to the bottom of the Mentor view
         //And tries to click there as the title will still be in focus cant resolve.
-
         //Hiding for the note card ime action done does not work unless it is set to a single-line.
 
         //Set it so that when it is focused it looks correct

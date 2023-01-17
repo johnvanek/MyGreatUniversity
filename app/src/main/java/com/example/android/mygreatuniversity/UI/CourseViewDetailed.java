@@ -167,14 +167,11 @@ public class CourseViewDetailed extends AppCompatActivity {
         List<Assessment> assessmentList = repo.getAssessments();
         //This converts the list from Courses to an array to be used by the mentor spinner adapter.
         Assessment[] AssessmentArray = assessmentList.toArray(new Assessment[0]);
-        //TODO test why this is not working
         assessmentSpinnerAdapter = new AssessmentSpinnerAdapter(CourseViewDetailed.this,
                 //This should be fine even if not unique it's just for layout purposes.
                 R.layout.mentor_spinner_item,
                 AssessmentArray);
         assessmentSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
-        //set the adapter
-        //Trying to set this spinner is null but the object reference is null
         assessmentSpinner.setAdapter(assessmentSpinnerAdapter);
 
         //Override the selected behavior
@@ -527,39 +524,54 @@ public class CourseViewDetailed extends AppCompatActivity {
         }
     }
 
+    //Validates whether the assessment already exists in the course
+    private boolean isAssessmentUnique (Assessment assessment) {
+        boolean flag = true;
+        for (Assessment courseAssessment: courseAssessments) {
+            if(assessment.getAssessmentCourseID() == courseAssessment.getAssessmentCourseID()) {
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
     //Method for add Course Assessment onClick
-//    public void addAssessment(View view) {
-//        //If the course does not already exist add it to the term
-//        //TODO refactor for assessments
-//        Assessment curAssessment = (Assessment) courseSpinner.getSelectedItem();
-//        if(isCourseUnique(curCourse)) {
-//            //Change the term Id for this course
-//            Snackbar snackbar = Snackbar.make(anyView,"If this Course is already Assigned, " +
-//                    "Add-Action becomes a Replace! \n\nDo you wish to continue?",Snackbar.LENGTH_LONG);
-//            snackbar.setDuration(8000);
-//            snackbar.setTextMaxLines(30);
-//
-//            snackbar.setAction("Yes", new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    // Reassign the term ID for the Course
-//                    curCourse.setTermID(intentTermID);
-//                    repo.updateCourse(curCourse);
-//                    //Show a toast alerting the user to a state change.
-//                    Toast.makeText(getApplicationContext(),"Term Course Added.",Toast.LENGTH_SHORT).show();
-//                    // And regenerate the list dynamically
-//                    //TODO where applicable replace the practice of sending the user back.
-//                    // On data change.
-//                    termCourses = repo.getTermCourses(intentTermID);
-//                    termCourseAdapter.setTermCourses(termCourses);
-//                    termCourseRecyclerView.setAdapter(termCourseAdapter);
-//                }
-//            });
-//            snackbar.show();
-//        } else {
-//            Toast.makeText(getApplicationContext(),"Course Already in Term.",Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    public void addAssessment(View view) {
+        //If the course does not already exist add it to the term
+        //TODO test this once refactor complete
+        Assessment curAssessment = (Assessment) assessmentSpinner.getSelectedItem();
+        if(isAssessmentUnique(curAssessment)) {
+            //Change the term Id for this course
+            Snackbar snackbar = Snackbar.make(view,"If this Assessment is already Assigned, " +
+                    "Add-Action becomes a Replace! \n\nDo you wish to continue?",Snackbar.LENGTH_LONG);
+            snackbar.setDuration(8000);
+            snackbar.setTextMaxLines(30);
+
+            snackbar.setAction("Yes", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Reassign the term ID for the Course
+                    curAssessment.setAssessmentCourseID(intentCourseId);
+                    repo.updateAssessment(curAssessment);
+                    //Show a toast alerting the user to a state change.
+                    Toast.makeText(getApplicationContext(),"Course Assessment Added.",Toast.LENGTH_SHORT).show();
+                    // And regenerate the list dynamically
+                    courseAssessments = repo.getCourseAssessments(intentCourseId);
+                    //This should work to repopulate the data if changed
+                    //TODO fix this is not repopulating the fields correctly
+                    // Did not copy all the correct file from term View adapter for
+                    // AssessmentSpinnerAdapter in order to get all of the functinality I need all
+                    // extra methods.
+                    assessmentSpinnerAdapter.notifyDataSetChanged();
+                    //And reset the adapter
+                    assessmentSpinner.setAdapter(assessmentSpinnerAdapter);
+                }
+            });
+            snackbar.show();
+        } else {
+            Toast.makeText(getApplicationContext(),"Assessment Already in Course.",Toast.LENGTH_SHORT).show();
+        }
+    }
 }
 
 

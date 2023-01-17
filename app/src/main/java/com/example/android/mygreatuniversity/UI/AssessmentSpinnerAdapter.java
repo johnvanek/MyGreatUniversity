@@ -2,12 +2,16 @@ package com.example.android.mygreatuniversity.UI;
 
 import android.content.Context;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.android.mygreatuniversity.Entity.Assessment;
+import com.example.android.mygreatuniversity.Entity.Course;
+
+import java.util.List;
 
 
 public class AssessmentSpinnerAdapter extends ArrayAdapter {

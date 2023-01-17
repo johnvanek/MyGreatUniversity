@@ -492,27 +492,6 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <Button
-                                android:id="@+id/sendNoteButton"
-                                android:layout_width="100dp"
-                                android:layout_height="60dp"
-                                android:backgroundTint="@color/WguGold"
-                                android:fontFamily="@font/convergence"
-                                android:onClick="sendNote"
-                                android:shadowColor="@color/NeutralGray"
-                                android:shadowDx="3"
-                                android:shadowDy="2"
-                                android:shadowRadius="1"
-                                android:text="Send"
-                                android:textSize="18sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/courseNotesEditText"
-                                app:rippleColor="@color/White"
-                                app:strokeColor="@color/NeutralWhite"
-                                app:strokeWidth="2dp" />
-
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 

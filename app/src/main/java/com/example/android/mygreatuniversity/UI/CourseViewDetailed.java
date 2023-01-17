@@ -539,7 +539,6 @@ public class CourseViewDetailed extends AppCompatActivity {
     //Method for add Course Assessment onClick
     public void addAssessment(View view) {
         //If the course does not already exist add it to the term
-        //TODO test this once refactor complete
         Assessment curAssessment = (Assessment) assessmentSpinner.getSelectedItem();
         if(isAssessmentUnique(curAssessment)) {
             //Change the term Id for this course

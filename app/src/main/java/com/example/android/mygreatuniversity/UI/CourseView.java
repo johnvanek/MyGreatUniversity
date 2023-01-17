@@ -1,5 +1,6 @@
 package com.example.android.mygreatuniversity.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,6 +51,7 @@ public class CourseView extends AppCompatActivity {
     }
 
     //Inflate the menu
+    //This is what shows the menu to the top right on the toolbar.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -58,10 +60,9 @@ public class CourseView extends AppCompatActivity {
     }
 
     public void goToCourseCreate(MenuItem item) {
-        //TODO should go to a new activity very similar to the screen that is used for the editing.
-        // Will have to create all new activities for those screens as well.
-
-        //Intent intent = new Intent(MainActivity.this, TermView.class);
+        //TODO take the user to a new screen for the creation of a course should be same design language.
+        //TODO create Class CreateCourseView
+        //Intent intent = new Intent(CourseView.this, CreateCourseView.class);
         //startActivity(intent);
     }
 }

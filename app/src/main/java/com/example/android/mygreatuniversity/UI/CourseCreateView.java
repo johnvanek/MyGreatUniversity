@@ -97,7 +97,8 @@ public class CourseCreateView extends AppCompatActivity {
         //Sets the activity
         super.onCreate(savedInstanceState);
         //This tell android what xml file to use for the layout
-        setContentView(R.layout.activity_course_view_detailed);
+        //TODO test how this layout if functioning
+        setContentView(R.layout.activity_course_create);
         //Assigns the toolbar from xml
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -182,7 +183,7 @@ public class CourseCreateView extends AppCompatActivity {
         List<Assessment> assessmentList = repo.getAssessments();
         //This converts the list from Courses to an array to be used by the mentor spinner adapter.
         Assessment[] AssessmentArray = assessmentList.toArray(new Assessment[0]);
-        assessmentSpinnerAdapter = new AssessmentSpinnerAdapter(CourseViewDetailed.this,
+        assessmentSpinnerAdapter = new AssessmentSpinnerAdapter(CourseCreateView.this,
                 //This should be fine even if not unique it's just for layout purposes.
                 R.layout.mentor_spinner_item,
                 AssessmentArray);
@@ -234,7 +235,7 @@ public class CourseCreateView extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 courseTitle.clearFocus();
                 courseTitle.setCursorVisible(false);
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 return false;
             }
         });
@@ -242,7 +243,7 @@ public class CourseCreateView extends AppCompatActivity {
         courseNoteEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 courseNoteEditText.requestFocus();
                 courseNoteEditText.setCursorVisible(true);
                 return false;
@@ -252,7 +253,7 @@ public class CourseCreateView extends AppCompatActivity {
         noteCardLabel.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 courseNoteEditText.clearFocus();
                 courseNoteEditText.setCursorVisible(false);
                 return false;
@@ -262,7 +263,7 @@ public class CourseCreateView extends AppCompatActivity {
         noteCardLabel.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 courseNoteEditText.clearFocus();
                 courseNoteEditText.setCursorVisible(false);
                 return false;
@@ -293,7 +294,7 @@ public class CourseCreateView extends AppCompatActivity {
                 courseTitle.clearFocus();
                 courseTitle.setCursorVisible(false);
             }
-            hideKeyboard(CourseViewDetailed.this);
+            hideKeyboard(CourseCreateView.this);
         });
 
         startText.setOnClickListener(view -> {
@@ -301,8 +302,8 @@ public class CourseCreateView extends AppCompatActivity {
             courseTitle.clearFocus();
             courseTitle.setCursorVisible(false);
 
-            hideKeyboard(CourseViewDetailed.this);
-            new DatePickerDialog(CourseViewDetailed.this,
+            hideKeyboard(CourseCreateView.this);
+            new DatePickerDialog(CourseCreateView.this,
                     startDatePicker, CalenderStart.get(Calendar.YEAR),
                     CalenderStart.get(Calendar.MONTH),
                     CalenderStart.get(Calendar.DAY_OF_MONTH))
@@ -313,7 +314,7 @@ public class CourseCreateView extends AppCompatActivity {
         courseLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 courseTitle.clearFocus();
                 courseTitle.setCursorVisible(false);
                 return false;
@@ -326,8 +327,8 @@ public class CourseCreateView extends AppCompatActivity {
             courseTitle.setCursorVisible(false);
             // And get the current focus
             courseTitle.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-            hideKeyboard(CourseViewDetailed.this);
-            new DatePickerDialog(CourseViewDetailed.this,
+            hideKeyboard(CourseCreateView.this);
+            new DatePickerDialog(CourseCreateView.this,
                     endDatePicker, CalenderEnd.get(Calendar.YEAR),
                     CalenderEnd.get(Calendar.MONTH),
                     CalenderEnd.get(Calendar.DAY_OF_MONTH))
@@ -345,7 +346,7 @@ public class CourseCreateView extends AppCompatActivity {
         courseLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 courseTitle.setCursorVisible(false);
                 courseTitle.clearFocus();
                 return false;
@@ -368,7 +369,7 @@ public class CourseCreateView extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 v.performClick();
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 courseTitle.setCursorVisible(false);
                 courseTitle.clearFocus();
                 return false;
@@ -382,7 +383,7 @@ public class CourseCreateView extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 v.performClick();
-                hideKeyboard(CourseViewDetailed.this);
+                hideKeyboard(CourseCreateView.this);
                 courseTitle.setCursorVisible(false);
                 courseTitle.clearFocus();
                 return false;
@@ -393,7 +394,7 @@ public class CourseCreateView extends AppCompatActivity {
         List<Mentor> mentorList = repo.getMentors();
         //This converts the list from Mentors to an array to be used by the mentor spinner adapter.
         Mentor[] mentorArray = mentorList.toArray(new Mentor[0]);
-        mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseViewDetailed.this,
+        mentorSpinnerAdapter = new MentorSpinnerAdapter(CourseCreateView.this,
                 R.layout.mentor_spinner_item,
                 mentorArray);
         mentorSpinnerAdapter.setDropDownViewResource(R.layout.mentor_spinner_item);
@@ -468,12 +469,12 @@ public class CourseCreateView extends AppCompatActivity {
         //If there is a valid selected term take us back
         if (StateManager.SelectedTerm.isTermSelected()) {
             intent = new Intent(
-                    CourseViewDetailed.this,
+                    CourseCreateView.this,
                     TermViewDetailed.class);
         } else {
             //Must have come from the course Activity Then
             intent = new Intent(
-                    CourseViewDetailed.this,
+                    CourseCreateView.this,
                     CourseView.class);
         }
         //Change back to the intended destination. And let the user know a state change has occurred.
@@ -506,7 +507,7 @@ public class CourseCreateView extends AppCompatActivity {
         // Activity. And we will pass in the current intent since we currently the term information.
         if (StateManager.isArrivedToCourseFromTermView()) {
             intent = new Intent(
-                    CourseViewDetailed.this,
+                    CourseCreateView.this,
                     TermViewDetailed.class);
             //Give some extra data to the intent
             Term term = repo.lookupTermById(intentTermId);
@@ -518,7 +519,7 @@ public class CourseCreateView extends AppCompatActivity {
             //Must have come from the course Activity Then and we do not need to pass data back
             //via the intent.
             intent = new Intent(
-                    CourseViewDetailed.this,
+                    CourseCreateView.this,
                     CourseView.class);
         }
         Toast.makeText(getApplicationContext(), "Course Deleted", Toast.LENGTH_SHORT).show();

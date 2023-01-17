@@ -35,6 +35,10 @@
             android:exported="false"
             android:parentActivityName=".UI.MainActivity" /> <!-- Child of Main ! -->
         <activity
+            android:name=".UI.CourseCreateView"
+            android:exported="false"
+            android:parentActivityName=".UI.CourseView" />
+        <activity
             android:name=".UI.MentorView"
             android:exported="false"
             android:parentActivityName=".UI.MainActivity" /> <!-- Child of Main ! -->

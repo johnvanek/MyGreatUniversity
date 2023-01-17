@@ -60,12 +60,7 @@ public class CourseView extends AppCompatActivity {
     }
 
     public void goToCourseCreate(MenuItem item) {
-        //TODO take the user to a new screen for the creation of a course should be same design language.
-        // Previous Design language should be like the Course View detailed, with the addition of a
-        // Gold/Yellow CREATE button at the bottom instead of Save/Delete Options.
-
-        //TODO create Class CreateCourseView
-        //Intent intent = new Intent(CourseView.this, CreateCourseView.class);
-        //startActivity(intent);
+        Intent intent = new Intent(CourseView.this, CourseCreateView.class);
+        startActivity(intent);
     }
 }

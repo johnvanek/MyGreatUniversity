@@ -17,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,7 +67,9 @@ public class CourseCreateView extends AppCompatActivity {
     MentorSpinnerAdapter mentorSpinnerAdapter;
     CardView mentorCard, noteCard;
     Button sendButton;
-
+    int amtSelected = 0;
+    boolean firstRender = true;
+    boolean isSarahSelected = true;
     ConstraintLayout courseLayout, courseNoteLayout, generalLayout;
     // Mentor fields
     EditText mentorName, mentorPhone, mentorEmail;
@@ -89,6 +92,7 @@ public class CourseCreateView extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //Stops the soft-keyboard from acting so erratically.
         hideKeyboard(this);
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -308,6 +312,8 @@ public class CourseCreateView extends AppCompatActivity {
         //*******************************MENTOR SPINNER*****************************************//
         //SPINNER POPULATION FROM ROOM DATABASE
         mentorSpinner = findViewById(R.id.mentorSpinner);
+        //Set it to not selected the default behavior is to select the// first item
+        mentorSpinner.setSelection(Adapter.NO_SELECTION, false);
         //Part of the Keyboard hiding logic
         mentorSpinner.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -331,39 +337,26 @@ public class CourseCreateView extends AppCompatActivity {
         //mentorSpinner.setSelection(intentMentorId - 1);
         //set the adapter
         mentorSpinner.setAdapter(mentorSpinnerAdapter);
+        mentorSpinner.setSelection(Adapter.NO_SELECTION, false);
         mentorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            //Token test
+            //So the first item in a Spinner is selected by default meaning that if the user
+            // Clicks this first item again nothing will register as selected
+            // TODO leave this as it but write it up for the instructor.
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {
-                // Note that is a a mentor is deleted that is assigned it will default to the first mentor.
-                // The position here has defaulted to zero from the override
-                if (arrivedFromIntent) {
-                    Mentor[] mentorValues = mentorSpinnerAdapter.returnValuesAsArray();
-                    //DO something here
-                    int intentMentorPosition = 0;
-                    for (Mentor spinnerMentor : mentorValues) {
-                        if (spinnerMentor.getMentorID() == intentMentorId) {
-                            //Verify that this is different
-                            intentMentorPosition = mentorSpinnerAdapter.getPosition(spinnerMentor);
-                            //Need to also change the first value of this to be
-                            mentorSpinner.setSelected(true);
-                            mentorSpinner.setSelection(intentMentorPosition);
-                        }
-                    }
-                    arrivedFromIntent = false;
-                }
-                //Set the data related to the Selection.
+
                 Mentor currentSelectedMentor = (Mentor) mentorSpinner.getSelectedItem();
-                //mentorSpinner.setSelection(intentMentorPosition);
-                mentorName.setText(currentSelectedMentor.getName());
-                mentorPhone.setText(currentSelectedMentor.getPhoneNumber());
-                mentorEmail.setText(currentSelectedMentor.getEmail());
+
+                    mentorName.setText(currentSelectedMentor.getName());
+                    mentorPhone.setText(currentSelectedMentor.getPhoneNumber());
+                    mentorEmail.setText(currentSelectedMentor.getEmail());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapter) {
+                //The ui for this is just going to be a little buggy
             }
         });
     } //This is the end of the onCreate Methods and data initialization
@@ -387,7 +380,7 @@ public class CourseCreateView extends AppCompatActivity {
                 endText.getText().toString(),
                 courseStatus.getSelectedItem().toString(),
                 selectedMentor.getMentorID(),
-                intentTermId,
+                -1,
                 courseNoteEditText.getText().toString()
         );
 
@@ -454,25 +447,6 @@ public class CourseCreateView extends AppCompatActivity {
         }
         Toast.makeText(getApplicationContext(), "Course Deleted", Toast.LENGTH_SHORT).show();
         startActivity(intent);
-    }
-
-    //TODO remove this feature from create should not be able to send when the data is not saved
-    public void sendNote(View view) {
-        //Create the Intent
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        String title = courseTitle.getText().toString();
-        String message = courseNoteEditText.getText().toString();
-        if (!courseNoteEditText.getText().toString().equals("")) {
-            //Assign the values of the Intent
-            sendIntent.putExtra(Intent.EXTRA_TITLE, title + " Note.");
-            sendIntent.putExtra(Intent.EXTRA_TEXT, title + " Notes: " + message);
-            sendIntent.setType("text/plain");
-            Intent shareIntent = Intent.createChooser(sendIntent, title + " Note.");
-            startActivity(shareIntent);
-        } else {
-            Toast.makeText(this, "Please Enter A Note", Toast.LENGTH_SHORT).show();
-        }
     }
 
 

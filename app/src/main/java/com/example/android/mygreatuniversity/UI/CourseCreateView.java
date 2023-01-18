@@ -385,67 +385,26 @@ public class CourseCreateView extends AppCompatActivity {
         );
 
         //The primary key is auto-incremented in the database
-        editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
-        repo.updateCourse(editedCourse);
+        repo.insertCourse(editedCourse);
         //TODO don't think I need this logic here as there is only way to arrive at Create screen
-        Intent intent;
-        //If there is a valid selected term take us back
-        if (StateManager.SelectedTerm.isTermSelected()) {
-            intent = new Intent(
-                    CourseCreateView.this,
-                    TermViewDetailed.class);
-        } else {
-            //Must have come from the course Activity Then
-            intent = new Intent(
+        Intent intent = new Intent(
                     CourseCreateView.this,
                     CourseView.class);
-        }
+
         //Change back to the intended destination. And let the user know a state change has occurred.
-        Toast.makeText(getApplicationContext(), "Course Data Saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "New Course Created", Toast.LENGTH_SHORT).show();
         //Either send the use back to the main screen or back to course view
         startActivity(intent);
     }
 
     //TODO rework this one as well to be a discard feature
     public void deleteState(View view) {
-        Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
-        //Delete the associated course
-        Course editedCourse = new Course(
-                courseTitle.getText().toString(),
-                startText.getText().toString(),
-                endText.getText().toString(),
-                courseStatus.getSelectedItem().toString(),
-                selectedMentor.getMentorID(),
-                intentTermId,
-                courseNoteEditText.getText().toString()
-        );
-        //This is seems like a lot of work when I could just delete by the id
-        editedCourse.setCourseID(intentCourseId);
-        repo.deleteCourse(editedCourse);
-
         //Declare the intent
-        Intent intent;
-        //The logic for backing to the next screen.
-        //If we arrived here from the TermViewDetailed Screen essentially. We want to return to that
-        // Activity. And we will pass in the current intent since we currently the term information.
-        if (StateManager.isArrivedToCourseFromTermView()) {
-            intent = new Intent(
-                    CourseCreateView.this,
-                    TermViewDetailed.class);
-            //Give some extra data to the intent
-            Term term = repo.lookupTermById(intentTermId);
-            intent.putExtra("id", term.getTermID());
-            intent.putExtra("title", term.getTitle());
-            intent.putExtra("startDate", term.getStartDate());
-            intent.putExtra("endDate", term.getEndDate());
-        } else {
-            //Must have come from the course Activity Then and we do not need to pass data back
-            //via the intent.
-            intent = new Intent(
+        Intent intent  = new Intent(
                     CourseCreateView.this,
                     CourseView.class);
-        }
-        Toast.makeText(getApplicationContext(), "Course Deleted", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getApplicationContext(), "Course Discarded", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 

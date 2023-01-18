@@ -20,7 +20,7 @@ import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
     //TODO Remaining
-    // ****------Current Task [Add Feature -- (Add Create For Mentors,Assessments,)]----****
+    // ****------Current Task [Add Feature -- (Add Create For Assessments,)]----****
     // 1) [In-Progress]Need to add the Crud operations via an overflow menu for all items
     // 2) Final steps are to Create the landscape view of everything
     // 3) Broadcast Receivers, Watch Artic fox new one

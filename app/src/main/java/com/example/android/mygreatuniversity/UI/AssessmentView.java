@@ -21,8 +21,6 @@ import com.example.android.mygreatuniversity.R;
 import java.util.List;
 
 public class AssessmentView extends AppCompatActivity {
-    //TODO create this class and make sure to modify the different Id's from Course view
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Assign the xml foe the view
@@ -60,8 +58,7 @@ public class AssessmentView extends AppCompatActivity {
     }
 
     public void goToAssessmentCreate(MenuItem item) {
-        //TODO should go to a new activity very similar to the screen that is used for the editing.
-        // Will have to create all new activities for those screens as well.
+        //TODO create the layout and the class file for assessment create
 
         //Intent intent = new Intent(MainActivity.this, TermView.class);
         //startActivity(intent);

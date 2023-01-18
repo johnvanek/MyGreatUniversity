@@ -20,13 +20,8 @@ import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
     //TODO Remaining
-    //      6.  Include features that allow the user to do the following for each course:
-    //      a.  Add as many assessments as needed.
-    // ****------Current Task [Add Feature -- (Adding Assessments to A course)]----****
-    // ****------ This be a drop down from already previously created assessments-----*****
-    // Should be the same as the selected term view course add section.
-    // Sub Task Make the Create Assessment Screen First
-    // 1) Need to add the Crud operations via an overflow menu for all items
+    // ****------Current Task [Add Feature -- (Add Create For Mentors,Assessments,)]----****
+    // 1) [In-Progress]Need to add the Crud operations via an overflow menu for all items
     // 2) Final steps are to Create the landscape view of everything
     // 3) Broadcast Receivers, Watch Artic fox new one
     // 4) Then have to answer the section about the paper writing requirements for.

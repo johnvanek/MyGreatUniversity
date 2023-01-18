@@ -1,6 +1,7 @@
 package com.example.android.mygreatuniversity.UI;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -58,9 +59,7 @@ public class AssessmentView extends AppCompatActivity {
     }
 
     public void goToAssessmentCreate(MenuItem item) {
-        //TODO create the layout and the class file for assessment create
-
-        //Intent intent = new Intent(MainActivity.this, TermView.class);
-        //startActivity(intent);
+        Intent intent = new Intent(AssessmentView.this, AssessmentCreate.class);
+        startActivity(intent);
     }
 }

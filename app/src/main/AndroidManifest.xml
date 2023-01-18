@@ -24,7 +24,12 @@
             android:name=".UI.AssessmentViewDetailed"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
-            android:parentActivityName=".UI.AssessmentView" />  <!--  !-->
+            android:parentActivityName=".UI.AssessmentView" />
+        <activity
+            android:name=".UI.AssessmentCreate"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:exported="false"
+            android:parentActivityName=".UI.AssessmentView" /><!--  !-->
         <activity
             android:name=".UI.CourseViewDetailed"
             android:windowSoftInputMode="adjustResize"

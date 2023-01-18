@@ -48,8 +48,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class CourseCreateView extends AppCompatActivity {
-    //TODO insert these fields but make sure to clean up the code referencing assessments
-    // And the recycler view might throw a runtime error. When it is attempted to be created.
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -342,7 +340,7 @@ public class CourseCreateView extends AppCompatActivity {
 
             //So the first item in a Spinner is selected by default meaning that if the user
             // Clicks this first item again nothing will register as selected
-            // TODO leave this as it but write it up for the instructor.
+            //Write up this logic for the grader.
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view,
                                        int position, long id) {

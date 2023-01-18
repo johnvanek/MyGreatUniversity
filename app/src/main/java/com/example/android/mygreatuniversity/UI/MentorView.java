@@ -59,6 +59,8 @@ public class MentorView extends AppCompatActivity {
         //TODO should go to a new activity very similar to the screen that is used for the editing.
         // Will have to create all new activities for those screens as well.
 
+        //TODO create a java file and and xml file first
+
         //Intent intent = new Intent(MainActivity.this, TermView.class);
         //startActivity(intent);
     }

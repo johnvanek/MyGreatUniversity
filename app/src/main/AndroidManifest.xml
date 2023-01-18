@@ -46,7 +46,12 @@
             android:name=".UI.MentorViewDetailed"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
-        android:parentActivityName=".UI.MentorView" /> <!-- Child of Mentor! -->
+        android:parentActivityName=".UI.MentorView" />
+        <activity
+            android:name=".UI.MentorCreate"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:exported="false"
+            android:parentActivityName=".UI.MentorView" />
         <activity
             android:name=".UI.TermView"
             android:exported="false"

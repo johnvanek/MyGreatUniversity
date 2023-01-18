@@ -1,5 +1,6 @@
 package com.example.android.mygreatuniversity.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -56,12 +57,7 @@ public class MentorView extends AppCompatActivity {
     }
 
     public void goToMentorCreate(MenuItem item) {
-        //TODO should go to a new activity very similar to the screen that is used for the editing.
-        // Will have to create all new activities for those screens as well.
-
-        //TODO create a java file and and xml file first
-
-        //Intent intent = new Intent(MainActivity.this, TermView.class);
-        //startActivity(intent);
+        Intent intent = new Intent(MentorView.this, MentorCreate.class);
+        startActivity(intent);
     }
 }

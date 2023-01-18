@@ -20,10 +20,10 @@ import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
     //TODO Remaining
-    // ****------Current Task [Add Feature -- (Add Create For Assessments,)]----****
-    // 1) [In-Progress]Need to add the Crud operations via an overflow menu for all items
-    // 2) Final steps are to Create the landscape view of everything
-    // 3) Broadcast Receivers, Watch Artic fox new one
+    // ****------Current Task [Create the BroadCast Receivers]----****
+    // 1) [Completed]Need to add the Crud operations via an overflow menu for all items
+    // 2) [Next-Up]Final steps are to Create the landscape view of everything
+    // 3) [In-Progress] - Broadcast Receivers, Watch Artic fox new one
     // 4) Then have to answer the section about the paper writing requirements for.
     // 5)Then have to create the storyboard for the application.
     // 6) Sign the Apk and take a picture Submit to the app store - optional

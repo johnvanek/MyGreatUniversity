@@ -386,7 +386,6 @@ public class CourseCreateView extends AppCompatActivity {
 
         //The primary key is auto-incremented in the database
         repo.insertCourse(editedCourse);
-        //TODO don't think I need this logic here as there is only way to arrive at Create screen
         Intent intent = new Intent(
                     CourseCreateView.this,
                     CourseView.class);
@@ -397,7 +396,6 @@ public class CourseCreateView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //TODO rework this one as well to be a discard feature
     public void deleteState(View view) {
         //Declare the intent
         Intent intent  = new Intent(

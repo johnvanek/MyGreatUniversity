@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             repo.insertTerm(new Term("Fall2022","01//01/22","5/31/22"));
             repo.insertTerm(new Term("Spring2022","6/01/22","12/31/22"));
             repo.insertTerm(new Term("Fall2023","01//01/23","5/31/23"));
-
             //******Assessments******
 
             repo.insertAssessment(new Assessment("Android App Dev","Performance","10/15/22","10/30/22",1));

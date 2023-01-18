@@ -1,10 +1,5 @@
 package com.example.android.mygreatuniversity.UI;
-// TODO this create view should be similar to how create term is handled
-//  Because of how repo works in reassigning these these recycler view values
-//  When the user is creating an items they shouldn't have the ability alter data in
-//  the repo until created.
 
-import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
@@ -30,17 +25,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
-import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
-import com.example.android.mygreatuniversity.Utils.StateManager;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -68,6 +68,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     // Could use repo to perform a lookup
 
     //Date References & Declarations
+    //This is for Converting dates from strings to date objects
     String format = "MM/dd/yy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
     DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;

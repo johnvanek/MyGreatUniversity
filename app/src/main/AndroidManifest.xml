@@ -13,28 +13,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
         tools:targetApi="32">
+        <receiver
+            android:name=".UI.CourseAlertReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".UI.AssessmentView"
             android:exported="false"
             android:parentActivityName=".UI.MainActivity" />
-        <activity android:name=".UI.TermCreate"
+        <activity
+            android:name=".UI.TermCreate"
             android:exported="false"
             android:parentActivityName=".UI.TermView" />
         <activity
             android:name=".UI.AssessmentViewDetailed"
-            android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
-            android:parentActivityName=".UI.AssessmentView" />
+            android:parentActivityName=".UI.AssessmentView"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".UI.AssessmentCreate"
-            android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
-            android:parentActivityName=".UI.AssessmentView" /><!--  !-->
+            android:parentActivityName=".UI.AssessmentView"
+            android:windowSoftInputMode="stateAlwaysHidden" /> <!-- ! -->
         <activity
             android:name=".UI.CourseViewDetailed"
-            android:windowSoftInputMode="adjustResize"
             android:exported="false"
-            android:parentActivityName=".UI.TermViewDetailed" />  <!--  !-->
+            android:parentActivityName=".UI.TermViewDetailed"
+            android:windowSoftInputMode="adjustResize" /> <!-- ! -->
         <activity
             android:name=".UI.CourseView"
             android:exported="false"
@@ -49,14 +55,14 @@
             android:parentActivityName=".UI.MainActivity" /> <!-- Child of Main ! -->
         <activity
             android:name=".UI.MentorViewDetailed"
-            android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
-        android:parentActivityName=".UI.MentorView" />
+            android:parentActivityName=".UI.MentorView"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".UI.MentorCreate"
-            android:windowSoftInputMode="stateAlwaysHidden"
             android:exported="false"
-            android:parentActivityName=".UI.MentorView" />
+            android:parentActivityName=".UI.MentorView"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".UI.TermView"
             android:exported="false"

@@ -39,6 +39,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -205,6 +206,8 @@ public class CourseViewDetailed extends AppCompatActivity {
             CalenderEnd.set(Calendar.MONTH, month);
             CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
             updateEndDateEditTextField();
+            //This is where we set the trigger for end of course notification
+            updateEndCourseNotification();
         };
 
         //************ KEYBOARD HIDING ****************
@@ -431,6 +434,20 @@ public class CourseViewDetailed extends AppCompatActivity {
     private void updateEndDateEditTextField() {
         hideKeyboard(this);
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
+    }
+
+    private void updateEndCourseNotification() {
+        //TODO set the notification for the end date for the course.
+        //  Since this is where we are updating the edit text to display the date
+        // EveryTime this changes -> Store the Time
+
+        //To Convert for a Notification ->
+        //String -> Date -> Long in this order
+
+        String curEndDate = dateFormat.format(CalenderEnd.getTime());
+        System.out.println("The String Representation of curEnddate is " + curEndDate);
+        //String myformat = "MM/dd/yy";
+        //SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
     }
 
     public void saveState(View view) {

@@ -1,14 +1,20 @@
 package com.example.android.mygreatuniversity.UI;
 
+import static com.example.android.mygreatuniversity.UI.MainActivity.notificationAlertCount;
 import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -37,6 +43,7 @@ import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -96,7 +103,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         //Define an actionbar reference for shorthand
         ActionBar actionBar = getSupportActionBar();
-
         //Set nav icon location as back if child
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);   //show back button
@@ -437,17 +443,35 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     private void updateEndCourseNotification() {
-        //TODO set the notification for the end date for the course.
-        //  Since this is where we are updating the edit text to display the date
-        // EveryTime this changes -> Store the Time
-
         //To Convert for a Notification ->
         //String -> Date -> Long in this order
 
         String curEndDate = dateFormat.format(CalenderEnd.getTime());
-        System.out.println("The String Representation of curEnddate is " + curEndDate);
-        //String myformat = "MM/dd/yy";
-        //SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Log.d("courseChannel", "The String Representation of curEndDate is " + curEndDate);
+        //Convert to Date Object
+        Date date = null;
+        try {
+            date = dateFormat.parse(curEndDate);
+            } catch (ParseException e) {
+            //Catch the parse Exception if there is one
+            e.printStackTrace();
+        }
+        //Pass this intent to the Course receiver. This should trigger
+        Long triggerInSeconds = date.getTime();
+        Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
+        intent.putExtra("key", "messageToSend");
+        //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
+        //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                CourseViewDetailed.this,notificationAlertCount++,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE);
+
+        //Get from the System the user Preference for Alarms
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //This is where you set the alarm
+        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
+        //alarm
     }
 
     public void saveState(View view) {
@@ -502,8 +526,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Declare the intent
         Intent intent;
         //The logic for backing to the next screen.
-        //If we arrived here from the TermViewDetailed Screen essentially. We want to return to that
-        // Activity. And we will pass in the current intent since we currently the term information.
         if (StateManager.isArrivedToCourseFromTermView()) {
             intent = new Intent(
                     CourseViewDetailed.this,

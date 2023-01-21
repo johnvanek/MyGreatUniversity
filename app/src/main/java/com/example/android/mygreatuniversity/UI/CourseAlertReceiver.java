@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
@@ -20,9 +21,8 @@ public class CourseAlertReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
         // This is essentially what happens when the notification is triggered.
-
+        Log.d("courseChannel", "Received Course-end notification");
         //For now test it with a Toast
         Toast.makeText(context,intent.getStringExtra("key"),Toast.LENGTH_LONG).show();
 
@@ -30,7 +30,7 @@ public class CourseAlertReceiver extends BroadcastReceiver {
         createNotificationChannel(context,channel_id);
         //build the new notification using the builder and call build()
         Notification notification = new NotificationCompat.Builder(context,channel_id)
-                .setSmallIcon(R.drawable.launcher_icon_foreground)
+                .setSmallIcon(R.drawable.toolbar_icon_small)
                 .setContentText(intent.getStringExtra("key"))
                 .setContentTitle("NotificationTest").build();
 
@@ -38,20 +38,13 @@ public class CourseAlertReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         //Call notify from the System and increment the notification ID, pass in the current notification
         notificationManager.notify(notificationID++,notification);
-
-        throw new UnsupportedOperationException("Not yet implemented");
+        //Don't need to actually throw this its just a reminder for implementation
+        //throw new UnsupportedOperationException("Not yet implemented");
     }
 
     //Pass in the context for getString to work and Channel Id so it know what channel
     private void createNotificationChannel(Context context, String CHANNEL_ID) {
-        //This is from the android docs but we can ignore since at a minimum we are using OREO
-        // Which is Android 8 or API greater than or equal to 26.
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        //if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {// Do the things}
-
         //Define the names and the description
-
         //This get the values for the channel name & Description from res.values
         CharSequence name = context.getString(R.string.channel_name_course);
         String description = context.getString(R.string.channel_description_course);

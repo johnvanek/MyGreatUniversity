@@ -19,11 +19,12 @@ import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
+    public static int notificationAlertCount;
     //TODO Remaining
     // ****------Current Task [Create the BroadCast Receivers]----****
     // 1) [Completed]Need to add the Crud operations via an overflow menu for all items
     // 2) [Next-Up]Final steps are to Create the landscape view of everything
-    // 3) [In-Progress] - Broadcast Receivers, Watch Artic fox new one
+    // 3) [In-Progress] - Broadcast Receivers Course End/Start Assessment End Start
     // 4) Then have to answer the section about the paper writing requirements for.
     // 5)Then have to create the storyboard for the application.
     // 6) Sign the Apk and take a picture Submit to the app store - optional

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     // 2) [Next-Up]Final steps are to Create the landscape view of everything
     // 3) [In-Progress] - Broadcast Receivers Course End/Start Assessment End Start
     //    * -- 3-a Test the broadcast receivers on a variety of dates and API version 8 (26) as Well.
+    //    * -- 3-b Read Project specs and make sure this functionality is working as intended for start and end.
     // 4) Then have to answer the section about the paper writing requirements for.
     // 5)Then have to create the storyboard for the application.
     // 6) Sign the Apk and take a picture Submit to the app store - optional

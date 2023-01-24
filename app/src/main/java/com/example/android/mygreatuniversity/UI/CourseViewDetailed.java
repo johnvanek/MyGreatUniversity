@@ -12,12 +12,16 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Build;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionProvider;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -28,6 +32,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -448,7 +454,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
-    private void updateEndCourseNotification() {
+    private void updateEndCourseNotification(MenuItem menuItem) {
         //To Convert for a Notification ->
         //String -> Date -> Long in this order
         String curEndDate = dateFormat.format(CalenderEnd.getTime());
@@ -483,7 +489,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
 
-    private void updateStartCourseNotification() {
+    public void updateStartCourseNotification(MenuItem menuItem) {
         String curStartDate = dateFormat.format(CalenderStart.getTime());
         Log.d("courseChannel", "The String Representation of curStartDate is " + curStartDate);
         //Convert to Date Object
@@ -533,7 +539,6 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         //If this course data was modified also update the Notifications/ Alerts for the Start &
         // End Dates for the System.
-        updateCourseNotifications();
 
         Intent intent;
         //If there is a valid selected term take us back
@@ -657,33 +662,18 @@ public class CourseViewDetailed extends AppCompatActivity {
         }
     }
 
-    //TODO rework this per the requirements explained video they cannot be set to go off automatically
-    // The user must set them. Going to need to create a radio button or something in the ui.
-
-    //TODO
-    // Add to the toolbar up top with the option to set the alert for the start or the end manually.
-    // Using a drop down toolbar.
-
-    private void updateCourseNotifications() {
-        if (wasCourseEndDateModified) {
-            updateEndCourseNotification();
-        } else if (wasCourseStartDateModified) {
-            updateStartCourseNotification();
-        }
+    public void updateCourseNotifications(MenuItem menuItem) {
+            updateEndCourseNotification(menuItem);
+            updateStartCourseNotification(menuItem);
     }
-    //This create the drop down menu.
-    //TODO create a new menu consisting of
-    // Update - Alert Start
-    // Update - Alert End
-    // Update - Both.
-    // Determine how to clean out and old notification channel.
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.course_menu, menu);
+        inflater.inflate(R.menu.course_detailed_menu, menu);
         return true;
     }
-    }
+}
 
 
 

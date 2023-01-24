@@ -458,6 +458,9 @@ public class CourseViewDetailed extends AppCompatActivity {
         }
         //Pass this intent to the Course receiver. This should trigger
         Long triggerInSeconds = date.getTime();
+        //This is for the Course end notification so include a message for that. But really this should
+        // only be sent on save not on a change as we could change it back before the rest of this information
+        //get modified.
         Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
         intent.putExtra("key", "messageToSend");
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33

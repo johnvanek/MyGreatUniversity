@@ -15,6 +15,8 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -668,6 +670,18 @@ public class CourseViewDetailed extends AppCompatActivity {
         } else if (wasCourseStartDateModified) {
             updateStartCourseNotification();
         }
+    }
+    //This create the drop down menu.
+    //TODO create a new menu consisting of
+    // Update - Alert Start
+    // Update - Alert End
+    // Update - Both.
+    // Determine how to clean out and old notification channel.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.course_menu, menu);
+        return true;
     }
     }
 

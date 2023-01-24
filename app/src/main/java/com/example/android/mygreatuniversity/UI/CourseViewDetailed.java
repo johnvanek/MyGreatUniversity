@@ -656,8 +656,12 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     //TODO rework this per the requirements explained video they cannot be set to go off automatically
-    // The user must set them. Going to need to create a radio button or something in the ui next to
-    // The datepickers for like would you like to set an alert
+    // The user must set them. Going to need to create a radio button or something in the ui.
+
+    //TODO
+    // Add to the toolbar up top with the option to set the alert for the start or the end manually.
+    // Using a drop down toolbar.
+
     private void updateCourseNotifications() {
         if (wasCourseEndDateModified) {
             updateEndCourseNotification();

@@ -56,6 +56,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     final Calendar CalenderEnd = Calendar.getInstance();
 
     boolean arrivedFromIntent = true;
+    boolean wasCourseEndDateModified = false;
+    boolean wasCourseStartDateModified = false;
     //Field Declarations
     EditText courseTitle;
     EditText startText, endText, courseNoteEditText;
@@ -205,6 +207,8 @@ public class CourseViewDetailed extends AppCompatActivity {
             CalenderStart.set(Calendar.MONTH, month);
             CalenderStart.set(Calendar.DAY_OF_MONTH, day);
             updateStartDateEditTextField();
+            //Set A flag here for the notifications
+            wasCourseStartDateModified = true;
         };
 
         endDatePicker = (view, year, month, day) -> {
@@ -213,7 +217,7 @@ public class CourseViewDetailed extends AppCompatActivity {
             CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
             updateEndDateEditTextField();
             //This is where we set the trigger for end of course notification
-            updateEndCourseNotification();
+            wasCourseEndDateModified = true;
         };
 
         //************ KEYBOARD HIDING ****************
@@ -477,6 +481,11 @@ public class CourseViewDetailed extends AppCompatActivity {
         //alarm
     }
 
+
+    private void updateStartCourseNotification() {
+
+    }
+
     public void saveState(View view) {
         Mentor selectedMentor = (Mentor) mentorSpinner.getSelectedItem();
         Course editedCourse = new Course(
@@ -492,6 +501,10 @@ public class CourseViewDetailed extends AppCompatActivity {
         //The primary key is auto-incremented in the database
         editedCourse.setCourseID(intentCourseId); // This will set it to Id that was passed
         repo.updateCourse(editedCourse);
+
+        //If this course data was modified also update the Notifications/ Alerts for the Start &
+        // End Dates for the System.
+        updateCourseNotifications();
 
         Intent intent;
         //If there is a valid selected term take us back
@@ -614,7 +627,15 @@ public class CourseViewDetailed extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Assessment Already in Course.",Toast.LENGTH_SHORT).show();
         }
     }
-}
+
+    private void updateCourseNotifications() {
+        if (wasCourseEndDateModified) {
+            updateEndCourseNotification();
+        } else if (wasCourseStartDateModified) {
+            updateStartCourseNotification();
+        }
+    }
+    }
 
 
 

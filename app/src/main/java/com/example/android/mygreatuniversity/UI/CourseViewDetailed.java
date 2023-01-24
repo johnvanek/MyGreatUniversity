@@ -449,7 +449,6 @@ public class CourseViewDetailed extends AppCompatActivity {
     private void updateEndCourseNotification() {
         //To Convert for a Notification ->
         //String -> Date -> Long in this order
-
         String curEndDate = dateFormat.format(CalenderEnd.getTime());
         Log.d("courseChannel", "The String Representation of curEndDate is " + curEndDate);
         //Convert to Date Object
@@ -483,7 +482,35 @@ public class CourseViewDetailed extends AppCompatActivity {
 
 
     private void updateStartCourseNotification() {
+        String curStartDate = dateFormat.format(CalenderStart.getTime());
+        Log.d("courseChannel", "The String Representation of curStartDate is " + curStartDate);
+        //Convert to Date Object
+        Date date = null;
+        try {
+            date = dateFormat.parse(curStartDate);
+        } catch (ParseException e) {
+            //Catch the parse Exception if there is one
+            e.printStackTrace();
+        }
+        //Pass this intent to the Course receiver. This should trigger
+        Long triggerInSeconds = date.getTime();
+        //This is for the Course end notification so include a message for that. But really this should
+        // only be sent on save not on a change as we could change it back before the rest of this information
+        //get modified.
+        Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
+        intent.putExtra("key", "messageToSend");
+        //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
+        //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                CourseViewDetailed.this,notificationAlertCount++,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE);
 
+        //Get from the System the user Preference for Alarms
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //This is where you set the alarm
+        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
+        //alarm
     }
 
     public void saveState(View view) {
@@ -628,6 +655,9 @@ public class CourseViewDetailed extends AppCompatActivity {
         }
     }
 
+    //TODO rework this per the requirements explained video they cannot be set to go off automatically
+    // The user must set them. Going to need to create a radio button or something in the ui next to
+    // The datepickers for like would you like to set an alert
     private void updateCourseNotifications() {
         if (wasCourseEndDateModified) {
             updateEndCourseNotification();

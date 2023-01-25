@@ -382,7 +382,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
         intent.putExtra("title", "Start-Date[Assessment]:  " + assessmentMessageTitle);
         intent.putExtra("body", "The Start Date for: " + assessmentMessageTitle +
-                " was " + assessmentMessageBody + " which was " + days + " days ago.");
+                " was " + assessmentMessageBody);
 
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
@@ -439,7 +439,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
         intent.putExtra("title", "End-Date[Assessment]: " + assessmentMessageTitle);
         intent.putExtra("body", "The End Date for: " + assessmentMessageTitle +
-                " was " + assessmentMessageBody + " which was " + days + " days ago.");
+                " was " + assessmentMessageBody);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 AssessmentViewDetailed.this,++notificationAlertCount,

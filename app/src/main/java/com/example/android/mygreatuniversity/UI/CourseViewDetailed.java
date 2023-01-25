@@ -486,7 +486,7 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         intent.putExtra("title", "Start-Date[Course]: " + courseMessageTitle);
         intent.putExtra("body", "The Start Date for: " + courseMessageTitle +
-                " was " + courseMessageBody + " which was " + days + " days ago.");
+                " was " + courseMessageBody);
 
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
@@ -542,7 +542,8 @@ public class CourseViewDetailed extends AppCompatActivity {
 
         intent.putExtra("title", "End-Date[Course]: " + courseMessageTitle);
         intent.putExtra("body", "The End Date for: " + courseMessageTitle +
-                " was " + courseMessageBody + " which was " + days + " days ago.");
+                " was " + courseMessageBody);
+        // + " which was " + days + " days ago."
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 CourseViewDetailed.this,++notificationAlertCount,

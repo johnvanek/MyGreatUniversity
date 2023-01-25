@@ -450,48 +450,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
-    public void updateEndCourseNotification(MenuItem menuItem) {
-        //To Convert for a Notification ->
-        //String -> Date -> Long in this order
-        String curEndDate = dateFormat.format(CalenderEnd.getTime());
-        Log.d("courseChannel", "The String Representation of curEndDate is " + curEndDate);
-        //Convert to Date Object
-        Date date = null;
-        try {
-            date = dateFormat.parse(curEndDate);
-            } catch (ParseException e) {
-            //Catch the parse Exception if there is one
-            e.printStackTrace();
-        }
-        //Pass this intent to the Course receiver. This should trigger
-        Long triggerInSeconds = date.getTime();
-        //This is for the Course end notification so include a message for that. But really this should
-        // only be sent on save not on a change as we could change it back before the rest of this information
-        //get modified.
-        Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
-        intent.putExtra("key", "Notification for the Course End");
-        //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
-        //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                CourseViewDetailed.this,notificationAlertCount++,
-                intent,
-                PendingIntent.FLAG_IMMUTABLE);
-
-        //Get from the System the user Preference for Alarms
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        //This is where you set the alarm
-        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
-        //alarm
-
-        if(settingBoth) {
-            //Do nada except set it back false
-            settingBoth = false;
-        } else {
-            Toast.makeText(getApplicationContext(),"Course End Alert Set!" ,Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
     public void updateStartCourseNotification(MenuItem menuItem) {
         String curStartDate = dateFormat.format(CalenderStart.getTime());
         Log.d("courseChannel", "The String Representation of curStartDate is " + curStartDate);
@@ -528,6 +486,54 @@ public class CourseViewDetailed extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(),"Course Start Alert Set!" ,Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void updateEndCourseNotification(MenuItem menuItem) {
+        //To Convert for a Notification ->
+        //String -> Date -> Long in this order
+        String curEndDate = dateFormat.format(CalenderEnd.getTime());
+        Log.d("courseChannel", "The String Representation of curEndDate is " + curEndDate);
+        //Convert to Date Object
+        Date date = null;
+        try {
+            date = dateFormat.parse(curEndDate);
+        } catch (ParseException e) {
+            //Catch the parse Exception if there is one
+            e.printStackTrace();
+        }
+        //Pass this intent to the Course receiver. This should trigger
+        Long triggerInSeconds = date.getTime();
+        //This is for the Course end notification so include a message for that. But really this should
+        // only be sent on save not on a change as we could change it back before the rest of this information
+        //get modified.
+        Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
+        intent.putExtra("key", "Notification for the Course End");
+        //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
+        //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                CourseViewDetailed.this,notificationAlertCount++,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE);
+
+        //Get from the System the user Preference for Alarms
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //This is where you set the alarm
+        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
+        //alarm
+
+        if(settingBoth) {
+            //Do nada except set it back false
+            settingBoth = false;
+        } else {
+            Toast.makeText(getApplicationContext(),"Course End Alert Set!" ,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void updateCourseNotifications(MenuItem menuItem) {
+        settingBoth = true;
+        updateStartCourseNotification(menuItem);
+        updateEndCourseNotification(menuItem);
+
     }
 
     public void saveState(View view) {
@@ -671,12 +677,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         }
     }
 
-    public void updateCourseNotifications(MenuItem menuItem) {
-        settingBoth = true;
-        updateStartCourseNotification(menuItem);
-        updateEndCourseNotification(menuItem);
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -26,6 +26,8 @@
     <string name="channel_description">courseDescription</string>
     <string name="channel_name_course">CourseChannel</string>
     <string name="channel_description_course">Notifies Course Start End Dates</string>
+    <string name="channel_name_assessment">AssessmentChannel</string>
+    <string name="channel_description_assessment">Notifications for start and end Dates for Assessment Goals</string>
     <string-array name="course_status_array">
         <item>In-Progress</item>
         <item>Completed</item>

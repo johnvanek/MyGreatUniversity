@@ -1,17 +1,23 @@
 package com.example.android.mygreatuniversity.UI;
 
+import static com.example.android.mygreatuniversity.UI.MainActivity.notificationAlertCount;
 import static com.example.android.mygreatuniversity.Utils.Utils.assessmentTypePosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -36,10 +42,13 @@ import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class AssessmentViewDetailed extends AppCompatActivity {
     //**************  START DECLARATIONS *********************
@@ -47,6 +56,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     final Calendar CalenderEnd = Calendar.getInstance();
 
     boolean arrivedFromIntent = true;
+    boolean settingBoth = false;
     //Field Declarations
     EditText assessmentTitle;
     EditText assessmentStart, assessmentEnd;
@@ -335,6 +345,128 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),"Assessment Deleted",Toast.LENGTH_SHORT).show();
         startActivity(intent);
+    }
+
+    public void updateStartAssessmentNotification(MenuItem menuItem) {
+        String curStartDate = assessmentStart.getText().toString();
+        //curStartDate = dateFormat.format(CalenderStart.getTime());
+        Log.d("assessmentChannel", "The String Representation of curStartDate is " + curStartDate);
+        //Convert to Date Object
+        Date date = null;
+        try {
+            date = dateFormat.parse(curStartDate);
+        } catch (ParseException e) {
+            //Catch the parse Exception if there is one
+            e.printStackTrace();
+        }
+        //Pass this intent to the Course receiver. This should trigger
+        Long triggerInSeconds = date.getTime();
+        //This is for the Course end notification so include a message for that. But really this should
+        // only be sent on save not on a change as we could change it back before the rest of this information
+        //get modified.
+        Intent intent = new Intent(AssessmentViewDetailed.this, AssessmentAlertReceiver.class);
+        //This is the information that is going to be passed to the course Receiver
+        String assessmentMessageTitle = String.valueOf(assessmentTitle.getText());
+        String assessmentMessageBody = String.valueOf(assessmentStart.getText());
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date startTime = null;
+        try {
+            startTime = sdf.parse(assessmentStart.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long diff = currentTime.getTime() - startTime.getTime();
+        //get the abs value
+        long days = Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+
+        intent.putExtra("title", "Start Date: " + assessmentMessageTitle);
+        intent.putExtra("body", "The Start Date for Course: " + assessmentMessageTitle +
+                " was " + assessmentMessageBody + " which was " + days + " days ago.");
+
+        //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
+        //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                //This should still work to generate a unique ID
+                AssessmentViewDetailed.this,++notificationAlertCount,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE);
+
+        //Get from the System the user Preference for Alarms
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //This is where you set the alarm
+        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
+        //alarm
+        //Toast.makeText(getApplicationContext(),"Course Start Alert Set!" ,Toast.LENGTH_SHORT).show();
+        if(settingBoth){
+            Toast.makeText(getApplicationContext(),"Assessment Start&End Alert Set!" ,Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(),"Assessment Start Alert Set!" ,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void updateEndAssessmentNotification(MenuItem menuItem) {
+        String curEndDate = assessmentEnd.getText().toString();
+        Log.d("assessmentChannel", "The String Representation of curEndDate is " + curEndDate);
+        //Convert to Date Object
+        Date date = null;
+        try {
+            date = dateFormat.parse(curEndDate);
+        } catch (ParseException e) {
+            //Catch the parse Exception if there is one
+            e.printStackTrace();
+        }
+        //Pass this intent to the Course receiver. This should trigger
+        Long triggerInSeconds = date.getTime();
+        //This is for the Course end notification so include a message for that. But really this should
+        // only be sent on save not on a change as we could change it back before the rest of this information
+        //get modified.
+        Intent intent = new Intent(AssessmentViewDetailed.this, AssessmentAlertReceiver.class);
+        //Think to string gets called automatically
+        String assessmentMessageTitle = String.valueOf(assessmentTitle.getText());
+        String assessmentMessageBody = String.valueOf(assessmentEnd.getText());
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date endTime = null;
+        try {
+            endTime = sdf.parse(assessmentEnd.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long diff = currentTime.getTime() - endTime.getTime();
+        //get the abs value
+        long days = Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+
+        intent.putExtra("title", "End Date: " + assessmentMessageTitle);
+        intent.putExtra("body", "The End Date for Assessment: " + assessmentMessageTitle +
+                " was " + assessmentMessageBody + " which was " + days + " days ago.");
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                AssessmentViewDetailed.this,++notificationAlertCount,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE);
+
+        //Get from the System the user Preference for Alarms
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //This is where you set the alarm
+        //Also the calling here might be different because this is where pending intent is passed
+        //Where to intent is the sub value
+        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
+        //alarm
+
+        if(settingBoth) {
+            //Do nada except set it back false
+            settingBoth = false;
+        } else {
+            Toast.makeText(getApplicationContext(),"Assessment End Alert Set!" ,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void updateCourseNotifications(MenuItem menuItem) {
+        settingBoth = true;
+        //This should be reworked to allow for both to be called at the same time.
+        updateStartAssessmentNotification(menuItem);
+        updateEndAssessmentNotification(menuItem);
     }
 
     @Override

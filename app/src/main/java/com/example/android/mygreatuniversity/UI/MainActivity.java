@@ -21,7 +21,13 @@ import com.example.android.mygreatuniversity.R;
 public class MainActivity extends AppCompatActivity {
     //should actually pre-increment this before I call the count
     public static int notificationAlertCount;
-    //TODO Remaining
+    //TODO Remaining UI
+    // Last UI Changes to make it I have time
+    // Change the coloring for the red and purple listing of things
+    // Think I would have to go in to the adapter itself to change it
+    // Also check about the font and maybe prepending a bullet-point
+
+    //TODO Rest
     // ****------Current Task [Create the BroadCast Receivers]----****
     // 1) [Completed]Need to add the Crud operations via an overflow menu for all items
     // 2) [Completed] - Broadcast Receivers Course End/Start Assessment End Start
@@ -34,6 +40,38 @@ public class MainActivity extends AppCompatActivity {
     // 4) [TO-DO]-Then have to create the storyboard for the application.
     // 5) [TO-DO]-Then have to answer the section about the paper writing requirements for.
     // 6) [TO-DO]-Sign the Apk and take a picture Submit to the app store - optional to submit
+
+    //TODO-Last-CheckList-Per The Task View
+    // A: Mobile-Version The Android mobile application is a version 8.0 or higher, loads properly, and all Android project files, APK, and signed apk files are in one zipped.zip file.[TO-DO]
+    // A1:TERM FUNCTIONAL REQUIREMENTS: The mobile application allows the user to enter all term titles and all start and end dates for each term. [Completed]
+    // A2:TERM ADDITION FEATURE: The features included in the mobile application are coded to allow the user to add an unlimited number of terms. [Completed]
+    // A3:VALIDATION IMPLEMENTATION: The mobile application includes validation to prevent the user from deleting a term when courses have been assigned to that term. [Completed]
+    // A4A:COURSE ADDITION: The mobile application is coded so that the user can add an unlimited number of courses to each term. [Completed]
+    // A4B:LIST OF COURSES: The mobile application allows the user to display a list of courses associated with each term. [Completed]
+    // A4C:TERM DETAILS: The mobile application allows the user to display a detailed view of each term and the view includes the term title, the start date, and the end date for each term [Completed]
+    // A5:COURSE DETAILS: The mobile application allows the user to enter all the given details for each course. [Completed]
+    // A6A:ASSESSMENT ADDITION: The mobile application is coded so that the user can add as many as 5 assessments to each course. [Completed] There is no life but they will replace.
+    // A6B:OPTIONAL NOTES ADDITION: The mobile application allows the user to add optional notes within each course. [Completed]
+    // A6C:COURSE INFORMATION: The mobile application allows the user to enter, edit, and delete any information for each course. [Completed]
+    // A6D:OPTIONAL NOTES DISPLAY: The mobile application allows the user to display optional notes within each course. [Completed]
+    // A6E:DETAILED VIEW: The mobile application allows the user to display a detailed view of the course information for each course, including the end date for each. [Completed]
+    // A6F:ALERTS FOR COURSES: The mobile application allows the user to set alerts for both the start and end date of each course and the alerts can trigger when the application is not running. [Completed]
+    // A6G:SHARING FEATURES: The mobile application allows the user to share messages or email that automatically populates with the notes. [Completed] messages
+    // A7A:ASSESSMENTS FOR EACH COURSE: The mobile application allows the user to add performance and objective assessments for each course, including the title of the assessment and the end date for each assessment. [Completed]
+    // A7B:ASSESSMENT INFORMATION: The mobile application allows the user to enter, edit, and delete all assessment information. [Completed]
+    // A7C:ALERTS FOR GOAL DATES: The mobile application allows the user to set alerts for all start and end dates for each assessment.[Completed]
+    // TO-DU
+    // B:SCREEN LAYOUTS The screen designs include the layout for each given screen, as described, and includes appropriate GUI elements for each layout. [In-Progress] - Need Landscape
+    // D:STORYBOARD: The storyboard demonstrates the flow of the mobile application and includes all of the menus and screens from part B. [In-Progress]
+    // E:SCREENSHOTS: The screenshots provided demonstrate the creation of a deployment package. [In-Progress] - Take a picture of the signed apk
+    // F1:MOBILE APPLICATION DEVELOPMENT: The explanation of how the application would be different if developed for a tablet includes both an accurate discussion of both fragments and layouts. []
+    // F2:OPERATING SYSTEM: The response identifies both the minimum and the target SDK. []
+    // F3:DESCRIPTION OF CHALLENGES: The response describes challenges faced, specifically during the development of the application. []
+    // F4:SOLUTIONS TO CHALLENGES: The description of how each challenge was overcome is related to the challenges listed in F2. []
+    // F5:DIFFERENCES: The response discusses the changes that would be made to at least one aspect of the project, were it to be done again, and specifically identifies the changes that would be made. []
+    // F6:EMULATORS: The description of the use of emulators includes the pros and cons of using an emulator versus using a development device. []
+    // G:APA SOURCES: The submission includes in-text citations and references for content that is quoted, paraphrased, or summarized and demonstrates a consistent application of APA style. [] USA APA style
+    // H:PROFESSIONAL COMMUNICATION: Use good grammar. Aka grammerly and punctuation. Don't curse; []
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

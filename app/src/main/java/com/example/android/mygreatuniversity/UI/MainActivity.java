@@ -24,15 +24,16 @@ public class MainActivity extends AppCompatActivity {
     //TODO Remaining
     // ****------Current Task [Create the BroadCast Receivers]----****
     // 1) [Completed]Need to add the Crud operations via an overflow menu for all items
-    // 2) [Next-Up]Final steps are to Create the landscape view of everything
-    // 3) [In-Progress] - Broadcast Receivers Course End/Start Assessment End Start
+    // 2) [Completed] - Broadcast Receivers Course End/Start Assessment End Start
     //    * -- 3-a Test the broadcast receivers on a variety of dates and API version 8 (26) as Well.
     //    * -- 3-b Read Project specs and make sure this functionality is working as intended for start and end.
     //    * -- 3-c The Assessments & Courses need to have alerts for the start and end dates.
     //    * -- Should include a toggle or something that lets the user know alerts have been set.
-    // 4) Then have to answer the section about the paper writing requirements for.
-    // 5)Then have to create the storyboard for the application.
-    // 6) Sign the Apk and take a picture Submit to the app store - optional
+    // 3) [In-Progress]Create the landscape view of everything
+    // ----- Should be an option in the Android Studio settings to generate a landscape view.
+    // 4) [TO-DO]-Then have to create the storyboard for the application.
+    // 5) [TO-DO]-Then have to answer the section about the paper writing requirements for.
+    // 6) [TO-DO]-Sign the Apk and take a picture Submit to the app store - optional to submit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

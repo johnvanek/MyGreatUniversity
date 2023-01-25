@@ -64,8 +64,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     final Calendar CalenderEnd = Calendar.getInstance();
 
     boolean arrivedFromIntent = true;
-    boolean wasCourseEndDateModified = false;
-    boolean wasCourseStartDateModified = false;
+    boolean settingBoth = false;
     //Field Declarations
     EditText courseTitle;
     EditText startText, endText, courseNoteEditText;
@@ -215,8 +214,6 @@ public class CourseViewDetailed extends AppCompatActivity {
             CalenderStart.set(Calendar.MONTH, month);
             CalenderStart.set(Calendar.DAY_OF_MONTH, day);
             updateStartDateEditTextField();
-            //Set A flag here for the notifications
-            wasCourseStartDateModified = true;
         };
 
         endDatePicker = (view, year, month, day) -> {
@@ -225,7 +222,6 @@ public class CourseViewDetailed extends AppCompatActivity {
             CalenderEnd.set(Calendar.DAY_OF_MONTH, day);
             updateEndDateEditTextField();
             //This is where we set the trigger for end of course notification
-            wasCourseEndDateModified = true;
         };
 
         //************ KEYBOARD HIDING ****************
@@ -454,7 +450,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         endText.setText(dateFormat.format(CalenderEnd.getTime()));
     }
 
-    private void updateEndCourseNotification(MenuItem menuItem) {
+    public void updateEndCourseNotification(MenuItem menuItem) {
         //To Convert for a Notification ->
         //String -> Date -> Long in this order
         String curEndDate = dateFormat.format(CalenderEnd.getTime());
@@ -473,7 +469,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         // only be sent on save not on a change as we could change it back before the rest of this information
         //get modified.
         Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
-        intent.putExtra("key", "messageToSend");
+        intent.putExtra("key", "Notification for the Course End");
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -486,6 +482,13 @@ public class CourseViewDetailed extends AppCompatActivity {
         //This is where you set the alarm
         alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
         //alarm
+
+        if(settingBoth) {
+            //Do nada except set it back false
+            settingBoth = false;
+        } else {
+            Toast.makeText(getApplicationContext(),"Course End Alert Set!" ,Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -506,7 +509,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         // only be sent on save not on a change as we could change it back before the rest of this information
         //get modified.
         Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
-        intent.putExtra("key", "messageToSend");
+        intent.putExtra("key", "Notification for the course Start");
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -519,6 +522,12 @@ public class CourseViewDetailed extends AppCompatActivity {
         //This is where you set the alarm
         alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
         //alarm
+        //Toast.makeText(getApplicationContext(),"Course Start Alert Set!" ,Toast.LENGTH_SHORT).show();
+        if(settingBoth){
+            Toast.makeText(getApplicationContext(),"Course Start&End Alert Set!" ,Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(),"Course Start Alert Set!" ,Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void saveState(View view) {
@@ -663,8 +672,10 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     public void updateCourseNotifications(MenuItem menuItem) {
-            updateEndCourseNotification(menuItem);
-            updateStartCourseNotification(menuItem);
+        settingBoth = true;
+        updateStartCourseNotification(menuItem);
+        updateEndCourseNotification(menuItem);
+
     }
 
     @Override

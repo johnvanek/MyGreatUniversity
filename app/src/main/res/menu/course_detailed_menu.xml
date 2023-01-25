@@ -5,16 +5,16 @@
     <item
         android:id="@+id/course_detailed_start"
         android:onClick="updateStartCourseNotification"
-        android:title="Update - Notification-Start"
+        android:title="Start-Notify"
         app:showAsAction="never" />
     <item
         android:id="@+id/course_detailed_end"
-        android:onClick="updateStartCourseNotification"
-        android:title="Update - Notification-End"
+        android:onClick="updateEndCourseNotification"
+        android:title="End-Notify"
         app:showAsAction="never" />
     <item
         android:id="@+id/course_detailed_both"
         android:onClick="updateCourseNotifications"
-        android:title="Update - Notification-Start&amp;End"
+        android:title="Both-Notify"
         app:showAsAction="never" />
 </menu>

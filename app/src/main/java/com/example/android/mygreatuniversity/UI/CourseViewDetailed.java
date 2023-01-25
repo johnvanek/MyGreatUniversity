@@ -60,7 +60,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class CourseViewDetailed extends AppCompatActivity {
-    //TODO rework this format so that we are storing the full year format yyyy instead of yy
+    //TODO determine if these channel are incrementing correctly lots of weird errors.
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -93,7 +93,6 @@ public class CourseViewDetailed extends AppCompatActivity {
     Repo repo = new Repo(getApplication());
     List<Assessment>courseAssessments;
     //Date References & Declarations
-    //TODO this might be a only storing the dates last 2 years
     String format = "MM/dd/yyyy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
     DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;
@@ -454,7 +453,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     public void updateStartCourseNotification(MenuItem menuItem) {
-        String curStartDate = dateFormat.format(CalenderStart.getTime());
+        String curStartDate = startText.getText().toString();
+         //curStartDate = dateFormat.format(CalenderStart.getTime());
         Log.d("courseChannel", "The String Representation of curStartDate is " + curStartDate);
         //Convert to Date Object
         Date date = null;
@@ -481,7 +481,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        long diff = startTime.getTime() - currentTime.getTime();
+        long diff = currentTime.getTime() - startTime.getTime();
         //get the abs value
         long days = Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 
@@ -510,9 +510,7 @@ public class CourseViewDetailed extends AppCompatActivity {
     }
 
     public void updateEndCourseNotification(MenuItem menuItem) {
-        //To Convert for a Notification ->
-        //String -> Date -> Long in this order
-        String curEndDate = dateFormat.format(CalenderEnd.getTime());
+        String curEndDate = endText.getText().toString();
         Log.d("courseChannel", "The String Representation of curEndDate is " + curEndDate);
         //Convert to Date Object
         Date date = null;
@@ -529,15 +527,24 @@ public class CourseViewDetailed extends AppCompatActivity {
         //get modified.
         Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
         //Think to string gets called automatically
-        //Have to use String.valueof
         String courseMessageTitle = String.valueOf(courseTitle.getText());
         String courseMessageBody = String.valueOf(endText.getText());
-        intent.putExtra("title", "End Date: " + courseMessageTitle);
-        intent.putExtra("body", "The End Date for " + courseMessageTitle +
-                 " was " + courseMessageBody);
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date endTime = null;
+        try {
+            endTime = sdf.parse(endText.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long diff = currentTime.getTime() - endTime.getTime();
+        //get the abs value
+        long days = Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 
-        //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
-        //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
+        intent.putExtra("title", "End Date: " + courseMessageTitle);
+        intent.putExtra("body", "The End Date for Course: " + courseMessageTitle +
+                " was " + courseMessageBody + " which was " + days + " days ago.");
+
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 CourseViewDetailed.this,notificationAlertCount++,
                 intent,
@@ -563,7 +570,6 @@ public class CourseViewDetailed extends AppCompatActivity {
         settingBoth = true;
         updateStartCourseNotification(menuItem);
         updateEndCourseNotification(menuItem);
-
     }
 
     public void saveState(View view) {

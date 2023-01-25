@@ -484,8 +484,8 @@ public class CourseViewDetailed extends AppCompatActivity {
         //get the abs value
         long days = Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 
-        intent.putExtra("title", "Start Date: " + courseMessageTitle);
-        intent.putExtra("body", "The Start Date for Course: " + courseMessageTitle +
+        intent.putExtra("title", "Start-Date[Course]: " + courseMessageTitle);
+        intent.putExtra("body", "The Start Date for: " + courseMessageTitle +
                 " was " + courseMessageBody + " which was " + days + " days ago.");
 
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
@@ -540,8 +540,8 @@ public class CourseViewDetailed extends AppCompatActivity {
         //get the abs value
         long days = Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 
-        intent.putExtra("title", "End Date: " + courseMessageTitle);
-        intent.putExtra("body", "The End Date for Course: " + courseMessageTitle +
+        intent.putExtra("title", "End-Date[Course]: " + courseMessageTitle);
+        intent.putExtra("body", "The End Date for: " + courseMessageTitle +
                 " was " + courseMessageBody + " which was " + days + " days ago.");
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(

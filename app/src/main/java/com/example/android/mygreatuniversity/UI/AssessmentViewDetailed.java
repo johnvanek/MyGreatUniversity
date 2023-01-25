@@ -462,7 +462,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         }
     }
 
-    public void updateCourseNotifications(MenuItem menuItem) {
+    public void updateAssessmentNotifications(MenuItem menuItem) {
         settingBoth = true;
         //This should be reworked to allow for both to be called at the same time.
         updateStartAssessmentNotification(menuItem);

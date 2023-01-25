@@ -17,7 +17,6 @@ public class AssessmentAlertReceiver extends BroadcastReceiver {
     //Broadcast receiver sends the notifications on Receive call
     //Declarations
     String channel_id = "assessment_test";
-
     static int notificationID;
 
     @Override

@@ -483,7 +483,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         }
         long diff = startTime.getTime() - currentTime.getTime();
         //get the abs value
-        long days = (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+        long days = Math.abs(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
 
         intent.putExtra("title", "Start Date: " + courseMessageTitle);
         intent.putExtra("body", "The Start Date for Course: " + courseMessageTitle +

@@ -492,7 +492,7 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                CourseViewDetailed.this,notificationAlertCount++,
+                CourseViewDetailed.this,++notificationAlertCount,
                 intent,
                 PendingIntent.FLAG_IMMUTABLE);
 
@@ -546,7 +546,7 @@ public class CourseViewDetailed extends AppCompatActivity {
                 " was " + courseMessageBody + " which was " + days + " days ago.");
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                CourseViewDetailed.this,notificationAlertCount++,
+                CourseViewDetailed.this,++notificationAlertCount,
                 intent,
                 PendingIntent.FLAG_IMMUTABLE);
 

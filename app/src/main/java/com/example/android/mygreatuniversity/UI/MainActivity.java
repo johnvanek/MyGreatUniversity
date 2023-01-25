@@ -19,6 +19,7 @@ import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
+    //should actually pre-increment this before I call the count
     public static int notificationAlertCount;
     //TODO Remaining
     // ****------Current Task [Create the BroadCast Receivers]----****

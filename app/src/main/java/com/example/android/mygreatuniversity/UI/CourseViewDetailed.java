@@ -60,7 +60,6 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class CourseViewDetailed extends AppCompatActivity {
-    //TODO determine if these channel are incrementing correctly lots of weird errors.
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();

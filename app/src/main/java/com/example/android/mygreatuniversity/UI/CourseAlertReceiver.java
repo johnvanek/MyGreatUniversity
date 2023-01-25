@@ -14,8 +14,6 @@ import androidx.core.app.NotificationCompat;
 import com.example.android.mygreatuniversity.R;
 
 public class CourseAlertReceiver extends BroadcastReceiver {
-    //TODO determine if I am using the notification alert count that is in main
-    // Having notification problems with the wrong old messages being shown. Getting old Id's
     //Broadcast receiver sends the notifications on Receive call
     //Declarations
     String channel_id = "test";

@@ -69,7 +69,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
     //Date References & Declarations
     //This is for Converting dates from strings to date objects
-    String format = "MM/dd/yy";
+    String format = "MM/dd/yyyy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
     DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;
 
@@ -335,5 +335,12 @@ public class AssessmentViewDetailed extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),"Assessment Deleted",Toast.LENGTH_SHORT).show();
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.assessment_detailed_menu, menu);
+        return true;
     }
 }

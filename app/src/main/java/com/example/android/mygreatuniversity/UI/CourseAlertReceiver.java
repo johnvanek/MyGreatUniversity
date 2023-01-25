@@ -24,15 +24,17 @@ public class CourseAlertReceiver extends BroadcastReceiver {
         // This is essentially what happens when the notification is triggered.
         Log.d("courseChannel", "Received Course-end notification");
         //For now test it with a Toast
-        Toast.makeText(context,intent.getStringExtra("key"),Toast.LENGTH_LONG).show();
+        //Toast.makeText(context,intent.getStringExtra("key"),Toast.LENGTH_LONG).show();
 
         //Creates the channel for the notification
         createNotificationChannel(context,channel_id);
         //build the new notification using the builder and call build()
         Notification notification = new NotificationCompat.Builder(context,channel_id)
                 .setSmallIcon(R.drawable.toolbar_icon_small)
-                .setContentText(intent.getStringExtra("key"))
-                .setContentTitle("NotificationTest").build();
+                //The key maps to something key = messageToSend
+                .setContentTitle(intent.getStringExtra("title"))
+                .setContentText(intent.getStringExtra("body"))
+                .build();
 
         //Pass it over to the System Service Notification Manager
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

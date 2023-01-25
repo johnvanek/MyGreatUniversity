@@ -24,8 +24,8 @@
     <string name="assessments">Assessments</string>
     <string name="channel_name">courseValue</string>
     <string name="channel_description">courseDescription</string>
-    <string name="channel_name_course">courseChannel</string>
-    <string name="channel_description_course">courseDescription</string>
+    <string name="channel_name_course">CourseChannel</string>
+    <string name="channel_description_course">Notifies Course Start End Dates</string>
     <string-array name="course_status_array">
         <item>In-Progress</item>
         <item>Completed</item>

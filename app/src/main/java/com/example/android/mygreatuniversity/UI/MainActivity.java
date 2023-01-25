@@ -86,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
             // In-Progress -- Completed -- Dropped -- Plan To Take
 
             //******Courses******
-            repo.insertCourse(new Course("Mobile Development", "10/01/22","10/30/22","In Progress",1,1, ""));
-            repo.insertCourse(new Course("Operating Systems", "06/01/22", "07/30/22", "Completed",2,1, ""));
-            repo.insertCourse(new Course("Java Fundamentals", "08/01/22", "08/30/22", "Completed",3,1, ""));
-            repo.insertCourse(new Course("Javascript Basics", "12/01/22", "01/30/22", "Plan To Take",4,1, ""));
-            repo.insertCourse(new Course("Design Patterns", "07/01/22", "07/15/22", "Dropped",5,1, ""));
+            repo.insertCourse(new Course("Mobile Development", "10/01/2022","10/30/2022","In Progress",1,1, ""));
+            repo.insertCourse(new Course("Operating Systems", "06/01/2022", "07/30/2022", "Completed",2,1, ""));
+            repo.insertCourse(new Course("Java Fundamentals", "08/01/2022", "08/30/2022", "Completed",3,1, ""));
+            repo.insertCourse(new Course("Javascript Basics", "12/01/2022", "01/30/2022", "Plan To Take",4,1, ""));
+            repo.insertCourse(new Course("Design Patterns", "07/01/2022", "07/15/2022", "Dropped",5,1, ""));
 
             //******Mentors******
             //Should always be at least one or else Course view detailed will throw an error.
@@ -100,17 +100,17 @@ public class MainActivity extends AppCompatActivity {
             repo.insertMentor(new Mentor("Dan Abramov", "203-898-2085", "DanMov@gmail.com"));
             repo.insertMentor(new Mentor("Robert Martin", "943-185-3814", "DanMov@gmail.com"));
             //******Terms******
-            repo.insertTerm(new Term("Spring2021","6/01/21","12/31/21"));
-            repo.insertTerm(new Term("Fall2022","01//01/22","5/31/22"));
-            repo.insertTerm(new Term("Spring2022","6/01/22","12/31/22"));
-            repo.insertTerm(new Term("Fall2023","01//01/23","5/31/23"));
+            repo.insertTerm(new Term("Spring2021","6/01/2021","12/31/2021"));
+            repo.insertTerm(new Term("Fall2022","01//01/2022","5/31/2022"));
+            repo.insertTerm(new Term("Spring2022","6/01/2022","12/31/2022"));
+            repo.insertTerm(new Term("Fall2023","01//01/2023","5/31/2023"));
             //******Assessments******
 
-            repo.insertAssessment(new Assessment("Android App Dev","Performance","10/15/22","10/30/22",1));
-            repo.insertAssessment(new Assessment("OSx86 Basics","Objective","06/15/22","07/30/22",2));
-            repo.insertAssessment(new Assessment("Java App-1","Performance","08/15/22","08/30/22",3));
-            repo.insertAssessment(new Assessment("ECMAScript Cert.","Objective","12/15/22","01/30/22",4));
-            repo.insertAssessment(new Assessment("GangOfFour Test","Objective","07/15/22","08/30/22",5));
+            repo.insertAssessment(new Assessment("Android App Dev","Performance","10/15/2022","10/30/2022",1));
+            repo.insertAssessment(new Assessment("OSx86 Basics","Objective","06/15/2022","07/30/2022",2));
+            repo.insertAssessment(new Assessment("Java App-1","Performance","08/15/2022","08/30/2022",3));
+            repo.insertAssessment(new Assessment("ECMAScript Cert.","Objective","12/15/2022","01/30/2022",4));
+            repo.insertAssessment(new Assessment("GangOfFour Test","Objective","07/15/2022","08/30/2022",5));
 
             Log.d("DUMMYCOURSE", "The Dummy courses are " + repo.getCourses());
             Log.d("DUMMYMENTOR", "The Dummy mentors are " + repo.getMentors());

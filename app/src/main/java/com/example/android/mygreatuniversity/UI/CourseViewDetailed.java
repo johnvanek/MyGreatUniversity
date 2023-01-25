@@ -57,8 +57,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class CourseViewDetailed extends AppCompatActivity {
+    //TODO rework this format so that we are storing the full year format yyyy instead of yy
     //**************  START DECLARATIONS *********************
     final Calendar CalenderStart = Calendar.getInstance();
     final Calendar CalenderEnd = Calendar.getInstance();
@@ -91,7 +93,8 @@ public class CourseViewDetailed extends AppCompatActivity {
     Repo repo = new Repo(getApplication());
     List<Assessment>courseAssessments;
     //Date References & Declarations
-    String format = "MM/dd/yy";
+    //TODO this might be a only storing the dates last 2 years
+    String format = "MM/dd/yyyy";
     SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.US);
     DatePickerDialog.OnDateSetListener startDatePicker, endDatePicker;
 
@@ -467,7 +470,25 @@ public class CourseViewDetailed extends AppCompatActivity {
         // only be sent on save not on a change as we could change it back before the rest of this information
         //get modified.
         Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
-        intent.putExtra("key", "Notification for the course Start");
+        //This is the information that is going to be passed to the course Receiver
+        String courseMessageTitle = String.valueOf(courseTitle.getText());
+        String courseMessageBody = String.valueOf(startText.getText());
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date startTime = null;
+        try {
+            startTime = sdf.parse(startText.getText().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long diff = startTime.getTime() - currentTime.getTime();
+        //get the abs value
+        long days = (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+
+        intent.putExtra("title", "Start Date: " + courseMessageTitle);
+        intent.putExtra("body", "The Start Date for Course: " + courseMessageTitle +
+                " was " + courseMessageBody + " which was " + days + " days ago.");
+
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -507,7 +528,14 @@ public class CourseViewDetailed extends AppCompatActivity {
         // only be sent on save not on a change as we could change it back before the rest of this information
         //get modified.
         Intent intent = new Intent(CourseViewDetailed.this, CourseAlertReceiver.class);
-        intent.putExtra("key", "Notification for the Course End");
+        //Think to string gets called automatically
+        //Have to use String.valueof
+        String courseMessageTitle = String.valueOf(courseTitle.getText());
+        String courseMessageBody = String.valueOf(endText.getText());
+        intent.putExtra("title", "End Date: " + courseMessageTitle);
+        intent.putExtra("body", "The End Date for " + courseMessageTitle +
+                 " was " + courseMessageBody);
+
         //Create the Pending Intent and pass the intent to it. On the Must recent version of API 33
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -518,6 +546,8 @@ public class CourseViewDetailed extends AppCompatActivity {
         //Get from the System the user Preference for Alarms
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         //This is where you set the alarm
+        //Also the calling here might be different because this is where pending intent is passed
+        //Where to intent is the sub value
         alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
         //alarm
 
@@ -676,8 +706,6 @@ public class CourseViewDetailed extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Assessment Already in Course.",Toast.LENGTH_SHORT).show();
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

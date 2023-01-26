@@ -30,17 +30,13 @@ public class MainActivity extends AppCompatActivity {
     // ****------Current Task [Create the BroadCast Receivers]----****
     // 1) [Completed]Need to add the Crud operations via an overflow menu for all items
     // 2) [Completed] - Broadcast Receivers Course End/Start Assessment End Start
-    //    * -- 3-a Test the broadcast receivers on a variety of dates and API version 8 (26) as Well.
-    //    * -- 3-b Read Project specs and make sure this functionality is working as intended for start and end.
-    //    * -- 3-c The Assessments & Courses need to have alerts for the start and end dates.
-    //    * -- Should include a toggle or something that lets the user know alerts have been set.
     // 3) [In-Progress]Create the landscape view of everything
     // ----- Should be an option in the Android Studio settings to generate a landscape view.
     // 4) [TO-DO]-Then have to create the storyboard for the application.
     // 5) [TO-DO]-Then have to answer the section about the paper writing requirements for.
     // 6) [TO-DO]-Sign the Apk and take a picture Submit to the app store - optional to submit
 
-    //TODO-Last-CheckList-Per The Task View
+    //TODO-Last-CheckList-Per The Task View - [Completed]
     // A: Mobile-Version The Android mobile application is a version 8.0 or higher, loads properly, and all Android project files, APK, and signed apk files are in one zipped.zip file.[TO-DO]
     // A1:TERM FUNCTIONAL REQUIREMENTS: The mobile application allows the user to enter all term titles and all start and end dates for each term. [Completed]
     // A2:TERM ADDITION FEATURE: The features included in the mobile application are coded to allow the user to add an unlimited number of terms. [Completed]
@@ -59,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
     // A7A:ASSESSMENTS FOR EACH COURSE: The mobile application allows the user to add performance and objective assessments for each course, including the title of the assessment and the end date for each assessment. [Completed]
     // A7B:ASSESSMENT INFORMATION: The mobile application allows the user to enter, edit, and delete all assessment information. [Completed]
     // A7C:ALERTS FOR GOAL DATES: The mobile application allows the user to set alerts for all start and end dates for each assessment.[Completed]
-    // TO-DU
+
+
+    //TODO - [In-Progress]
     // B:SCREEN LAYOUTS The screen designs include the layout for each given screen, as described, and includes appropriate GUI elements for each layout. [In-Progress] - Need Landscape
     // D:STORYBOARD: The storyboard demonstrates the flow of the mobile application and includes all of the menus and screens from part B. [In-Progress]
     // E:SCREENSHOTS: The screenshots provided demonstrate the creation of a deployment package. [In-Progress] - Take a picture of the signed apk

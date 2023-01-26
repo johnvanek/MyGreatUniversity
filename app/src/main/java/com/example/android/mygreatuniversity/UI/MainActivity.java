@@ -23,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
     public static int notificationAlertCount;
     //TODO Remaining UI
     // Last UI Changes to make it I have time
-    // Change the coloring for the red and purple listing of things
-    // Think I would have to go in to the adapter itself to change it
-    // Also check about the font and maybe prepending a bullet-point
+    // Change the coloring for the red and purple listing of things [Completed]
+    // Redo the Main-Menu to become like a news section or something. [In-Progress]
 
     //TODO Rest
     // ****------Current Task [Create the BroadCast Receivers]----****

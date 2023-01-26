@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static int notificationAlertCount;
     //TODO Remaining UI
     // Last UI Changes to make it I have time
-    // Change the coloring for the red and purple listing of things [Completed]
+    // Change the coloring for the red and purple listing of things [Completed][Light Blue White Rectangles]
     // Redo the Main-Menu to become like a news section or something. [In-Progress]
 
     //TODO Rest

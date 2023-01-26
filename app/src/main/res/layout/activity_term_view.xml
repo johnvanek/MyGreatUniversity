@@ -99,9 +99,15 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="523dp"
                                     android:layout_margin="4dp"
-                                    android:background="#673AB7"
+                                    android:background="@color/WguBolderBlue"
+                                    android:paddingHorizontal="4dp"
+                                    android:paddingVertical="4dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="2dp"
                                     android:scrollbarAlwaysDrawVerticalTrack="true"
-                                    android:scrollbars="vertical" />
+                                    android:scrollbars="vertical"
+                                    tools:listitem="@layout/term_list_item"/>
 
                             </androidx.cardview.widget.CardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>

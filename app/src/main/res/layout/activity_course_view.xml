@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MyOverflowButtonStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/WguLightBlue"
@@ -101,9 +102,16 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="523dp"
                                     android:layout_margin="4dp"
-                                    android:background="#673AB7"
+                                    android:background="@color/WguBolderBlue"
+                                    android:minWidth="80dp"
+                                    android:paddingHorizontal="4dp"
+                                    android:paddingVertical="4dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="2dp"
                                     android:scrollbarAlwaysDrawVerticalTrack="true"
-                                    android:scrollbars="vertical" />
+                                    android:scrollbars="vertical"
+                                    tools:listitem="@layout/course_list_item" />
 
                             </androidx.cardview.widget.CardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>

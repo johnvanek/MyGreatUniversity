@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             repo.insertMentor(new Mentor("Lisa Lisa", "039-123-1987", "HamonMaster@gmail.com"));
             repo.insertMentor(new Mentor("Professor Xavier", "010-603-1963", "XMen@gmail.com"));
             repo.insertMentor(new Mentor("Dan Abramov", "203-898-2085", "DanMov@gmail.com"));
-            repo.insertMentor(new Mentor("Robert Martin", "943-185-3814", "DanMov@gmail.com"));
+            repo.insertMentor(new Mentor("Robert Martin", "943-185-3814", "BobM@gmail.com"));
             //******Terms******
             repo.insertTerm(new Term("Spring2021","6/01/2021","12/31/2021"));
             repo.insertTerm(new Term("Fall2022","01//01/2022","5/31/2022"));

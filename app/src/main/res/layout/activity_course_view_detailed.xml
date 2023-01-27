@@ -432,7 +432,7 @@
                                     android:id="@+id/courseAssessmentsRecycler"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="#673AB7"
+                                    android:background="@color/WguBolderBlue"
                                     tools:layout_editor_absoluteX="-53dp"
                                     tools:layout_editor_absoluteY="1dp" />
 

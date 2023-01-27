@@ -28,6 +28,7 @@
     <string name="channel_description_course">Notifies Course Start End Dates</string>
     <string name="channel_name_assessment">AssessmentChannel</string>
     <string name="channel_description_assessment">Notifies Assessment Start End Dates</string>
+    <string name="main_bodytext">Welcome back to our final term students of Modern Governess University, an all-female institution for young adult women. We are proud to have you here as part of our community and are excited to see all that you will accomplish in the coming months. As you prepare to close out your college careers, we encourage you to take advantage of all the opportunities available to you. Whether it be through internships, research projects, or leadership roles, we want you to make the most of your time here. We also want to remind you of the support system that we have in place to help you succeed. Our dedicated faculty and staff are here to assist you in any way they can, and we encourage you to take advantage of their expertise and guidance. We are confident that you will leave Modern Governess University well-prepared for the next chapter in your lives, and we wish you all the best as you embark on this new journey. Once again, welcome back and let\'s make this final term one to remember!</string>
     <string-array name="course_status_array">
         <item>In-Progress</item>
         <item>Completed</item>

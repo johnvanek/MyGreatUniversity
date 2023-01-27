@@ -34,10 +34,11 @@
                 android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
                 app:menu="@menu/main_menu"
                 app:navigationIcon="@drawable/toolbar_icon_medium"
-                app:subtitle="Modern Governess"
-                app:subtitleTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                app:subtitle="Modern Governess University"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
                 app:subtitleTextColor="@color/White"
                 app:title="MGU"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:titleTextColor="@color/White" />
 
             <androidx.cardview.widget.CardView
@@ -101,6 +102,8 @@
                         android:id="@+id/news_header"
                         android:layout_width="377dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="65dp"
+                        android:layout_marginEnd="65dp"
                         android:fontFamily="@font/convergence"
                         android:padding="5dp"
                         android:text="@string/home_text"
@@ -128,8 +131,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView2"
-                                android:layout_width="13dp"
-                                android:layout_height="14dp"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
                                 android:layout_marginStart="2dp"
                                 android:layout_marginTop="-2dp"
                                 app:layout_constraintStart_toEndOf="@+id/textView12"
@@ -138,8 +141,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
                                 android:layout_marginStart="6dp"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/circle"
@@ -156,7 +159,7 @@
                                 android:layout_marginTop="9dp"
                                 android:text="Announcements"
                                 android:textColor="@color/White"
-                                android:textSize="16sp"
+                                android:textSize="20sp"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,7 +167,6 @@
                                 android:id="@+id/textView13"
                                 android:layout_width="345dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_marginBottom="10dp"
                                 android:lineSpacingMultiplier="1.08"
@@ -176,8 +178,10 @@
                                 android:textColor="@color/White"
                                 android:textSize="14sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                                app:layout_constraintVertical_bias="0.0" />
 
                             <TextView
                                 android:id="@+id/textView11"
@@ -187,7 +191,7 @@
                                 android:layout_marginTop="-2dp"
                                 android:text="Yesterday at 9:00am"
                                 android:textColor="@color/NeutralWhite"
-                                android:textSize="12sp"
+                                android:textSize="14sp"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -198,7 +202,7 @@
                                 android:layout_marginStart="9dp"
                                 android:text="Author: ChatGPT -"
                                 android:textColor="@color/NeutralWhite"
-                                android:textSize="8sp"
+                                android:textSize="14sp"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
                         </androidx.constraintlayout.widget.ConstraintLayout>

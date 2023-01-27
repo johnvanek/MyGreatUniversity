@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     // A7B:ASSESSMENT INFORMATION: The mobile application allows the user to enter, edit, and delete all assessment information. [Completed]
     // A7C:ALERTS FOR GOAL DATES: The mobile application allows the user to set alerts for all start and end dates for each assessment.[Completed]
 
-
     //TODO - [In-Progress]
     // B:SCREEN LAYOUTS The screen designs include the layout for each given screen, as described, and includes appropriate GUI elements for each layout. [In-Progress] - Need Landscape
     // D:STORYBOARD: The storyboard demonstrates the flow of the mobile application and includes all of the menus and screens from part B. [In-Progress]

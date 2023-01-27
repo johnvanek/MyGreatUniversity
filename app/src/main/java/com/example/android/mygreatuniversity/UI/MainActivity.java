@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     // Increase the sp values because of the smaller font now.
     // Re-order some of the fixed dp values to fill the new layout or to match parent where appropriate.
 
-
     //TODO Rest
     // ****------Current Task [Create the BroadCast Receivers]----****
     // 1) [Completed]Need to add the Crud operations via an overflow menu for all items

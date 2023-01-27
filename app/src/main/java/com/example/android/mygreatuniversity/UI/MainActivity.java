@@ -22,9 +22,14 @@ public class MainActivity extends AppCompatActivity {
     //should actually pre-increment this before I call the count
     public static int notificationAlertCount;
     //TODO Remaining UI
-    // Last UI Changes to make it I have time
-    // Change the coloring for the red and purple listing of things [Completed][Light Blue White Rectangles]
-    // Redo the Main-Menu to become like a news section or something. [In-Progress]
+    // Last UI Changes to make it I have time [In-Progress]
+    // Redo the layout to look better on a default phone with no increased font, and the device that we are targeting in pixel 6.
+    // Which is going to be api 33 and make the horizontal layout more appealing.
+    // On the other pages Change the scroll bar to be wgu - light -blue and no fade in always true;
+    // Makes the user feel more sure of where they are.
+    // Increase the sp values because of the smaller font now.
+    // Re-order some of the fixed dp values to fill the new layout or to match parent where appropriate.
+
 
     //TODO Rest
     // ****------Current Task [Create the BroadCast Receivers]----****

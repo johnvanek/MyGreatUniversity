@@ -36,15 +36,15 @@
                 android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
                 app:navigationIcon="@drawable/toolbar_icon_medium"
                 app:subtitle="@string/menubar_subtitle"
-                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:subtitleTextColor="@color/White"
                 app:title="MGU"
-                app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
                 app:titleTextColor="@color/White" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="1110dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 app:cardBackgroundColor="@color/WguBlue"
@@ -53,7 +53,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/generalLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
@@ -77,153 +77,13 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
-                        android:layout_width="354dp"
-                        android:layout_height="600dp"
+                        android:layout_width="700dp"
+                        android:layout_height="700dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/course_label">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/courseViewMentorCard"
-                            android:layout_width="338dp"
-                            android:layout_height="259dp"
-                            android:layout_marginTop="64dp"
-                            app:cardCornerRadius="10dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.625"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="260dp"
-                                tools:layout_editor_absoluteX="2dp"
-                                tools:layout_editor_absoluteY="2dp">
-
-                                <Spinner
-                                    android:id="@+id/mentorSpinner"
-                                    android:layout_width="200dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="12dp"
-                                    android:entries="@array/course_status_array"
-                                    android:spinnerMode="dialog"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/textView"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="84dp"
-                                    android:layout_marginEnd="24dp"
-                                    android:fontFamily="@font/convergence"
-                                    android:text="Name:"
-                                    android:textColor="@color/Black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/mentorNameText"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/textView8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="140dp"
-                                    android:fontFamily="@font/convergence"
-                                    android:text="Phone:"
-                                    android:textColor="@color/Black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/mentorPhoneText"
-                                    app:layout_constraintHorizontal_bias="0.324"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/textView9"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="208dp"
-                                    android:fontFamily="@font/convergence"
-                                    android:text="Email:"
-                                    android:textColor="@color/Black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toStartOf="@+id/mentorEmailText"
-                                    app:layout_constraintHorizontal_bias="0.216"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <EditText
-                                    android:id="@+id/mentorNameText"
-                                    android:layout_width="200dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="40dp"
-                                    android:backgroundTint="@color/NeutralLightGray"
-                                    android:clickable="false"
-                                    android:defaultFocusHighlightEnabled="false"
-                                    android:digits="@string/digitsForText"
-                                    android:ems="10"
-                                    android:enabled="false"
-                                    android:focusable="false"
-                                    android:focusableInTouchMode="false"
-                                    android:focusedByDefault="false"
-                                    android:imeOptions="actionDone"
-                                    android:inputType="none"
-                                    android:minHeight="48dp"
-                                    android:singleLine="true"
-                                    android:textColor="@color/Black"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/mentorSpinner"
-                                    tools:ignore="SpeakableTextPresentCheck" />
-
-                                <EditText
-                                    android:id="@+id/mentorEmailText"
-                                    android:layout_width="200dp"
-                                    android:layout_height="70dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="40dp"
-                                    android:backgroundTint="@color/NeutralLightGray"
-                                    android:defaultFocusHighlightEnabled="false"
-                                    android:digits="@string/digitsForText"
-                                    android:ems="10"
-                                    android:enabled="false"
-                                    android:focusedByDefault="false"
-                                    android:inputType="textMultiLine|text"
-                                    android:minHeight="48dp"
-                                    android:singleLine="false"
-                                    android:textColor="@color/Black"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/mentorPhoneText"
-                                    tools:ignore="SpeakableTextPresentCheck" />
-
-                                <EditText
-                                    android:id="@+id/mentorPhoneText"
-                                    android:layout_width="200dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginEnd="40dp"
-                                    android:backgroundTint="@color/NeutralLightGray"
-                                    android:defaultFocusHighlightEnabled="false"
-                                    android:digits="@string/digitsForText"
-                                    android:ems="10"
-                                    android:enabled="false"
-                                    android:focusedByDefault="false"
-                                    android:inputType="text"
-                                    android:minHeight="48dp"
-                                    android:textColor="@color/Black"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/mentorNameText"
-                                    tools:ignore="SpeakableTextPresentCheck" />
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cardView"
@@ -398,11 +258,149 @@
 
                         </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/courseViewMentorCard"
+                            android:layout_width="338dp"
+                            android:layout_height="259dp"
+                            android:layout_marginTop="4dp"
+                            app:cardCornerRadius="10dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mentorLabel">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="260dp"
+                                tools:layout_editor_absoluteX="2dp"
+                                tools:layout_editor_absoluteY="2dp">
+
+                                <Spinner
+                                    android:id="@+id/mentorSpinner"
+                                    android:layout_width="200dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginTop="12dp"
+                                    android:entries="@array/course_status_array"
+                                    android:spinnerMode="dialog"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="84dp"
+                                    android:layout_marginEnd="24dp"
+                                    android:fontFamily="@font/convergence"
+                                    android:text="Name:"
+                                    android:textColor="@color/Black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/mentorNameText"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/textView8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="140dp"
+                                    android:fontFamily="@font/convergence"
+                                    android:text="Phone:"
+                                    android:textColor="@color/Black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/mentorPhoneText"
+                                    app:layout_constraintHorizontal_bias="0.324"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/textView9"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="208dp"
+                                    android:fontFamily="@font/convergence"
+                                    android:text="Email:"
+                                    android:textColor="@color/Black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintEnd_toStartOf="@+id/mentorEmailText"
+                                    app:layout_constraintHorizontal_bias="0.216"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <EditText
+                                    android:id="@+id/mentorNameText"
+                                    android:layout_width="200dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="40dp"
+                                    android:backgroundTint="@color/NeutralLightGray"
+                                    android:clickable="false"
+                                    android:defaultFocusHighlightEnabled="false"
+                                    android:digits="@string/digitsForText"
+                                    android:ems="10"
+                                    android:enabled="false"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:focusedByDefault="false"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="none"
+                                    android:minHeight="48dp"
+                                    android:singleLine="true"
+                                    android:textColor="@color/Black"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/mentorSpinner"
+                                    tools:ignore="SpeakableTextPresentCheck" />
+
+                                <EditText
+                                    android:id="@+id/mentorEmailText"
+                                    android:layout_width="200dp"
+                                    android:layout_height="70dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="40dp"
+                                    android:backgroundTint="@color/NeutralLightGray"
+                                    android:defaultFocusHighlightEnabled="false"
+                                    android:digits="@string/digitsForText"
+                                    android:ems="10"
+                                    android:enabled="false"
+                                    android:focusedByDefault="false"
+                                    android:inputType="textMultiLine|text"
+                                    android:minHeight="48dp"
+                                    android:singleLine="false"
+                                    android:textColor="@color/Black"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/mentorPhoneText"
+                                    tools:ignore="SpeakableTextPresentCheck" />
+
+                                <EditText
+                                    android:id="@+id/mentorPhoneText"
+                                    android:layout_width="200dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="40dp"
+                                    android:backgroundTint="@color/NeutralLightGray"
+                                    android:defaultFocusHighlightEnabled="false"
+                                    android:digits="@string/digitsForText"
+                                    android:ems="10"
+                                    android:enabled="false"
+                                    android:focusedByDefault="false"
+                                    android:inputType="text"
+                                    android:minHeight="48dp"
+                                    android:textColor="@color/Black"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/mentorNameText"
+                                    tools:ignore="SpeakableTextPresentCheck" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+
                         <TextView
                             android:id="@+id/mentorLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="22dp"
+                            android:layout_marginTop="30dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
                             android:fontFamily="@font/convergence"
@@ -410,106 +408,106 @@
                             android:textColor="@color/White"
                             android:textSize="34sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@+id/courseViewMentorCard"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.15"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/cardView"
-                            app:layout_constraintVertical_bias="0.0" />
+                            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <Button
-                        android:id="@+id/deleteButton"
-                        android:layout_width="130dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="28dp"
-                        android:backgroundTint="#EC1B0C"
-                        android:fontFamily="@font/convergence"
-                        android:onClick="deleteState"
-                        android:shadowColor="@color/Black"
-                        android:text="Discard"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/courseNoteCard"
-                        app:rippleColor="@color/White"
-                        app:strokeColor="@color/Black"
-                        app:strokeWidth="2dp" />
-
-                    <Button
-                        android:id="@+id/saveButton"
-                        android:layout_width="110dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="28dp"
-                        android:backgroundTint="@color/WguLightBlue"
-                        android:fontFamily="@font/convergence"
-                        android:onClick="saveState"
-                        android:shadowColor="@color/Black"
-                        android:text="Create"
-                        android:textSize="18sp"
-                        app:layout_constraintStart_toStartOf="@+id/courseNoteCard"
-                        app:layout_constraintTop_toBottomOf="@+id/courseNoteCard"
-                        app:rippleColor="@color/White"
-                        app:strokeColor="@color/NeutralWhite"
-                        app:strokeWidth="2dp" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/courseNoteCard"
-                        android:layout_width="338dp"
-                        android:layout_height="259dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        app:cardCornerRadius="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/notesLabel">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/cardNoteLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="260dp"
+                        <TextView
+                            android:id="@+id/notesLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="70dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            tools:layout_editor_absoluteX="2dp"
-                            tools:layout_editor_absoluteY="2dp">
+                            android:fontFamily="@font/convergence"
+                            android:text="Course Notes"
+                            android:textColor="@color/White"
+                            android:textSize="34sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-                            <EditText
-                                android:id="@+id/courseNotesEditText"
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/courseNoteCard"
+                            android:layout_width="338dp"
+                            android:layout_height="259dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            app:cardCornerRadius="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/notesLabel">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/cardNoteLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="200dp"
-                                android:backgroundTint="@color/NeutralLightGray"
-                                android:defaultFocusHighlightEnabled="false"
-                                android:ems="10"
-                                android:enabled="true"
-                                android:focusedByDefault="false"
-                                android:gravity="top"
-                                android:imeOptions="actionDone|actionSend"
-                                android:inputType="textMultiLine|text"
-                                android:minHeight="48dp"
-                                android:singleLine="false"
-                                android:textColor="@color/Black"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                android:layout_height="260dp"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                tools:layout_editor_absoluteX="2dp"
+                                tools:layout_editor_absoluteY="2dp">
 
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
+                                <EditText
+                                    android:id="@+id/courseNotesEditText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="200dp"
+                                    android:backgroundTint="@color/NeutralLightGray"
+                                    android:defaultFocusHighlightEnabled="false"
+                                    android:ems="10"
+                                    android:enabled="true"
+                                    android:focusedByDefault="false"
+                                    android:gravity="top"
+                                    android:imeOptions="actionDone|actionSend"
+                                    android:inputType="textMultiLine|text"
+                                    android:minHeight="48dp"
+                                    android:singleLine="false"
+                                    android:textColor="@color/Black"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/notesLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:fontFamily="@font/convergence"
-                        android:text="Course Notes"
-                        android:textColor="@color/White"
-                        android:textSize="34sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/saveButton"
+                            android:layout_width="150dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="20dp"
+                            android:backgroundTint="@color/WguLightBlue"
+                            android:fontFamily="@font/convergence"
+                            android:onClick="saveState"
+                            android:shadowColor="@color/Black"
+                            android:text="Create"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="@+id/courseViewMentorCard"
+                            app:layout_constraintTop_toBottomOf="@+id/courseViewMentorCard"
+                            app:rippleColor="@color/White"
+                            app:strokeColor="@color/NeutralWhite"
+                            app:strokeWidth="2dp" />
+
+                        <Button
+                            android:id="@+id/deleteButton"
+                            android:layout_width="150dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="20dp"
+                            android:backgroundTint="#EC1B0C"
+                            android:fontFamily="@font/convergence"
+                            android:onClick="deleteState"
+                            android:shadowColor="@color/Black"
+                            android:text="Discard"
+                            android:textSize="18sp"
+                            app:layout_constraintStart_toStartOf="@+id/courseNoteCard"
+                            app:layout_constraintTop_toBottomOf="@+id/courseNoteCard"
+                            app:rippleColor="@color/White"
+                            app:strokeColor="@color/Black"
+                            app:strokeWidth="2dp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

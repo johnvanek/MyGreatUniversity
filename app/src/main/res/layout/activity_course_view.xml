@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/MyOverflowButtonStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/WguLightBlue"
@@ -35,8 +34,10 @@
                 android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
                 app:navigationIcon="@drawable/toolbar_icon_medium"
                 app:subtitle="@string/menubar_subtitle"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
                 app:subtitleTextColor="@color/White"
                 app:title="MGU"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:titleTextColor="@color/White" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,8 +48,8 @@
                 android:layout_marginRight="6dp">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="385dp"
-                    android:layout_height="612dp"
+                    android:layout_width="0dp"
+                    android:layout_height="750dp"
                     android:layout_margin="5dp"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
                     app:cardBackgroundColor="@color/WguBlue"
@@ -67,7 +68,7 @@
                             android:id="@+id/course_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="8dp"
                             android:fontFamily="@font/convergence"
                             android:text="@string/courses"
                             android:textAlignment="center"
@@ -80,7 +81,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="385dp"
-                            android:layout_height="550dp"
+                            android:layout_height="0dp"
                             android:padding="4dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +96,8 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.19999999">
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/mentorListRecyclerView"

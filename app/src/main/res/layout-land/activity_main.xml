@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/WguLightBlue"
+    tools:context=".UI.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/WguLightBlue"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="70dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="4dp"
+                android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
+                app:menu="@menu/main_menu"
+                app:navigationIcon="@drawable/toolbar_icon_medium"
+                app:subtitle="Modern Governess University"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:subtitleTextColor="@color/White"
+                app:title="MGU"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
+                app:titleTextColor="@color/White" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                app:cardBackgroundColor="@color/WguBlue"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/WguBlue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/imageView5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:contentDescription="@string/academic_hall"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/academicsign" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/WguBlue"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp">
+
+                    <TextView
+                        android:id="@+id/news_header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/convergence"
+                        android:padding="5dp"
+                        android:text="@string/home_text"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/White"
+                        android:textSize="34sp"
+                        android:typeface="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="50dp"
+                        app:cardBackgroundColor="@color/WguBolderBlue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/news_header">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintStart_toEndOf="@+id/textView12"
+                                app:layout_constraintTop_toBottomOf="@+id/textView11"
+                                app:srcCompat="@drawable/ic_baseline_computer_24" />
+
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="75dp"
+                                android:layout_height="75dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/circle"
+                                android:paddingBottom="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/striped" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="9dp"
+                                android:text="Announcements"
+                                android:textColor="@color/White"
+                                android:textSize="24sp"
+                                app:layout_constraintStart_toEndOf="@+id/imageView"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView13"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:lineSpacingMultiplier="1.08"
+                                android:shadowColor="#111B3A"
+                                android:shadowDx="0"
+                                android:shadowDy="0"
+                                android:shadowRadius="2"
+                                android:text="@string/main_bodytext"
+                                android:textColor="@color/White"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <TextView
+                                android:id="@+id/textView11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="-2dp"
+                                android:text="Yesterday at 9:00am"
+                                android:textColor="@color/NeutralWhite"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toEndOf="@+id/imageView"
+                                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                            <TextView
+                                android:id="@+id/textView12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="9dp"
+                                android:text="Author: ChatGPT -"
+                                android:textColor="@color/NeutralWhite"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toEndOf="@+id/imageView"
+                                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

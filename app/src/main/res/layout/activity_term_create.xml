@@ -233,7 +233,7 @@
                             android:id="@+id/createButton"
                             android:layout_width="120dp"
                             android:layout_height="60dp"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="132dp"
                             android:backgroundTint="@color/WguGold"
                             android:fontFamily="@font/convergence"

@@ -40,14 +40,16 @@
                 android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
                 app:navigationIcon="@drawable/toolbar_icon_medium"
                 app:subtitle="@string/menubar_subtitle"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
                 app:subtitleTextColor="@color/White"
                 app:title="MGU"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:titleTextColor="@color/White" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/mentorCard"
                 android:layout_width="match_parent"
-                android:layout_height="612dp"
+                android:layout_height="760dp"
                 android:layout_margin="7dp"
                 android:clickable="false"
                 android:focusableInTouchMode="false"
@@ -64,6 +66,7 @@
                         android:id="@+id/course_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:fontFamily="@font/convergence"
                         android:text="@string/selected_mentor"
                         android:textAlignment="center"
@@ -87,6 +90,7 @@
                             android:id="@+id/cardView"
                             android:layout_width="331dp"
                             android:layout_height="190dp"
+                            android:layout_marginTop="8dp"
                             app:cardCornerRadius="4dp"
                             app:cardElevation="5dp"
                             app:cardMaxElevation="5dp"

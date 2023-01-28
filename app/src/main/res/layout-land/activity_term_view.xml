@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/WguLightBlue"
+    tools:context=".UI.TermView">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/WguLightBlue"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="70dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="4dp"
+                android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
+                app:navigationIcon="@drawable/toolbar_icon_medium"
+                app:subtitle="@string/menubar_subtitle"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:subtitleTextColor="@color/White"
+                app:title="MGU"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:titleTextColor="@color/White" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="6dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    app:cardBackgroundColor="@color/WguBlue"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/course_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/convergence"
+                            android:text="Terms"
+                            android:textAlignment="center"
+                            android:textColor="@color/White"
+                            android:textSize="40sp"
+                            android:typeface="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="385dp"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/course_label"
+                            app:layout_constraintVertical_bias="0.0">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="305dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/termListRecyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="300dp"
+                                    android:layout_margin="4dp"
+                                    android:background="@color/WguBolderBlue"
+                                    android:paddingHorizontal="4dp"
+                                    android:paddingVertical="4dp"
+                                    android:paddingLeft="2dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingRight="2dp"
+                                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                                    android:scrollbars="vertical"
+                                    tools:listitem="@layout/term_list_item" />
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

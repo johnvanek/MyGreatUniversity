@@ -21,25 +21,6 @@ import com.example.android.mygreatuniversity.R;
 public class MainActivity extends AppCompatActivity {
     //should actually pre-increment this before I call the count
     public static int notificationAlertCount;
-    //TODO Remaining UI - [Complete]
-
-    //TODO - Remaining
-    // 4) [TO-DO]-Then have to create the storyboard for the application.
-    // 5) [TO-DO]-Then have to answer the section about the paper writing requirements for.
-    // 6) [TO-DO]-Sign the Apk and take a picture Submit to the app store - optional to submit
-
-    //TODO - [In-Progress]
-    // B:SCREEN LAYOUTS The screen designs include the layout for each given screen, as described, and includes appropriate GUI elements for each layout. [In-Progress] - Need Landscape
-    // D:STORYBOARD: The storyboard demonstrates the flow of the mobile application and includes all of the menus and screens from part B. [In-Progress]
-    // E:SCREENSHOTS: The screenshots provided demonstrate the creation of a deployment package. [In-Progress] - Take a picture of the signed apk
-    // F1:MOBILE APPLICATION DEVELOPMENT: The explanation of how the application would be different if developed for a tablet includes both an accurate discussion of both fragments and layouts. []
-    // F2:OPERATING SYSTEM: The response identifies both the minimum and the target SDK. []
-    // F3:DESCRIPTION OF CHALLENGES: The response describes challenges faced, specifically during the development of the application. []
-    // F4:SOLUTIONS TO CHALLENGES: The description of how each challenge was overcome is related to the challenges listed in F2. []
-    // F5:DIFFERENCES: The response discusses the changes that would be made to at least one aspect of the project, were it to be done again, and specifically identifies the changes that would be made. []
-    // F6:EMULATORS: The description of the use of emulators includes the pros and cons of using an emulator versus using a development device. []
-    // G:APA SOURCES: The submission includes in-text citations and references for content that is quoted, paraphrased, or summarized and demonstrates a consistent application of APA style. [] USA APA style
-    // H:PROFESSIONAL COMMUNICATION: Use good grammar. Aka grammerly and punctuation. Don't curse; []
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, AssessmentView.class);
         startActivity(intent);
     }
-
+    //-----------||||||||||||||DUMMY-DATA-INSERTION|||||||||||||||||||-----------------*************
+    //*************Disable this if you do not want dummy data to inset into the Application*********
     private void InsertDummyData() {
         //Script that will insert dummy data into the application.
         Repo repo = new Repo(getApplication());

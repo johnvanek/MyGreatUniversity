@@ -64,14 +64,6 @@ public class TermView extends AppCompatActivity {
         return true;
     }
 
-    //TODO - Add Crud capability for each item.
-    // ITEMS - Terms, Mentors, Courses, Assessments
-    // Simplify the Creation screens where applicable
-    // Course
-    // Term - Created needs testing.
-    // Assessment
-    // Mentor
-
     public void goToTermCreate(MenuItem item) {
         Intent intent = new Intent(TermView.this, TermCreate.class);
         startActivity(intent);

@@ -90,7 +90,6 @@ public class CourseCreateView extends AppCompatActivity {
         //Sets the activity
         super.onCreate(savedInstanceState);
         //This tell android what xml file to use for the layout
-        //TODO test how this layout if functioning
         setContentView(R.layout.activity_course_create);
         //Assigns the toolbar from xml
         Toolbar myToolbar = findViewById(R.id.toolbar);

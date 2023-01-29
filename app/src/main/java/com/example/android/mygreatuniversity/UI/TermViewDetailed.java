@@ -134,7 +134,6 @@ public class TermViewDetailed extends AppCompatActivity {
         TermViewDetailed.this.termCourseRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         //Get the list of mentors from the repository
-        // TODO determine if I even need this pretty certain it can be deleted
         List<Mentor> mentors = repo.getMentors();
         //Set the data for the adapters
         termCourseAdapter.setTermCourses(termCourses);
@@ -407,8 +406,6 @@ public class TermViewDetailed extends AppCompatActivity {
                     //Show a toast alerting the user to a state change.
                     Toast.makeText(getApplicationContext(),"Term Course Added.",Toast.LENGTH_SHORT).show();
                     // And regenerate the list dynamically
-                    //TODO where applicable replace the practice of sending the user back.
-                    // On data change.
                     termCourses = repo.getTermCourses(intentTermID);
                     termCourseAdapter.setTermCourses(termCourses);
                     termCourseRecyclerView.setAdapter(termCourseAdapter);

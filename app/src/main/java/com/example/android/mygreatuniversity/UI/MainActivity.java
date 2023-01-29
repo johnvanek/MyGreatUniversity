@@ -21,44 +21,12 @@ import com.example.android.mygreatuniversity.R;
 public class MainActivity extends AppCompatActivity {
     //should actually pre-increment this before I call the count
     public static int notificationAlertCount;
-    //TODO Remaining UI
-    // Last UI Changes to make it I have time [In-Progress]
-    // Redo the layout to look better on a default phone with no increased font, and the device that we are targeting in pixel 6.
-    // Which is going to be api 33 and make the horizontal layout more appealing.
-    // On the other pages Change the scroll bar to be wgu - light -blue and no fade in always true;
-    // Makes the user feel more sure of where they are.
-    // Increase the sp values because of the smaller font now.
-    // Re-order some of the fixed dp values to fill the new layout or to match parent where appropriate.
+    //TODO Remaining UI - [Complete]
 
-    //TODO Rest
-    // ****------Current Task [Create the BroadCast Receivers]----****
-    // 1) [Completed]Need to add the Crud operations via an overflow menu for all items
-    // 2) [Completed] - Broadcast Receivers Course End/Start Assessment End Start
-    // 3) [In-Progress]Create the landscape view of everything
-    // ----- Should be an option in the Android Studio settings to generate a landscape view.
+    //TODO - Remaining
     // 4) [TO-DO]-Then have to create the storyboard for the application.
     // 5) [TO-DO]-Then have to answer the section about the paper writing requirements for.
     // 6) [TO-DO]-Sign the Apk and take a picture Submit to the app store - optional to submit
-
-    //TODO-Last-CheckList-Per The Task View - [Completed]
-    // A: Mobile-Version The Android mobile application is a version 8.0 or higher, loads properly, and all Android project files, APK, and signed apk files are in one zipped.zip file.[TO-DO]
-    // A1:TERM FUNCTIONAL REQUIREMENTS: The mobile application allows the user to enter all term titles and all start and end dates for each term. [Completed]
-    // A2:TERM ADDITION FEATURE: The features included in the mobile application are coded to allow the user to add an unlimited number of terms. [Completed]
-    // A3:VALIDATION IMPLEMENTATION: The mobile application includes validation to prevent the user from deleting a term when courses have been assigned to that term. [Completed]
-    // A4A:COURSE ADDITION: The mobile application is coded so that the user can add an unlimited number of courses to each term. [Completed]
-    // A4B:LIST OF COURSES: The mobile application allows the user to display a list of courses associated with each term. [Completed]
-    // A4C:TERM DETAILS: The mobile application allows the user to display a detailed view of each term and the view includes the term title, the start date, and the end date for each term [Completed]
-    // A5:COURSE DETAILS: The mobile application allows the user to enter all the given details for each course. [Completed]
-    // A6A:ASSESSMENT ADDITION: The mobile application is coded so that the user can add as many as 5 assessments to each course. [Completed] There is no life but they will replace.
-    // A6B:OPTIONAL NOTES ADDITION: The mobile application allows the user to add optional notes within each course. [Completed]
-    // A6C:COURSE INFORMATION: The mobile application allows the user to enter, edit, and delete any information for each course. [Completed]
-    // A6D:OPTIONAL NOTES DISPLAY: The mobile application allows the user to display optional notes within each course. [Completed]
-    // A6E:DETAILED VIEW: The mobile application allows the user to display a detailed view of the course information for each course, including the end date for each. [Completed]
-    // A6F:ALERTS FOR COURSES: The mobile application allows the user to set alerts for both the start and end date of each course and the alerts can trigger when the application is not running. [Completed]
-    // A6G:SHARING FEATURES: The mobile application allows the user to share messages or email that automatically populates with the notes. [Completed] messages
-    // A7A:ASSESSMENTS FOR EACH COURSE: The mobile application allows the user to add performance and objective assessments for each course, including the title of the assessment and the end date for each assessment. [Completed]
-    // A7B:ASSESSMENT INFORMATION: The mobile application allows the user to enter, edit, and delete all assessment information. [Completed]
-    // A7C:ALERTS FOR GOAL DATES: The mobile application allows the user to set alerts for all start and end dates for each assessment.[Completed]
 
     //TODO - [In-Progress]
     // B:SCREEN LAYOUTS The screen designs include the layout for each given screen, as described, and includes appropriate GUI elements for each layout. [In-Progress] - Need Landscape

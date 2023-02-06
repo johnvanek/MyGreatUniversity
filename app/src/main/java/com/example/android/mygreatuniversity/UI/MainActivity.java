@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Token test
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // This disables the night mode which changes the color the text to be unreadable.

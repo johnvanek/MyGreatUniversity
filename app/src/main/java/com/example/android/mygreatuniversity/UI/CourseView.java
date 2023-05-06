@@ -23,7 +23,8 @@ public class CourseView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Assign the xml foe the view
+        // Assign the xml for the view
+        // Test for the new auth token is now in use
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_view);
 

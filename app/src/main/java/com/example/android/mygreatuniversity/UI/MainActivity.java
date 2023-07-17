@@ -19,7 +19,29 @@ import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 
 public class MainActivity extends AppCompatActivity {
-    //should actually pre-increment this before I call the count
+    //TODO
+    // Create new entity faculty -> base class -> other staff extends from this class
+    // Rework other Entity Classes so that they inherit base properties from Faculty
+    // Add a new Class in Entity to Round out the Faculty.
+    // This meets the requirement for polymorphism
+    // Document the poly in Part C Documentation
+
+    //TODO
+    // Create the Login Screen Feature
+    // Probably faster to re-implement this custom.
+    // Scrap From Old Project
+    // Scrap From Github Pull Old C195 project for login
+    // Copy over old Resources needed for the login screen.
+    // Just import Resources the rest of the code won't import or open on this PC
+
+    //TODO Implement Login Auth
+    // Auth -> the User via the login screen
+    // On Enter or button press.
+    // Implement Method against database to check -> Username -> Password
+    // Against Database should check JDBC method might already exist.
+
+    //TODO Document for Security in Part C the Auth method against the local Database.
+
     public static int notificationAlertCount;
 
     @Override

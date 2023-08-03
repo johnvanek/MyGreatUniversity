@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO Document for Security in Part C the Auth method against the local Database.
 
     public static int notificationAlertCount;
-
+    //test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Token test take 2 with renewed credentials

@@ -80,14 +80,14 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="180dp">
 
                             <TextView
                                 android:id="@+id/textView10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="16dp"
                                 android:text="Username"
                                 android:textColor="@color/White"
                                 android:textSize="20sp"
@@ -98,37 +98,54 @@
                                 android:id="@+id/textView3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="PassWord"
+                                android:text="Password"
                                 android:textColor="@color/White"
                                 android:textSize="20sp"
-                                tools:layout_editor_absoluteX="17dp"
-                                tools:layout_editor_absoluteY="63dp" />
+                                tools:layout_editor_absoluteX="16dp"
+                                tools:layout_editor_absoluteY="60dp" />
 
                             <EditText
                                 android:id="@+id/editTextTextUsername"
-                                android:layout_width="wrap_content"
+                                android:layout_width="205dp"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:background="@drawable/edit_text_white_underline"
                                 android:ems="10"
                                 android:inputType="textPersonName"
                                 android:textColor="@color/White"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.471"
                                 app:layout_constraintStart_toEndOf="@+id/textView10"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.067" />
+                                tools:layout_editor_absoluteY="16dp" />
 
                             <EditText
                                 android:id="@+id/editTextTextUsername2"
-                                android:layout_width="wrap_content"
+                                android:layout_width="205dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="24dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/edit_text_white_underline"
                                 android:ems="10"
                                 android:inputType="textPersonName"
                                 android:textColor="@color/White"
                                 app:layout_constraintStart_toEndOf="@+id/textView3"
                                 app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername" />
+
+                            <Button
+                                android:id="@+id/saveButton2"
+                                android:layout_width="110dp"
+                                android:layout_height="57dp"
+                                android:layout_marginStart="140dp"
+                                android:layout_marginTop="20dp"
+                                android:backgroundTint="@color/WguLightBlue"
+                                android:fontFamily="@font/convergence"
+                                android:onClick="saveState"
+                                android:shadowColor="@color/Black"
+                                android:text="LogIn"
+                                android:textSize="18sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername2"
+                                app:rippleColor="@color/White"
+                                app:strokeColor="@color/NeutralWhite"
+                                app:strokeWidth="2dp" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

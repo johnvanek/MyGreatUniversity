@@ -24,15 +24,6 @@ public class MainActivity extends AppCompatActivity {
     // Rework other Entity Classes so that they inherit base properties from Faculty
     // Add a new Class in Entity to Round out the Faculty.
     // This meets the requirement for polymorphism
-    // Document the poly in Part C Documentation
-
-    //TODO
-    // Create the Login Screen Feature
-    // Probably faster to re-implement this custom.
-    // Scrap From Old Project
-    // Scrap From Github Pull Old C195 project for login
-    // Copy over old Resources needed for the login screen.
-    // Just import Resources the rest of the code won't import or open on this PC
 
     //TODO Implement Login Auth
     // Auth -> the User via the login screen
@@ -40,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     // Implement Method against database to check -> Username -> Password
     // Against Database should check JDBC method might already exist.
 
-    //TODO Document for Security in Part C the Auth method against the local Database.
+    //TODO Add Search Functionality to the Program
 
     public static int notificationAlertCount;
     //test

@@ -80,7 +80,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <TextView
                                 android:id="@+id/textView10"
@@ -94,19 +94,41 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="PassWord"
+                                android:textColor="@color/White"
+                                android:textSize="20sp"
+                                tools:layout_editor_absoluteX="17dp"
+                                tools:layout_editor_absoluteY="63dp" />
+
                             <EditText
                                 android:id="@+id/editTextTextUsername"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:ems="10"
                                 android:inputType="textPersonName"
-                                android:text="Name"
                                 android:textColor="@color/White"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.471"
                                 app:layout_constraintStart_toEndOf="@+id/textView10"
                                 app:layout_constraintTop_toTopOf="parent"
-                                tools:text="username" />
+                                app:layout_constraintVertical_bias="0.067" />
+
+                            <EditText
+                                android:id="@+id/editTextTextUsername2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginTop="10dp"
+                                android:ems="10"
+                                android:inputType="textPersonName"
+                                android:textColor="@color/White"
+                                app:layout_constraintStart_toEndOf="@+id/textView3"
+                                app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

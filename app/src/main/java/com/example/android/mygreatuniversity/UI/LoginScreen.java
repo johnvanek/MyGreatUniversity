@@ -2,8 +2,11 @@ package com.example.android.mygreatuniversity.UI;
 
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +45,7 @@ public class LoginScreen extends AppCompatActivity {
     ConstraintLayout loginBox, card;
     Button loginButton;
 
-
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,5 +65,42 @@ public class LoginScreen extends AppCompatActivity {
         loginBox = findViewById(R.id.LoginBox);
         card = findViewById(R.id.Card);
         loginButton = findViewById(R.id.login);
+
+        //Handle the Awkward SoftKeyboard behavior
+        //This hides the SoftKeyboard onTouch of any of the cards either the login box or the
+        // welcome card.
+
+        loginBox.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(LoginScreen.this);
+                userNameEditText.clearFocus();
+                passwordEditText.clearFocus();
+                return false;
+            }
+        });
+
+        card.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(LoginScreen.this);
+                userNameEditText.clearFocus();
+                passwordEditText.clearFocus();
+                return false;
+            }
+        });
+
+        loginButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(LoginScreen.this);
+                userNameEditText.clearFocus();
+                passwordEditText.clearFocus();
+                return false;
+            }
+        });
+
+        //Logical Code
+
     }
 }

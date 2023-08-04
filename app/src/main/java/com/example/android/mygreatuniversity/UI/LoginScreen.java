@@ -1,21 +1,17 @@
 package com.example.android.mygreatuniversity.UI;
 
-import android.content.Intent;
+import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
+
+import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.android.mygreatuniversity.Database.Repo;
-import com.example.android.mygreatuniversity.Entity.Assessment;
-import com.example.android.mygreatuniversity.Entity.Course;
-import com.example.android.mygreatuniversity.Entity.Mentor;
-import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 
 public class LoginScreen extends AppCompatActivity {
@@ -34,12 +30,37 @@ public class LoginScreen extends AppCompatActivity {
 
     //TODO Add Search Functionality to the Program
     // Add additional business classes for Faculty etc.
+
+    //TODO make the softkeyboard behave the same way it does in the rest of the application
+
+    //TODO make the Login Onclick event that has two functions
+    // One function to check for errors when logging in
+    // And another to display a message in the box or make the borders red if there is no correct login
+
+    //Fields
+    EditText userNameEditText, passwordEditText;
+    ConstraintLayout loginBox, card;
+    Button loginButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Token test take 2 with renewed credentials
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
         // This disables the night mode which changes the color the text to be unreadable.
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        //SoftKeyboard stuff
+        hideKeyboard(this);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
+        //Assigning the Fields
+        //Course Assignments
+        userNameEditText = findViewById(R.id.editTextTextUsername);
+        passwordEditText = findViewById(R.id.editTextTextUsername3);
+        loginBox = findViewById(R.id.LoginBox);
+        card = findViewById(R.id.Card);
+        loginButton = findViewById(R.id.login);
     }
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -42,8 +43,11 @@ public class LoginScreen extends AppCompatActivity {
 
     //Fields
     EditText userNameEditText, passwordEditText;
+    TextView errorText;
     ConstraintLayout loginBox, card;
     Button loginButton;
+
+    Boolean isErrorTextVisible = false;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -62,6 +66,7 @@ public class LoginScreen extends AppCompatActivity {
         //Course Assignments
         userNameEditText = findViewById(R.id.editTextTextUsername);
         passwordEditText = findViewById(R.id.editTextTextUsername3);
+        errorText = findViewById(R.id.errorText);
         loginBox = findViewById(R.id.LoginBox);
         card = findViewById(R.id.Card);
         loginButton = findViewById(R.id.login);
@@ -99,8 +104,29 @@ public class LoginScreen extends AppCompatActivity {
                 return false;
             }
         });
+    }
 
-        //Logical Code
+    //Logical Code outside of On-Create
+    public void attemptLogin(View v) {
+        //Attempt the login
+        if(isUserValid()){
+            //Log the user to the next scene
+        } else {
+            showHideErrorText();
+        }
+    }
 
+    private boolean isUserValid(){
+        return false;
+    }
+
+    private void showHideErrorText() {
+        if (!isErrorTextVisible) {
+            errorText.setVisibility(View.VISIBLE);
+            isErrorTextVisible = true;
+        } else {
+            errorText.setVisibility(View.INVISIBLE);
+            isErrorTextVisible = false;
+        }
     }
 }

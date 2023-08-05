@@ -11,9 +11,9 @@ public class TechSupport extends FacultyMisc {
     private int techSupportID;
     private String operatingSystems;
 
-    public TechSupport(String name, String email, String jobTitle, String availability, String os) {
+    public TechSupport(String name, String email, String jobTitle, String availability, String operatingSystems) {
         super(name, email, jobTitle, availability);
-        this.operatingSystems = os;
+        this.operatingSystems = operatingSystems;
     }
 
     public int getTechSupportID() {

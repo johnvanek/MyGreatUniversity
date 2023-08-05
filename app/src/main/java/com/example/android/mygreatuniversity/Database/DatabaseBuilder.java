@@ -13,12 +13,14 @@ import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
 import com.example.android.mygreatuniversity.DAO.MentorAideDAO;
+import com.example.android.mygreatuniversity.DAO.TechSupportDAO;
 import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.MentorAide;
+import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.Entity.User;
 
@@ -26,12 +28,15 @@ import com.example.android.mygreatuniversity.Entity.User;
 //One database to create another table inset a , after the first class.
 // Every time there is a change made to a entity file, the version needs to be incremented.
 // Also to clean out the database increment the version
-// The DummyData Callback should run once on database creation
-// Because this is Instance being returned there are problems trigger overridden OnCreate and OnOpen
-// DummyData will instead be handled in the Main activity via a method call in onCreate.
-// SomeTimes incrementing this will Re-trigger the DummyData in combination with deleting in from the device.
 
-@Database(entities = {Course.class, Mentor.class, User.class, Assessment.class, Term.class, MentorAide.class}, version = 57, exportSchema = false)
+@Database(entities = {Course.class,
+        Mentor.class,
+        User.class,
+        Assessment.class,
+        Term.class,
+        MentorAide.class,
+        TechSupport.class}
+        , version = 58, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**
@@ -48,6 +53,8 @@ public abstract class DatabaseBuilder extends RoomDatabase {
     public abstract TermDAO termDAO();
 
     public abstract MentorAideDAO mentorAideDAO();
+
+    public abstract TechSupportDAO techSupportDAO();
 
     private static volatile DatabaseBuilder INSTANCE;
 

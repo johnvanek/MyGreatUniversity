@@ -1,7 +1,5 @@
 package com.example.android.mygreatuniversity.UI;
 
-import static com.example.android.mygreatuniversity.Utils.Utils.assessmentTypePosition;
-import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
@@ -10,16 +8,12 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -30,15 +24,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
-import com.example.android.mygreatuniversity.Entity.Course;
-import com.example.android.mygreatuniversity.Entity.Mentor;
-import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
-import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 public class AssessmentCreate extends AppCompatActivity {
@@ -257,7 +246,6 @@ public class AssessmentCreate extends AppCompatActivity {
     public void saveState(View view) {
         //Set this to negative 1 since it has not been assigned a course yet
         Assessment editedAssessment = new Assessment(
-                StateManager.loggedInUserID,
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),

@@ -15,10 +15,8 @@ public class Assessment {
     private String startDate;
     private String endDate;
 
-    private int userID;
-    public Assessment(int userID, String title, String type, String startDate, String endDate, int assessmentCourseID) {
+    public Assessment(String title, String type, String startDate, String endDate, int assessmentCourseID) {
         this.assessmentCourseID = -1;
-        this.userID = userID;
         this.title = title;
         this.type = type;
         this.startDate = startDate;
@@ -71,7 +69,6 @@ public class Assessment {
     public String toString() {
         return "Assessment{" +
                 "assessmentID=" + assessmentID +
-                "userID=" + userID +
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
                 ", startDate='" + startDate + '\'' +
@@ -85,9 +82,5 @@ public class Assessment {
 
     public void setAssessmentCourseID(int assessmentCourseID) {
         this.assessmentCourseID = assessmentCourseID;
-    }
-
-    public int getUserID() {
-        return userID;
     }
 }

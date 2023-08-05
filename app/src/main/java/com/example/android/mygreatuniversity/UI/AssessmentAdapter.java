@@ -30,16 +30,10 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             // This is where you put your onClickListener inside the Constructor for each
             // Course List Item
             assessmentItemView.setOnClickListener(v -> {
-                //Either show a more detailed screen of the course here
-                //Or show this in the box below on the course screen.
                 int pos = getAdapterPosition();
-
                 //The current item on the list that is sent to the adapter. onClick()
                 final Assessment curAssessment = mAssessments.get(pos);
-                // call repo
-                //Mentor courseMentor =
                 //Create the Intent that will pass data to the Course Detailed View
-
                 Intent intent = new Intent(context, AssessmentViewDetailed.class);
 
                 intent.putExtra("assessmentID", curAssessment.getAssessmentID());
@@ -48,13 +42,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 intent.putExtra("endDate" , curAssessment.getEndDate());
                 intent.putExtra("courseID", curAssessment.getAssessmentCourseID());
                 intent.putExtra("type", curAssessment.getType());
-                //Using the mentorId from the course get the linked mentor
                 Repo repo = new Repo((Application) context.getApplicationContext());
-                //If the courseMentor was deleted this will return null so
-                // Could just create a lookup method in repo instead of passing all of this intent data around.
-                //Since we can get to assessment view detailed in two ways as well are probably
-                // Going to need to reduplicate the data for selected assessment
-                //StateManager.setArrivedToCourseFromTermView(false);
                 //Go to the next screen in this case courseViewDetailed
                 context.startActivity(intent);
             });
@@ -94,8 +82,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
     @Override
     public int getItemCount() {
-        //Could return the length like in the android example on android resources.
-        //But the size() will work even if the List length is zero.
         if(mAssessments != null) {
             return mAssessments.size();
         } else return 0;

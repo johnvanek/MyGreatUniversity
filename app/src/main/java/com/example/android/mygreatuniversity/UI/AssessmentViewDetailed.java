@@ -34,7 +34,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.R;
-import com.example.android.mygreatuniversity.Utils.StateManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -290,7 +289,6 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     public void saveState(View view) {
 
         Assessment editedAssessment = new Assessment(
-                StateManager.loggedInUserID,
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),
@@ -316,7 +314,6 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     public void deleteState(View view) {
 
         Assessment editedAssessment = new Assessment(
-                StateManager.loggedInUserID,
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),

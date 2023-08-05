@@ -52,7 +52,7 @@ public class Utils {
         return position;
     }
 
-    //De-Stringer Method for availabilty should also work for subjects
+    //De-Stringer Method for availability should also work for subjects in Misc-Faculty
         public static boolean deStringer(String stringList, String targetString) {
             String[] strings = stringList.split(",\\s*");
             //Loop over each day and check if the same

@@ -48,6 +48,4 @@ public class MentorAide extends FacultyMisc {
                 ", subjects='" + getSubjects() + '\'' +
                 '}';
     }
-
-
 }

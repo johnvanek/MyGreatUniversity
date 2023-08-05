@@ -16,10 +16,12 @@ import java.util.List;
         @Query("SELECT * FROM mentorAides")
         List<MentorAide> getAllMentorAides();
 
-        @Query("SELECT * FROM mentorAides WHERE name = :name")
+        @Query("SELECT * FROM mentorAides WHERE LOWER(name) LIKE LOWER('%' || :name || '%')")
         List<MentorAide> getMentorAidesByName(String name);
 
-        @Query("SELECT * FROM mentorAides WHERE :subject IN (subjects)")
-        List<MentorAide> getMentorAidesBySubject(String subject);
+        @Query("SELECT * FROM mentorAides WHERE LOWER(subjects) LIKE LOWER('%' || :subject || '%')")
+        List<MentorAide> getMentorAidesBySubjects(String subject);
 
+        @Query("SELECT * FROM mentorAides WHERE LOWER(availability) LIKE LOWER('%' || :days || '%')")
+        List<MentorAide> getMentorAidesByAvailability(String days);
 }

@@ -144,10 +144,17 @@ public class LoginScreen extends AppCompatActivity {
 
             //****Misc-Faculty***
             //Mentor-Aides
-            repo.insertMentorAide(new MentorAide("Sophia Bennett","MGUSB@gmail.com","Subject Assistant","Tuesday,Thursday","Mobile App Development,Algorithms and Data Structures"));
+            repo.insertMentorAide(new MentorAide("Sophia Bennett","MGUSB@gmail.com","Subject Assistant","Tuesday,Wednesday","Mobile App Development,Algorithms and Data Structures"));
+            repo.insertMentorAide(new MentorAide("Emily Parker","MGUEP@gmail.com","Teacher's Aide","Monday,Tuesday,Wednesday,Thursday","Human-Computer Interaction,Web Design"));
+            repo.insertMentorAide(new MentorAide("Olivia Grant","MGUOG@gmail.com","Subject Assistant","Tuesday,Thursday,Friday","Game Development,Computer Graphics"));
+            repo.insertMentorAide(new MentorAide("Chloe Martinez","MGUCM@gmail.com","Teacher's Aide","Tuesday,Monday,Friday","Database Management,Web Development"));
+            repo.insertMentorAide(new MentorAide("Lily Watson","MGULW@gmail.com","Lead Teacher's Aide","Monday,Tuesday,Wednesday,Thursday,Friday","Software Engineering,Cybersecurity"));
             //Tech-Support
             repo.insertTechSupport(new TechSupport("John Vanek","MGUJV@gmail.com","Tier-1-Support","Monday,Tuesday,Wednesday,Thursday,Friday","Windows,macOS"));
-
+            repo.insertTechSupport(new TechSupport("Sarah Smith","MGUSS@gmail.com","Tier-2-Support","Tuesday,Wednesday,Thursday","macOS"));
+            repo.insertTechSupport(new TechSupport("Matthew Lee","MGUML@gmail.com","Tier-3-Support","Monday,Friday","Windows,macOS"));
+            repo.insertTechSupport(new TechSupport("William Perez","MGUWP@gmail.com","Tier-1-Support","Monday,Tuesday,Wednesday","Windows"));
+            repo.insertTechSupport(new TechSupport("Melissa Garcia","MGUMG@gmail.com","Tier-2-Support","Monday,Tuesday,Friday","macOS"));
 
             //******Courses******
             repo.insertCourse(new Course("Mobile Development", "10/01/2022", "10/30/2022", "In Progress", 1, 1, ""));

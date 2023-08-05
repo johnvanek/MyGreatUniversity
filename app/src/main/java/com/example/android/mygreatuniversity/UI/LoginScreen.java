@@ -35,6 +35,8 @@ public class LoginScreen extends AppCompatActivity {
 
     Boolean isErrorTextVisible = false;
 
+    User user;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,8 @@ public class LoginScreen extends AppCompatActivity {
                 hideKeyboard(LoginScreen.this);
                 userNameEditText.clearFocus();
                 passwordEditText.clearFocus();
+                errorText.setVisibility(View.INVISIBLE);
+                isErrorTextVisible = false;
                 return false;
             }
         });
@@ -94,33 +98,34 @@ public class LoginScreen extends AppCompatActivity {
 
     //Logical Code outside of On-Create
     public void attemptLogin(View v) {
-        //Attempt the login
-        //Going to have to query the database if this user exists
-        // Need to view the table schema with mysql workbench
-        // Currently this table how I think Called from main?
-
         if (isUserValid()) {
-            //Log the user to the next scene
-            // Which is the main screen
+            //Valid user proceeds
             Intent intent = new Intent(LoginScreen.this, MainActivity.class);
             startActivity(intent);
         } else {
+            //Inform user of problem
             showHideErrorText();
         }
     }
 
     private boolean isUserValid() {
-        //TODO check the database for user compare the username and password against db
-        return true;
+        // Check the database for valid username & password combination
+        // Loop over and compare the users in the database currently only one
+        Repo repo = new Repo(getApplication());
+        String attemptUsername = userNameEditText.getText().toString();
+        String attemptPassword = passwordEditText.getText().toString();
+        for (User user: repo.getUsers()) {
+            if(user.getUsername().equals(attemptUsername) && (user.getPassword().equals(attemptPassword))){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void showHideErrorText() {
         if (!isErrorTextVisible) {
             errorText.setVisibility(View.VISIBLE);
             isErrorTextVisible = true;
-        } else {
-            errorText.setVisibility(View.INVISIBLE);
-            isErrorTextVisible = false;
         }
     }
 

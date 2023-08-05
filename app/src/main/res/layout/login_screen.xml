@@ -151,7 +151,7 @@
                                 android:fontFamily="@font/convergence"
                                 android:onClick="attemptLogin"
                                 android:shadowColor="@color/Black"
-                                android:text="Login"
+                                android:text="Log In"
                                 android:textSize="18sp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"

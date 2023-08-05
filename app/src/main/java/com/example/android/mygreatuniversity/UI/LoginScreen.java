@@ -4,6 +4,7 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,27 +20,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.android.mygreatuniversity.R;
 
 public class LoginScreen extends AppCompatActivity {
-    //TODO
-    // Create new entity faculty -> base class -> other staff extends from this class
-    // Rework other Entity Classes so that they inherit base properties from Faculty
-    // Add a new Class in Entity to Round out the Faculty.
-    // This meets the requirement for polymorphism
-
     //TODO Implement Login Auth
     // Implement some sort of Login Screen for Authentication and Authorization.
     // Auth -> the User via the login screen
     // On Enter or button press.
     // Implement Method against database to check -> Username -> Password
     // Against Database should check JDBC method might already exist.
-
-    //TODO Add Search Functionality to the Program
-    // Add additional business classes for Faculty etc.
-
-    //TODO make the softkeyboard behave the same way it does in the rest of the application
-
-    //TODO make the Login Onclick event that has two functions
-    // One function to check for errors when logging in
-    // And another to display a message in the box or make the borders red if there is no correct login
 
     //Fields
     EditText userNameEditText, passwordEditText;
@@ -109,15 +95,33 @@ public class LoginScreen extends AppCompatActivity {
     //Logical Code outside of On-Create
     public void attemptLogin(View v) {
         //Attempt the login
+        //Going to have to query the database if this user exists
+        // Need to view the table schema with mysql workbench
+        // Currently this table how I think Called from main?
+
         if(isUserValid()){
             //Log the user to the next scene
+            // Which is the main screen
+            Intent intent = new Intent(LoginScreen.this, MainActivity.class);
+            startActivity(intent);
         } else {
             showHideErrorText();
         }
     }
 
     private boolean isUserValid(){
-        return false;
+        //TODO currently there is no User table
+        // There is no way to track which users are logged in or not
+        // Technically users should have all this but I think I just
+        // Create a User's table if those are valid login.
+
+        //TODO create a user entity
+        // Set the methods up that I need in the DAO
+        // Mess around with Repo to get the methods I need to check for auth
+        // Depends how difficult but I could set this up so that Users have Courses etc
+        // Would have to look at this for my Class Diagrams etc.
+
+        return true;
     }
 
     private void showHideErrorText() {

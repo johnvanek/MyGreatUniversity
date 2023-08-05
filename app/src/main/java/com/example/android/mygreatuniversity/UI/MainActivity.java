@@ -25,13 +25,6 @@ public class MainActivity extends AppCompatActivity {
     // Add a new Class in Entity to Round out the Faculty.
     // This meets the requirement for polymorphism
 
-    //TODO Implement Login Auth
-    // Implement some sort of Login Screen for Authentication and Authorization.
-    // Auth -> the User via the login screen
-    // On Enter or button press.
-    // Implement Method against database to check -> Username -> Password
-    // Against Database should check JDBC method might already exist.
-
     //TODO Add Search Functionality to the Program
     // Add additional business classes for Faculty etc.
     public static int notificationAlertCount;

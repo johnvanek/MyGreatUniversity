@@ -13,6 +13,7 @@ import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
 import com.example.android.mygreatuniversity.DAO.TermDAO;
+import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
@@ -38,6 +39,8 @@ public abstract class DatabaseBuilder extends RoomDatabase {
     @SuppressWarnings("WeakerAccess")
     public abstract CourseDAO courseDAO();
     public abstract CourseMentorDAO mentorDAO();
+
+    public abstract UserDAO userDAO();
     public abstract AssessmentDAO assessmentDAO();
     public abstract TermDAO termDAO();
 

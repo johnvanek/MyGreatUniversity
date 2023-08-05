@@ -29,7 +29,7 @@ import com.example.android.mygreatuniversity.Entity.User;
 // DummyData will instead be handled in the Main activity via a method call in onCreate.
 // SomeTimes incrementing this will Re-trigger the DummyData in combination with deleting in from the device.
 
-@Database(entities = {Course.class, Mentor.class, User.class, Assessment.class, Term.class}, version = 49, exportSchema = false)
+@Database(entities = {Course.class, Mentor.class, User.class, Assessment.class, Term.class}, version = 53, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**

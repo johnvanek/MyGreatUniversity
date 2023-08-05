@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,16 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Assessment;
+import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.Term;
+import com.example.android.mygreatuniversity.Entity.User;
 import com.example.android.mygreatuniversity.R;
 
 public class LoginScreen extends AppCompatActivity {
-    //TODO Implement Login Auth
-    // Implement some sort of Login Screen for Authentication and Authorization.
-    // Auth -> the User via the login screen
-    // On Enter or button press.
-    // Implement Method against database to check -> Username -> Password
-    // Against Database should check JDBC method might already exist.
-
     //Fields
     EditText userNameEditText, passwordEditText;
     TextView errorText;
@@ -57,10 +57,10 @@ public class LoginScreen extends AppCompatActivity {
         card = findViewById(R.id.Card);
         loginButton = findViewById(R.id.login);
 
-        //Handle the Awkward SoftKeyboard behavior
-        //This hides the SoftKeyboard onTouch of any of the cards either the login box or the
-        // welcome card.
+        //Create the DummyData for the application
+        InsertDummyData();
 
+        //Handle the SoftKeyboard behavior
         loginBox.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -99,7 +99,7 @@ public class LoginScreen extends AppCompatActivity {
         // Need to view the table schema with mysql workbench
         // Currently this table how I think Called from main?
 
-        if(isUserValid()){
+        if (isUserValid()) {
             //Log the user to the next scene
             // Which is the main screen
             Intent intent = new Intent(LoginScreen.this, MainActivity.class);
@@ -109,18 +109,8 @@ public class LoginScreen extends AppCompatActivity {
         }
     }
 
-    private boolean isUserValid(){
-        //TODO currently there is no User table
-        // There is no way to track which users are logged in or not
-        // Technically users should have all this but I think I just
-        // Create a User's table if those are valid login.
-
-        //TODO create a user entity
-        // Set the methods up that I need in the DAO
-        // Mess around with Repo to get the methods I need to check for auth
-        // Depends how difficult but I could set this up so that Users have Courses etc
-        // Would have to look at this for my Class Diagrams etc.
-
+    private boolean isUserValid() {
+        //TODO check the database for user compare the username and password against db
         return true;
     }
 
@@ -131,6 +121,51 @@ public class LoginScreen extends AppCompatActivity {
         } else {
             errorText.setVisibility(View.INVISIBLE);
             isErrorTextVisible = false;
+        }
+    }
+
+    //-----------||||||||||||||DUMMY-DATA-INSERTION|||||||||||||||||||-----------------*************
+    //*************Disable this if you do not want dummy data to inset into the Application*********
+    private void InsertDummyData() {
+        //Script that will insert dummy data into the application.
+        Repo repo = new Repo(getApplication());
+        // If there are no users The data has not been created so create the data
+        if (repo.getUsers().size() <= 0) {
+
+            //******Users*********
+            repo.insertUser(new User("Jane Doe", "janeDoe", "test"));
+
+            //******Courses******
+            repo.insertCourse(new Course("Mobile Development", "10/01/2022", "10/30/2022", "In Progress", 1, 1, ""));
+            repo.insertCourse(new Course("Operating Systems", "06/01/2022", "07/30/2022", "Completed", 2, 1, ""));
+            repo.insertCourse(new Course("Java Fundamentals", "08/01/2022", "08/30/2022", "Completed", 3, 1, ""));
+            repo.insertCourse(new Course("Javascript Basics", "12/01/2022", "01/30/2022", "Plan To Take", 4, 1, ""));
+            repo.insertCourse(new Course("Design Patterns", "07/01/2022", "07/15/2022", "Dropped", 5, 1, ""));
+
+            //******Mentors******
+            //Should always be at least one or else Course view detailed will throw an error.
+            repo.insertMentor(new Mentor("Sarah Conor", "561-123-1991", "ResistSky@gmail.com"));
+            repo.insertMentor(new Mentor("Lisa Lisa", "039-123-1987", "HamonMaster@gmail.com"));
+            repo.insertMentor(new Mentor("Professor Xavier", "010-603-1963", "XMen@gmail.com"));
+            repo.insertMentor(new Mentor("Dan Abramov", "203-898-2085", "DanMov@gmail.com"));
+            repo.insertMentor(new Mentor("Robert Martin", "943-185-3814", "BobM@gmail.com"));
+            //******Terms******
+            repo.insertTerm(new Term("Spring2021", "6/01/2021", "12/31/2021"));
+            repo.insertTerm(new Term("Fall2022", "01//01/2022", "5/31/2022"));
+            repo.insertTerm(new Term("Spring2022", "6/01/2022", "12/31/2022"));
+            repo.insertTerm(new Term("Fall2023", "01//01/2023", "5/31/2023"));
+            //******Assessments******
+
+            repo.insertAssessment(new Assessment("Android App Dev", "Performance", "10/15/2022", "10/30/2022", 1));
+            repo.insertAssessment(new Assessment("OSx86 Basics", "Objective", "06/15/2022", "07/30/2022", 2));
+            repo.insertAssessment(new Assessment("Java App-1", "Performance", "08/15/2022", "08/30/2022", 3));
+            repo.insertAssessment(new Assessment("ECMAScript Cert.", "Objective", "12/15/2022", "01/30/2022", 4));
+            repo.insertAssessment(new Assessment("GangOfFour Test", "Objective", "07/15/2022", "08/30/2022", 5));
+
+            Log.d("DUMMYUSER", "The Dummy users are " + repo.getUsers());
+            Log.d("DUMMYCOURSE", "The Dummy courses are " + repo.getCourses());
+            Log.d("DUMMYMENTOR", "The Dummy mentors are " + repo.getMentors());
+            Log.d("DUMMYASSESSMENT", "The Dummy assessments are " + repo.getAssessments());
         }
     }
 }

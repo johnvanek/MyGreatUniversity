@@ -17,6 +17,7 @@ import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
+import com.example.android.mygreatuniversity.Utils.StateManager;
 
 public class MainActivity extends AppCompatActivity {
     //TODO
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         //Insert the Dummy Data the logic for generation is contained within.
+        StateManager.loggedInUserID = 1;
         InsertDummyData();
     }
 
@@ -104,11 +106,11 @@ public class MainActivity extends AppCompatActivity {
             repo.insertTerm(new Term("Fall2023","01//01/2023","5/31/2023"));
             //******Assessments******
 
-            repo.insertAssessment(new Assessment("Android App Dev","Performance","10/15/2022","10/30/2022",1));
-            repo.insertAssessment(new Assessment("OSx86 Basics","Objective","06/15/2022","07/30/2022",2));
-            repo.insertAssessment(new Assessment("Java App-1","Performance","08/15/2022","08/30/2022",3));
-            repo.insertAssessment(new Assessment("ECMAScript Cert.","Objective","12/15/2022","01/30/2022",4));
-            repo.insertAssessment(new Assessment("GangOfFour Test","Objective","07/15/2022","08/30/2022",5));
+            repo.insertAssessment(new Assessment(1,"Android App Dev","Performance","10/15/2022","10/30/2022",1));
+            repo.insertAssessment(new Assessment(1,"OSx86 Basics","Objective","06/15/2022","07/30/2022",2));
+            repo.insertAssessment(new Assessment(1,"Java App-1","Performance","08/15/2022","08/30/2022",3));
+            repo.insertAssessment(new Assessment(2,"ECMAScript Cert.","Objective","12/15/2022","01/30/2022",4));
+            repo.insertAssessment(new Assessment(2,"GangOfFour Test","Objective","07/15/2022","08/30/2022",5));
 
             Log.d("DUMMYCOURSE", "The Dummy courses are " + repo.getCourses());
             Log.d("DUMMYMENTOR", "The Dummy mentors are " + repo.getMentors());

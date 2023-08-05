@@ -6,6 +6,8 @@ import com.example.android.mygreatuniversity.Database.Repo;
 
 public class StateManager {
     static Application app;
+
+    public static int loggedInUserID = 0;
     public static void setApp(Application application) {
         app = application;
     }

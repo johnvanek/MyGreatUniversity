@@ -2,7 +2,6 @@ package com.example.android.mygreatuniversity.UI;
 
 import static com.example.android.mygreatuniversity.UI.MainActivity.notificationAlertCount;
 import static com.example.android.mygreatuniversity.Utils.Utils.assessmentTypePosition;
-import static com.example.android.mygreatuniversity.Utils.Utils.courseStatusPosition;
 import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
@@ -22,10 +21,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -36,9 +33,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
-import com.example.android.mygreatuniversity.Entity.Course;
-import com.example.android.mygreatuniversity.Entity.Mentor;
-import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.R;
 import com.example.android.mygreatuniversity.Utils.StateManager;
 
@@ -46,7 +40,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -75,7 +68,6 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     int intentAssessmentId;
 
     Repo repo = new Repo(getApplication());
-    // Could use repo to perform a lookup
 
     //Date References & Declarations
     //This is for Converting dates from strings to date objects
@@ -298,6 +290,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     public void saveState(View view) {
 
         Assessment editedAssessment = new Assessment(
+                StateManager.loggedInUserID,
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),
@@ -323,6 +316,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
     public void deleteState(View view) {
 
         Assessment editedAssessment = new Assessment(
+                StateManager.loggedInUserID,
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),
@@ -343,7 +337,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
                 AssessmentViewDetailed.this,
                 AssessmentView.class);
 
-        Toast.makeText(getApplicationContext(),"Assessment Deleted",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Assessment Deleted", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
@@ -388,20 +382,20 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         //You have to change the Flag explicitly to be mutable or Immutable. But still works with older code.
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 //This should still work to generate a unique ID
-                AssessmentViewDetailed.this,++notificationAlertCount,
+                AssessmentViewDetailed.this, ++notificationAlertCount,
                 intent,
                 PendingIntent.FLAG_IMMUTABLE);
 
         //Get from the System the user Preference for Alarms
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         //This is where you set the alarm
-        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerInSeconds, pendingIntent);
         //alarm
         //Toast.makeText(getApplicationContext(),"Course Start Alert Set!" ,Toast.LENGTH_SHORT).show();
-        if(settingBoth){
-            Toast.makeText(getApplicationContext(),"Assessment Start&End Alert Set!" ,Toast.LENGTH_SHORT).show();
+        if (settingBoth) {
+            Toast.makeText(getApplicationContext(), "Assessment Start&End Alert Set!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(),"Assessment Start Alert Set!" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Assessment Start Alert Set!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -442,7 +436,7 @@ public class AssessmentViewDetailed extends AppCompatActivity {
                 " was " + assessmentMessageBody);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                AssessmentViewDetailed.this,++notificationAlertCount,
+                AssessmentViewDetailed.this, ++notificationAlertCount,
                 intent,
                 PendingIntent.FLAG_IMMUTABLE);
 
@@ -451,14 +445,14 @@ public class AssessmentViewDetailed extends AppCompatActivity {
         //This is where you set the alarm
         //Also the calling here might be different because this is where pending intent is passed
         //Where to intent is the sub value
-        alarmManager.set(AlarmManager.RTC_WAKEUP,triggerInSeconds,pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerInSeconds, pendingIntent);
         //alarm
 
-        if(settingBoth) {
+        if (settingBoth) {
             //Do nada except set it back false
             settingBoth = false;
         } else {
-            Toast.makeText(getApplicationContext(),"Assessment End Alert Set!" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Assessment End Alert Set!", Toast.LENGTH_SHORT).show();
         }
     }
 

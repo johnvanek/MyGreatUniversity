@@ -257,6 +257,7 @@ public class AssessmentCreate extends AppCompatActivity {
     public void saveState(View view) {
         //Set this to negative 1 since it has not been assigned a course yet
         Assessment editedAssessment = new Assessment(
+                StateManager.loggedInUserID,
                 assessmentTitle.getText().toString(),
                 typeSpinner.getSelectedItem().toString(),
                 assessmentStart.getText().toString(),

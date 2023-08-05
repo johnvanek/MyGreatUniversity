@@ -9,13 +9,13 @@ public abstract class FacultyMisc {
     private String name;
     private String email;
     private String jobTitle;
-    private String[] availability;
+    private String availability;
 
     protected FacultyMisc() {
-        this("John Doe", "MGUfaculty@gmail.com", "Misc Faculty", new String[]{"Monday,Tuesday,Wednesday,Thursday,Friday"});
+        this("John Doe", "MGUfaculty@gmail.com", "Misc Faculty", "Monday,Tuesday,Wednesday,Thursday,Friday");
     }
 
-    protected FacultyMisc(String name, String email, String jobTitle, String[] availability) {
+    protected FacultyMisc(String name, String email, String jobTitle, String availability) {
         this.name = name;
         this.email = email;
         this.jobTitle = jobTitle;
@@ -23,7 +23,6 @@ public abstract class FacultyMisc {
     }
 
     //Getters and Setters
-
     public String getName() {
         return name;
     }
@@ -48,11 +47,11 @@ public abstract class FacultyMisc {
         this.jobTitle = jobTitle;
     }
 
-    public String[] getAvailability() {
+    public String getAvailability() {
         return availability;
     }
 
-    public void setAvailability(String[] availability) {
+    public void setAvailability(String availability) {
         this.availability = availability;
     }
 
@@ -66,7 +65,7 @@ public abstract class FacultyMisc {
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", jobTitle='" + jobTitle + '\'' +
-                ", availability=" + Arrays.toString(availability) +
+                ", availability=" + availability +
                 '}';
     }
 }

@@ -6,11 +6,13 @@ import android.util.Log;
 import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
+import com.example.android.mygreatuniversity.DAO.MentorAideDAO;
 import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.MentorAide;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.Entity.User;
 
@@ -25,15 +27,20 @@ public class Repo {
     private UserDAO mUserDAO;
     private AssessmentDAO mAssessmentDAO;
     private TermDAO mTermDAO;
+
+    private MentorAideDAO mMentorAideDAO;
     private List<Course> mCourses;
     private List<Mentor> mMentors;
     private List<Assessment> mAssessments;
     private List<Term> mTerms;
+
+    private List<MentorAide> mentorAides;
     private Course mCourse;
     private Mentor mCourseMentor;
 
     private User mUser;
     private Term mTerm;
+
     private List<Course> mTermCourses;
     private List<Assessment> mCourseAssessments;
 
@@ -49,6 +56,7 @@ public class Repo {
         mUserDAO = dbb.userDAO();
         mAssessmentDAO = dbb.assessmentDAO();
         mTermDAO = dbb.termDAO();
+        mMentorAideDAO = dbb.mentorAideDAO();
     }
 
     //Course Methods
@@ -331,4 +339,6 @@ public class Repo {
         Log.d("adapter", "In Repo attempting to get assessments for a selected course " + mCourseAssessments);
         return mCourseAssessments;
     }
+
+    //MentorAide Methods
 }

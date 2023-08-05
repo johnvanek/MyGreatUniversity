@@ -51,4 +51,16 @@ public class Utils {
         }
         return position;
     }
+
+    //De-Stringer Method for availabilty should also work for subjects
+        public static boolean deStringer(String stringList, String targetString) {
+            String[] strings = stringList.split(",\\s*");
+            //Loop over each day and check if the same
+            for (String string : strings) {
+                if (string.equalsIgnoreCase(targetString)) {
+                    return true; // Day found in the list
+                }
+            }
+            return false; // Day not found in the list
+        }
 }

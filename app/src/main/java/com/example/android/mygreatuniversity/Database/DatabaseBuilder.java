@@ -12,11 +12,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.android.mygreatuniversity.DAO.AssessmentDAO;
 import com.example.android.mygreatuniversity.DAO.CourseDAO;
 import com.example.android.mygreatuniversity.DAO.CourseMentorDAO;
+import com.example.android.mygreatuniversity.DAO.MentorAideDAO;
 import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.MentorAide;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.Entity.User;
 
@@ -29,7 +31,7 @@ import com.example.android.mygreatuniversity.Entity.User;
 // DummyData will instead be handled in the Main activity via a method call in onCreate.
 // SomeTimes incrementing this will Re-trigger the DummyData in combination with deleting in from the device.
 
-@Database(entities = {Course.class, Mentor.class, User.class, Assessment.class, Term.class}, version = 56, exportSchema = false)
+@Database(entities = {Course.class, Mentor.class, User.class, Assessment.class, Term.class, MentorAide.class}, version = 57, exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**
@@ -44,6 +46,8 @@ public abstract class DatabaseBuilder extends RoomDatabase {
     public abstract UserDAO userDAO();
     public abstract AssessmentDAO assessmentDAO();
     public abstract TermDAO termDAO();
+
+    public abstract MentorAideDAO mentorAideDAO();
 
     private static volatile DatabaseBuilder INSTANCE;
 

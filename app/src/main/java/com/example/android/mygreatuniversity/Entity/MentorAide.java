@@ -11,8 +11,9 @@ import java.util.Arrays;
 public class MentorAide extends FacultyMisc {
     @PrimaryKey(autoGenerate = true)
     private int mentorAideID;
-    private String[] subjects;
-    public MentorAide(String name, String email, String jobTitle, String[] availability, String[] subjects) {
+    private String subjects;
+
+    public MentorAide(String name, String email, String jobTitle, String availability, String subjects) {
         super(name, email, jobTitle, availability);
         this.subjects = subjects;
     }
@@ -21,11 +22,15 @@ public class MentorAide extends FacultyMisc {
         return mentorAideID;
     }
 
-    public String[] getSubjects() {
+    public void setMentorAideID(int mentorAideID) {
+        this.mentorAideID = mentorAideID;
+    }
+
+    public String getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(String[] subjects) {
+    public void setSubjects(String subjects) {
         this.subjects = subjects;
     }
 
@@ -39,8 +44,10 @@ public class MentorAide extends FacultyMisc {
                 "name='" + super.getName() + '\'' +
                 ", email='" + super.getEmail() + '\'' +
                 ", jobTitle='" + super.getJobTitle() + '\'' +
-                ", availability=" + Arrays.toString(super.getAvailability()) +
-                ", subjects='" + Arrays.toString(getSubjects()) + '\'' +
+                ", availability=" + super.getAvailability() +
+                ", subjects='" + getSubjects() + '\'' +
                 '}';
     }
+
+
 }

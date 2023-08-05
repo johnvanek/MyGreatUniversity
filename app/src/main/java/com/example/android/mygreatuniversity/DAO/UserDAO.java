@@ -6,10 +6,10 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.User;
 
 import java.util.List;
+
 @Dao
 public interface UserDAO {
     @Query("SELECT * FROM users")

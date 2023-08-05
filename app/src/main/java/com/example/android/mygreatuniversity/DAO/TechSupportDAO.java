@@ -11,14 +11,17 @@ import java.util.List;
 @Dao
 public interface TechSupportDAO {
     @Insert
-    void insertMentorAide(TechSupport techSupport);
+    void insertTechSupport(TechSupport techSupport);
 
     @Query("SELECT * FROM techSupport")
     List<TechSupport> getAllTechSupport();
 
-    @Query("SELECT * FROM techSupport WHERE name = :name")
+    @Query("SELECT * FROM techSupport WHERE LOWER(name) LIKE LOWER('%' || :name || '%')")
     List<TechSupport> getTechSupportByName(String name);
 
-    @Query("SELECT * FROM techSupport WHERE :operatingSystems IN (operatingSystems)")
-    List<TechSupport> getTechSupportsByOs(String operatingSystems);
+    @Query("SELECT * FROM techSupport WHERE operatingSystems LIKE '%' || :os || '%'")
+    List<TechSupport> getTechSupportByOs(String os);
+
+    @Query("SELECT * FROM techSupport WHERE availability LIKE '%' || :days || '%'")
+    List<TechSupport> getTechSupportByAvailability(String days);
 }

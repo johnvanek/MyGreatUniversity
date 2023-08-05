@@ -22,6 +22,8 @@ import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.MentorAide;
+import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.Entity.User;
 import com.example.android.mygreatuniversity.R;
@@ -139,6 +141,13 @@ public class LoginScreen extends AppCompatActivity {
 
             //******Users*********
             repo.insertUser(new User("Jane Doe", "janeDoe", "test"));
+
+            //****Misc-Faculty***
+            //Mentor-Aides
+            repo.insertMentorAide(new MentorAide("Sophia Bennett","MGUSB@gmail.com","Subject Assistant","Tuesday,Thursday","Mobile App Development,Algorithms and Data Structures"));
+            //Tech-Support
+            repo.insertTechSupport(new TechSupport("John Vanek","MGUJV@gmail.com","Tier-1-Support","Monday,Tuesday,Wednesday,Thursday,Friday","Windows,macOS"));
+
 
             //******Courses******
             repo.insertCourse(new Course("Mobile Development", "10/01/2022", "10/30/2022", "In Progress", 1, 1, ""));

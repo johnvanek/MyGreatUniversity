@@ -35,8 +35,9 @@ import com.example.android.mygreatuniversity.Entity.User;
         Assessment.class,
         Term.class,
         MentorAide.class,
-        TechSupport.class}
-        , version = 58, exportSchema = false)
+        TechSupport.class},
+        version = 61, //Increment this after every database change
+        exportSchema = false)
 
 public abstract class DatabaseBuilder extends RoomDatabase {
     /**

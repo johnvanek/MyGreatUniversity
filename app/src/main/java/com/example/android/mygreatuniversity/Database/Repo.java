@@ -65,6 +65,28 @@ public class Repo {
         mMentorAideDAO = dbb.mentorAideDAO();
         mTechSupportDAO = dbb.techSupportDAO();
     }
+    //Misc Faculty Methods
+
+    //MentorAide Methods
+
+    public void insertMentorAide(MentorAide mentorAide) {
+        executor.execute(() -> mMentorAideDAO.insertMentorAide(mentorAide));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //TechSupport Methods
+    public void insertTechSupport(TechSupport techSupport) {
+        executor.execute(() -> mTechSupportDAO.insertTechSupport(techSupport));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Course Methods
     public List<Course> getCourses() {
@@ -346,6 +368,7 @@ public class Repo {
         Log.d("adapter", "In Repo attempting to get assessments for a selected course " + mCourseAssessments);
         return mCourseAssessments;
     }
+
 
     //MentorAide Methods
 }

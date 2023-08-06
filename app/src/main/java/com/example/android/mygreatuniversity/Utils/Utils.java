@@ -5,7 +5,12 @@ import android.content.res.Resources;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.R;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 
 public class Utils {
     //Hides the soft keyboard really awkward focusable behavior with edit Text and layouts
@@ -63,4 +68,29 @@ public class Utils {
             }
             return false; // Day not found in the list
         }
+
+        public static void techSupportTimeStampHelper(TechSupport[] techSupportPersonnel) {
+            Calendar calendar = Calendar.getInstance();
+            for (TechSupport tech: techSupportPersonnel) {
+                //For for Each TechSupport Person
+                //Randomize the start Dates
+                //Minus between 1 and 5 years and 1 and 5 months
+                calendar.add(Calendar.YEAR, -(generateRandomNumberBetween1and5()));
+                calendar.add(Calendar.MONTH,-(generateRandomNumberBetween1and5()));
+                calendar.add(Calendar.DAY_OF_WEEK_IN_MONTH,-(generateRandomNumberBetween1and12()));
+                //Now that this is some what Randomized call the Set Hired Date method on the object.
+                long dateHired = calendar.getTimeInMillis();
+                tech.setDateHired(dateHired);
+            }
+        }
+
+    public static int generateRandomNumberBetween1and5() {
+        Random random = new Random();
+        return random.nextInt(5) + 1;
+    }
+
+    public static int generateRandomNumberBetween1and12() {
+        Random random = new Random();
+        return random.nextInt(12) + 1;
+    }
 }

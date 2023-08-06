@@ -11,6 +11,8 @@ public class TechSupport extends FacultyMisc {
     private int techSupportID;
     private String operatingSystems;
 
+    private long dateHired;
+
     public TechSupport(String name, String email, String jobTitle, String availability, String operatingSystems) {
         super(name, email, jobTitle, availability);
         this.operatingSystems = operatingSystems;
@@ -45,6 +47,14 @@ public class TechSupport extends FacultyMisc {
                 ", availability=" + super.getAvailability() +
                 ", subjects='" + getOperatingSystems() + '\'' +
                 '}';
+    }
+
+    public long getDateHired() {
+        return dateHired;
+    }
+
+    public void setDateHired(long dateHired) {
+        this.dateHired = dateHired;
     }
 }
 

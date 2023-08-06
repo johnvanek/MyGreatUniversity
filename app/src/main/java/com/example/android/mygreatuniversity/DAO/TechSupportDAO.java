@@ -19,9 +19,9 @@ public interface TechSupportDAO {
     @Query("SELECT * FROM techSupport WHERE LOWER(name) LIKE LOWER('%' || :name || '%')")
     List<TechSupport> getTechSupportByName(String name);
 
-    @Query("SELECT * FROM techSupport WHERE operatingSystems LIKE '%' || :os || '%'")
+    @Query("SELECT * FROM techSupport WHERE LOWER(operatingSystems) LIKE LOWER('%' || :os || '%')")
     List<TechSupport> getTechSupportByOs(String os);
 
-    @Query("SELECT * FROM techSupport WHERE availability LIKE '%' || :days || '%'")
+    @Query("SELECT * FROM techSupport WHERE LOWER(availability) LIKE LOWER('%' || :days || '%')")
     List<TechSupport> getTechSupportByAvailability(String days);
 }

@@ -5,8 +5,14 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.R;
+
+import java.util.List;
 
 public class FacultySearch extends AppCompatActivity {
 
@@ -24,5 +30,11 @@ public class FacultySearch extends AppCompatActivity {
         assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+
+        //Populate the FacultyList for the Recycler view
+        RecyclerView recyclerView = findViewById(R.id.mentorListRecyclerView);
+        Repo repo = new Repo(getApplication());
+        List<Course> courses = repo.getCourses();
+        List<Mentor> mentors = repo.getMentors();
     }
 }

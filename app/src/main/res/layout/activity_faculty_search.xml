@@ -129,7 +129,50 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0" />
+                                app:layout_constraintVertical_bias="0.0" >
+
+                                <TableLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TableRow
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent" >
+
+                                        <TextView
+                                            android:id="@+id/textView16"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:padding="5dp"
+                                            android:textStyle="bold"
+                                            android:layout_column="1"
+                                            android:layout_gravity="center"
+                                            android:text="col1" />
+                                        <TextView
+                                            android:id="@+id/textView17"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:padding="5dp"
+                                            android:textStyle="bold"
+                                            android:layout_column="1"
+                                            android:layout_gravity="center"
+                                            android:text="col2" />
+                                        <TextView
+                                            android:id="@+id/textView18"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="16sp"
+                                            android:padding="5dp"
+                                            android:textStyle="bold"
+                                            android:layout_column="1"
+                                            android:layout_gravity="center"
+                                            android:text="col3" />
+                                    </TableRow>
+
+                                </TableLayout>
+                            </androidx.cardview.widget.CardView>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <EditText

@@ -86,8 +86,13 @@
             android:exported="false"
             android:parentActivityName=".UI.TermView" /> <!-- Child of the Term View! -->
         <activity
+            android:name=".UI.FacultySearch"
+            android:exported="false"
+            android:parentActivityName=".UI.MainActivity" />
+        <activity
             android:name=".UI.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

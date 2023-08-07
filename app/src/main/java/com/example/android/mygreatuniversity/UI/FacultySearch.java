@@ -25,16 +25,8 @@ public class FacultySearch extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
 
         //Set up the back is up when children are present.
+        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-    }
-
-    //Inflate the menu
-    //This is what shows the menu to the top right on the toolbar.
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.course_menu, menu);
-        return true;
     }
 }

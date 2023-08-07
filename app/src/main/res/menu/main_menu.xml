@@ -23,5 +23,10 @@
         android:title="@string/overflow_assessment"
         android:onClick="gotoAssessmentView"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/overflow_faculty"
+        android:onClick="gotoFacultySearch"
+        android:title="@string/faculty_search"
+        app:showAsAction="never" />
 
 </menu>

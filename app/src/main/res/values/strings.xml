@@ -45,5 +45,9 @@
         <item>Performance</item>
         <item>Objective</item>
     </string-array>
+    <string-array name="search_by">
+        <item>Name</item>
+        <item>Availability</item>
+    </string-array>
 
 </resources>

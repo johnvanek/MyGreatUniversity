@@ -172,7 +172,7 @@
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="68dp"
                             android:background="@color/White"
-                            android:entries="@array/type_array"
+                            android:entries="@array/search_by"
                             android:spinnerMode="dropdown"
                             app:layout_constraintStart_toEndOf="@+id/textView15"
                             app:layout_constraintTop_toTopOf="parent" />

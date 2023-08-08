@@ -49,15 +49,28 @@ public class FacultySearch extends AppCompatActivity {
         assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-        //Some sort of problem on load probably because I moved some code around
+        //Populate base data
+        initData("Robot! Beep Beep");
     }
 
     public void performSearch(View view) {
-        //TODO new to tie this to the button onClick
+        //TODO
         // This will need to call one of two methods depending on the type of box selected.
 
         //Define the data you are displaying
         //Get the value of the editText Text content
+        query = String.valueOf(searchBar.getText());
+        techFaculty = repo.facultyTechQuery(query);
+
+        //Set the Adapter and Layout Manager for the for the recycler view
+        final TechAdapter facultyTechAdapter = new TechAdapter(this);
+        recyclerView.setAdapter(facultyTechAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //Set the value of the Recycler view to the data of the query
+        facultyTechAdapter.setTechs(techFaculty);
+    }
+
+    public void initData(String query) {
         query = String.valueOf(searchBar.getText());
         techFaculty = repo.facultyTechQuery(query);
 

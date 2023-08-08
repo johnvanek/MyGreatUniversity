@@ -12,6 +12,7 @@ import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.FacultyMisc;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.MentorAide;
 import com.example.android.mygreatuniversity.Entity.TechSupport;
@@ -38,9 +39,9 @@ public class Repo {
     private List<Assessment> mAssessments;
     private List<Term> mTerms;
 
-    private List<MentorAide> mentorAides;
+    private List<MentorAide> mMentorAides;
 
-    private List<TechSupport> techSupport;
+    private List<TechSupport> mTechSupport;
     private Course mCourse;
     private Mentor mCourseMentor;
 
@@ -51,6 +52,7 @@ public class Repo {
     private List<Assessment> mCourseAssessments;
 
     private List<User> mUsers;
+
 
     private static int NUMBER_OF_THREADS = 4;
     static final ExecutorService executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
@@ -66,6 +68,7 @@ public class Repo {
         mTechSupportDAO = dbb.techSupportDAO();
     }
     //Misc Faculty Methods
+
 
     //MentorAide Methods
 
@@ -86,6 +89,19 @@ public class Repo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<TechSupport> getAllTechSupport() {
+        executor.execute(() -> {
+            mTechSupport = mTechSupportDAO.getAllTechSupport();
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get techs " + mTechSupport);
+        return mTechSupport;
     }
 
     //Course Methods
@@ -368,6 +384,8 @@ public class Repo {
         Log.d("adapter", "In Repo attempting to get assessments for a selected course " + mCourseAssessments);
         return mCourseAssessments;
     }
+
+
 
 
     //MentorAide Methods

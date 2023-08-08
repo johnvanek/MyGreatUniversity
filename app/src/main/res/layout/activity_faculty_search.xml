@@ -122,24 +122,39 @@
                             app:layout_constraintTop_toBottomOf="@+id/faculty_label"
                             app:layout_constraintVertical_bias="1.0">
 
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="370dp"
-                                android:layout_height="650dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
+                            <HorizontalScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0" >
+                                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                                android:scrollbars="horizontal"
+                                >
 
-                                <TableLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
 
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/facultyRecycler"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent" />
-                            </androidx.cardview.widget.CardView>
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="650dp">
+
+                                        <TableLayout
+                                            android:layout_margin="10dp"
+                                            android:padding="10dp"
+                                            android:id="@+id/facultyTableLayout"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent" />
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/facultyRecycler"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent" />
+                                    </androidx.cardview.widget.CardView>
+                                </LinearLayout>
+                            </HorizontalScrollView>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <EditText

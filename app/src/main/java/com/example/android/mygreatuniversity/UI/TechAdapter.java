@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -23,7 +24,9 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
 
     class TechViewHolder extends RecyclerView.ViewHolder {
         private final TableRow techTableRow;
-        private TableRow myTechHeader;
+        private final TableRow myTechHeader;
+
+        //private final TableLayout techTableLayout;
 
         TextView col1TechHeader, col2TechHeader, col3TechHeader;
         TextView col1TechTextView, col2TechTextView, col3TechTextView;
@@ -35,6 +38,7 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
             //Define the Views to inflate to inflate could separate this into another adapter class
             myTechHeader = view.findViewById(R.id.tableRowTechHeader);
             techTableRow = view.findViewById(R.id.tableRowTech);
+            //techTableLayout = view.findViewById(R.id.table)
             //Header for Tech
             col1TechHeader = itemView.findViewById(R.id.headerTechCol1);
             col2TechHeader = itemView.findViewById(R.id.headerTechCol2);

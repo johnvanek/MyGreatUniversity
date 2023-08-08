@@ -36,7 +36,7 @@ public class TechSupport extends FacultyMisc {
 
     // Overloaded method Contract - For PolyMorphism Requirement
     // toString method Overriding is Runtime Polymorphism
-    // Overloading in static compile time Polymorphism
+    // Overloading is static compile time Polymorphism
     @NonNull
     @Override
     public String toString() {

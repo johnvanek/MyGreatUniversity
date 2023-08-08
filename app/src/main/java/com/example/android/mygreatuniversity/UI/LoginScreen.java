@@ -161,7 +161,10 @@ public class LoginScreen extends AppCompatActivity {
             TechSupport tech5 = (new TechSupport("Melissa Garcia","MGUMG@gmail.com","Tier-2-Support","Monday,Tuesday,Friday","macOS"));
             TechSupport[] techSupportPersonnel = {tech1,tech2,tech3,tech4,tech5};
             //Call the Method to set the Hire date via a helper class
-            Utils.techSupportTimeStampHelper(techSupportPersonnel);
+            //Don't actually need a TimeStamp long value just Table row col values for the layout
+            //To meet the requirement for report generation.
+            //Un-Comment this if needed later
+            //Utils.techSupportTimeStampHelper(techSupportPersonnel);
             //And then insert them into database
             repo.insertTechSupport(tech1);
             repo.insertTechSupport(tech2);

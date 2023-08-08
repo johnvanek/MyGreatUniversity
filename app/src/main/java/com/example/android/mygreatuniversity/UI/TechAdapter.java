@@ -23,8 +23,6 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
 
     class TechViewHolder extends RecyclerView.ViewHolder {
         private final TableRow techTableRow;
-
-
         private TableRow myTechHeader;
 
         TextView col1TechHeader, col2TechHeader, col3TechHeader;
@@ -47,6 +45,7 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
             col3TechTextView = itemView.findViewById(R.id.recyclerCol3);
         }
     }
+
     private List<Course> mCourses;
     private List<TechSupport> mTechs;
     private final Context context;
@@ -79,7 +78,6 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
     }
 
 
-
     //This is where you define the view content
     @Override
     public void onBindViewHolder(@NonNull TechAdapter.TechViewHolder holder, int position) {
@@ -105,12 +103,11 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
     public int getItemCount() {
         //Could return the length like in the android example on android resources.
         //But the size() will work even if the List length is zero.
-        if(mTechs != null) {
+        if (mTechs != null) {
             //The Plus one is for the Header
             return mTechs.size() + 1;
         } else return 0;
     }
-
 
 
     //Need this to position the Header correctly

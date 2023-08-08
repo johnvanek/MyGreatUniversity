@@ -35,12 +35,15 @@ public class FacultySearch extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.facultyRecycler);
         Repo repo = new Repo(getApplication());
         //Define the data you are displaying
+        //This is the actual data itself
+        //TODO create a method in repo that takes a string that performs the search
         List<TechSupport> techFaculty = repo.getAllTechSupport();
         //Set the data for the adapter
         final TechAdapter facultyTechAdapter = new TechAdapter(this);
         recyclerView.setAdapter(facultyTechAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         //Set the Data for the adapter that will feed into the recycler
+        //This is what sets the value for the table
         facultyTechAdapter.setTechs(techFaculty);
     }
 }

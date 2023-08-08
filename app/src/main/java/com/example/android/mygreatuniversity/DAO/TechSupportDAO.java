@@ -12,7 +12,7 @@ import java.util.List;
 public interface TechSupportDAO {
     @Insert
     void insertTechSupport(TechSupport techSupport);
-
+    //TODO change these the search function is way to accepting of matching content
     @Query("SELECT * FROM techSupport")
     List<TechSupport> getAllTechSupport();
 

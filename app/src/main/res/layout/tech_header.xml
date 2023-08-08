@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableRowTech"
+    android:id="@+id/tableRowTechHeader"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/recyclerCol1"
+        android:id="@+id/headerTechCol1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/recyclerCol2"
+        android:id="@+id/headerTechCol2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/recyclerCol3"
+        android:id="@+id/headerTechCol3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textStyle="bold"/>
 
 </TableRow>

@@ -36,10 +36,10 @@ public class FacultySearch extends AppCompatActivity {
 
         //Set the other fields on the page
         repo = new Repo(getApplication());
+        //Try to get the Id's for the fields throws error if wrong id's are used but does not flag
+        // At compile time only runtime makes debugging difficult.
         try {
-            // Try to get the Id's for the fields
             recyclerView = findViewById(R.id.facultyRecycler);
-            //This sometimes throws class not found exception which prevents loading page.
             searchBar = findViewById(R.id.searchTextBar);
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,7 +49,9 @@ public class FacultySearch extends AppCompatActivity {
         assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-        //Some sort of problem on load probably because I moved some code around
+        //Just sets initial data to blank so that the Ui wrapped to content does not collapse
+        initialDataDisplay();
+        //TODO set a Query to get some results here so that the table is never empty as that looks wrong
     }
 
     public void performSearch(View view) {
@@ -59,6 +61,20 @@ public class FacultySearch extends AppCompatActivity {
         //Define the data you are displaying
         //Get the value of the editText Text content
         query = String.valueOf(searchBar.getText());
+        techFaculty = repo.facultyTechQuery(query);
+
+        //Set the Adapter and Layout Manager for the for the recycler view
+        final TechAdapter facultyTechAdapter = new TechAdapter(this);
+        recyclerView.setAdapter(facultyTechAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //Set the value of the Recycler view to the data of the query
+        facultyTechAdapter.setTechs(techFaculty);
+    }
+
+    private void initialDataDisplay() {
+        //Define the data you are displaying
+        //Get the value of the editText Text content
+        query = ""; //An empty string this should populate just empty content
         techFaculty = repo.facultyTechQuery(query);
 
         //Set the Adapter and Layout Manager for the for the recycler view

@@ -105,8 +105,6 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
 
     @Override
     public int getItemCount() {
-        //Could return the length like in the android example on android resources.
-        //But the size() will work even if the List length is zero.
         if (mTechs != null) {
             //The Plus one is for the Header
             return mTechs.size() + 1;

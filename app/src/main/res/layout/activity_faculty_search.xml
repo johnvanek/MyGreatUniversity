@@ -86,6 +86,7 @@
                             android:layout_marginTop="128dp"
                             android:backgroundTint="@color/WguLightBlue"
                             android:fontFamily="@font/convergence"
+                            android:onClick="performSearch"
                             android:shadowColor="@color/Black"
                             android:text="@string/search"
                             android:textSize="14sp"

@@ -12,7 +12,6 @@ import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
-import com.example.android.mygreatuniversity.Entity.FacultyMisc;
 import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.MentorAide;
 import com.example.android.mygreatuniversity.Entity.TechSupport;
@@ -69,7 +68,6 @@ public class Repo {
     }
     //Misc Faculty Methods
 
-
     //MentorAide Methods
 
     public void insertMentorAide(MentorAide mentorAide) {
@@ -89,6 +87,20 @@ public class Repo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<TechSupport> facultyTechQuery(String query) {
+        executor.execute(() -> {
+            //This is where you try to execute a query pass in the string here
+            mTechSupport = mTechSupportDAO.getTechSupportByName(query);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get techs by name" + mTechSupport);
+        return mTechSupport;
     }
 
     public List<TechSupport> getAllTechSupport() {

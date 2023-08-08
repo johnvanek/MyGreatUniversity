@@ -1,6 +1,8 @@
 package com.example.android.mygreatuniversity.UI;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,12 @@ import com.example.android.mygreatuniversity.R;
 import java.util.List;
 
 public class FacultySearch extends AppCompatActivity {
+    //Declarations
+    List<TechSupport> techFaculty;
+    Repo repo = new Repo(getApplication());
+    RecyclerView recyclerView = findViewById(R.id.facultyRecycler);
+    EditText searchBar = findViewById(R.id.searchBar);
+    String query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +38,23 @@ public class FacultySearch extends AppCompatActivity {
         assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+        //Some sort of problem on load probably because
+    }
 
-        //Populate the FacultyList for the Recycler view
-        RecyclerView recyclerView = findViewById(R.id.facultyRecycler);
-        Repo repo = new Repo(getApplication());
+    public void performSearch(View view) {
+        //TODO new to tie this to the button onClick
+        // This will need to call one of two methods depending on the type of box selected.
+        //techFaculty = repo.getAllTechSupport();
         //Define the data you are displaying
-        //This is the actual data itself
-        //TODO create a method in repo that takes a string that performs the search
-        List<TechSupport> techFaculty = repo.getAllTechSupport();
-        //Set the data for the adapter
+        //Get the value of the editText Text content
+        query = String.valueOf(searchBar.getText());
+        techFaculty = repo.facultyTechQuery(query);
+
+        //Set the Adapter and Layout Manager for the for the recycler view
         final TechAdapter facultyTechAdapter = new TechAdapter(this);
         recyclerView.setAdapter(facultyTechAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //Set the Data for the adapter that will feed into the recycler
-        //This is what sets the value for the table
+        //Set the value of the Recycler view to the data of the query
         facultyTechAdapter.setTechs(techFaculty);
     }
 }

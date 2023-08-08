@@ -19,9 +19,9 @@ import java.util.List;
 public class FacultySearch extends AppCompatActivity {
     //Declarations
     List<TechSupport> techFaculty;
-    Repo repo = new Repo(getApplication());
-    RecyclerView recyclerView = findViewById(R.id.facultyRecycler);
-    EditText searchBar = findViewById(R.id.searchBar);
+    Repo repo;
+    RecyclerView recyclerView;
+    EditText searchBar;
     String query;
 
     @Override
@@ -34,17 +34,28 @@ public class FacultySearch extends AppCompatActivity {
         //Define an actionbar reference for shorthand
         ActionBar ab = getSupportActionBar();
 
+        //Set the other fields on the page
+        repo = new Repo(getApplication());
+        try {
+            // Try to get the Id's for the fields
+            recyclerView = findViewById(R.id.facultyRecycler);
+            //This sometimes throws class not found exception which prevents loading page.
+            searchBar = findViewById(R.id.searchTextBar);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Attempted to get values for fields : " + e.getMessage());
+        }
         //Set up the back is up when children are present.
         assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);   //show back button
         ab.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
-        //Some sort of problem on load probably because
+        //Some sort of problem on load probably because I moved some code around
     }
 
     public void performSearch(View view) {
         //TODO new to tie this to the button onClick
         // This will need to call one of two methods depending on the type of box selected.
-        //techFaculty = repo.getAllTechSupport();
+
         //Define the data you are displaying
         //Get the value of the editText Text content
         query = String.valueOf(searchBar.getText());

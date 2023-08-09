@@ -4,7 +4,6 @@ import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -126,7 +125,6 @@ public class FacultySearch extends AppCompatActivity {
 
     //Just used to set the data to blank at start nothing will match on this case
     public void initData(String query) {
-        query = String.valueOf(searchBar.getText());
         techFaculty = repo.facultyTechNameQuery(query);
 
         //Set the Adapter and Layout Manager for the for the recycler view

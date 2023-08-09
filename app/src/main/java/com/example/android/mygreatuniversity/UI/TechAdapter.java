@@ -25,10 +25,8 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
         private final TableRow techTableRow;
         private final TableRow myTechHeader;
 
-        //private final TableLayout techTableLayout;
-
-        TextView col1TechHeader, col2TechHeader, col3TechHeader;
-        TextView col1TechTextView, col2TechTextView, col3TechTextView;
+        TextView col1TechHeader, col2TechHeader, col3TechHeader, col4TechHeader, col5TechHeader;
+        TextView col1TechTextView, col2TechTextView, col3TechTextView, col4TechTextView, col5TechTextView;
 
         //Constructor
         private TechViewHolder(View view) {
@@ -42,10 +40,14 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
             col1TechHeader = itemView.findViewById(R.id.headerTechCol1);
             col2TechHeader = itemView.findViewById(R.id.headerTechCol2);
             col3TechHeader = itemView.findViewById(R.id.headerTechCol3);
+            col4TechHeader = itemView.findViewById(R.id.headerTechCol4);
+            col5TechHeader = itemView.findViewById(R.id.headerTechCol5);
             //Columns for the body of data for Tech
             col1TechTextView = itemView.findViewById(R.id.recyclerCol1);
             col2TechTextView = itemView.findViewById(R.id.recyclerCol2);
             col3TechTextView = itemView.findViewById(R.id.recyclerCol3);
+            col4TechTextView = itemView.findViewById(R.id.recyclerCol4);
+            col5TechTextView = itemView.findViewById(R.id.recyclerCol5);
         }
     }
 
@@ -89,16 +91,22 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
             holder.col1TechHeader.setText("Name");
             holder.col2TechHeader.setText("Title");
             holder.col3TechHeader.setText("Availability");
+            holder.col4TechHeader.setText("OS Knowledge");
+            holder.col5TechHeader.setText("Email");
         } else {
             TechSupport curTech = mTechs.get(position - 1); // Subtract 1 for the header
             //Call the Method on the Object to get col data.
             String name = curTech.getName();
             String title = curTech.getJobTitle();
             String avail = curTech.getAvailability();
+            String Os = curTech.getOperatingSystems();
+            String email = curTech.getEmail();
             //Bind the data for the Data Columns
             holder.col1TechTextView.setText(name);
             holder.col2TechTextView.setText(title);
             holder.col3TechTextView.setText(avail);
+            holder.col4TechTextView.setText(Os);
+            holder.col5TechTextView.setText(email);
         }
     }
 

@@ -152,7 +152,7 @@
 
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="wrap_content"
-                                        android:layout_height="650dp">
+                                        android:layout_height="600dp">
 
                                         <TableLayout
                                             android:id="@+id/facultyTableLayout"

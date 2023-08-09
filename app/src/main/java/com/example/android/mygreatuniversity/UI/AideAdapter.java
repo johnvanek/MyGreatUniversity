@@ -77,9 +77,6 @@ public class AideAdapter extends RecyclerView.Adapter<AideAdapter.AideViewHolder
             View dataView = inflater.inflate(R.layout.table_row_aide, parent, false);
             return new AideViewHolder(dataView);
         }
-        //This is the name of the file of the resource not the id for the table row
-        //View itemView = mInflater.inflate(R.layout.table_row_item, parent, false);
-        //return new TechViewHolder(itemView);
     }
 
 

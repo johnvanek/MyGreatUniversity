@@ -62,7 +62,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/searchBar"
+                        android:id="@+id/searchContainer"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -74,6 +74,18 @@
                             android:layout_marginTop="76dp"
                             android:fontFamily="@font/convergence"
                             android:text="@string/by"
+                            android:textColor="#FFFFFF"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="180dp"
+                            android:layout_marginTop="76dp"
+                            android:fontFamily="@font/convergence"
+                            android:text="Type:"
                             android:textColor="#FFFFFF"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -112,6 +124,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/searchScrollContainer"
                             android:layout_width="385dp"
                             android:layout_height="0dp"
                             android:layout_marginTop="120dp"
@@ -124,13 +137,13 @@
                             app:layout_constraintVertical_bias="1.0">
 
                             <HorizontalScrollView
+                                android:id="@+id/searchScrollView"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
                                 android:scrollbarAlwaysDrawHorizontalTrack="true"
                                 android:scrollbars="horizontal"
-                                >
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -142,11 +155,11 @@
                                         android:layout_height="650dp">
 
                                         <TableLayout
-                                            android:layout_margin="10dp"
-                                            android:padding="10dp"
                                             android:id="@+id/facultyTableLayout"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="match_parent" />
+                                            android:layout_height="match_parent"
+                                            android:layout_margin="10dp"
+                                            android:padding="10dp" />
 
                                         <androidx.recyclerview.widget.RecyclerView
                                             android:id="@+id/facultyRecycler"
@@ -180,13 +193,25 @@
                             tools:ignore="LabelFor" />
 
                         <Spinner
-                            android:id="@+id/spinnerSearch"
+                            android:id="@+id/spinnerFacultySearch"
                             android:layout_width="111dp"
                             android:layout_height="34dp"
                             android:layout_marginStart="6dp"
                             android:layout_marginTop="68dp"
                             android:background="@color/White"
                             android:entries="@array/search_by"
+                            android:spinnerMode="dropdown"
+                            app:layout_constraintStart_toEndOf="@+id/textView15"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Spinner
+                            android:id="@+id/spinnerFacultyType"
+                            android:layout_width="111dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="168dp"
+                            android:layout_marginTop="68dp"
+                            android:background="@color/White"
+                            android:entries="@array/faculty_type"
                             android:spinnerMode="dropdown"
                             app:layout_constraintStart_toEndOf="@+id/textView15"
                             app:layout_constraintTop_toTopOf="parent" />

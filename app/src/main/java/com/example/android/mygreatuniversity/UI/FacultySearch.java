@@ -3,6 +3,7 @@ package com.example.android.mygreatuniversity.UI;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class FacultySearch extends AppCompatActivity {
     Repo repo;
     RecyclerView recyclerView;
     EditText searchBar;
+    Spinner searchBySpinner, dataTypeSpinner;
     String query;
 
     @Override
@@ -41,6 +43,8 @@ public class FacultySearch extends AppCompatActivity {
             recyclerView = findViewById(R.id.facultyRecycler);
             //This sometimes throws class not found exception which prevents loading page.
             searchBar = findViewById(R.id.searchTextBar);
+            searchBySpinner = findViewById(R.id.spinnerFacultySearch);
+            dataTypeSpinner = findViewById(R.id.spinnerFacultyType);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Attempted to get values for fields : " + e.getMessage());
@@ -54,22 +58,26 @@ public class FacultySearch extends AppCompatActivity {
     }
 
     public void performSearch(View view) {
-        //TODO
-        // This will need to call one of two methods depending on the type of box selected.
+        if(searchBySpinner.getSelectedItem().toString().equals("Name") &&
+                dataTypeSpinner.getSelectedItem().toString().equals("TechSupport")){
+            //This is the case for Name & TechSupport sorted by ASC
+            query = String.valueOf(searchBar.getText());
+            techFaculty = repo.facultyTechQuery(query);
 
-        //Define the data you are displaying
-        //Get the value of the editText Text content
-        query = String.valueOf(searchBar.getText());
-        techFaculty = repo.facultyTechQuery(query);
-
-        //Set the Adapter and Layout Manager for the for the recycler view
-        final TechAdapter facultyTechAdapter = new TechAdapter(this);
-        recyclerView.setAdapter(facultyTechAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        //Set the value of the Recycler view to the data of the query
-        facultyTechAdapter.setTechs(techFaculty);
+            //Set the Adapter and Layout Manager for the for the recycler view
+            final TechAdapter facultyTechAdapter = new TechAdapter(this);
+            recyclerView.setAdapter(facultyTechAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            //Set the value of the Recycler view to the data of the query
+            facultyTechAdapter.setTechs(techFaculty);
+        }
     }
 
+    private void determineSearch() {
+
+    }
+
+    //Just used to set the data to blank at start nothing will match on this case
     public void initData(String query) {
         query = String.valueOf(searchBar.getText());
         techFaculty = repo.facultyTechQuery(query);

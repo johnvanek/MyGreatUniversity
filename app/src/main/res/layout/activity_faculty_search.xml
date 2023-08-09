@@ -179,17 +179,16 @@
                             android:background="@drawable/searchbarbox"
                             android:backgroundTintMode="multiply"
                             android:ems="10"
+                            android:importantForAutofill="no"
                             android:inputType="textPersonName"
                             android:paddingStart="4dp"
                             android:paddingTop="6dp"
                             android:paddingBottom="4dp"
-                            android:text="@string/test"
                             android:textColor="@color/WguBlue"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.086"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/faculty_label"
-                            android:importantForAutofill="no"
                             tools:ignore="LabelFor" />
 
                         <Spinner

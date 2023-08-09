@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -73,7 +72,7 @@ public class TechAdapter extends RecyclerView.Adapter<TechAdapter.TechViewHolder
             View headerView = inflater.inflate(R.layout.tech_header, parent, false);
             return new TechViewHolder(headerView);
         } else {
-            View dataView = inflater.inflate(R.layout.table_row_item, parent, false);
+            View dataView = inflater.inflate(R.layout.table_row_tech, parent, false);
             return new TechViewHolder(dataView);
         }
         //This is the name of the file of the resource not the id for the table row

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Database.Repo;
+import com.example.android.mygreatuniversity.Entity.MentorAide;
 import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.R;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class FacultySearch extends AppCompatActivity {
     //Declarations
     List<TechSupport> techFaculty;
+    List<MentorAide> aideFaculty;
     Repo repo;
     RecyclerView recyclerView;
     EditText searchBar;
@@ -82,6 +84,29 @@ public class FacultySearch extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             //Set the value of the Recycler view to the data of the query
             facultyTechAdapter.setTechs(techFaculty);
+        } else if (searchBySpinner.getSelectedItem().toString().equals("Name") &&
+                dataTypeSpinner.getSelectedItem().toString().equals("MentorAide")) {
+            //This is the case for Name & MentorAide sorted by ASC
+            query = String.valueOf(searchBar.getText());
+            //techFaculty = repo.facultyTechAvailQuery(query);
+            aideFaculty = repo.facultyAideNameQuery(query);
+            //Set the Adapter and Layout Manager for the for the recycler view
+            final AideAdapter facultyAideAdapter = new AideAdapter(this);
+            recyclerView.setAdapter(facultyAideAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            //Set the value of the Recycler view to the data of the query
+            facultyAideAdapter.setAides(aideFaculty);
+        } else if (searchBySpinner.getSelectedItem().toString().equals("Availability") &&
+                dataTypeSpinner.getSelectedItem().toString().equals("MentorAide")) {
+            //This is the case for Availability & MentorAide
+            query = String.valueOf(searchBar.getText());
+            aideFaculty = repo.facultyAideAvailQuery(query);
+            //Set the Adapter and Layout Manager for the recycler view
+            final AideAdapter facultyAideAdapter = new AideAdapter(this);
+            recyclerView.setAdapter(facultyAideAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            //Set the value of the Recycler view to the data of the query
+            facultyAideAdapter.setAides(aideFaculty);
         }
     }
 

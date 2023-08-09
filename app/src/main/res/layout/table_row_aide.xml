@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableRowTech"
+    android:id="@+id/tableRowAide"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/recyclerCol1"
+        android:id="@+id/recyclerAideCol1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="4dp"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+    <TextView
+        android:id="@+id/recyclerAideCol2"
+        android:padding="4dp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="@android:style/TextAppearance.Medium" />
 
     <TextView
-        android:id="@+id/recyclerCol2"
+        android:id="@+id/recyclerAideCol3"
+        android:padding="4dp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="@android:style/TextAppearance.Medium" />
 
     <TextView
-        android:id="@+id/recyclerCol3"
+        android:id="@+id/recyclerAideCol4"
+        android:padding="4dp"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="@android:style/TextAppearance.Medium" />
 
+    <TextView
+        android:id="@+id/recyclerAideCol5"
+        android:padding="4dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
 </TableRow>

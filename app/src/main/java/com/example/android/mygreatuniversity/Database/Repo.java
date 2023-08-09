@@ -67,9 +67,7 @@ public class Repo {
         mTechSupportDAO = dbb.techSupportDAO();
     }
     //Misc Faculty Methods
-
     //MentorAide Methods
-
     public void insertMentorAide(MentorAide mentorAide) {
         executor.execute(() -> mMentorAideDAO.insertMentorAide(mentorAide));
         try {
@@ -77,6 +75,34 @@ public class Repo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<MentorAide> facultyAideNameQuery (String query) {
+        executor.execute(() -> {
+            //This is where you try to execute a query pass in the string here
+            mMentorAides = mMentorAideDAO.getMentorAidesByName(query);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get techs by name" + mMentorAides);
+        return mMentorAides;
+    }
+
+    public List<MentorAide> facultyAideAvailQuery(String query) {
+        executor.execute(() -> {
+            //This is where you try to execute a query pass in the string here
+            mMentorAides = mMentorAideDAO.getMentorAidesByAvailability(query);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get aides by avail" + mMentorAides);
+        return mMentorAides;
     }
 
     //TechSupport Methods

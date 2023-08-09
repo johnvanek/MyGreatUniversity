@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.mygreatuniversity.Entity.MentorAide;
-import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.R;
 
 import java.util.List;

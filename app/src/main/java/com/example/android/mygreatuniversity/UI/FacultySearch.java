@@ -1,13 +1,19 @@
 package com.example.android.mygreatuniversity.UI;
 
+import static com.example.android.mygreatuniversity.Utils.Utils.hideKeyboard;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +34,11 @@ public class FacultySearch extends AppCompatActivity {
     Spinner searchBySpinner, dataTypeSpinner;
     String query;
 
+    Button searchButton;
+
+    CardView cardView;
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +58,8 @@ public class FacultySearch extends AppCompatActivity {
             searchBar = findViewById(R.id.searchTextBar);
             searchBySpinner = findViewById(R.id.spinnerFacultySearch);
             dataTypeSpinner = findViewById(R.id.spinnerFacultyType);
+            cardView = findViewById(R.id.cardView3);
+
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Attempted to get values for fields : " + e.getMessage());
@@ -60,8 +73,8 @@ public class FacultySearch extends AppCompatActivity {
     }
 
     public void performSearch(View view) {
-        if(searchBySpinner.getSelectedItem().toString().equals("Name") &&
-                dataTypeSpinner.getSelectedItem().toString().equals("TechSupport")){
+        if (searchBySpinner.getSelectedItem().toString().equals("Name") &&
+                dataTypeSpinner.getSelectedItem().toString().equals("TechSupport")) {
             //This is the case for Name & TechSupport sorted by ASC
             query = String.valueOf(searchBar.getText());
             techFaculty = repo.facultyTechNameQuery(query);
@@ -108,6 +121,7 @@ public class FacultySearch extends AppCompatActivity {
             //Set the value of the Recycler view to the data of the query
             facultyAideAdapter.setAides(aideFaculty);
         }
+        hideKeyboard(FacultySearch.this);
     }
 
     //Just used to set the data to blank at start nothing will match on this case
@@ -122,4 +136,5 @@ public class FacultySearch extends AppCompatActivity {
         //Set the value of the Recycler view to the data of the query
         facultyTechAdapter.setTechs(techFaculty);
     }
+
 }

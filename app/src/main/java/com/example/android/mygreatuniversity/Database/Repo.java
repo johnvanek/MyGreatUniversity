@@ -89,7 +89,7 @@ public class Repo {
         }
     }
 
-    public List<TechSupport> facultyTechQuery(String query) {
+    public List<TechSupport> facultyTechNameQuery(String query) {
         executor.execute(() -> {
             //This is where you try to execute a query pass in the string here
             mTechSupport = mTechSupportDAO.getTechSupportByName(query);
@@ -100,6 +100,20 @@ public class Repo {
             e.printStackTrace();
         }
         Log.d("adapter", "In Repo attempting to get techs by name" + mTechSupport);
+        return mTechSupport;
+    }
+
+    public List<TechSupport> facultyTechAvailQuery(String query) {
+        executor.execute(() -> {
+            //This is where you try to execute a query pass in the string here
+            mTechSupport = mTechSupportDAO.getTechSupportByAvailability(query);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get techs by avail" + mTechSupport);
         return mTechSupport;
     }
 

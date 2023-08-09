@@ -62,7 +62,19 @@ public class FacultySearch extends AppCompatActivity {
                 dataTypeSpinner.getSelectedItem().toString().equals("TechSupport")){
             //This is the case for Name & TechSupport sorted by ASC
             query = String.valueOf(searchBar.getText());
-            techFaculty = repo.facultyTechQuery(query);
+            techFaculty = repo.facultyTechNameQuery(query);
+
+            //Set the Adapter and Layout Manager for the for the recycler view
+            final TechAdapter facultyTechAdapter = new TechAdapter(this);
+            recyclerView.setAdapter(facultyTechAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            //Set the value of the Recycler view to the data of the query
+            facultyTechAdapter.setTechs(techFaculty);
+        } else if (searchBySpinner.getSelectedItem().toString().equals("Availability") &&
+                dataTypeSpinner.getSelectedItem().toString().equals("TechSupport")) {
+            //This is the case for Availability & TechSupport sorted by ASC
+            query = String.valueOf(searchBar.getText());
+            techFaculty = repo.facultyTechAvailQuery(query);
 
             //Set the Adapter and Layout Manager for the for the recycler view
             final TechAdapter facultyTechAdapter = new TechAdapter(this);
@@ -73,14 +85,10 @@ public class FacultySearch extends AppCompatActivity {
         }
     }
 
-    private void determineSearch() {
-
-    }
-
     //Just used to set the data to blank at start nothing will match on this case
     public void initData(String query) {
         query = String.valueOf(searchBar.getText());
-        techFaculty = repo.facultyTechQuery(query);
+        techFaculty = repo.facultyTechNameQuery(query);
 
         //Set the Adapter and Layout Manager for the for the recycler view
         final TechAdapter facultyTechAdapter = new TechAdapter(this);

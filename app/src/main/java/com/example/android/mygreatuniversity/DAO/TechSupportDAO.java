@@ -23,6 +23,6 @@ public interface TechSupportDAO {
     @Query("SELECT * FROM techSupport WHERE LOWER(operatingSystems) LIKE LOWER('%' || :os || '%')")
     List<TechSupport> getTechSupportByOs(String os);
 
-    @Query("SELECT * FROM techSupport WHERE LOWER(availability) LIKE LOWER('%' || :days || '%')")
-    List<TechSupport> getTechSupportByAvailability(String days);
+    @Query("SELECT * FROM techSupport WHERE ',' || LOWER(availability) || ',' LIKE LOWER('%,' || :day || ',%')")
+    List<TechSupport> getTechSupportByAvailability(String day);
 }

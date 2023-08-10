@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/WguLightBlue"
+    tools:context=".UI.LoginScreen">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/WguLightBlue"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="70dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="4dp"
+                android:theme="@style/Theme.MyGreatUniversity.NoActionBar"
+                app:subtitle="Modern Governess University"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:subtitleTextColor="@color/White"
+                app:title="MGU"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:titleTextColor="@color/White" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/WguBlue"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="10dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp">
+
+                    <TextView
+                        android:id="@+id/news_header"
+                        android:layout_width="377dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="65dp"
+                        android:layout_marginEnd="65dp"
+                        android:fontFamily="@font/convergence"
+                        android:padding="5dp"
+                        android:text="Welcome Back"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/White"
+                        android:textSize="48sp"
+                        android:typeface="normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="400dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:cardBackgroundColor="@color/WguBolderBlue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/news_header">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/LoginBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp">
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/convergence"
+                                android:text="Username"
+                                android:textColor="@color/White"
+                                android:textSize="28sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/convergence"
+                                android:text="Password"
+                                android:textColor="@color/White"
+                                android:textSize="28sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                            <EditText
+                                android:id="@+id/editTextTextUsername"
+                                android:layout_width="190dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="16dp"
+                                android:background="@drawable/edit_text_white_underline"
+                                android:ems="10"
+                                android:fontFamily="@font/convergence"
+                                android:inputType="textPersonName"
+                                android:paddingStart="5sp"
+                                android:textColor="#003560"
+                                android:textStyle="italic"
+                                app:layout_constraintStart_toEndOf="@+id/textView10"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <EditText
+                                android:id="@+id/editTextTextUsername3"
+                                android:layout_width="190dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/edit_text_white_underline"
+                                android:ems="10"
+                                android:fontFamily="@font/convergence"
+                                android:inputType="textPersonName"
+                                android:paddingStart="5sp"
+                                android:textColor="@color/WguBlue"
+                                android:textStyle="italic"
+                                app:layout_constraintStart_toEndOf="@+id/textView3"
+                                app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername" />
+
+                            <Button
+                                android:id="@+id/login"
+                                android:layout_width="147dp"
+                                android:layout_height="64dp"
+                                android:layout_marginTop="14dp"
+                                android:backgroundTint="@color/WguLightBlue"
+                                android:fontFamily="@font/convergence"
+                                android:onClick="attemptLogin"
+                                android:shadowColor="@color/Black"
+                                android:text="Log In"
+                                android:textSize="24sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/errorText"
+                                app:rippleColor="@color/White"
+                                app:strokeColor="@color/NeutralWhite"
+                                app:strokeWidth="2dp" />
+
+                            <TextView
+                                android:id="@+id/errorText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:background="@drawable/rounded"
+                                android:fontFamily="@font/convergence"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="Wrong Username Or Password!"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:textColor="@color/WguBlue"
+                                android:textSize="24sp"
+                                android:visibility="invisible"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.505"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername3" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import com.example.android.mygreatuniversity.DAO.TechSupportDAO;
 import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Database.DatabaseBuilder;
+import com.example.android.mygreatuniversity.Database.Repo;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
@@ -30,7 +31,7 @@ import org.junit.runner.RunWith;
 import java.io.IOException;
 
 @RunWith(AndroidJUnit4.class)
-public class RepoInsertionTest {
+public class DAOInsertionTest {
 
     private CourseDAO courseDAO;
     private TermDAO termDAO;
@@ -42,7 +43,8 @@ public class RepoInsertionTest {
 
     private DatabaseBuilder dbb;
 
-    //Assign the DAO fields & build the database
+    //Assign the DAO fields & build the database Verifies that the DAO which are the core of the implementation
+    // Of the Repo are working correctly.
     @Before
     public void createDb() {
         dbb = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(), DatabaseBuilder.class).allowMainThreadQueries().build();
@@ -53,7 +55,6 @@ public class RepoInsertionTest {
         userDAO = dbb.userDAO();
         mentorAideDAO = dbb.mentorAideDAO();
         techSupportDAO = dbb.techSupportDAO();
-        //TODO Change these to use Repo
     }
 
     //Close the Connection to the Database when we are done.

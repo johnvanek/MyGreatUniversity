@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 @Entity(tableName = "mentorAides")
 public class MentorAide extends FacultyMisc {
@@ -37,15 +38,35 @@ public class MentorAide extends FacultyMisc {
     // Overloaded method Contract - For PolyMorphism Requirement
     // toString method Overriding is Runtime Polymorphism
     // Overloading in static compile time Polymorphism
+
     @NonNull
     @Override
     public String toString() {
         return "Mentor-Aide{" +
-                "name='" + super.getName() + '\'' +
-                ", email='" + super.getEmail() + '\'' +
-                ", jobTitle='" + super.getJobTitle() + '\'' +
-                ", availability=" + super.getAvailability() +
-                ", subjects='" + getSubjects() + '\'' +
+                "mentorAideID=" + mentorAideID +
+                ", name='" + getName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", jobTitle='" + getJobTitle() + '\'' +
+                ", availability=" + getAvailability() +
+                ", subjects='" + subjects + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        MentorAide mentorAide = (MentorAide) object;
+        return mentorAideID + 1 == mentorAide.mentorAideID &&
+                Objects.equals(getName(), mentorAide.getName()) &&
+                Objects.equals(getEmail(), mentorAide.getEmail()) &&
+                Objects.equals(getJobTitle(), mentorAide.getJobTitle()) &&
+                Objects.equals(getAvailability(), mentorAide.getAvailability()) &&
+                Objects.equals(subjects, mentorAide.subjects);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mentorAideID, getName(), getEmail(), getJobTitle(), getAvailability(), subjects);
     }
 }

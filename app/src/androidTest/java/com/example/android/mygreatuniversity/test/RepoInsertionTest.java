@@ -17,8 +17,10 @@ import com.example.android.mygreatuniversity.Database.DatabaseBuilder;
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.Mentor;
+import com.example.android.mygreatuniversity.Entity.MentorAide;
 import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.Entity.Term;
+import com.example.android.mygreatuniversity.Entity.User;
 
 import org.junit.After;
 import org.junit.Before;
@@ -106,6 +108,33 @@ public class RepoInsertionTest {
         assertEquals(assessment, insertedAssessment);
         System.out.println(assessment.toString() + " Compared to " + insertedAssessment.toString());
     }
+
+    @Test
+    public void insertUser() throws Exception {
+        User user = new User("Jane Doe", "janeDoe", "test");
+        //Call the method to insert a User
+        userDAO.insertUser(user);
+        //Get the first User there should only be one
+        User insertedUser = userDAO.getUsers().get(0);
+        //Assert equal
+        assertEquals(user, insertedUser);
+        System.out.println(user.toString() + " Compared to " + insertedUser.toString());
+    }
+
+    @Test
+    public void insertMentorAide() throws Exception {
+        MentorAide mentorAide = new MentorAide("Sophia Bennett","MGUSB@gmail.com",
+                "Subject Assistant","Tuesday,Wednesday","Mobile App " +
+                "Development,Algorithms and Data Structures");
+        //Call the method to insert a MentorAide
+        mentorAideDAO.insertMentorAide(mentorAide);
+        //Get the first MentorAide there should only be one
+        MentorAide insertedMentorAide = mentorAideDAO.getAllMentorAides().get(0);
+        //Assert equal
+        assertEquals(mentorAide, insertedMentorAide);
+        System.out.println(mentorAide.toString() + " Compared to " + insertedMentorAide.toString());
+    }
+
 
     @Test
     public void insertTechSupport() throws Exception {

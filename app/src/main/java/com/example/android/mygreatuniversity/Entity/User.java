@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "users")
 public class User {
     @PrimaryKey(autoGenerate = true)
@@ -53,7 +55,28 @@ public class User {
     @NonNull
     @Override
     public String toString() {
-        return name;
+        return "User{" +
+                "userID=" + userID +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        User user = (User) object;
+        return userID + 1 == user.userID &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userID, name, username, password);
     }
 }
 

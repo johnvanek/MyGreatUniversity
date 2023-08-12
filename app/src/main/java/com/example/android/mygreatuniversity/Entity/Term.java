@@ -67,7 +67,7 @@ public class Term {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Term term = (Term) object;
-        return termID == term.termID - 1 &&
+        return termID + 1== term.termID &&
                 Objects.equals(title, term.title) &&
                 Objects.equals(startDate, term.startDate) &&
                 Objects.equals(endDate, term.endDate);

@@ -57,8 +57,8 @@ public class TechSupport extends FacultyMisc {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         TechSupport techSupport = (TechSupport) object;
-        //Decrement the ID
-        return techSupportID == techSupport.techSupportID -1 &&
+        //Increment the first ID to match the database
+        return techSupportID + 1 == techSupport.techSupportID&&
                 operatingSystems.equals(techSupport.operatingSystems);
     }
 

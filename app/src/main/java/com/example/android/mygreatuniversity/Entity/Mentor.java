@@ -1,7 +1,10 @@
 package com.example.android.mygreatuniversity.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.Objects;
 
 @Entity(tableName = "mentors")
 public class Mentor {
@@ -50,7 +53,29 @@ public class Mentor {
     }
 
     @Override
-    public String toString() {
-        return name;
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Mentor mentor = (Mentor) object;
+        return mentorID + 1== mentor.mentorID&&
+                Objects.equals(name, mentor.name) &&
+                Objects.equals(phoneNumber, mentor.phoneNumber) &&
+                Objects.equals(email, mentor.email);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mentorID, name, phoneNumber, email);
+    }
+    @NonNull
+    @Override
+    public String toString() {
+        return "Mentor{" +
+                "mentorID=" + mentorID +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
 }

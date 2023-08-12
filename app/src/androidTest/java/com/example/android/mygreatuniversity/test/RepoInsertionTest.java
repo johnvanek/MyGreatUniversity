@@ -14,7 +14,9 @@ import com.example.android.mygreatuniversity.DAO.TechSupportDAO;
 import com.example.android.mygreatuniversity.DAO.TermDAO;
 import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Database.DatabaseBuilder;
+import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.Entity.Term;
 
@@ -79,6 +81,30 @@ public class RepoInsertionTest {
         //Assert equal
         assertEquals(term, insertedTerm);
         System.out.println(term.toString() + " Compared to " + insertedTerm.toString());
+    }
+
+    @Test
+    public void insertMentor() throws Exception {
+        Mentor mentor = new Mentor("Sarah Conor", "561-123-1991", "ResistSky@gmail.com");
+        //Call the method to insert a Mentor
+        mentorDAO.insertMentor(mentor);
+        //Get the first Mentor there should only be one
+        Mentor insertedMentor = mentorDAO.getMentors().get(0);
+        //Assert equal
+        assertEquals(mentor, insertedMentor);
+        System.out.println(mentor.toString() + " Compared to " + insertedMentor.toString());
+    }
+
+    @Test
+    public void insertAssessment() throws Exception {
+        Assessment assessment = new Assessment("Android App Dev", "Performance", "10/15/2022", "10/30/2022", 1);
+        //Call the method to insert a Assessment
+        assessmentDAO.insertAssessment(assessment);
+        //Get the first Assessment there should only be one
+        Assessment insertedAssessment = assessmentDAO.getAssessments().get(0);
+        //Assert equal
+        assertEquals(assessment, insertedAssessment);
+        System.out.println(assessment.toString() + " Compared to " + insertedAssessment.toString());
     }
 
     @Test

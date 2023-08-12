@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "assessments")
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
@@ -69,11 +71,30 @@ public class Assessment {
     public String toString() {
         return "Assessment{" +
                 "assessmentID=" + assessmentID +
+                ", assessmentCourseID=" + assessmentCourseID +
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Assessment assessment = (Assessment) object;
+        return assessmentID + 1 == assessment.assessmentID&&
+                assessmentCourseID == assessment.assessmentCourseID &&
+                Objects.equals(title, assessment.title) &&
+                Objects.equals(type, assessment.type) &&
+                Objects.equals(startDate, assessment.startDate) &&
+                Objects.equals(endDate, assessment.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(assessmentID, assessmentCourseID, title, type, startDate, endDate);
     }
 
     public int getAssessmentCourseID() {

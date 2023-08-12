@@ -1,5 +1,6 @@
 package com.example.android.mygreatuniversity.Entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -93,6 +94,7 @@ public class Course {
         this.courseNotes = courseNotes;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Course{" +
@@ -113,7 +115,7 @@ public class Course {
         Course course = (Course) object;
         //Need to decrement this courseID by one because the DB auto-increments from one
         //And the test starts from 0 leading to a mismatch else remove courseID comparison.
-        return  (courseID == course.courseID -1 &&
+        return  (courseID + 1 == course.courseID &&
                 courseMentorId == course.courseMentorId &&
                 termID == course.termID &&
                 Objects.equals(title, course.title) &&

@@ -16,6 +16,7 @@ import com.example.android.mygreatuniversity.DAO.UserDAO;
 import com.example.android.mygreatuniversity.Database.DatabaseBuilder;
 import com.example.android.mygreatuniversity.Entity.Course;
 import com.example.android.mygreatuniversity.Entity.TechSupport;
+import com.example.android.mygreatuniversity.Entity.Term;
 
 import org.junit.After;
 import org.junit.Before;
@@ -65,6 +66,19 @@ public class RepoInsertionTest {
         Course insertedCourse = courseDAO.getCourses().get(0);
         //Assert equal
         assertEquals(course, insertedCourse);
+        System.out.println(course.toString() + " Compared to " + insertedCourse.toString());
+    }
+
+    @Test
+    public void insertTerm() throws Exception {
+        Term term = new Term("Spring2021", "6/01/2021", "12/31/2021");
+        //Call the method to insert a Term
+        termDAO.insertTerm(term);
+        //Get the first Term there should only be one
+        Term insertedTerm = termDAO.getTerms().get(0);
+        //Assert equal
+        assertEquals(term, insertedTerm);
+        System.out.println(term.toString() + " Compared to " + insertedTerm.toString());
     }
 
     @Test

@@ -4,6 +4,8 @@ package com.example.android.mygreatuniversity.Entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "terms")
 public class Term {
     @PrimaryKey(autoGenerate = true)
@@ -59,4 +61,21 @@ public class Term {
                 ", endDate=" + endDate +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Term term = (Term) object;
+        return termID == term.termID - 1 &&
+                Objects.equals(title, term.title) &&
+                Objects.equals(startDate, term.startDate) &&
+                Objects.equals(endDate, term.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(termID, title, startDate, endDate);
+    }
+
 }

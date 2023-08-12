@@ -3,6 +3,7 @@ package com.example.android.mygreatuniversity.Entity;
 import androidx.annotation.NonNull;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 // Abstract base class for faculty-misc
 public abstract class FacultyMisc {
@@ -67,6 +68,22 @@ public abstract class FacultyMisc {
                 ", jobTitle='" + jobTitle + '\'' +
                 ", availability=" + availability +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        FacultyMisc miscFaculty = (FacultyMisc) object;
+        return Objects.equals(name, miscFaculty.name) &&
+                Objects.equals(email, miscFaculty.email) &&
+                Objects.equals(jobTitle, miscFaculty.jobTitle) &&
+                Objects.equals(availability, miscFaculty.availability);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, jobTitle, availability);
     }
 }
 

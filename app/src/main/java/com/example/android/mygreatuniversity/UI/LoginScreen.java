@@ -27,7 +27,6 @@ import com.example.android.mygreatuniversity.Entity.TechSupport;
 import com.example.android.mygreatuniversity.Entity.Term;
 import com.example.android.mygreatuniversity.Entity.User;
 import com.example.android.mygreatuniversity.R;
-import com.example.android.mygreatuniversity.Utils.Utils;
 
 import java.util.Calendar;
 

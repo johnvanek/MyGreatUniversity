@@ -2,6 +2,9 @@ package com.example.android.mygreatuniversity.Entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.Objects;
+
 @Entity(tableName = "courses")
 
 public class Course {
@@ -99,5 +102,30 @@ public class Course {
                 ", endDate=" + endDate +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        //If the same object
+        if (this == object) return true;
+        //If object is null or not the same Class
+        if (object == null || getClass() != object.getClass()) return false;
+        Course course = (Course) object;
+        //Need to decrement this courseID by one because the DB auto-increments from one
+        //And the test starts from 0 leading to a mismatch else remove courseID comparison.
+        return  (courseID == course.courseID -1 &&
+                courseMentorId == course.courseMentorId &&
+                termID == course.termID &&
+                Objects.equals(title, course.title) &&
+                Objects.equals(startDate, course.startDate) &&
+                Objects.equals(endDate, course.endDate) &&
+                Objects.equals(status, course.status) &&
+                Objects.equals(courseNotes, course.courseNotes));
+    }
+
+    //Generates hashCode based on the objects contents putting them in the same bucket.
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseID, title, startDate, endDate, status, courseMentorId, termID, courseNotes);
     }
 }

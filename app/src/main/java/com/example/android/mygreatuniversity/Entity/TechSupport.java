@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity(tableName = "techSupport")
 public class TechSupport extends FacultyMisc {
     @PrimaryKey(autoGenerate = true)
@@ -40,13 +42,29 @@ public class TechSupport extends FacultyMisc {
     @NonNull
     @Override
     public String toString() {
-        return "Mentor-Aide{" +
+        return "Tech-Support{" +
                 "name='" + super.getName() + '\'' +
                 ", email='" + super.getEmail() + '\'' +
                 ", jobTitle='" + super.getJobTitle() + '\'' +
                 ", availability=" + super.getAvailability() +
                 ", subjects='" + getOperatingSystems() + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        TechSupport techSupport = (TechSupport) object;
+        //Decrement the ID
+        return techSupportID == techSupport.techSupportID -1 &&
+                operatingSystems.equals(techSupport.operatingSystems);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), techSupportID, operatingSystems);
     }
 
     public long getDateHired() {

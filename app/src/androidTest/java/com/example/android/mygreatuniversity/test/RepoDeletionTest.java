@@ -32,12 +32,16 @@ public class RepoDeletionTest {
     public void createDb() {
         dbb = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(), DatabaseBuilder.class).allowMainThreadQueries().build();
         repo = new Repo(ApplicationProvider.getApplicationContext()); // Build Repo using
+        dbb.clearAllTables();
     }
 
     //Close the Connection to the Database when we are done.
     @After
     public void closeDb() throws IOException {
         dbb.close();
+        dbb.clearAllTables();
+        repo.getCourses().clear();
+
     }
 
     //***************NOTE:**************************
@@ -50,40 +54,14 @@ public class RepoDeletionTest {
     public void deleteCourse() {
         // Create a new Course
         Course course = new Course("Course Title", "2023-08-01", "2023-12-31", "In Progress", 1, 1, "Notes");
-
+        System.out.println("Course List " + repo.getCourses());
+        System.out.println(course);
         // Insert course
         repo.insertCourse(course);
-
         // Then Delete course
         repo.deleteCourse(course);
-
-        //Waits until an operation has been performed
-        CountDownLatch latch = new CountDownLatch(1);
-
-        // Creates a new thread then sleep 500millis
-        new Thread(() -> {
-            try {
-                // Sleep for async operation to complete
-                //Try Reducing the time of the sleep if the app times out
-                Thread.sleep(100); // Sleep Can't just use this have to also include latch
-
-                // Query the database to check if the mentors is deleted
-                List<Course> courses = repo.getCourses();
-
-                // Assert that the list of mentors is aka value was deleted
-                assertTrue("Failure to Delete Assessment from Database", courses.isEmpty());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                latch.countDown(); // Release the latch
-            }
-        }).start();
-
-        try {
-            latch.await(); // Wait for the asynchronous operation to complete
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //Should evaluate to null
+        assertNull(repo.findCourseById(course.getCourseID()));
     }
 
 
@@ -98,32 +76,7 @@ public class RepoDeletionTest {
         // Then Delete the mentor
         repo.deleteMentor(mentor);
 
-        //Waits until an operation has been performed
-        CountDownLatch latch = new CountDownLatch(1);
-
-        // Creates a new thread then sleep 500millis
-        new Thread(() -> {
-            try {
-                // Sleep for async operation to complete
-                Thread.sleep(100); // Sleep Can't just use this have to also include latch
-
-                // Query the database to check if the mentors is deleted
-                List<Mentor> mentors = repo.getMentors();
-
-                // Assert that the list of mentors is aka value was deleted
-                assertTrue("Failure to Delete Assessment from Database", mentors.isEmpty());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                latch.countDown(); // Release the latch
-            }
-        }).start();
-
-        try {
-            latch.await(); // Wait for the asynchronous operation to complete
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        assertNull(repo.findMentorById(mentor.getMentorID()));
     }
 
 
@@ -174,32 +127,6 @@ public class RepoDeletionTest {
 
         // Delete the term
         repo.deleteTerm(term);
-
-        //Waits until an operation has been performed
-        CountDownLatch latch = new CountDownLatch(1);
-
-        // Creates a new thread then sleep 500millis
-        new Thread(() -> {
-            try {
-                // Sleep for async operation to complete
-                Thread.sleep(100); // Sleep Can't just use this have to also include latch
-
-                // Query the database to check if the assessment is deleted
-                Term deletedTerm = repo.lookupTermById(term.getTermID());
-
-                // Assert that the list of assessments is aka value was deleted
-                assertNull("Failure to Delete Term from Database", deletedTerm);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                latch.countDown(); // Release the latch
-            }
-        }).start();
-
-        try {
-            latch.await(); // Wait for the asynchronous operation to complete
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        assertNull(repo.lookupTermById(term.getTermID()));
     }
 }

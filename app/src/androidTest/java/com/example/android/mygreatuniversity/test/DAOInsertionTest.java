@@ -43,11 +43,12 @@ public class DAOInsertionTest {
 
     private DatabaseBuilder dbb;
 
-    //Assign the DAO fields & build the database Verifies that the DAO which are the core of the implementation
-    // Of the Repo are working correctly.
+    //Assign the DAO fields & build the database Verifies that the DAO which are the core of the
+    // implementation Of the Repo are working correctly.
     @Before
     public void createDb() {
-        dbb = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(), DatabaseBuilder.class).allowMainThreadQueries().build();
+        dbb = Room.inMemoryDatabaseBuilder(ApplicationProvider.getApplicationContext(),
+                DatabaseBuilder.class).allowMainThreadQueries().build();
         courseDAO = dbb.courseDAO();
         termDAO = dbb.termDAO();
         mentorDAO = dbb.mentorDAO();
@@ -65,7 +66,8 @@ public class DAOInsertionTest {
 
     @Test
     public void insertCourse() throws Exception {
-        Course course = new Course("Mobile Development", "10/01/2022", "10/30/2022", "In Progress", 1, 1, "");
+        Course course = new Course("Mobile Development", "10/01/2022",
+                "10/30/2022", "In Progress", 1, 1, "");
         //Call the method to insert a Course
         courseDAO.insertCourse(course);
         //Get the first Course there should only be one

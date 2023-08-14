@@ -44,6 +44,8 @@ public class Repo {
     private Course mCourse;
     private Mentor mCourseMentor;
 
+    private Assessment mAssessment;
+
     private User mUser;
     private Term mTerm;
 
@@ -368,6 +370,19 @@ public class Repo {
             e.printStackTrace();
         }
         return mAssessments;
+    }
+
+    public Assessment lookupAssessmentById(int id) {
+        executor.execute(() -> {
+            mAssessment = mAssessmentDAO.findAssessmentById(id);
+        });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("adapter", "In Repo attempting to get Assessment from an ID " + mAssessment);
+        return mAssessment;
     }
 
     //Term Methods

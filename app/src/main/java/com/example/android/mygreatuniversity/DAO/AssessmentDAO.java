@@ -10,6 +10,7 @@ import androidx.room.Update;
 
 import com.example.android.mygreatuniversity.Entity.Assessment;
 import com.example.android.mygreatuniversity.Entity.Course;
+import com.example.android.mygreatuniversity.Entity.Mentor;
 
 import java.util.List;
 
@@ -30,4 +31,7 @@ public interface AssessmentDAO {
 
     @Query("SELECT * FROM assessments WHERE assessmentCourseID LIKE :courseID")
     List<Assessment> getCourseAssessments(int courseID);
+
+    @Query("SELECT * FROM assessments WHERE assessmentID LIKE :mentorID LIMIT 1")
+    Assessment findAssessmentById(int mentorID);
 }

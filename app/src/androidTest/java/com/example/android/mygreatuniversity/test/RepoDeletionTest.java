@@ -89,31 +89,8 @@ public class RepoDeletionTest {
         // Delete the assessment from the database
         repo.deleteAssessment(assessment);
         //Waits until an operation has been performed
-        CountDownLatch latch = new CountDownLatch(1);
-
-        // Creates a new thread then sleep 500millis
-        new Thread(() -> {
-            try {
-                // Sleep for async operation to complete
-                Thread.sleep(100); // Sleep Can't just use this have to also include latch
-
-                // Query the database to check if the assessment is deleted
-                List<Assessment> assessments = repo.getAssessments();
-
-                // Assert that the list of assessments is aka value was deleted
-                assertTrue("Failure to Delete Assessment from Database", assessments.isEmpty());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                latch.countDown(); // Release the latch
-            }
-        }).start();
-
-        try {
-            latch.await(); // Wait for the asynchronous operation to complete
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        assertNull(repo.lookupAssessmentById(assessment.getAssessmentID()));
+        System.out.println(assessment);
     }
 
 

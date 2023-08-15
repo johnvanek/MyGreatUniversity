@@ -160,7 +160,7 @@ public class LoginScreen extends AppCompatActivity {
             TechSupport tech3 = (new TechSupport("Matthew Lee","MGUML@gmail.com","Tier-3-Support","Monday,Friday","Windows,macOS"));
             TechSupport tech4 = (new TechSupport("William Perez","MGUWP@gmail.com","Tier-1-Support","Monday,Tuesday,Wednesday","Windows"));
             TechSupport tech5 = (new TechSupport("Melissa Garcia","MGUMG@gmail.com","Tier-2-Support","Monday,Tuesday,Friday","macOS"));
-            TechSupport[] techSupportPersonnel = {tech1,tech2,tech3,tech4,tech5};
+            //TechSupport[] techSupportPersonnel = {tech1,tech2,tech3,tech4,tech5};
             //Call the Method to set the Hire date via a helper class
             //Don't actually need a TimeStamp long value just Table row col values for the layout
             //To meet the requirement for report generation.
